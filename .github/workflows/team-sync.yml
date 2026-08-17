@@ -1,0 +1,54 @@
+name: team-sync
+
+# Régénère TEAM-STATUS.md sur `main` à chaque push (main + feat/**),
+# en agrégeant les journaux .claude/journal/<dev>.md de toutes les branches.
+# => Après le push d'un dev, un simple `git fetch` de l'autre côté rend l'état à jour visible.
+
+on:
+  push:
+    branches:
+      - main
+      - "feat/**"
+
+# Un seul run à la fois pour éviter les pushs concurrents sur main.
+concurrency:
+  group: team-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (historique complet)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Récupérer toutes les branches distantes
+        run: git fetch --all --prune
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Régénérer TEAM-STATUS.md
+        run: node scripts/generate-team-status.mjs
+
+      - name: Commit & push si changement
+        run: |
+          git config user.name "kelthen-bot"
+          git config user.email "bot@kelthen.com"
+          if [ -n "$(git status --porcelain TEAM-STATUS.md)" ]; then
+            git add TEAM-STATUS.md
+            git commit -m "chore(team-sync): régénère TEAM-STATUS.md [skip ci]"
+            # Rebase défensif au cas où main a bougé pendant le run
+            git pull --rebase origin main || true
+            git push origin main
+          else
+            echo "Aucun changement de TEAM-STATUS.md."
+          fi

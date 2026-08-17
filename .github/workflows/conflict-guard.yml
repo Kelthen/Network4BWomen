@@ -1,0 +1,93 @@
+name: conflict-guard
+
+# Alerte précoce (pas de blocage) : si une PR touche un fichier que l'AUTRE dev
+# a déclaré dans `files_locked` de son journal, on commente la PR.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: git fetch --all --prune
+
+      - name: Détecter les chevauchements et commenter
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { execSync } = require("node:child_process");
+            const DEVS = ["rhamon", "serge"];
+            const sh = (c) => { try { return execSync(c, {encoding:"utf8"}).trim(); } catch { return ""; } };
+
+            // Fichiers modifiés par la PR
+            const base = context.payload.pull_request.base.sha;
+            const head = context.payload.pull_request.head.sha;
+            const changed = sh(`git diff --name-only ${base} ${head}`).split("\n").filter(Boolean);
+
+            // Auteur de la branche : on devine le dev depuis le nom de branche feat/<dev>/...
+            const headRef = context.payload.pull_request.head.ref;
+            const meMatch = headRef.match(/^feat\/(\w+)\//);
+            const me = meMatch ? meMatch[1] : null;
+
+            // Parse front-matter minimal pour récupérer files_locked
+            function locksOf(dev) {
+              // cherche le journal du dev sur toutes les branches feat/<dev>/* + main
+              const branches = sh("git for-each-ref --format='%(refname:short)' refs/remotes/origin")
+                .split("\n").map(s=>s.trim()).filter(Boolean)
+                .filter(b => b === "origin/main" || b.startsWith(`origin/feat/${dev}/`));
+              let locks = [];
+              for (const b of branches) {
+                const txt = sh(`git show ${b}:.claude/journal/${dev}.md`);
+                const m = txt.match(/files_locked:\s*\[([^\]]*)\]/);
+                if (m) locks = locks.concat(m[1].split(",").map(s=>s.trim().replace(/^["']|["']$/g,"")).filter(Boolean));
+              }
+              return [...new Set(locks)];
+            }
+
+            // Glob très simple : gère ** et *
+            function match(file, pattern) {
+              const rx = new RegExp("^" + pattern
+                .replace(/[.+^${}()|\\]/g,"\\$&")
+                .replace(/\*\*/g,"::DS::").replace(/\*/g,"[^/]*").replace(/::DS::/g,".*") + "$");
+              return rx.test(file);
+            }
+
+            const others = DEVS.filter(d => d !== me);
+            let hits = [];
+            for (const other of others) {
+              const locks = locksOf(other);
+              for (const f of changed) {
+                for (const p of locks) {
+                  if (f === p || match(f, p)) hits.push({ file: f, pattern: p, other });
+                }
+              }
+            }
+
+            const marker = "<!-- conflict-guard -->";
+            let body;
+            if (hits.length === 0) {
+              body = `${marker}\n✅ **conflict-guard** : aucun chevauchement avec les fichiers verrouillés de l'autre dev.`;
+            } else {
+              body = `${marker}\n⚠️ **conflict-guard — chevauchement détecté**\n\nCette PR touche des fichiers actuellement **verrouillés** par l'autre dev (voir son journal) :\n\n` +
+                hits.map(h => `- \`${h.file}\` ↔ verrouillé par **${h.other}** (\`${h.pattern}\`)`).join("\n") +
+                `\n\n👉 Coordonnez-vous avant de merger (voir CLAUDE.md §1.2). Ceci est un avertissement, pas un blocage.`;
+            }
+
+            // Upsert du commentaire
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner, repo: context.repo.repo, issue_number: context.issue.number });
+            const existing = comments.find(c => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner: context.repo.owner, repo: context.repo.repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.issue.number, body });
+            }
