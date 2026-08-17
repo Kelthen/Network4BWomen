@@ -1,0 +1,26 @@
+# deps
+/node_modules
+/.pnp
+.pnp.js
+
+# next
+/.next/
+/out/
+next-env.d.ts
+
+# prod
+/build
+
+# env
+.env
+.env*.local
+
+# logs & os
+npm-debug.log*
+yarn-error.log*
+.DS_Store
+*.pem
+
+# vercel / ts
+.vercel
+*.tsbuildinfo
