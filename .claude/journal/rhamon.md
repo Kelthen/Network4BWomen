@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/donate
-current_task: "Dons Stripe (page + checkout + webhook) et Newsletter réelle"
+branch: feat/rhamon/programs
+current_task: "AIDE serge — page Programs + mise à jour OWNERSHIP.yml pour le Claude de serge"
 files_locked: []
 updated: 2026-08-17T00:00:00Z
 ---
@@ -12,6 +12,12 @@ updated: 2026-08-17T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-17 — AIDE serge : Programs + OWNERSHIP (`feat/rhamon/programs`)
+- Zone rhamon terminée → sur demande de l'humain, je commence à aider serge. **Page Programs** : `app/(site)/programs/page.tsx` (7 programmes de CONTENT §3, contenu placeholder, cartes éditoriales, prêt à brancher table `programs`). En anglais, design cohérent, `Reveal`.
+- **OWNERSHIP.yml mis à jour** (registre partagé) pour que le Claude de serge ne refasse pas le travail : note d'état en tête (site en anglais, fondations + zone rhamon FAITES, pattern API gardé, Vercel=Next.js) ; statuts `done` (fondations design/layout, toutes zones rhamon) et `programs` → `wip`.
+- ⚠️ J'agis dans la zone de serge AVEC l'accord explicite de l'humain. Je n'ai PAS touché au journal ni au PLAN de serge (interdits) — seulement OWNERSHIP.yml (partagé) et sa page programs.
+- Validé : `next build` OK (`/programs` statique).
 
 ## 2026-08-17 — Dons Stripe + Newsletter (`feat/rhamon/donate`)
 - **Dons** : `app/(site)/donate/page.tsx` (bannières succès/annulation via searchParams) + `components/donate/DonateForm.tsx` (montants prédéfinis/perso, one-time/monthly). API : `app/api/stripe/checkout` (Checkout Session, mode payment/subscription, CAD) + `app/api/stripe/webhook` (vérif signature → insert `donations`). Secrets en env uniquement ; gardes 503 si clés absentes → build OK.
