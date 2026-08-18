@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/programs
-current_task: "AIDE serge — page Programs + mise à jour OWNERSHIP.yml pour le Claude de serge"
+branch: feat/rhamon/serge-pages
+current_task: "AIDE serge (indisponible) — finalise ses pages + met à jour la mémoire (OWNERSHIP)"
 files_locked: []
 updated: 2026-08-17T00:00:00Z
 ---
@@ -12,6 +12,13 @@ updated: 2026-08-17T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-17 — AIDE serge : ses 5 pages restantes + mémoire (`feat/rhamon/serge-pages`)
+- Serge indisponible → l'humain me demande de finir sa zone. Construit **Events, Conference, Resources, News, Gallery** (Programs déjà fait) : pages en anglais, design cohérent (`Reveal`, tokens), contenu **placeholder** issu de `docs/CONTENT.md` §4/5/7/8/9, prêtes à brancher Supabase (events/registrations, resources, posts, gallery_media).
+- **Mémoire mise à jour** : `OWNERSHIP.yml` → toutes les zones serge (sauf `search`) passées à `done` avec note « construite par rhamon EN AIDE, placeholder à brancher » ; note d'en-tête réécrite pour le Claude de serge (ne pas refaire, juste enrichir + brancher). Ajout d'un rappel migration DB + guide Stripe.
+- Respect §1 : je n'ai PAS touché au journal ni au PLAN de serge (interdits). Seulement OWNERSHIP.yml (partagé) + ses pages, avec accord explicite de l'humain.
+- **Résultat** : les 12 pages du site existent et buildent. `search` = phase ultérieure. Stripe/Supabase = à activer par l'humain (clés + toggle Vercel).
+- Validé : `next build` OK (14 routes).
 
 ## 2026-08-17 — AIDE serge : Programs + OWNERSHIP (`feat/rhamon/programs`)
 - Zone rhamon terminée → sur demande de l'humain, je commence à aider serge. **Page Programs** : `app/(site)/programs/page.tsx` (7 programmes de CONTENT §3, contenu placeholder, cartes éditoriales, prêt à brancher table `programs`). En anglais, design cohérent, `Reveal`.
