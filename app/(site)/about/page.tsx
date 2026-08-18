@@ -1,27 +1,23 @@
-// OWNED BY: rhamon — À propos NBW. Voir PLAN-rhamon.md, docs/CONTENT.md §2 (verbatim),
-// docs/DESIGN.md + docs/BRAND.md. Textes marqués « verbatim » = reproduits tels quels (client).
+// OWNED BY: rhamon — About NBW. See PLAN-rhamon.md, docs/CONTENT.md §2 (verbatim),
+// docs/DESIGN.md + docs/BRAND.md. Text marked "verbatim" is reproduced as-is (client copy).
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
 import TeamGrid from "@/components/about/TeamGrid";
 
 export const metadata: Metadata = {
-  title: "À propos — Network of Black Women (NBW)",
+  title: "About — Network of Black Women (NBW)",
   description:
-    "Notre histoire, notre mission, notre vision et l'équipe qui porte NBW — une sororité pour les femmes noires du Sud de l'Alberta.",
+    "Our story, mission, vision, and the team behind NBW — a sisterhood for Black women in Southern Alberta.",
 };
 
-// Valeurs (verbatim CONTENT §2) + courte glose éditoriale.
+// Values (verbatim CONTENT §2) + short editorial gloss.
 const VALUES = [
-  { en: "Equity", fr: "Équité", desc: "Ouvrir des portes et rééquilibrer les chances." },
-  { en: "Sisterhood", fr: "Sororité", desc: "Se tenir les coudes, célébrer chacune." },
-  { en: "Community Care", fr: "Community Care", desc: "Prendre soin les unes des autres, sans condition." },
-  { en: "Accountability", fr: "Responsabilité", desc: "Tenir nos engagements, avec intégrité." },
-  {
-    en: "Collective Empowerment",
-    fr: "Autonomisation collective",
-    desc: "La force du groupe fait avancer chacune.",
-  },
+  { name: "Equity", desc: "Opening doors and levelling the playing field." },
+  { name: "Sisterhood", desc: "Standing by one another, celebrating each woman." },
+  { name: "Community Care", desc: "Caring for one another, unconditionally." },
+  { name: "Accountability", desc: "Keeping our commitments, with integrity." },
+  { name: "Collective Empowerment", desc: "The strength of the group moves each of us forward." },
 ];
 
 // Board + Leadership (docs/TEAM.md / CONTENT §2).
@@ -45,7 +41,7 @@ export default function AboutPage() {
       {/* Hero */}
       <header className="mx-auto max-w-6xl px-6 pt-24 pb-16 md:pt-32">
         <Reveal as="p" className={EYEBROW}>
-          À propos · Network of Black Women
+          About · Network of Black Women
         </Reveal>
         <Reveal
           as="h1"
@@ -55,9 +51,9 @@ export default function AboutPage() {
           This is a space curated by Black&nbsp;Women for Black&nbsp;Women.
         </Reveal>
         <Reveal as="p" delay={2} className="mt-6 max-w-2xl text-lg text-brand-brown/80">
-          Une sororité pour les femmes et filles noires du Sud de l&apos;Alberta — sur le
-          territoire traditionnel de la Confédération Blackfoot. Un espace pour être célébrée,
-          être soi-même, et grandir ensemble.
+          A sisterhood for Black women and girls in Southern Alberta — on the traditional
+          territory of the Blackfoot Confederacy. A space to be celebrated, to be yourself, and
+          to grow together.
         </Reveal>
       </header>
 
@@ -69,20 +65,20 @@ export default function AboutPage() {
           </Reveal>
           <Reveal as="blockquote" delay={1} className="md:col-span-9">
             <p className="font-serif text-2xl leading-snug md:text-4xl">
-              « Network of Black Women was created on the goal to create a sisterhood community
-              in Southern Alberta for Black Women and a space for Black Women to be celebrated,
-              to be themselves. »
+              “Network of Black Women was created on the goal to create a sisterhood community in
+              Southern Alberta for Black Women and a space for Black Women to be celebrated, to be
+              themselves.”
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Mission + Vision — section sombre pour la respiration (DESIGN §4) */}
+      {/* Mission + Vision — dark section for visual rhythm (DESIGN §4) */}
       <section className="bg-brand-brown text-brand-cream">
         <div className="mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-2 md:py-28">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-pinkLight">
-              Notre mission
+              Our mission
             </p>
             <p className="mt-5 text-lg leading-relaxed text-brand-cream/90">
               Our mission is to empower, connect, and uplift Black Women by fostering a
@@ -96,7 +92,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={1}>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-pinkLight">
-              Notre vision
+              Our vision
             </p>
             <p className="mt-5 text-lg leading-relaxed text-brand-cream/90">
               Our vision is to create a strong, inclusive, safe and supportive environment where
@@ -114,24 +110,23 @@ export default function AboutPage() {
       {/* Our Values */}
       <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <Reveal as="p" className={EYEBROW}>
-          Nos valeurs
+          Our values
         </Reveal>
         <Reveal as="h2" delay={1} className="mt-3 max-w-2xl font-serif text-3xl md:text-4xl">
-          Ce qui nous guide, chaque jour.
+          What guides us, every day.
         </Reveal>
         <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {VALUES.map((v, i) => (
             <Reveal
               as="li"
-              key={v.en}
+              key={v.name}
               delay={((i % 3) + 1) as 1 | 2 | 3}
               className="border-t border-brand-beige pt-5"
             >
               <span className="font-serif text-4xl text-brand-gold">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-3 font-serif text-2xl text-brand-brown">{v.fr}</h3>
-              <p className="mt-1 text-sm uppercase tracking-wider text-brand-brown/50">{v.en}</p>
+              <h3 className="mt-3 font-serif text-2xl text-brand-brown">{v.name}</h3>
               <p className="mt-3 text-brand-brown/75">{v.desc}</p>
             </Reveal>
           ))}
@@ -142,15 +137,15 @@ export default function AboutPage() {
       <section className="bg-brand-beige/50">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center md:py-28">
           <Reveal as="p" className={EYEBROW}>
-            Pourquoi NBW existe
+            Why NBW exists
           </Reveal>
           <Reveal
             as="p"
             delay={1}
             className="mt-6 font-serif text-2xl leading-snug text-brand-brown md:text-3xl"
           >
-            Parce que chaque femme noire mérite un espace où sa voix est amplifiée, ses réussites
-            reconnues, et sa force collective moteur d&apos;un changement positif.
+            Because every Black woman deserves a space where her voice is amplified, her successes
+            recognized, and her collective strength drives positive change.
           </Reveal>
         </div>
       </section>
@@ -158,13 +153,13 @@ export default function AboutPage() {
       {/* Board & Leadership */}
       <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <Reveal as="p" className={EYEBROW}>
-          Gouvernance
+          Governance
         </Reveal>
         <Reveal as="h2" delay={1} className="mt-3 max-w-3xl font-serif text-3xl md:text-4xl">
           Meet Our Board &amp; Leadership.
         </Reveal>
         <Reveal as="p" delay={2} className="mt-4 max-w-2xl text-brand-brown/70">
-          Les femmes qui portent NBW. Photos et bios à venir.
+          The women behind NBW. Photos and bios coming soon.
         </Reveal>
         <TeamGrid members={TEAM} />
       </section>
@@ -173,20 +168,20 @@ export default function AboutPage() {
       <section className="bg-brand-brown text-brand-cream">
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-16 md:flex-row md:items-center md:justify-between">
           <h2 className="max-w-xl font-serif text-3xl md:text-4xl">
-            Rejoins une communauté qui t&apos;élève.
+            Join a community that lifts you up.
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/get-involved"
               className="rounded-full bg-brand-pink px-6 py-3 font-semibold text-brand-brown transition hover:-translate-y-0.5"
             >
-              S&apos;impliquer
+              Get involved
             </Link>
             <Link
               href="/donate"
               className="rounded-full border border-brand-cream/40 px-6 py-3 font-semibold text-brand-cream transition hover:bg-brand-cream/10"
             >
-              Faire un don
+              Donate
             </Link>
           </div>
         </div>

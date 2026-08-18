@@ -58,13 +58,13 @@ export default function Hero() {
         </p>
         <div className={styles.heroCta}>
           <Link href="/get-involved" className={`${styles.btn} ${styles.btnDark}`}>
-            Rejoindre la communauté
+            Join the community
           </Link>
           <Link href="/programs" className={`${styles.btn} ${styles.btnOutline}`}>
-            Découvrir nos programmes
+            Explore our programs
           </Link>
           <Link href="/donate" className={`${styles.btn} ${styles.btnPink}`}>
-            Faire un don
+            Donate
           </Link>
         </div>
         <div ref={visualRef} className={styles.heroVisual} aria-hidden="true" />

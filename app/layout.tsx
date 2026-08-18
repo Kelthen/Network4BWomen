@@ -11,12 +11,12 @@ const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap
 export const metadata: Metadata = {
   title: "Network of Black Women (NBW)",
   description:
-    "Empowering Black Women. Building Community. Creating Leaders. Une sororité pour les femmes noires du Sud de l'Alberta.",
+    "Empowering Black Women. Building Community. Creating Leaders. A sisterhood for Black women in Southern Alberta.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body className="font-sans">
         <Nav />
         <main>{children}</main>

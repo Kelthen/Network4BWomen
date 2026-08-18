@@ -1,6 +1,6 @@
-// OWNED BY: rhamon — Get Involved. Voir PLAN-rhamon.md, docs/CONTENT.md §6.
-// Note : le câblage des formulaires (→ app/api/* → table form_submissions) est une étape
-// ultérieure (zone rhamon). Ici, chaque parcours pointe vers Contact ou Don.
+// OWNED BY: rhamon — Get Involved. See PLAN-rhamon.md, docs/CONTENT.md §6.
+// Note: form wiring (app/api/* → form_submissions table) is a later step (rhamon zone).
+// For now each path links to Contact or Donate.
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
@@ -8,7 +8,7 @@ import Reveal from "@/components/home/Reveal";
 export const metadata: Metadata = {
   title: "Get Involved — Network of Black Women (NBW)",
   description:
-    "Bénévolat, mentorat, prise de parole, partenariats, sponsoring, dons, opportunités au conseil — plusieurs façons de faire grandir NBW.",
+    "Volunteer, mentor, speak, partner, sponsor, or serve on the board — many ways to help NBW grow.",
 };
 
 const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
@@ -18,49 +18,49 @@ type Way = {
   desc: string;
   cta: string;
   href: string;
-  accent: string; // dégradé de marque
+  accent: string; // brand gradient
 };
 
 const WAYS: Way[] = [
   {
-    title: "Devenir bénévole",
-    desc: "Donne de ton temps et de ton énergie pour faire vivre les événements et programmes de la communauté.",
-    cta: "Je veux aider",
+    title: "Volunteer",
+    desc: "Give your time and energy to bring the community's events and programs to life.",
+    cta: "I want to help",
     href: "/contact",
     accent: "linear-gradient(160deg,#97ac9f,#e8dcc8)",
   },
   {
-    title: "Devenir mentore",
-    desc: "Partage ton expérience et accompagne une femme ou une jeune fille dans son parcours.",
-    cta: "Devenir mentore",
+    title: "Become a Mentor",
+    desc: "Share your experience and guide a woman or girl on her journey.",
+    cta: "Become a mentor",
     href: "/contact",
     accent: "linear-gradient(160deg,#e9c8c9,#ffbbbb)",
   },
   {
-    title: "Prendre la parole",
-    desc: "Interviens lors d'un atelier, d'un panel ou de notre conférence annuelle.",
-    cta: "Proposer une intervention",
+    title: "Become a Speaker",
+    desc: "Speak at a workshop, a panel, or our annual conference.",
+    cta: "Propose a talk",
     href: "/contact",
     accent: "linear-gradient(160deg,#c9a24b,#e8dcc8)",
   },
   {
-    title: "Devenir partenaire",
-    desc: "Ton organisation partage nos valeurs ? Construisons ensemble des initiatives à impact.",
-    cta: "Discuter d'un partenariat",
+    title: "Partner With Us",
+    desc: "Does your organization share our values? Let's build meaningful initiatives together.",
+    cta: "Discuss a partnership",
     href: "/contact",
     accent: "linear-gradient(160deg,#97ac9f,#6e9179)",
   },
   {
-    title: "Sponsoring d'entreprise",
-    desc: "Soutiens nos programmes et notre conférence via un sponsoring corporate.",
-    cta: "Devenir sponsor",
+    title: "Corporate Sponsorship",
+    desc: "Support our programs and annual conference through corporate sponsorship.",
+    cta: "Become a sponsor",
     href: "/contact",
     accent: "linear-gradient(160deg,#f6828f,#44312b)",
   },
   {
-    title: "Opportunités au conseil",
-    desc: "Contribue à la gouvernance de NBW et à sa direction stratégique.",
-    cta: "En savoir plus",
+    title: "Board Opportunities",
+    desc: "Contribute to NBW's governance and strategic direction.",
+    cta: "Learn more",
     href: "/contact",
     accent: "linear-gradient(160deg,#e8dcc8,#c9a24b)",
   },
@@ -79,15 +79,15 @@ export default function GetInvolvedPage() {
           delay={1}
           className="mt-4 max-w-4xl font-serif text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl"
         >
-          Il y a une place pour toi dans cette sororité.
+          There&apos;s a place for you in this sisterhood.
         </Reveal>
         <Reveal as="p" delay={2} className="mt-6 max-w-2xl text-lg text-brand-brown/80">
-          Bénévolat, mentorat, prise de parole, partenariats ou dons — chaque contribution fait
-          grandir la communauté et élève les femmes noires du Sud de l&apos;Alberta.
+          Volunteering, mentoring, speaking, partnering, or giving — every contribution helps the
+          community grow and uplifts Black women across Southern Alberta.
         </Reveal>
       </header>
 
-      {/* Grille des parcours */}
+      {/* Ways to get involved */}
       <section className="mx-auto max-w-6xl px-6 pb-8">
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {WAYS.map((w, i) => (
@@ -113,20 +113,20 @@ export default function GetInvolvedPage() {
         </ul>
       </section>
 
-      {/* Bloc Don proéminent */}
+      {/* Prominent donation block */}
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
         <div className="overflow-hidden rounded-3xl bg-brand-brown text-brand-cream">
           <div className="grid gap-8 p-10 md:grid-cols-2 md:items-center md:p-14">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-pinkLight">
-                Faire un don
+                Donate
               </p>
               <h2 className="mt-4 font-serif text-3xl md:text-4xl">
-                Ton don finance des espaces où les femmes noires s&apos;épanouissent.
+                Your gift funds spaces where Black women thrive.
               </h2>
               <p className="mt-4 max-w-md text-brand-cream/80">
-                Programmes, bourses, événements, bien-être : chaque contribution a un impact
-                concret et durable.
+                Programs, scholarships, events, wellness — every contribution has a real, lasting
+                impact.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 md:justify-end">
@@ -134,13 +134,13 @@ export default function GetInvolvedPage() {
                 href="/donate"
                 className="rounded-full bg-brand-pink px-7 py-3 font-semibold text-brand-brown transition hover:-translate-y-0.5"
               >
-                Faire un don
+                Donate
               </Link>
               <Link
                 href="/contact"
                 className="rounded-full border border-brand-cream/40 px-7 py-3 font-semibold text-brand-cream transition hover:bg-brand-cream/10"
               >
-                Nous contacter
+                Contact us
               </Link>
             </div>
           </div>

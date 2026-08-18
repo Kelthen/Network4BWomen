@@ -55,9 +55,9 @@ export default function CtaBand() {
             <div>
               <div className={styles.cols}>
                 <div>
-                  <b>Une question ?</b>
+                  <b>Have a question?</b>
                   <p>
-                    Écris-nous :{" "}
+                    Email us:{" "}
                     <a href="mailto:info.networkofblackwomen@gmail.com">
                       info.networkofblackwomen@gmail.com
                     </a>{" "}
@@ -65,16 +65,16 @@ export default function CtaBand() {
                   </p>
                 </div>
                 <div>
-                  <b>Autres façons d&apos;aider</b>
-                  <p>Devenir bénévole · Mentore · Partager notre mission · Organiser une collecte</p>
+                  <b>Other ways to help</b>
+                  <p>Volunteer · Mentor · Share our mission · Host a fundraiser</p>
                 </div>
               </div>
               <div className={styles.actions}>
                 <Link href="/donate" className={`${styles.pill} ${styles.pillPink}`}>
-                  Faire un don
+                  Donate
                 </Link>
                 <Link href="/get-involved" className={`${styles.pill} ${styles.pillCream}`}>
-                  Devenir bénévole
+                  Volunteer
                 </Link>
               </div>
             </div>

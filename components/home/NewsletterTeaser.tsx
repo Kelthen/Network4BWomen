@@ -18,12 +18,12 @@ export default function NewsletterTeaser() {
       <div className={styles.wrap}>
         <div className={styles.box}>
           <p className={styles.eyebrow} style={{ color: "var(--pink-light)" }}>
-            Restons connectées
+            Stay connected
           </p>
           <h2>Stay Connected.</h2>
           {done ? (
             <p className={styles.fieldNote} role="status">
-              Merci ! L&apos;inscription à la newsletter arrive bientôt.
+              Thank you! Newsletter sign-up is coming soon.
             </p>
           ) : (
             <form
@@ -36,11 +36,11 @@ export default function NewsletterTeaser() {
               <input
                 type="email"
                 required
-                aria-label="Votre adresse e-mail"
-                placeholder="Votre adresse e-mail"
+                aria-label="Your email address"
+                placeholder="Your email address"
               />
               <button type="submit" className={`${styles.btn} ${styles.btnPink}`}>
-                S&apos;abonner
+                Subscribe
               </button>
             </form>
           )}

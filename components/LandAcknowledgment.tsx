@@ -2,9 +2,8 @@
 export default function LandAcknowledgment() {
   return (
     <p className="text-sm leading-relaxed text-brand-cream/80">
-      Network of Black Women est situé sur le territoire traditionnel de la
-      Confédération Blackfoot (Sud de l&apos;Alberta). Nous reconnaissons et honorons
-      les peuples de ce territoire.
+      Network of Black Women is located on the traditional territory of the Blackfoot
+      Confederacy (Southern Alberta). We recognize and honour the peoples of this land.
     </p>
   );
 }
