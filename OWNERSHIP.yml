@@ -15,10 +15,14 @@
 #  4. PATTERN API : les routes serveur (contact, newsletter, stripe) lisent les secrets en env
 #     et renvoient un 503 propre si les clés manquent (build vert sans secrets). Réutilise ce
 #     pattern pour tes routes (ex. app/api/registrations).
-#  5. PROGRAMS : déjà construit par le Claude de rhamon EN AIDE (contenu placeholder des 7
-#     programmes, prêt à brancher sur la table `programs`). Reprends-le pour l'enrichir/brancher
-#     Supabase — ne le refais pas de zéro.
+#  5. TES PAGES (serge) : Programs, Events, Conference, Resources, News, Gallery ont été
+#     construites par le Claude de rhamon EN AIDE (serge indisponible) — contenu PLACEHOLDER,
+#     design cohérent, en anglais. Elles NE sont PAS à refaire : reprends-les pour remplacer le
+#     placeholder par le vrai contenu et les brancher sur Supabase (tables programs, events,
+#     registrations, resources, posts, gallery_media). Seule `search` reste `todo` (phase ultérieure).
 #  6. DÉPLOIEMENT : Vercel doit avoir Framework Preset = Next.js (sinon erreur "public").
+#  7. DONS/DB : migration SQL des tables prête dans supabase/migrations/0001_*.sql (à exécuter
+#     dans Supabase). Guide d'activation Stripe fourni à l'humain.
 
 meta:
   repo: kelthen/Network4BWomen
@@ -77,26 +81,31 @@ rhamon:
 serge:
   - area: programs
     files: ["app/(site)/programs/**", "components/programs/**"]
-    status: wip
-    note: "Page construite par rhamon EN AIDE (7 programmes, contenu placeholder). À enrichir + brancher table programs."
+    status: done
+    note: "Construite par rhamon EN AIDE (serge indisponible) — 7 programmes, contenu placeholder. À brancher sur la table programs."
   - area: events
     files: ["app/(site)/events/**", "app/api/registrations/**", "components/events/**"]
-    status: todo
+    status: done
+    note2: "Construite par rhamon EN AIDE (serge indisponible) — contenu placeholder, prête à brancher Supabase."
     note: "Inscription événements en ligne."
   - area: conference
     files: ["app/(site)/conference/**", "components/conference/**"]
-    status: todo
+    status: done
+    note2: "Construite par rhamon EN AIDE (serge indisponible) — contenu placeholder, prête à brancher Supabase."
     note: "Landing dédiée conférence annuelle."
   - area: resources
     files: ["app/(site)/resources/**", "components/resources/**"]
-    status: todo
+    status: done
+    note2: "Construite par rhamon EN AIDE (serge indisponible) — contenu placeholder, prête à brancher Supabase."
   - area: news-blog
     files: ["app/(site)/news/**", "components/news/**"]
-    status: todo
+    status: done
+    note2: "Construite par rhamon EN AIDE (serge indisponible) — contenu placeholder, prête à brancher Supabase."
     note: "Success Stories, Community News, articles, wellness tips."
   - area: gallery
     files: ["app/(site)/gallery/**", "components/gallery/**"]
-    status: todo
+    status: done
+    note2: "Construite par rhamon EN AIDE (serge indisponible) — contenu placeholder, prête à brancher Supabase."
     note: "Galerie photo par année/événement."
   - area: search
     files: ["app/(site)/search/**", "components/Search.tsx"]
