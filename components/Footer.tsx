@@ -1,6 +1,7 @@
 // OWNED BY: shared — footer global. Modif = coordonner (voir CLAUDE.md §1.2).
 import Link from "next/link";
 import LandAcknowledgment from "./LandAcknowledgment";
+import CookiePreferencesButton from "./CookiePreferencesButton";
 
 export default function Footer() {
   return (
@@ -31,9 +32,11 @@ export default function Footer() {
       <div className="border-t border-brand-cream/20">
         <div className="mx-auto max-w-7xl px-4 py-6">
           <LandAcknowledgment />
-          <p className="mt-4 text-xs text-brand-cream/60">
-            © {new Date().getFullYear()} Network of Black Women — site by Kelthen.
-          </p>
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-brand-cream/60">
+            <span>© {new Date().getFullYear()} Network of Black Women — site by Kelthen.</span>
+            <Link href="/privacy" className="hover:text-brand-pink">Privacy &amp; Cookies</Link>
+            <CookiePreferencesButton />
+          </div>
         </div>
       </div>
     </footer>

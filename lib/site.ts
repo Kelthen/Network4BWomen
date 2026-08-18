@@ -23,4 +23,5 @@ export const ROUTES = [
   "/get-involved",
   "/contact",
   "/donate",
+  "/privacy",
 ] as const;
