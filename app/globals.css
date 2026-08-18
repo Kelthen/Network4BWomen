@@ -18,3 +18,33 @@ body {
   outline: 2px solid #44312b;
   outline-offset: 2px;
 }
+
+/* Décalage pour l'ancre #main (nav sticky) */
+html {
+  scroll-behavior: smooth;
+}
+#main {
+  scroll-margin-top: 5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Skip-to-content : caché jusqu'au focus clavier (accessibilité) */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-150%);
+  background: #44312b;
+  color: #fbf7f0;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}

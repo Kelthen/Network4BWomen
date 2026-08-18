@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/serge-pages
-current_task: "AIDE serge (indisponible) — finalise ses pages + met à jour la mémoire (OWNERSHIP)"
+branch: feat/rhamon/seo-ux
+current_task: "Webmastering — SEO (sitemap/robots/metadata/JSON-LD) + ergonomie (menu mobile, skip-link, 404, favicon)"
 files_locked: []
 updated: 2026-08-17T00:00:00Z
 ---
@@ -12,6 +12,13 @@ updated: 2026-08-17T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-17 — Webmastering : SEO + ergonomie (`feat/rhamon/seo-ux`)
+- **SEO** : `app/sitemap.ts` (→ /sitemap.xml, 11 routes), `app/robots.ts` (→ /robots.txt, bloque /api), métadonnées enrichies dans `app/layout.tsx` (metadataBase, Open Graph, Twitter card, keywords), **JSON-LD Organization (NGO)** avec contact/région, `lib/site.ts` (constantes + `SITE_URL` depuis `NEXT_PUBLIC_SITE_URL`).
+- **Ergonomie / a11y** : **menu mobile hamburger** (il n'existait AUCUNE nav mobile — gros trou UX) avec état actif, fermeture Esc/clic/route, scroll-lock ; **skip-to-content** (globals.css) ; **page 404** de marque ; **favicon** `app/icon.svg` (monogramme NBW).
+- ⚠️ Touche des fichiers `shared` (layout, Nav, globals) — améliorations transverses SEO/a11y, justifiées.
+- À faire côté humain : définir `NEXT_PUBLIC_SITE_URL` = vrai domaine sur Vercel (sinon sitemap/OG pointent sur localhost). Le câblage des images reste en stash (`git stash`) — à reprendre.
+- Validé : `next build` OK (17 routes ; /sitemap.xml, /robots.txt, /icon.svg servis). Menu mobile vérifié au rendu.
 
 ## 2026-08-17 — AIDE serge : ses 5 pages restantes + mémoire (`feat/rhamon/serge-pages`)
 - Serge indisponible → l'humain me demande de finir sa zone. Construit **Events, Conference, Resources, News, Gallery** (Programs déjà fait) : pages en anglais, design cohérent (`Reveal`, tokens), contenu **placeholder** issu de `docs/CONTENT.md` §4/5/7/8/9, prêtes à brancher Supabase (events/registrations, resources, posts, gallery_media).
