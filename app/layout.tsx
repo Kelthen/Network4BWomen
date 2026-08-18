@@ -4,23 +4,86 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_DESCRIPTION,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+} from "@/lib/site";
 
 const serif = Playfair_Display({ subsets: ["latin"], variable: "--font-serif", display: "swap" });
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Network of Black Women (NBW)",
-  description:
-    "Empowering Black Women. Building Community. Creating Leaders. A sisterhood for Black women in Southern Alberta.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} (NBW) — ${SITE_TAGLINE}`,
+    template: `%s`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [
+    "Network of Black Women",
+    "NBW",
+    "Black women",
+    "sisterhood",
+    "Southern Alberta",
+    "Calgary",
+    "community",
+    "leadership",
+    "mentorship",
+    "wellness",
+    "nonprofit",
+  ],
+  authors: [{ name: SITE_NAME }],
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} (NBW)`,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    locale: "en_CA",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} (NBW)`,
+    description: SITE_DESCRIPTION,
+  },
+  robots: { index: true, follow: true },
+};
+
+// Données structurées (JSON-LD) — aide Google à comprendre l'organisation.
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  name: SITE_NAME,
+  alternateName: "NBW",
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  email: CONTACT_EMAIL,
+  telephone: CONTACT_PHONE,
+  areaServed: "Southern Alberta, Canada",
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "AB",
+    addressCountry: "CA",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body className="font-sans">
+        <a href="#main" className="skip-link">Skip to content</a>
         <Nav />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
       </body>
     </html>
   );
