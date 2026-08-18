@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/contact
-current_task: "Page Contact (+ API) et passage de tout le site en anglais"
+branch: feat/rhamon/donate
+current_task: "Dons Stripe (page + checkout + webhook) et Newsletter réelle"
 files_locked: []
 updated: 2026-08-17T00:00:00Z
 ---
@@ -12,6 +12,13 @@ updated: 2026-08-17T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-17 — Dons Stripe + Newsletter (`feat/rhamon/donate`)
+- **Dons** : `app/(site)/donate/page.tsx` (bannières succès/annulation via searchParams) + `components/donate/DonateForm.tsx` (montants prédéfinis/perso, one-time/monthly). API : `app/api/stripe/checkout` (Checkout Session, mode payment/subscription, CAD) + `app/api/stripe/webhook` (vérif signature → insert `donations`). Secrets en env uniquement ; gardes 503 si clés absentes → build OK.
+- **Newsletter réelle** : `app/api/newsletter` (upsert `newsletter_subscribers` sur email unique, gardé). Le bloc newsletter de l'accueil poste désormais vraiment (états sending/ok/error).
+- Termine (en anglais) la zone rhamon : Accueil, À propos, Get Involved, Contact, **Dons**, **Newsletter**. Reste à activer avec les vraies clés Stripe/Supabase en env (Vercel).
+- Validé : `next build` OK (14 routes ; `/donate` + 3 routes API dynamiques). Capture Donate vérifiée.
+- **Prochaine étape** : une fois la zone rhamon en ligne, aider serge (Programmes, Événements, Conférence, Ressources, News, Galerie).
 
 ## 2026-08-17 — Contact + site en anglais (`feat/rhamon/contact`)
 - **Page Contact** : `app/(site)/contact/page.tsx` + `components/contact/ContactForm.tsx` + route API `app/api/contact/route.ts` (POST → table `form_submissions` via client serveur SERVICE_ROLE_KEY ; garde si clés absentes → 503 propre, build OK). Sujets General/Partnership/Media/Volunteer (CONTENT §10), coordonnées, réseaux (à confirmer).
