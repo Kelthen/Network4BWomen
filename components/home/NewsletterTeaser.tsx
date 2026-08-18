@@ -1,17 +1,40 @@
-// OWNED BY: rhamon — Accueil. Teaser Newsletter (« Stay Connected. »).
+// OWNED BY: rhamon — Home. Newsletter signup ("Stay Connected.") → POST /api/newsletter.
 "use client";
 
 import { useState } from "react";
 import styles from "./home.module.css";
 
-/**
- * Teaser visuel de la newsletter sur l'accueil.
- * ⚠️ Le branchement réel (composant Newsletter.tsx + app/api/newsletter →
- * table newsletter_subscribers) relève de la zone `newsletter` (voir PLAN-rhamon.md).
- * Ici on reste un teaser : soumission sans réseau, simple accusé de réception.
- */
+type Status = "idle" | "sending" | "ok" | "error";
+
 export default function NewsletterTeaser() {
-  const [done, setDone] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [feedback, setFeedback] = useState("");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const email = String(new FormData(form).get("email") ?? "");
+    setStatus("sending");
+    setFeedback("");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source: "home" }),
+      });
+      const json = (await res.json().catch(() => ({}))) as { error?: string };
+      if (res.ok) {
+        setStatus("ok");
+        form.reset();
+      } else {
+        setStatus("error");
+        setFeedback(json.error ?? "Something went wrong. Please try again later.");
+      }
+    } catch {
+      setStatus("error");
+      setFeedback("Connection failed. Please try again.");
+    }
+  }
 
   return (
     <section className={styles.news}>
@@ -21,28 +44,34 @@ export default function NewsletterTeaser() {
             Stay connected
           </p>
           <h2>Stay Connected.</h2>
-          {done ? (
+          {status === "ok" ? (
             <p className={styles.fieldNote} role="status">
-              Thank you! Newsletter sign-up is coming soon.
+              Thank you! You&apos;re on the list. 💛
             </p>
           ) : (
-            <form
-              className={styles.field}
-              onSubmit={(e) => {
-                e.preventDefault();
-                setDone(true);
-              }}
-            >
-              <input
-                type="email"
-                required
-                aria-label="Your email address"
-                placeholder="Your email address"
-              />
-              <button type="submit" className={`${styles.btn} ${styles.btnPink}`}>
-                Subscribe
-              </button>
-            </form>
+            <>
+              <form className={styles.field} onSubmit={onSubmit}>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  aria-label="Your email address"
+                  placeholder="Your email address"
+                />
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className={`${styles.btn} ${styles.btnPink}`}
+                >
+                  {status === "sending" ? "…" : "Subscribe"}
+                </button>
+              </form>
+              {status === "error" && (
+                <p className={styles.fieldNote} role="alert">
+                  {feedback}
+                </p>
+              )}
+            </>
           )}
         </div>
       </div>
