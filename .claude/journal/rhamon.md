@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/seo-ux
-current_task: "Webmastering — SEO (sitemap/robots/metadata/JSON-LD) + ergonomie (menu mobile, skip-link, 404, favicon)"
+branch: feat/rhamon/cookies
+current_task: "Consentement cookies (RGPD) + Analytics conditionné + page Privacy"
 files_locked: []
 updated: 2026-08-17T00:00:00Z
 ---
@@ -12,6 +12,12 @@ updated: 2026-08-17T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-17 — Cookies (RGPD) + Analytics conditionné (`feat/rhamon/cookies`)
+- **Bandeau de consentement** (`components/CookieConsent.tsx`, `lib/consent.ts`) : Accept/Decline, stocké en localStorage, réouvrable via « Cookie preferences » (footer).
+- **Google Analytics conditionné** (`components/Analytics.tsx`) : ne s'injecte QUE si consentement « accepted » ET `NEXT_PUBLIC_GA_ID` défini. Aucun cookie analytics avant accord.
+- **Page Privacy** (`/privacy`, brouillon à faire relire) + liens footer + ajout à sitemap. `.env.example` : `NEXT_PUBLIC_GA_ID`.
+- Validé : `next build` OK (18 routes).
 
 ## 2026-08-17 — Webmastering : SEO + ergonomie (`feat/rhamon/seo-ux`)
 - **SEO** : `app/sitemap.ts` (→ /sitemap.xml, 11 routes), `app/robots.ts` (→ /robots.txt, bloque /api), métadonnées enrichies dans `app/layout.tsx` (metadataBase, Open Graph, Twitter card, keywords), **JSON-LD Organization (NGO)** avec contact/région, `lib/site.ts` (constantes + `SITE_URL` depuis `NEXT_PUBLIC_SITE_URL`).
