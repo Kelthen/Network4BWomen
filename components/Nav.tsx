@@ -2,13 +2,13 @@
 import Link from "next/link";
 
 const LINKS = [
-  { href: "/about", label: "À propos" },
-  { href: "/programs", label: "Programmes" },
-  { href: "/events", label: "Événements" },
-  { href: "/conference", label: "Conférence" },
-  { href: "/resources", label: "Ressources" },
+  { href: "/about", label: "About" },
+  { href: "/programs", label: "Programs" },
+  { href: "/events", label: "Events" },
+  { href: "/conference", label: "Conference" },
+  { href: "/resources", label: "Resources" },
   { href: "/news", label: "News" },
-  { href: "/gallery", label: "Galerie" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/get-involved", label: "Get Involved" },
   { href: "/contact", label: "Contact" },
 ];
@@ -33,7 +33,7 @@ export default function Nav() {
           href="/donate"
           className="rounded-full bg-brand-pink px-4 py-2 text-sm font-semibold text-brand-brown hover:opacity-90"
         >
-          Faire un don
+          Donate
         </Link>
       </nav>
     </header>

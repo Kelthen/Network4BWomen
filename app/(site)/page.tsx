@@ -8,19 +8,19 @@ import Reveal from "@/components/home/Reveal";
 import CtaBand from "@/components/home/CtaBand";
 import NewsletterTeaser from "@/components/home/NewsletterTeaser";
 
-// Teasers programmes (3 des 7 programmes NBW — voir docs/CONTENT.md §3).
+// Program teasers (3 of NBW's 7 programs — see docs/CONTENT.md §3).
 const PROGRAMS = [
   {
-    title: "Développement pro",
-    text: "Ateliers, mentorat et outils pour avancer dans sa carrière.",
+    title: "Professional Development",
+    text: "Workshops, mentorship, and tools to move your career forward.",
   },
   {
     title: "Leadership",
-    text: "Former la prochaine génération de leaders et de voix.",
+    text: "Shaping the next generation of leaders and voices.",
   },
   {
-    title: "Bien-être & santé",
-    text: "Prendre soin de soi et de la collectivité, sans culpabilité.",
+    title: "Health & Wellness",
+    text: "Caring for yourself and the community, without guilt.",
   },
 ];
 
@@ -37,10 +37,10 @@ export default function HomePage() {
       <section className={styles.sec}>
         <div className={styles.wrap}>
           <Reveal as="p" className={styles.eyebrow}>
-            Programmes &amp; initiatives
+            Programs &amp; initiatives
           </Reveal>
           <Reveal as="h2" delay={1}>
-            Des espaces pour grandir, ensemble.
+            Spaces to grow, together.
           </Reveal>
           <div className={styles.cards}>
             {PROGRAMS.map((p, i) => (
@@ -55,7 +55,7 @@ export default function HomePage() {
                   <h3>{p.title}</h3>
                   <p>{p.text}</p>
                   <Link href="/programs" className={styles.more}>
-                    En savoir plus →
+                    Learn more →
                   </Link>
                 </div>
               </Reveal>
@@ -68,10 +68,10 @@ export default function HomePage() {
       <section className={styles.quote}>
         <div className={styles.wrap}>
           <Reveal as="blockquote">
-            « NBW m&apos;a donné la confiance de viser le leadership. »
+            “NBW gave me the confidence to step into leadership.”
           </Reveal>
           <Reveal as="cite" delay={1}>
-            — Une membre de la communauté
+            — A community member
           </Reveal>
         </div>
       </section>

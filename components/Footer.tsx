@@ -13,12 +13,12 @@ export default function Footer() {
           </p>
         </div>
         <div className="text-sm">
-          <p className="font-semibold">Liens</p>
+          <p className="font-semibold">Links</p>
           <ul className="mt-2 space-y-1 text-brand-cream/80">
-            <li><Link href="/about" className="hover:text-brand-pink">À propos</Link></li>
-            <li><Link href="/programs" className="hover:text-brand-pink">Programmes</Link></li>
-            <li><Link href="/events" className="hover:text-brand-pink">Événements</Link></li>
-            <li><Link href="/donate" className="hover:text-brand-pink">Faire un don</Link></li>
+            <li><Link href="/about" className="hover:text-brand-pink">About</Link></li>
+            <li><Link href="/programs" className="hover:text-brand-pink">Programs</Link></li>
+            <li><Link href="/events" className="hover:text-brand-pink">Events</Link></li>
+            <li><Link href="/donate" className="hover:text-brand-pink">Donate</Link></li>
             <li><Link href="/contact" className="hover:text-brand-pink">Contact</Link></li>
           </ul>
         </div>
@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl px-4 py-6">
           <LandAcknowledgment />
           <p className="mt-4 text-xs text-brand-cream/60">
-            © {new Date().getFullYear()} Network of Black Women — site par Kelthen.
+            © {new Date().getFullYear()} Network of Black Women — site by Kelthen.
           </p>
         </div>
       </div>

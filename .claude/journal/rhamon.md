@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: chore/rhamon/repo-structure
-current_task: "Remise en ordre de la structure du repo (arborescence Next.js) + intégration de la page d'accueil"
+branch: feat/rhamon/contact
+current_task: "Page Contact (+ API) et passage de tout le site en anglais"
 files_locked: []
 updated: 2026-08-17T00:00:00Z
 ---
@@ -12,6 +12,12 @@ updated: 2026-08-17T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-17 — Contact + site en anglais (`feat/rhamon/contact`)
+- **Page Contact** : `app/(site)/contact/page.tsx` + `components/contact/ContactForm.tsx` + route API `app/api/contact/route.ts` (POST → table `form_submissions` via client serveur SERVICE_ROLE_KEY ; garde si clés absentes → 503 propre, build OK). Sujets General/Partnership/Media/Volunteer (CONTENT §10), coordonnées, réseaux (à confirmer).
+- **Tout le site passé en anglais** (demande client : plus de franglais). Converti les textes visibles de : home (Hero/ImpactStats/CtaBand/NewsletterTeaser/page), about, get-involved, Nav, Footer, LandAcknowledgment, layout (`lang="en"`), et les 7 pages placeholder (dont zone serge — simple traduction de copie, aucune logique touchée). Commentaires de code laissés en FR (non visibles).
+- Validé : `next build` OK (14 routes, `/api/contact` dynamique). Vérifié au rendu (captures Home + Contact).
+- ⚠️ Touche des fichiers `shared`/placeholder de serge pour la traduction — justifié par la directive site-wide du client ; serge n'a rien de verrouillé.
 
 ## 2026-08-17 — Remise en ordre de la structure (`chore/rhamon/repo-structure`)
 - **Constat** : `main` était aplati/corrompu (fichiers dumpés à la racine, contenus ne correspondant pas aux noms — ex. `package.json`/`tsconfig.json` contenaient du JSX). Le projet ne pouvait pas builder.

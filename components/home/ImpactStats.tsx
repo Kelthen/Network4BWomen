@@ -6,10 +6,10 @@ import styles from "./home.module.css";
 
 // Chiffres = placeholder (à confirmer avec NBW) — voir docs/CONTENT.md §1.
 const STATS = [
-  { end: 480, label: "Membres connectées" },
-  { end: 65, label: "Événements organisés" },
-  { end: 30, label: "Ateliers pro" },
-  { end: 18, label: "Bourses accordées" },
+  { end: 480, label: "Members connected" },
+  { end: 65, label: "Events hosted" },
+  { end: 30, label: "Professional workshops" },
+  { end: 18, label: "Scholarships awarded" },
 ] as const;
 
 function Counter({ end }: { end: number }) {
@@ -62,7 +62,7 @@ export default function ImpactStats() {
   return (
     <section className={styles.impact}>
       <div className={styles.wrap}>
-        <p className={styles.eyebrow}>Notre impact</p>
+        <p className={styles.eyebrow}>Our impact</p>
         <div className={styles.stats}>
           {STATS.map((s) => (
             <div key={s.label} className={styles.stat}>
