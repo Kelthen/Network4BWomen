@@ -6,7 +6,7 @@ import { coverImage } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "Gallery — Network of Black Women (NBW)",
-  description: "Moments from NBW events and gatherings — celebrating Black women and girls in Southern Alberta.",
+  description: "Moments from NBW events and gatherings — celebrating Black women and girls in Toronto, Ontario.",
 };
 
 const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";

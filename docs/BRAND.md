@@ -66,4 +66,4 @@ fontFamily:
 ```
 
 ## Reconnaissance du territoire (obligatoire)
-NBW est situé sur le **territoire traditionnel de la Confédération Blackfoot** (Sud de l'Alberta). Un énoncé de reconnaissance doit figurer dans le **footer** de chaque page (composant `LandAcknowledgment`).
+NBW est situé à **Toronto (Ontario)**, sur le **territoire traditionnel de nombreuses nations** (visé par le Traité 13 et le Dish With One Spoon Wampum). Un énoncé de reconnaissance doit figurer dans le **footer** de chaque page (composant `LandAcknowledgment`).

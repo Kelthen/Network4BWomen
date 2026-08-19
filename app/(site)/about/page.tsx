@@ -8,7 +8,7 @@ import TeamGrid from "@/components/about/TeamGrid";
 export const metadata: Metadata = {
   title: "About — Network of Black Women (NBW)",
   description:
-    "Our story, mission, vision, and the team behind NBW — a sisterhood for Black women in Southern Alberta.",
+    "Our story, mission, vision, and the team behind NBW — a sisterhood for Black women in Toronto, Ontario.",
 };
 
 // Values (verbatim CONTENT §2) + short editorial gloss.
@@ -51,9 +51,9 @@ export default function AboutPage() {
           This is a space curated by Black&nbsp;Women for Black&nbsp;Women.
         </Reveal>
         <Reveal as="p" delay={2} className="mt-6 max-w-2xl text-lg text-brand-brown/80">
-          A sisterhood for Black women and girls in Southern Alberta — on the traditional
-          territory of the Blackfoot Confederacy. A space to be celebrated, to be yourself, and
-          to grow together.
+          A sisterhood for Black women and girls in Toronto, Ontario — on the traditional
+          territory of many nations, covered by Treaty 13. A space to be celebrated, to be
+          yourself, and to grow together.
         </Reveal>
       </header>
 
@@ -66,7 +66,7 @@ export default function AboutPage() {
           <Reveal as="blockquote" delay={1} className="md:col-span-9">
             <p className="font-serif text-2xl leading-snug md:text-4xl">
               “Network of Black Women was created on the goal to create a sisterhood community in
-              Southern Alberta for Black Women and a space for Black Women to be celebrated, to be
+              Toronto for Black Women and a space for Black Women to be celebrated, to be
               themselves.”
             </p>
           </Reveal>

@@ -8,7 +8,7 @@ import { coverImage } from "@/lib/media";
 export const metadata: Metadata = {
   title: "Annual Conference — Network of Black Women (NBW)",
   description:
-    "NBW's flagship annual conference — keynotes, workshops, and community for Black women in Southern Alberta.",
+    "NBW's flagship annual conference — keynotes, workshops, and community for Black women in Toronto, Ontario.",
 };
 
 const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";

@@ -2,7 +2,7 @@
 
 Site web de **Network of Black Women (NBW)** — réalisé par l'agence **Kelthen**.
 
-Une sororité pour les femmes noires du Sud de l'Alberta, sur le territoire de la Confédération Blackfoot.
+Une sororité pour les femmes noires de Toronto (Ontario), sur le territoire traditionnel de nombreuses nations, visé par le Traité 13.
 
 ## Stack
 Next.js (App Router) · TypeScript · Tailwind CSS · Supabase · Stripe · déploiement Vercel.

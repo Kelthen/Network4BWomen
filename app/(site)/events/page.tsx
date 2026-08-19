@@ -8,14 +8,14 @@ import Reveal from "@/components/home/Reveal";
 export const metadata: Metadata = {
   title: "Events — Network of Black Women (NBW)",
   description:
-    "Upcoming gatherings, the annual conference and retreat, networking, and community events for Black women in Southern Alberta.",
+    "Upcoming gatherings, the annual conference and retreat, networking, and community events for Black women in Toronto, Ontario.",
 };
 
 const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 // Placeholder — real events come from the `events` table.
 const UPCOMING = [
-  { month: "SEP", day: "14", title: "Fall Networking Mixer", cat: "Networking", where: "Calgary" },
+  { month: "SEP", day: "14", title: "Fall Networking Mixer", cat: "Networking", where: "Toronto" },
   { month: "OCT", day: "05", title: "Wellness & Self-Care Morning", cat: "Health & Wellness", where: "Lethbridge" },
   { month: "NOV", day: "23", title: "Leadership Roundtable", cat: "Leadership", where: "Online" },
 ];
