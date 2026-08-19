@@ -67,10 +67,15 @@ export async function POST(req: Request) {
     // Log server-side (visible in Vercel → Function Logs) and surface Stripe's own
     // message to the client so misconfig (bad/revoked key, wrong mode) is diagnosable.
     console.error("[stripe/checkout] error:", e);
+    // Surface the real reason to the client. instanceof can misfire when the
+    // Stripe module is bundled more than once in serverless, so fall back to any
+    // available message rather than a generic string that hides the cause.
     const message =
       e instanceof Stripe.errors.StripeError
         ? e.message
-        : "Couldn't start checkout. Please try again.";
+        : e instanceof Error && e.message
+          ? e.message
+          : "Couldn't start checkout. Please try again.";
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
