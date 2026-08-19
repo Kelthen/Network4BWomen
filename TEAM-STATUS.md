@@ -1,7 +1,7 @@
 <!-- AUTO-GÉNÉRÉ PAR .github/workflows/team-sync.yml — NE PAS ÉDITER À LA MAIN -->
 # TEAM-STATUS — État de l'équipe en temps réel
 
-_Dernière régénération : **2026-08-19 00:15 UTC**_
+_Dernière régénération : **2026-08-19 00:16 UTC**_
 
 > Avant d'agir, lis ce tableau + le journal de l'autre (`.claude/journal/`).
 > Ne touche jamais un fichier listé dans `files_locked` de l'autre.
@@ -15,7 +15,7 @@ _Dernière régénération : **2026-08-19 00:15 UTC**_
 
 ### Détails par branche
 
-- **rhamon** → dernière activité sur `feat/rhamon/a11y-contrast` (2026-08-19T00:15:10Z)
+- **rhamon** → dernière activité sur `feat/rhamon/a11y-contrast` (2026-08-19T00:16:08Z)
 - **serge** → dernière activité sur `feat/rhamon/a11y-contrast` (2026-08-17T20:48:11-03:00)
 
 _Ce fichier est régénéré automatiquement à chaque push. Pour changer l'état, édite TON journal et pousse._
