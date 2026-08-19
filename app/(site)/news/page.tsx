@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
+import { coverImage } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "News & Stories — Network of Black Women (NBW)",
@@ -56,7 +57,11 @@ export default function NewsPage() {
               delay={((i % 3) + 1) as 1 | 2 | 3}
               className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_1px_0_#e8dcc8] transition hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-24px_rgba(68,49,43,0.35)]"
             >
-              <div className="aspect-[16/10] w-full" style={{ background: ACCENTS[i % ACCENTS.length] }} aria-hidden="true" />
+              <div
+                className="aspect-[16/10] w-full"
+                style={coverImage(`/images/news/${i + 1}.jpg`, ACCENTS[i % ACCENTS.length])}
+                aria-hidden="true"
+              />
               <div className="flex flex-1 flex-col p-6">
                 <span className="text-xs font-semibold uppercase tracking-wider text-brand-gold">{p.cat}</span>
                 <h2 className="mt-2 font-serif text-xl text-brand-brown">{p.title}</h2>

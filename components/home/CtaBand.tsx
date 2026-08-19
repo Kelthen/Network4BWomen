@@ -4,6 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./home.module.css";
+import { coverImage } from "@/lib/media";
 
 /**
  * Pattern signature validé (docs/nbw-home-reference.html §12) :
@@ -36,7 +37,14 @@ export default function CtaBand() {
   return (
     <section className={styles.ctaBandOuter}>
       <div ref={ref} className={`${styles.ctaBand} ${shown ? styles.in : ""}`}>
-        <div className={styles.bg} aria-hidden="true" />
+        <div
+          className={styles.bg}
+          style={coverImage(
+            "/images/cta-band.jpg",
+            "radial-gradient(120% 90% at 72% 18%, #ffe6cf 0%, transparent 55%), linear-gradient(160deg,#8aa9d4 0%,#f6828f 55%,#5c2233 100%)",
+          )}
+          aria-hidden="true"
+        />
         <div className={styles.sheen} aria-hidden="true" />
         <div className={styles.overlay} aria-hidden="true" />
         <div className={styles.content}>

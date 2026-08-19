@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/cookies
-current_task: "Consentement cookies (RGPD) + Analytics conditionné + page Privacy"
+branch: feat/rhamon/images
+current_task: "Câblage des images (photo + dégradé de secours) sur toutes les pages"
 files_locked: []
 updated: 2026-08-17T00:00:00Z
 ---
@@ -12,6 +12,13 @@ updated: 2026-08-17T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-18 — Câblage des images (`feat/rhamon/images`)
+- Helper `lib/media.ts` (`coverImage(src, gradient)` : photo par-dessus, **dégradé de marque en secours auto** → jamais d'image cassée ; `slugify`).
+- Emplacements câblés : hero, bandeau CTA, 3 cartes accueil, équipe (9, par slug), programmes (7), galerie (2×8), news (3), conférence (4 speakers). Captions FR placeholder retirées du CSS.
+- `public/images/README.md` = liste exacte des noms de fichiers à déposer (avec ratios) + `.gitkeep` par dossier.
+- Résultat : l'humain dépose `public/images/…/nom.jpg` (bon nom) → la photo apparaît, sans toucher au code.
+- Validé : `next build` OK (19 routes).
 
 ## 2026-08-17 — Cookies (RGPD) + Analytics conditionné (`feat/rhamon/cookies`)
 - **Bandeau de consentement** (`components/CookieConsent.tsx`, `lib/consent.ts`) : Accept/Decline, stocké en localStorage, réouvrable via « Cookie preferences » (footer).

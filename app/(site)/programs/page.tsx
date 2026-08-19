@@ -5,6 +5,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
+import { coverImage, slugify } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "Programs — Network of Black Women (NBW)",
@@ -91,7 +92,11 @@ export default function ProgramsPage() {
               delay={((i % 3) + 1) as 1 | 2 | 3}
               className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_1px_0_#e8dcc8] transition hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-24px_rgba(68,49,43,0.35)]"
             >
-              <div className="h-32 w-full" style={{ background: p.accent }} aria-hidden="true" />
+              <div
+                className="h-32 w-full"
+                style={coverImage(`/images/programs/${slugify(p.title)}.jpg`, p.accent)}
+                aria-hidden="true"
+              />
               <div className="flex flex-1 flex-col p-6">
                 <h2 className="font-serif text-2xl text-brand-brown">{p.title}</h2>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-brown/70">{p.desc}</p>

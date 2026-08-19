@@ -4,6 +4,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./home.module.css";
+import { coverImage } from "@/lib/media";
 
 /**
  * Hero : eyebrow + titre serif révélé par masque (lignes qui montent),
@@ -67,7 +68,12 @@ export default function Hero() {
             Donate
           </Link>
         </div>
-        <div ref={visualRef} className={styles.heroVisual} aria-hidden="true" />
+        <div
+          ref={visualRef}
+          className={styles.heroVisual}
+          style={coverImage("/images/hero.jpg", "linear-gradient(150deg,#e9c8c9,#f6828f 45%,#44312b)")}
+          aria-hidden="true"
+        />
       </div>
     </header>
   );
