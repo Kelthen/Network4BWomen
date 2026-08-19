@@ -41,10 +41,10 @@ export default function DonateForm() {
         return;
       }
       setStatus("error");
-      setFeedback(json.error ?? "Couldn't start checkout. Please try again.");
+      setFeedback(json.error ?? "Checkout failed — the server returned no details.");
     } catch {
       setStatus("error");
-      setFeedback("Connection failed. Please try again.");
+      setFeedback("Connection to the server failed. Please try again.");
     }
   }
 
