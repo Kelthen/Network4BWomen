@@ -1,10 +1,10 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/vercel-analytics
-current_task: "Ajout Vercel Analytics (cookieless)"
+branch: fix/rhamon/stripe-managed-payments
+current_task: "Fix Stripe checkout — Managed Payments off + URL propre"
 files_locked: []
-updated: 2026-08-17T00:00:00Z
+updated: 2026-08-19T00:00:00Z
 ---
 
 # Journal — rhamon
@@ -12,6 +12,12 @@ updated: 2026-08-17T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-19 — Fix Stripe checkout : Managed Payments + URL (`fix/rhamon/stripe-managed-payments`)
+- **Bug live** : `/donate` renvoyait « the product tax code is missing… Managed Payments enabled by default → pass managed_payments[enabled]=false ». Le compte Stripe NBW a **Managed Payments activé par défaut**, qui exige un `tax_code` produit sur chaque line item — inutile pour un don et bloquant.
+- **Corrigé** dans `app/api/stripe/checkout/route.ts` : ajout de `managed_payments: { enabled: false }` sur la Checkout Session (cast `any`, absent des types stripe-node v16). Le don part sans exiger de tax_code.
+- **Aussi corrigé** : `//donate` (double slash) dans les success/cancel URLs → `NEXT_PUBLIC_SITE_URL` finissait par `/`. `base` nettoie désormais le slash final (`.replace(/\/+$/,"")`).
+- Validé : `tsc --noEmit` OK · `next build` OK. À tester en ligne après redeploy avec carte `4242 4242 4242 4242`.
 
 ## 2026-08-18 — Vercel Analytics (`feat/rhamon/vercel-analytics`)
 - Ajout `@vercel/analytics` + `<VercelAnalytics/>` dans le layout. **Cookieless / privacy-friendly** → aucun consentement requis (complète le GA opt-in déjà en place).

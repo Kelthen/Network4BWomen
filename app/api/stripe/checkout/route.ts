@@ -32,12 +32,19 @@ export async function POST(req: Request) {
     );
   }
 
-  const base = process.env.NEXT_PUBLIC_SITE_URL || new URL(req.url).origin;
+  // Strip any trailing slash so we never build "//donate" URLs (a trailing "/"
+  // on NEXT_PUBLIC_SITE_URL would otherwise produce a double slash).
+  const base = (process.env.NEXT_PUBLIC_SITE_URL || new URL(req.url).origin).replace(/\/+$/, "");
   const stripe = new Stripe(secret);
 
   try {
     const session = await stripe.checkout.sessions.create({
       mode: recurring ? "subscription" : "payment",
+      // Disable Stripe "Managed Payments" for this session. When it's enabled on
+      // the account (the new default), Stripe requires a product tax_code on every
+      // line item — overkill for a donation and it hard-fails checkout. Cast to any:
+      // the field isn't in the stripe-node v16 typings yet.
+      ...({ managed_payments: { enabled: false } } as Record<string, unknown>),
       line_items: [
         {
           quantity: 1,
