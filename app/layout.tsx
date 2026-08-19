@@ -6,6 +6,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import Analytics from "@/components/Analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import {
   SITE_URL,
   SITE_NAME,
@@ -84,6 +85,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <CookieConsent />
         <Analytics />
+        {/* Vercel Analytics — cookieless & privacy-friendly (aucun consentement requis).
+            À activer dans Vercel → Project → Analytics. */}
+        <VercelAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}

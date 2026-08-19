@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/a11y-contrast
-current_task: "Audit accessibilité (axe) + correction contrastes AA"
+branch: feat/rhamon/vercel-analytics
+current_task: "Ajout Vercel Analytics (cookieless)"
 files_locked: []
 updated: 2026-08-17T00:00:00Z
 ---
@@ -12,6 +12,11 @@ updated: 2026-08-17T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-18 — Vercel Analytics (`feat/rhamon/vercel-analytics`)
+- Ajout `@vercel/analytics` + `<VercelAnalytics/>` dans le layout. **Cookieless / privacy-friendly** → aucun consentement requis (complète le GA opt-in déjà en place).
+- Action humain : activer Web Analytics dans Vercel → Project → Analytics (aucun env var).
+- Validé : `next build` OK.
 
 ## 2026-08-18 — Accessibilité : audit axe + contrastes AA (`feat/rhamon/a11y-contrast`)
 - **Audit automatisé axe-core** (WCAG A/AA) sur les 12 pages : seule violation = **color-contrast** (le reste conforme). C'est exactement le risque signalé dans `docs/BRAND.md` (rose/or en petit texte sur fond clair).
