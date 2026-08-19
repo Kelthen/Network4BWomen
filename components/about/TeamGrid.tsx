@@ -45,7 +45,7 @@ export default function TeamGrid({ members }: { members: Member[] }) {
             </div>
           </div>
           <h3 className="mt-4 font-serif text-xl text-brand-brown">{m.name}</h3>
-          <p className="mt-1 text-sm text-brand-brown/70">{m.role}</p>
+          <p className="mt-1 text-sm text-brand-brown/80">{m.role}</p>
         </Reveal>
       ))}
     </ul>

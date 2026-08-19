@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Your gift funds programs, scholarships, events, and wellness for Black women in Southern Alberta.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 const IMPACT = [
   "Workshops and professional development",
@@ -66,7 +66,7 @@ export default function DonatePage({
                 </li>
               ))}
             </ul>
-            <p className="mt-8 text-sm text-brand-brown/60">
+            <p className="mt-8 text-sm text-brand-brown/80">
               A tax receipt can be issued where applicable. Questions? Email
               info.networkofblackwomen@gmail.com.
             </p>

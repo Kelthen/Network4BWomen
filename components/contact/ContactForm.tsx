@@ -59,7 +59,7 @@ export default function ContactForm() {
         className="rounded-2xl border border-brand-beige bg-white p-8 text-center"
       >
         <p className="font-serif text-2xl text-brand-brown">Thank you! 💛</p>
-        <p className="mt-2 text-brand-brown/70">
+        <p className="mt-2 text-brand-brown/80">
           Your message has been sent. We&apos;ll get back to you within 24–48 hours.
         </p>
         <button
@@ -118,7 +118,7 @@ export default function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p role="alert" className="text-sm text-brand-pink">
+        <p role="alert" className="text-sm text-brand-rose">
           {feedback}
         </p>
       )}

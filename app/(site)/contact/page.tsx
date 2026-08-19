@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "A question, a partnership, or a way to get involved? Reach out to Network of Black Women, Southern Alberta.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 export default function ContactPage() {
   return (
@@ -67,7 +67,7 @@ export default function ContactPage() {
                     LinkedIn
                   </a>
                 </div>
-                <p className="mt-2 text-xs text-brand-brown/50">Social links to be confirmed with NBW.</p>
+                <p className="mt-2 text-xs text-brand-brown/75">Social links to be confirmed with NBW.</p>
               </div>
             </div>
           </Reveal>

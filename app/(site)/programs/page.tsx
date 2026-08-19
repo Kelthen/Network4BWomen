@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Professional development, leadership, mentorship, wellness, youth programming, and more — NBW's programs for Black women and girls.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 // docs/CONTENT.md §3 — 7 programs. desc = placeholder, serves = short audience note.
 const PROGRAMS = [
@@ -99,8 +99,8 @@ export default function ProgramsPage() {
               />
               <div className="flex flex-1 flex-col p-6">
                 <h2 className="font-serif text-2xl text-brand-brown">{p.title}</h2>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-brown/70">{p.desc}</p>
-                <p className="mt-4 text-xs uppercase tracking-wider text-brand-brown/50">
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-brown/80">{p.desc}</p>
+                <p className="mt-4 text-xs uppercase tracking-wider text-brand-brown/75">
                   {p.serves}
                 </p>
               </div>

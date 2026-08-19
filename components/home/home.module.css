@@ -8,6 +8,8 @@
   --cream: #fbf7f0;
   --beige: #e8dcc8;
   --gold: #c9a24b;
+  --gold-text: #8a6d1f; /* gold accessible (AA) pour texte sur fond clair */
+  --rose: #b23a4e; /* rose accessible (AA) pour liens/texte sur fond clair */
   --sage: #97ac9f;
   --blush: #e9c8c9;
   --wine: #5c2233;
@@ -23,7 +25,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-text);
   font-weight: 600;
 }
 
@@ -118,7 +120,7 @@
 }
 .hero h1 em {
   font-style: italic;
-  color: var(--pink);
+  color: var(--rose);
 }
 .heroText {
   max-width: 34rem;
@@ -290,7 +292,7 @@
 }
 .card p {
   font-size: 0.92rem;
-  color: rgba(68, 49, 43, 0.7);
+  color: rgba(68, 49, 43, 0.82);
   margin-top: 0.4rem;
 }
 .card .more {
@@ -298,7 +300,7 @@
   margin-top: 0.9rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--pink);
+  color: var(--rose);
   border-bottom: 1.5px solid transparent;
   transition: border-color 0.25s;
 }

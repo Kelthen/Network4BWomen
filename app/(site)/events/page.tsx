@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Upcoming gatherings, the annual conference and retreat, networking, and community events for Black women in Southern Alberta.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 // Placeholder — real events come from the `events` table.
 const UPCOMING = [
@@ -60,7 +60,7 @@ export default function EventsPage() {
               </div>
               <div className="flex-1">
                 <h3 className="font-serif text-xl text-brand-brown">{e.title}</h3>
-                <p className="mt-1 text-sm text-brand-brown/60">{e.cat} · {e.where}</p>
+                <p className="mt-1 text-sm text-brand-brown/80">{e.cat} · {e.where}</p>
               </div>
               <Link href="/contact" className="hidden flex-none rounded-full border border-brand-brown px-5 py-2 text-sm font-semibold text-brand-brown transition hover:bg-brand-beige sm:inline-block">
                 Register
@@ -68,7 +68,7 @@ export default function EventsPage() {
             </Reveal>
           ))}
         </ul>
-        <p className="mt-4 text-sm text-brand-brown/50">Dates and details are placeholders pending NBW's calendar.</p>
+        <p className="mt-4 text-sm text-brand-brown/75">Dates and details are placeholders pending NBW's calendar.</p>
       </section>
 
       {/* Categories */}
