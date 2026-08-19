@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Career, scholarships, mental health, business directory, and community resources for Black women in Southern Alberta.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 const RESOURCES = [
   { title: "Career", desc: "Job boards, résumé help, and interview preparation." },
@@ -58,8 +58,8 @@ export default function ResourcesPage() {
               <div className="h-24 w-full" style={{ background: ACCENTS[i % ACCENTS.length] }} aria-hidden="true" />
               <div className="flex flex-1 flex-col p-6">
                 <h2 className="font-serif text-xl text-brand-brown">{r.title}</h2>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-brown/70">{r.desc}</p>
-                <span className="mt-4 text-sm font-semibold text-brand-brown/40">Coming soon</span>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-brown/80">{r.desc}</p>
+                <span className="mt-4 text-sm font-semibold text-brand-brown/75">Coming soon</span>
               </div>
             </Reveal>
           ))}

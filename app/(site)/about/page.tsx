@@ -33,7 +33,7 @@ const TEAM = [
   { name: "Aytia Police", role: "Board Member" },
 ];
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 export default function AboutPage() {
   return (
@@ -123,7 +123,7 @@ export default function AboutPage() {
               delay={((i % 3) + 1) as 1 | 2 | 3}
               className="border-t border-brand-beige pt-5"
             >
-              <span className="font-serif text-4xl text-brand-gold">
+              <span className="font-serif text-4xl text-brand-goldText">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-3 font-serif text-2xl text-brand-brown">{v.name}</h3>
@@ -158,7 +158,7 @@ export default function AboutPage() {
         <Reveal as="h2" delay={1} className="mt-3 max-w-3xl font-serif text-3xl md:text-4xl">
           Meet Our Board &amp; Leadership.
         </Reveal>
-        <Reveal as="p" delay={2} className="mt-4 max-w-2xl text-brand-brown/70">
+        <Reveal as="p" delay={2} className="mt-4 max-w-2xl text-brand-brown/80">
           The women behind NBW. Photos and bios coming soon.
         </Reveal>
         <TeamGrid members={TEAM} />

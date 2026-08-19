@@ -104,7 +104,7 @@ export default function DonateForm() {
           Or enter an amount (CAD)
         </label>
         <div className="flex items-center rounded-xl border border-brand-beige bg-white px-4">
-          <span className="text-brand-brown/60">$</span>
+          <span className="text-brand-brown/80">$</span>
           <input
             id="custom"
             inputMode="decimal"
@@ -131,7 +131,7 @@ export default function DonateForm() {
       </div>
 
       {status === "error" && (
-        <p role="alert" className="text-sm text-brand-pink">
+        <p role="alert" className="text-sm text-brand-rose">
           {feedback}
         </p>
       )}
@@ -147,7 +147,7 @@ export default function DonateForm() {
             ? `Donate $${effectiveAmount || 0}/month`
             : `Donate $${effectiveAmount || 0}`}
       </button>
-      <p className="text-center text-xs text-brand-brown/50">
+      <p className="text-center text-xs text-brand-brown/75">
         Secure payment via Stripe. You&apos;ll be redirected to complete your donation.
       </p>
     </form>

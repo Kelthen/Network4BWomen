@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Moments from NBW events and gatherings — celebrating Black women and girls in Southern Alberta.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 // Placeholder albums by year — real media comes from `gallery_media`.
 const ALBUMS = [
@@ -49,7 +49,7 @@ export default function GalleryPage() {
         <section key={album.year} className="mx-auto max-w-6xl px-6 pb-14">
           <Reveal as="div" className="flex items-baseline gap-4 border-b border-brand-beige pb-3">
             <h2 className="font-serif text-3xl text-brand-brown">{album.year}</h2>
-            <p className="text-brand-brown/60">{album.label}</p>
+            <p className="text-brand-brown/80">{album.label}</p>
           </Reveal>
           <div className="mt-6 grid auto-rows-[140px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {GRADIENTS.map((g, i) => (
@@ -70,7 +70,7 @@ export default function GalleryPage() {
         </section>
       ))}
 
-      <p className="mx-auto max-w-6xl px-6 pb-24 text-sm text-brand-brown/50">
+      <p className="mx-auto max-w-6xl px-6 pb-24 text-sm text-brand-brown/75">
         Albums and photos are placeholders pending NBW&apos;s media.
       </p>
     </div>

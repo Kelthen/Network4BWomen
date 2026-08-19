@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Success stories, community news, leadership articles, and wellness tips from Network of Black Women.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 const CATEGORIES = ["Success Stories", "Community News", "Leadership", "Wellness Tips", "Event Recaps", "Announcements"];
 
@@ -41,7 +41,7 @@ export default function NewsPage() {
         </Reveal>
         <Reveal delay={3} className="mt-6 flex flex-wrap gap-2">
           {CATEGORIES.map((c) => (
-            <span key={c} className="rounded-full border border-brand-beige bg-brand-beige/30 px-3.5 py-1.5 text-sm text-brand-brown/70">
+            <span key={c} className="rounded-full border border-brand-beige bg-brand-beige/30 px-3.5 py-1.5 text-sm text-brand-brown/80">
               {c}
             </span>
           ))}
@@ -63,15 +63,15 @@ export default function NewsPage() {
                 aria-hidden="true"
               />
               <div className="flex flex-1 flex-col p-6">
-                <span className="text-xs font-semibold uppercase tracking-wider text-brand-gold">{p.cat}</span>
+                <span className="text-xs font-semibold uppercase tracking-wider text-brand-goldText">{p.cat}</span>
                 <h2 className="mt-2 font-serif text-xl text-brand-brown">{p.title}</h2>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-brown/70">{p.excerpt}</p>
-                <span className="mt-4 text-sm font-semibold text-brand-brown/40">Article coming soon</span>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-brown/80">{p.excerpt}</p>
+                <span className="mt-4 text-sm font-semibold text-brand-brown/75">Article coming soon</span>
               </div>
             </Reveal>
           ))}
         </ul>
-        <p className="mt-6 text-sm text-brand-brown/50">Articles are placeholders pending NBW&apos;s stories.</p>
+        <p className="mt-6 text-sm text-brand-brown/75">Articles are placeholders pending NBW&apos;s stories.</p>
       </section>
 
       <section className="bg-brand-brown text-brand-cream">

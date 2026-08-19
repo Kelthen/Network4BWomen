@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/images
-current_task: "Câblage des images (photo + dégradé de secours) sur toutes les pages"
+branch: feat/rhamon/a11y-contrast
+current_task: "Audit accessibilité (axe) + correction contrastes AA"
 files_locked: []
 updated: 2026-08-17T00:00:00Z
 ---
@@ -12,6 +12,12 @@ updated: 2026-08-17T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-18 — Accessibilité : audit axe + contrastes AA (`feat/rhamon/a11y-contrast`)
+- **Audit automatisé axe-core** (WCAG A/AA) sur les 12 pages : seule violation = **color-contrast** (le reste conforme). C'est exactement le risque signalé dans `docs/BRAND.md` (rose/or en petit texte sur fond clair).
+- **Corrigé** : ajout de tokens accessibles `brand.goldText #8a6d1f` (eyebrows) et `brand.rose #b23a4e` (liens/texte), remplacement des `text-brand-gold`/`text-brand-pink` (texte) et du `em` rose du hero + `.more` des cartes ; remontée des opacités de texte brun (`/70,/60,/50,/40` → `/80,/75`) et `.card p` .7 → .82. Le rose vif reste réservé aux **fonds de boutons** (texte foncé dessus = OK).
+- Vérifié par calcul WCAG : goldText 4.59/4.90, rose 5.45/5.82, brown/80 6.24, brown .82 6.97 — tous ≥ 4.5 (AA). Anciennes valeurs : pink 2.31, gold 2.25 (échec).
+- Validé : `next build` OK.
 
 ## 2026-08-18 — Câblage des images (`feat/rhamon/images`)
 - Helper `lib/media.ts` (`coverImage(src, gradient)` : photo par-dessus, **dégradé de marque en secours auto** → jamais d'image cassée ; `slugify`).

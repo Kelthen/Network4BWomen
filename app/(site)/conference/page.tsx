@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "NBW's flagship annual conference — keynotes, workshops, and community for Black women in Southern Alberta.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 const HIGHLIGHTS = [
   { title: "Keynote speakers", desc: "Voices leading change across business, wellness, and the arts." },
@@ -56,7 +56,7 @@ export default function ConferencePage() {
           {HIGHLIGHTS.map((h, i) => (
             <Reveal as="li" key={h.title} delay={((i % 3) + 1) as 1 | 2 | 3} className="rounded-2xl bg-white p-6 shadow-[0_1px_0_#e8dcc8]">
               <h2 className="font-serif text-xl text-brand-brown">{h.title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-brand-brown/70">{h.desc}</p>
+              <p className="mt-2 text-sm leading-relaxed text-brand-brown/80">{h.desc}</p>
             </Reveal>
           ))}
         </ul>
@@ -78,7 +78,7 @@ export default function ConferencePage() {
                 aria-hidden="true"
               />
               <p className="mt-3 font-serif text-lg text-brand-brown">To be announced</p>
-              <p className="text-sm text-brand-brown/60">Keynote</p>
+              <p className="text-sm text-brand-brown/80">Keynote</p>
             </Reveal>
           ))}
         </ul>
@@ -94,7 +94,7 @@ export default function ConferencePage() {
               <Reveal as="div" key={f.q} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <details className="rounded-xl border border-brand-beige bg-white px-5 py-1">
                   <summary className="cursor-pointer list-none py-4 font-serif text-lg text-brand-brown">{f.q}</summary>
-                  <p className="pb-4 text-brand-brown/70">{f.a}</p>
+                  <p className="pb-4 text-brand-brown/80">{f.a}</p>
                 </details>
               </Reveal>
             ))}

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Volunteer, mentor, speak, partner, sponsor, or serve on the board — many ways to help NBW grow.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 type Way = {
   title: string;
@@ -100,10 +100,10 @@ export default function GetInvolvedPage() {
               <div className="h-28 w-full" style={{ background: w.accent }} aria-hidden="true" />
               <div className="flex flex-1 flex-col p-6">
                 <h2 className="font-serif text-2xl text-brand-brown">{w.title}</h2>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-brown/70">{w.desc}</p>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-brown/80">{w.desc}</p>
                 <Link
                   href={w.href}
-                  className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-pink"
+                  className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-rose"
                 >
                   {w.cta} <span aria-hidden="true">→</span>
                 </Link>

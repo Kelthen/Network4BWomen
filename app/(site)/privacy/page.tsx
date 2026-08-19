@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "How Network of Black Women collects, uses, and protects your information, and how we use cookies.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
 export default function PrivacyPage() {
   return (
@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         <h1 className="mt-4 font-serif text-4xl font-semibold leading-[1.05] md:text-5xl">
           Your privacy matters to us.
         </h1>
-        <p className="mt-4 text-sm text-brand-brown/50">
+        <p className="mt-4 text-sm text-brand-brown/75">
           This is a starting draft and should be reviewed by NBW before launch.
         </p>
 
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
             <h2 className="font-serif text-2xl text-brand-brown">Contact</h2>
             <p className="mt-2">
               Questions about your privacy? Email us at{" "}
-              <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-brand-pink underline">
+              <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-brand-rose underline">
                 {CONTACT_EMAIL}
               </a>
               .
