@@ -9,7 +9,7 @@ Accueil · À propos NBW · Get Involved · **Dons (Stripe)** · Contact · News
 ## Phase 0 — Fondations (COORDONNÉ avec serge, avant tout le reste)
 Ces zones sont `shared`. On les amorce ensemble pour ne pas se bloquer ensuite. Se répartir à l'oral ; par défaut :
 - [ ] **Design system** (`tailwind.config.ts`, `app/globals.css`) — tokens de marque NBW (voir `docs/BRAND.md`). *Peut être amorcé par rhamon.*
-- [ ] **Layout global** (`app/layout.tsx`, `components/Nav.tsx`, `components/Footer.tsx`, `components/LandAcknowledgment.tsx`) — Nav + Footer + reconnaissance territoire Blackfoot.
+- [ ] **Layout global** (`app/layout.tsx`, `components/Nav.tsx`, `components/Footer.tsx`, `components/LandAcknowledgment.tsx`) — Nav + Footer + reconnaissance territoriale (Toronto / Traité 13).
 - [ ] **Primitives UI** (`components/ui/*` : Button, Card, Input, Section, Container).
 - [ ] **Client Supabase** (`lib/supabase.ts`) + schéma initial commun (`docs/DATA-MODEL.md`, `supabase/`).
 

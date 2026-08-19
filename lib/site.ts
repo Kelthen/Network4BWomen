@@ -5,7 +5,7 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3
 export const SITE_NAME = "Network of Black Women";
 export const SITE_TAGLINE = "Empowering Black Women. Building Community. Creating Leaders.";
 export const SITE_DESCRIPTION =
-  "Network of Black Women (NBW) is a sisterhood for Black women and girls in Southern Alberta — empowering, connecting, and uplifting through community, leadership, wellness, and opportunity.";
+  "Network of Black Women (NBW) is a sisterhood for Black women and girls in Toronto, Ontario — empowering, connecting, and uplifting through community, leadership, wellness, and opportunity.";
 
 export const CONTACT_EMAIL = "info.networkofblackwomen@gmail.com";
 export const CONTACT_PHONE = "(403) 635-8688";

@@ -83,7 +83,7 @@ export default function GetInvolvedPage() {
         </Reveal>
         <Reveal as="p" delay={2} className="mt-6 max-w-2xl text-lg text-brand-brown/80">
           Volunteering, mentoring, speaking, partnering, or giving — every contribution helps the
-          community grow and uplifts Black women across Southern Alberta.
+          community grow and uplifts Black women across Toronto, Ontario.
         </Reveal>
       </header>
 

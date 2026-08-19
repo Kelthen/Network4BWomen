@@ -7,7 +7,7 @@ import Reveal from "@/components/home/Reveal";
 export const metadata: Metadata = {
   title: "Resources — Network of Black Women (NBW)",
   description:
-    "Career, scholarships, mental health, business directory, and community resources for Black women in Southern Alberta.",
+    "Career, scholarships, mental health, business directory, and community resources for Black women in Toronto, Ontario.",
 };
 
 const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";

@@ -40,7 +40,7 @@ export default function Hero() {
     <header className={styles.hero}>
       <div className={styles.wrap}>
         <p className={`${styles.eyebrow} ${styles.heroEyebrow}`}>
-          Network of Black Women · Southern Alberta
+          Network of Black Women · Toronto, Ontario
         </p>
         <h1>
           <span className={styles.line}>

@@ -115,7 +115,7 @@ npx tsc --noEmit    # typecheck
 
 ## 5. Le client : NBW (contexte à ne jamais perdre)
 
-Network of Black Women — sororité pour les femmes noires du Sud de l'Alberta, sur le **territoire de la Confédération Blackfoot** (reconnaissance obligatoire dans le footer).
+Network of Black Women — sororité pour les femmes noires de **Toronto (Ontario)**, sur le **territoire traditionnel de nombreuses nations, visé par le Traité 13** (reconnaissance obligatoire dans le footer).
 
 **Mission** : autonomiser, connecter et élever les femmes noires via une communauté de soutien et des opportunités de croissance.
 **Vision** : un environnement fort, inclusif, sûr où les femmes noires sont célébrées ; voix amplifiées, réussites reconnues, force collective motrice de changement positif.

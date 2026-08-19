@@ -12,7 +12,7 @@
 - **Tagline hero** : « Empowering Black Women. Building Community. Creating Leaders. »
 - **Phrase signature** : « This is a space curated by Black Women for Black Women. »
 - **Sous-titre hero** (placeholder validé) : « A safe and empowering space where Black women and girls grow personally, professionally, and collectively through connection, leadership, wellness, and opportunity. »
-- **Localisation** : Southern Alberta — territoire traditionnel de la Confédération Blackfoot.
+- **Localisation** : Toronto, Ontario — territoire traditionnel de nombreuses nations, visé par le Traité 13.
 - **Contact** : info.networkofblackwomen@gmail.com · (403) 635-8688
 - **Reconnaissance du territoire** (footer, obligatoire) : voir `components/LandAcknowledgment.tsx`.
 
@@ -34,7 +34,7 @@
 ## 2. À propos `/about` — [rhamon] → `app/(site)/about/**`
 
 **Our Story / About Us (verbatim, 🟢 PUBLIC)** :
-> « Network of Black Women was created on the goal to create a sisterhood community in Southern Alberta for Black Women and a space for Black Women to be celebrated, to be themselves. »
+> « Network of Black Women was created on the goal to create a sisterhood community in Toronto for Black Women and a space for Black Women to be celebrated, to be themselves. »
 
 **Mission (verbatim, 🟢 PUBLIC)** :
 > « Our mission is to empower, connect, and uplift Black Women by fostering a supportive community by curating meaningful opportunities to grow. We are dedicated to creating spaces where Black Women can share their stories, celebrate one another's successes, and build lasting, transformative networks. Through collaboration and mutual support, we aim to break down barriers, amplify voices, and ensure that Black women gain the skills and tools needed to thrive both personally and professionally. »

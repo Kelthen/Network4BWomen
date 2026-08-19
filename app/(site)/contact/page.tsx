@@ -6,7 +6,7 @@ import ContactForm from "@/components/contact/ContactForm";
 export const metadata: Metadata = {
   title: "Contact — Network of Black Women (NBW)",
   description:
-    "A question, a partnership, or a way to get involved? Reach out to Network of Black Women, Southern Alberta.",
+    "A question, a partnership, or a way to get involved? Reach out to Network of Black Women, Toronto, Ontario.",
 };
 
 const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
@@ -51,7 +51,7 @@ export default function ContactPage() {
               <div>
                 <p className={EYEBROW}>Where we are</p>
                 <p className="mt-2 text-brand-brown/80">
-                  Southern Alberta — traditional territory of the Blackfoot Confederacy.
+                  Toronto, Ontario — traditional territory of many nations, covered by Treaty 13.
                 </p>
               </div>
               <div>

@@ -6,7 +6,7 @@ import DonateForm from "@/components/donate/DonateForm";
 export const metadata: Metadata = {
   title: "Donate — Network of Black Women (NBW)",
   description:
-    "Your gift funds programs, scholarships, events, and wellness for Black women in Southern Alberta.",
+    "Your gift funds programs, scholarships, events, and wellness for Black women in Toronto, Ontario.",
 };
 
 const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
@@ -34,7 +34,7 @@ export default function DonatePage({
             className="mb-10 rounded-2xl border border-brand-sage bg-brand-sage/15 px-6 py-4 text-brand-brown"
           >
             <b>Thank you for your generosity!</b> Your donation supports Black women across
-            Southern Alberta. 💛
+            Toronto, Ontario. 💛
           </div>
         )}
         {status === "cancel" && (

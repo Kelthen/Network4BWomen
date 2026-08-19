@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: fix/rhamon/stripe-managed-payments
-current_task: "Fix Stripe checkout — Managed Payments off + URL propre"
+branch: feat/rhamon/relocate-toronto
+current_task: "Relocalisation NBW → Toronto, Ontario (site + docs)"
 files_locked: []
 updated: 2026-08-19T00:00:00Z
 ---
@@ -12,6 +12,13 @@ updated: 2026-08-19T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-19 — Relocalisation Toronto + déblocage Vercel (`feat/rhamon/relocate-toronto`)
+- **Contexte majeur** : la vraie panne « le site ne se met jamais à jour » = le plan Vercel **Hobby** refuse un repo **privé + orga**. Repo passé **public** (aucun secret commité, vérifié : `.env*` gitignored, historique scanné) → auto-déploiement GitHub→Vercel **rétabli**. Le fix Stripe (Managed Payments off + URL propre) est enfin en prod, **le don marche** (testé carte 4242).
+- **Relocalisation NBW → Toronto, Ontario** (le client était mal localisé en Alberta). Remplacé partout dans le **site rendu** : `lib/site.ts`, `app/layout.tsx` (keywords, JSON-LD `areaServed`/`addressRegion` AB→ON + `addressLocality`), Hero, OG image, et toutes les pages (home, about incl. la citation, contact, donate, events incl. `where: Toronto`, resources, conference, gallery, get-involved).
+- **Reconnaissance territoriale** réécrite (composant `LandAcknowledgment` + about + contact) : Blackfoot/Alberta → **Toronto, Traité 13 / Dish With One Spoon** (Mississaugas of the Credit, Anishinaabe, Haudenosaunee, Wendat). ⚠️ **À faire valider par le client** (formulation standard Ville de Toronto).
+- **Mémoire synchronisée** : `CLAUDE.md §5`, `docs/CONTENT.md` (+ citation), `README.md`, `docs/TEAM.md`, `docs/BRAND.md`, `PLAN-rhamon.md` — pour que les futures sessions ne recorrigent pas vers l'Alberta.
+- Validé : `tsc --noEmit` OK · `next build` OK. Prochaine étape (demande client) : intégration des **photos**.
 
 ## 2026-08-19 — Fix Stripe checkout : Managed Payments + URL (`fix/rhamon/stripe-managed-payments`)
 - **Bug live** : `/donate` renvoyait « the product tax code is missing… Managed Payments enabled by default → pass managed_payments[enabled]=false ». Le compte Stripe NBW a **Managed Payments activé par défaut**, qui exige un `tax_code` produit sur chaque line item — inutile pour un don et bloquant.
