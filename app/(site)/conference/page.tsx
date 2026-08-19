@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
+import { coverImage } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "Annual Conference — Network of Black Women (NBW)",
@@ -70,7 +71,10 @@ export default function ConferencePage() {
             <Reveal as="li" key={i} delay={((i % 3) + 1) as 1 | 2 | 3}>
               <div
                 className="aspect-square w-full rounded-2xl"
-                style={{ background: ["linear-gradient(160deg,#97ac9f,#e8dcc8)", "linear-gradient(160deg,#e9c8c9,#ffbbbb)", "linear-gradient(160deg,#c9a24b,#e8dcc8)", "linear-gradient(160deg,#f6828f,#44312b)"][i] }}
+                style={coverImage(
+                  `/images/conference/speaker-${i + 1}.jpg`,
+                  ["linear-gradient(160deg,#97ac9f,#e8dcc8)", "linear-gradient(160deg,#e9c8c9,#ffbbbb)", "linear-gradient(160deg,#c9a24b,#e8dcc8)", "linear-gradient(160deg,#f6828f,#44312b)"][i],
+                )}
                 aria-hidden="true"
               />
               <p className="mt-3 font-serif text-lg text-brand-brown">To be announced</p>

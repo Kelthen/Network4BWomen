@@ -1,6 +1,8 @@
 // OWNED BY: rhamon — À propos. Grille équipe (Board + Leadership).
 // Données : docs/TEAM.md / docs/CONTENT.md §2. Photos & bios à venir (placeholders élégants).
+// Déposer les photos dans public/images/team/<slug>.jpg (ex. maleeka-thomas.jpg).
 import Reveal from "@/components/home/Reveal";
+import { coverImage, slugify } from "@/lib/media";
 
 type Member = { name: string; role: string };
 
@@ -33,11 +35,11 @@ export default function TeamGrid({ members }: { members: Member[] }) {
         >
           <div
             className="aspect-[4/5] w-full overflow-hidden rounded-2xl"
-            style={{ background: GRADIENTS[i % GRADIENTS.length] }}
+            style={coverImage(`/images/team/${slugify(m.name)}.jpg`, GRADIENTS[i % GRADIENTS.length])}
             aria-hidden="true"
           >
             <div className="flex h-full items-end p-4">
-              <span className="font-serif text-3xl font-semibold text-brand-cream/90">
+              <span className="font-serif text-3xl font-semibold text-brand-cream/85">
                 {initials(m.name)}
               </span>
             </div>

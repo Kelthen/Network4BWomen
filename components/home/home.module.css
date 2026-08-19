@@ -152,7 +152,7 @@
   will-change: transform;
 }
 .heroVisual::after {
-  content: "Photographie réelle\A de femmes & filles noires";
+  content: "";
   white-space: pre;
   position: absolute;
   inset: 0;
@@ -416,7 +416,7 @@
   clip-path: inset(0 0 0 0 round 44px);
 }
 .ctaBand .bg::after {
-  content: "Photographie réelle — femmes noires, contre-plongée lumineuse";
+  content: "";
   position: absolute;
   inset: 0;
   display: flex;

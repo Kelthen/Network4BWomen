@@ -2,6 +2,7 @@
 // owner's approval.) See docs/CONTENT.md §9. Placeholder tiles pending the `gallery_media` table.
 import type { Metadata } from "next";
 import Reveal from "@/components/home/Reveal";
+import { coverImage } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "Gallery — Network of Black Women (NBW)",
@@ -58,7 +59,11 @@ export default function GalleryPage() {
                 delay={((i % 3) + 1) as 1 | 2 | 3}
                 className={`overflow-hidden rounded-xl ${SPANS[i]}`}
               >
-                <div className="h-full w-full transition duration-500 hover:scale-[1.03]" style={{ background: g }} aria-hidden="true" />
+                <div
+                  className="h-full w-full transition duration-500 hover:scale-[1.03]"
+                  style={coverImage(`/images/gallery/${album.year}-${i + 1}.jpg`, g)}
+                  aria-hidden="true"
+                />
               </Reveal>
             ))}
           </div>
