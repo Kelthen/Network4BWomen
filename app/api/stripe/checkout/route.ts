@@ -56,7 +56,14 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ url: session.url });
-  } catch {
-    return NextResponse.json({ error: "Couldn't start checkout. Please try again." }, { status: 500 });
+  } catch (e) {
+    // Log server-side (visible in Vercel → Function Logs) and surface Stripe's own
+    // message to the client so misconfig (bad/revoked key, wrong mode) is diagnosable.
+    console.error("[stripe/checkout] error:", e);
+    const message =
+      e instanceof Stripe.errors.StripeError
+        ? e.message
+        : "Couldn't start checkout. Please try again.";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
