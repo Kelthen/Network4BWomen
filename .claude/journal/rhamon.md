@@ -13,6 +13,14 @@ updated: 2026-08-19T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-08-20 — Lightbox galerie interactive (`feat/rhamon/gallery-lightbox`)
+- Manque UX : cliquer une photo de la galerie ne faisait rien (tuiles décoratives `aria-hidden`). Ajout d'une **vraie lightbox**.
+- `components/gallery/Lightbox.tsx` : modal (backdrop flou), fermeture Esc/clic/bouton, navigation ◀▶ + flèches clavier, compteur, scroll-lock. **Tilt 3D + reflet (glare)** qui suit **souris ET tactile** — implémenté **sans Framer Motion** : ressort maison en `requestAnimationFrame` (lerp), écrit directement dans le DOM (0 re-render), `prefers-reduced-motion` désactive le tilt. Choix « meilleur rendement » (bundle léger, Lighthouse).
+- `components/gallery/GalleryGrid.tsx` (client) : les vraies photos deviennent des `<button>` cliquables → ouvrent la lightbox ; les slots restants restent des dégradés décoratifs.
+- `app/(site)/gallery/page.tsx` : passé en **data-driven** (`album.photos` liste les fichiers réels). Rendu client uniquement pour la grille ; la page reste statique.
+- Choix design validé avec le client : **grande photo nette** (pas de quadriptyque Pop Art — jugé gadget/irrespectueux sur des portraits réels).
+- Validé : `tsc --noEmit` OK · `next build` OK (19 routes, `/gallery` statique).
+
 ## 2026-08-19 — PayPal en option de don (`feat/rhamon/paypal-donate`)
 - Ajout d'un bouton **« Donate with PayPal »** sous le bouton Stripe, activé par `NEXT_PUBLIC_PAYPAL_DONATE_URL` (lien public, pas de secret). Masqué si vide → rien de cassé.
 - Supporte le bouton « Donate » hébergé PayPal (`paypal.com/donate?hosted_button_id=…`) **ou** PayPal.me. Pour PayPal.me, report du montant choisi (`…/50CAD`).

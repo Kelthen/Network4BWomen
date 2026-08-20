@@ -2,7 +2,7 @@
 // owner's approval.) See docs/CONTENT.md §9. Placeholder tiles pending the `gallery_media` table.
 import type { Metadata } from "next";
 import Reveal from "@/components/home/Reveal";
-import { coverImage } from "@/lib/media";
+import GalleryGrid from "@/components/gallery/GalleryGrid";
 
 export const metadata: Metadata = {
   title: "Gallery — Network of Black Women (NBW)",
@@ -11,25 +11,22 @@ export const metadata: Metadata = {
 
 const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
-// Placeholder albums by year — real media comes from `gallery_media`.
+// Albums by year. `photos` lists the real files present in public/images/gallery/
+// (lowercase .jpg). Remaining tiles render as brand-gradient placeholders.
+// Real media will eventually come from the `gallery_media` table.
 const ALBUMS = [
-  { year: "2025", label: "Community & events" },
-  { year: "2024", label: "Conference & retreat" },
+  {
+    year: "2025",
+    label: "Community & events",
+    photos: [
+      "/images/gallery/2025-1.jpg",
+      "/images/gallery/2025-2.jpg",
+      "/images/gallery/2025-3.jpg",
+      "/images/gallery/2025-4.jpg",
+    ],
+  },
+  { year: "2024", label: "Conference & retreat", photos: [] as string[] },
 ];
-
-const GRADIENTS = [
-  "linear-gradient(160deg,#97ac9f,#e8dcc8)",
-  "linear-gradient(160deg,#e9c8c9,#ffbbbb)",
-  "linear-gradient(160deg,#c9a24b,#e8dcc8)",
-  "linear-gradient(160deg,#f6828f,#44312b)",
-  "linear-gradient(160deg,#97ac9f,#6e9179)",
-  "linear-gradient(160deg,#e8dcc8,#c9a24b)",
-  "linear-gradient(160deg,#e9c8c9,#97ac9f)",
-  "linear-gradient(160deg,#ffbbbb,#c9a24b)",
-];
-
-// Varied tile spans for an editorial masonry feel.
-const SPANS = ["row-span-2", "", "", "row-span-2", "", "", "", ""];
 
 export default function GalleryPage() {
   return (
@@ -51,22 +48,10 @@ export default function GalleryPage() {
             <h2 className="font-serif text-3xl text-brand-brown">{album.year}</h2>
             <p className="text-brand-brown/80">{album.label}</p>
           </Reveal>
-          <div className="mt-6 grid auto-rows-[140px] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {GRADIENTS.map((g, i) => (
-              <Reveal
-                as="div"
-                key={i}
-                delay={((i % 3) + 1) as 1 | 2 | 3}
-                className={`overflow-hidden rounded-xl ${SPANS[i]}`}
-              >
-                <div
-                  className="h-full w-full transition duration-500 hover:scale-[1.03]"
-                  style={coverImage(`/images/gallery/${album.year}-${i + 1}.jpg`, g)}
-                  aria-hidden="true"
-                />
-              </Reveal>
-            ))}
-          </div>
+          <GalleryGrid photos={album.photos} />
+          {album.photos.length > 0 && (
+            <p className="mt-4 text-sm text-brand-brown/60">Click a photo to view it larger.</p>
+          )}
         </section>
       ))}
 
