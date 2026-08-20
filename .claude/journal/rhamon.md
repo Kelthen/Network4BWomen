@@ -1,8 +1,8 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/relocate-toronto
-current_task: "Relocalisation NBW → Toronto, Ontario (site + docs)"
+branch: feat/rhamon/contact-email
+current_task: "Contact → email (Resend) : notif NBW + auto-réponse"
 files_locked: []
 updated: 2026-08-19T00:00:00Z
 ---
@@ -12,6 +12,14 @@ updated: 2026-08-19T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-08-19 — Contact → email Resend (`feat/rhamon/contact-email`)
+- Constat : le formulaire de contact n'enregistrait qu'en base (Supabase), **personne n'était notifié** et pas d'auto-réponse. Ajout d'un canal email.
+- `lib/email.ts` : helper `sendEmail` via l'API REST Resend (aucune dépendance ajoutée), no-op propre si `RESEND_API_KEY` absent + `escapeHtml`.
+- `app/api/contact/route.ts` réécrit : **2 canaux tolérants aux pannes** — (1) email Resend : notification à NBW avec **reply-to = visiteur** (répondre en 1 clic) + **auto-réponse** « merci » au visiteur ; (2) copie Supabase best-effort. Le formulaire est actif dès qu'**un** canal est configuré → **marche avec juste la clé Resend, sans le Supabase de NBW**.
+- `.env.example` : `RESEND_API_KEY`, `RESEND_FROM` (optionnel, une fois le domaine vérifié).
+- Action humain : créer un compte Resend → clé API → `RESEND_API_KEY` dans Vercel. (Auto-réponse partira d'une adresse Resend de test jusqu'à vérif du domaine NBW.)
+- Validé : `tsc --noEmit` OK · `next build` OK (19 routes).
 
 ## 2026-08-19 — Relocalisation Toronto + déblocage Vercel (`feat/rhamon/relocate-toronto`)
 - **Contexte majeur** : la vraie panne « le site ne se met jamais à jour » = le plan Vercel **Hobby** refuse un repo **privé + orga**. Repo passé **public** (aucun secret commité, vérifié : `.env*` gitignored, historique scanné) → auto-déploiement GitHub→Vercel **rétabli**. Le fix Stripe (Managed Payments off + URL propre) est enfin en prod, **le don marche** (testé carte 4242).
