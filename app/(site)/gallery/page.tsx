@@ -1,8 +1,12 @@
-// OWNED BY: serge — Gallery. (Built by rhamon's Claude as help — serge unavailable — with the
-// owner's approval.) See docs/CONTENT.md §9. Placeholder tiles pending the `gallery_media` table.
+// OWNED BY: serge — Gallery. Wired to Supabase `gallery_media` table.
+// Falls back to local photos + gradient placeholders when Supabase is unavailable.
+// See docs/CONTENT.md §9.
 import type { Metadata } from "next";
 import Reveal from "@/components/home/Reveal";
 import GalleryGrid from "@/components/gallery/GalleryGrid";
+import { supabase } from "@/lib/supabase";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Gallery — Network of Black Women (NBW)",
@@ -11,10 +15,14 @@ export const metadata: Metadata = {
 
 const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
-// Albums by year. `photos` lists the real files present in public/images/gallery/
-// (lowercase .jpg). Remaining tiles render as brand-gradient placeholders.
-// Real media will eventually come from the `gallery_media` table.
-const ALBUMS = [
+type Album = {
+  year: string;
+  label: string;
+  photos: string[];
+};
+
+// Fallback albums with local photos
+const FALLBACK_ALBUMS: Album[] = [
   {
     year: "2025",
     label: "Community & events",
@@ -25,10 +33,43 @@ const ALBUMS = [
       "/images/gallery/2025-4.jpg",
     ],
   },
-  { year: "2024", label: "Conference & retreat", photos: [] as string[] },
+  { year: "2024", label: "Conference & retreat", photos: [] },
 ];
 
-export default function GalleryPage() {
+async function getAlbums(): Promise<Album[]> {
+  try {
+    const { data, error } = await supabase
+      .from("gallery_media")
+      .select("year, event_name, image_url, caption, sort_order")
+      .order("year", { ascending: false })
+      .order("sort_order", { ascending: true });
+
+    if (error || !data || data.length === 0) {
+      return FALLBACK_ALBUMS;
+    }
+
+    // Group by year
+    const grouped = new Map<number, { event_name: string; photos: string[] }>();
+    for (const item of data) {
+      if (!grouped.has(item.year)) {
+        grouped.set(item.year, { event_name: item.event_name, photos: [] });
+      }
+      grouped.get(item.year)!.photos.push(item.image_url);
+    }
+
+    return Array.from(grouped.entries()).map(([year, { event_name, photos }]) => ({
+      year: String(year),
+      label: event_name,
+      photos,
+    }));
+  } catch {
+    return FALLBACK_ALBUMS;
+  }
+}
+
+export default async function GalleryPage() {
+  const albums = await getAlbums();
+
   return (
     <div className="bg-brand-cream text-brand-brown">
       <header className="mx-auto max-w-6xl px-6 pt-24 pb-12 md:pt-32">
@@ -37,12 +78,11 @@ export default function GalleryPage() {
           Our community, in full colour.
         </Reveal>
         <Reveal as="p" delay={2} className="mt-6 max-w-2xl text-lg text-brand-brown/80">
-          Moments from our events and gatherings. Real photography is on the way — these are
-          placeholders in the meantime.
+          Moments from our events and gatherings — celebrating Black women and sisterhood.
         </Reveal>
       </header>
 
-      {ALBUMS.map((album) => (
+      {albums.map((album) => (
         <section key={album.year} className="mx-auto max-w-6xl px-6 pb-14">
           <Reveal as="div" className="flex items-baseline gap-4 border-b border-brand-beige pb-3">
             <h2 className="font-serif text-3xl text-brand-brown">{album.year}</h2>
@@ -54,10 +94,6 @@ export default function GalleryPage() {
           )}
         </section>
       ))}
-
-      <p className="mx-auto max-w-6xl px-6 pb-24 text-sm text-brand-brown/75">
-        Albums and photos are placeholders pending NBW&apos;s media.
-      </p>
     </div>
   );
 }
