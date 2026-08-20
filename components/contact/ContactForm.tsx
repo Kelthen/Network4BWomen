@@ -28,6 +28,7 @@ export default function ContactForm() {
       email: String(data.get("email") ?? ""),
       subject: String(data.get("subject") ?? "general"),
       message: String(data.get("message") ?? ""),
+      company: String(data.get("company") ?? ""), // honeypot (doit rester vide)
     };
 
     setStatus("sending");
@@ -75,6 +76,12 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4" noValidate>
+      {/* Honeypot anti-spam : caché aux humains, rempli par les bots. Non focusable. */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", height: 0, overflow: "hidden" }}>
+        <label htmlFor="company">Company (leave blank)</label>
+        <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-brand-brown">

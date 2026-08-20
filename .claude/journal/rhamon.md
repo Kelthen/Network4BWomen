@@ -13,6 +13,14 @@ updated: 2026-08-19T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-08-19 — Contact robuste (Resend 403 + UX) (`fix/rhamon/contact-robust`)
+- Symptôme : `/contact` renvoyait 500 alors que l'auto-réponse arrivait. Logs Vercel = **Resend 403** (« can only send to your own email until you verify a domain ») sur la notif vers `info@…`, **+** Supabase « Invalid path » (clés du projet non-NBW invalides). Donc notif NBW + base KO → 500.
+- **Fix backend** : destinataire de notif configurable `CONTACT_NOTIFY_TO` (défaut `CONTACT_EMAIL`) → tant que le domaine n'est pas vérifié, on pointe sur l'adresse vérifiée du compte Resend (plus de 403). Succès = notif OU base (auto-réponse best-effort). **Honeypot anti-spam** ajouté (champ caché `company`, accepté silencieusement si rempli).
+- L'écran de succès « Thank you 💛 » existait déjà côté `ContactForm` — il ne s'affichait pas car le backend répondait 500. Une fois la notif livrée → 200 → écran de remerciement OK.
+- `.env.example` : `CONTACT_NOTIFY_TO`.
+- Action humain : ajouter `CONTACT_NOTIFY_TO=<adresse vérifiée Resend>` dans Vercel (interim), OU **vérifier un domaine** dans Resend pour envoyer à `info@…` + aux visiteurs (auto-réponse réelle).
+- Validé : `tsc --noEmit` OK · `next build` OK (19 routes).
+
 ## 2026-08-19 — Contact → email Resend (`feat/rhamon/contact-email`)
 - Constat : le formulaire de contact n'enregistrait qu'en base (Supabase), **personne n'était notifié** et pas d'auto-réponse. Ajout d'un canal email.
 - `lib/email.ts` : helper `sendEmail` via l'API REST Resend (aucune dépendance ajoutée), no-op propre si `RESEND_API_KEY` absent + `escapeHtml`.
