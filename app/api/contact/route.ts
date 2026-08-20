@@ -35,6 +35,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
+  // Honeypot anti-spam : champ caché "company" que seuls les bots remplissent.
+  // On accepte silencieusement (200) sans rien envoyer → le bot croit avoir réussi.
+  if (String(body.company ?? "").trim() !== "") {
+    return NextResponse.json({ ok: true });
+  }
+
   const name = String(body.name ?? "").trim();
   const email = String(body.email ?? "").trim();
   const message = String(body.message ?? "").trim();
@@ -92,8 +98,11 @@ export async function POST(req: Request) {
     const safeMsg = escapeHtml(message).replace(/\n/g, "<br>");
 
     // 1a) Notification à l'équipe NBW — reply-to = visiteur (répondre en un clic).
+    // Destinataire configurable : tant que le domaine n'est pas vérifié dans Resend,
+    // pointer CONTACT_NOTIFY_TO sur l'adresse vérifiée du compte pour éviter le 403.
+    const notifyTo = process.env.CONTACT_NOTIFY_TO || CONTACT_EMAIL;
     const notif = await sendEmail({
-      to: CONTACT_EMAIL,
+      to: notifyTo,
       replyTo: email,
       subject: `New ${subjectLabel} message from ${name}`,
       text: `From: ${name} <${email}>\nSubject: ${subjectLabel}\n\n${message}`,
