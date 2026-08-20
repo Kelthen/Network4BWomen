@@ -20,6 +20,17 @@ export default function DonateForm() {
 
   const effectiveAmount = custom ? Number(custom) : amount;
 
+  // Lien PayPal optionnel (public, pas un secret). Hébergé par PayPal :
+  // bouton "Donate" (paypal.com/donate?hosted_button_id=…) ou PayPal.me.
+  // Pour un lien PayPal.me, on reporte le montant choisi (ex. .../50CAD).
+  const paypalBase = process.env.NEXT_PUBLIC_PAYPAL_DONATE_URL;
+  const validAmount = Number.isFinite(effectiveAmount) && effectiveAmount >= 1 ? effectiveAmount : null;
+  const paypalHref = !paypalBase
+    ? null
+    : /paypal\.me/i.test(paypalBase) && validAmount
+      ? `${paypalBase.replace(/\/+$/, "")}/${validAmount}CAD`
+      : paypalBase;
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!Number.isFinite(effectiveAmount) || effectiveAmount < 1) {
@@ -150,6 +161,28 @@ export default function DonateForm() {
       <p className="text-center text-xs text-brand-brown/75">
         Secure payment via Stripe. You&apos;ll be redirected to complete your donation.
       </p>
+
+      {paypalHref && (
+        <>
+          <div className="flex items-center gap-3 text-xs text-brand-brown/60">
+            <span className="h-px flex-1 bg-brand-beige" />
+            or
+            <span className="h-px flex-1 bg-brand-beige" />
+          </div>
+          <a
+            href={paypalHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 rounded-full border border-brand-brown bg-white px-7 py-3.5 text-center font-semibold text-brand-brown transition hover:-translate-y-0.5 hover:bg-brand-beige/40"
+          >
+            <span aria-hidden="true">🅿️</span>
+            Donate with PayPal
+          </a>
+          <p className="text-center text-xs text-brand-brown/75">
+            You&apos;ll be redirected to PayPal to complete your donation securely.
+          </p>
+        </>
+      )}
     </form>
   );
 }

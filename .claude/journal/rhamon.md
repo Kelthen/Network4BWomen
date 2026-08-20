@@ -13,6 +13,13 @@ updated: 2026-08-19T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-08-19 — PayPal en option de don (`feat/rhamon/paypal-donate`)
+- Ajout d'un bouton **« Donate with PayPal »** sous le bouton Stripe, activé par `NEXT_PUBLIC_PAYPAL_DONATE_URL` (lien public, pas de secret). Masqué si vide → rien de cassé.
+- Supporte le bouton « Donate » hébergé PayPal (`paypal.com/donate?hosted_button_id=…`) **ou** PayPal.me. Pour PayPal.me, report du montant choisi (`…/50CAD`).
+- Aucun webhook/API PayPal côté serveur (PayPal gère la page de paiement). Stripe reste le canal principal, PayPal en alternative.
+- Action humain : créer le bouton/lien de don dans le compte PayPal de NBW → coller l'URL dans `NEXT_PUBLIC_PAYPAL_DONATE_URL` (Vercel).
+- Validé : `tsc --noEmit` OK · `next build` OK (19 routes).
+
 ## 2026-08-19 — Contact robuste (Resend 403 + UX) (`fix/rhamon/contact-robust`)
 - Symptôme : `/contact` renvoyait 500 alors que l'auto-réponse arrivait. Logs Vercel = **Resend 403** (« can only send to your own email until you verify a domain ») sur la notif vers `info@…`, **+** Supabase « Invalid path » (clés du projet non-NBW invalides). Donc notif NBW + base KO → 500.
 - **Fix backend** : destinataire de notif configurable `CONTACT_NOTIFY_TO` (défaut `CONTACT_EMAIL`) → tant que le domaine n'est pas vérifié, on pointe sur l'adresse vérifiée du compte Resend (plus de 403). Succès = notif OU base (auto-réponse best-effort). **Honeypot anti-spam** ajouté (champ caché `company`, accepté silencieusement si rempli).
