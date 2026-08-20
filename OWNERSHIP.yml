@@ -82,7 +82,7 @@ serge:
   - area: programs
     files: ["app/(site)/programs/**", "components/programs/**"]
     status: done
-    note: "Construite par rhamon EN AIDE (serge indisponible) — 7 programmes, contenu placeholder. À brancher sur la table programs."
+    note: "Branché sur la table `programs` (lecture publique, is_active) — migration supabase/migrations/0002_programs.sql, seedée avec les 7 programmes. Fallback local si table vide/injoignable. Copie purpose/who_it_serves = toujours placeholder (texte final à fournir par NBW, éditable en base sans redeploy)."
   - area: events
     files: ["app/(site)/events/**", "app/api/registrations/**", "components/events/**"]
     status: done
