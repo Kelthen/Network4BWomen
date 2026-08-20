@@ -1,9 +1,13 @@
-// OWNED BY: serge — Conference. (Built by rhamon's Claude as help — serge unavailable — with
-// the owner's approval.) See docs/CONTENT.md §5. Placeholder content pending NBW.
+// OWNED BY: serge — Conference. Wired to Supabase `events` + `conference_speakers` tables.
+// Fallback to placeholder data when Supabase is unavailable.
+// See docs/CONTENT.md §5.
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
 import { coverImage } from "@/lib/media";
+import { supabase } from "@/lib/supabase";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Annual Conference — Network of Black Women (NBW)",
@@ -25,7 +29,51 @@ const FAQ = [
   { q: "Is accommodation available?", a: "We'll share recommended accommodation options closer to the event." },
 ];
 
-export default function ConferencePage() {
+const SPEAKER_ACCENTS = [
+  "linear-gradient(160deg,#97ac9f,#e8dcc8)",
+  "linear-gradient(160deg,#e9c8c9,#ffbbbb)",
+  "linear-gradient(160deg,#c9a24b,#e8dcc8)",
+  "linear-gradient(160deg,#f6828f,#44312b)",
+];
+
+type Speaker = {
+  id: string;
+  name: string;
+  title: string | null;
+  org: string | null;
+  bio: string | null;
+  photo_url: string | null;
+  is_keynote: boolean;
+};
+
+async function getSpeakers(): Promise<Speaker[]> {
+  try {
+    const { data: confEvent } = await supabase
+      .from("events")
+      .select("id")
+      .eq("is_conference", true)
+      .order("starts_at", { ascending: false })
+      .limit(1)
+      .single();
+
+    if (!confEvent) return [];
+
+    const { data, error } = await supabase
+      .from("conference_speakers")
+      .select("id, name, title, org, bio, photo_url, is_keynote")
+      .eq("event_id", confEvent.id)
+      .order("sort_order", { ascending: true });
+
+    if (error || !data) return [];
+    return data;
+  } catch {
+    return [];
+  }
+}
+
+export default async function ConferencePage() {
+  const speakers = await getSpeakers();
+
   return (
     <div className="bg-brand-cream text-brand-brown">
       {/* Hero */}
@@ -36,7 +84,7 @@ export default function ConferencePage() {
             One day. One community. Endless possibility.
           </Reveal>
           <Reveal as="p" delay={2} className="mt-6 max-w-2xl text-lg text-brand-brown/80">
-            NBW's flagship gathering brings together speakers, workshops, and sisterhood — a space
+            NBW&apos;s flagship gathering brings together speakers, workshops, and sisterhood — a space
             to be inspired and equipped to thrive.
           </Reveal>
           <Reveal delay={3} className="mt-8 flex flex-wrap gap-3">
@@ -62,25 +110,49 @@ export default function ConferencePage() {
         </ul>
       </section>
 
-      {/* Speakers placeholder */}
+      {/* Speakers */}
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <Reveal as="p" className={EYEBROW}>Speakers</Reveal>
-        <Reveal as="h2" delay={1} className="mt-3 font-serif text-3xl md:text-4xl">This year&apos;s lineup, revealed soon.</Reveal>
+        <Reveal as="h2" delay={1} className="mt-3 font-serif text-3xl md:text-4xl">
+          {speakers.length > 0 ? "This year's lineup" : "This year's lineup, revealed soon."}
+        </Reveal>
         <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {[0, 1, 2, 3].map((i) => (
-            <Reveal as="li" key={i} delay={((i % 3) + 1) as 1 | 2 | 3}>
-              <div
-                className="aspect-square w-full rounded-2xl"
-                style={coverImage(
-                  `/images/conference/speaker-${i + 1}.jpg`,
-                  ["linear-gradient(160deg,#97ac9f,#e8dcc8)", "linear-gradient(160deg,#e9c8c9,#ffbbbb)", "linear-gradient(160deg,#c9a24b,#e8dcc8)", "linear-gradient(160deg,#f6828f,#44312b)"][i],
-                )}
-                aria-hidden="true"
-              />
-              <p className="mt-3 font-serif text-lg text-brand-brown">To be announced</p>
-              <p className="text-sm text-brand-brown/80">Keynote</p>
-            </Reveal>
-          ))}
+          {speakers.length > 0
+            ? speakers.map((s, i) => (
+                <Reveal as="li" key={s.id} delay={((i % 3) + 1) as 1 | 2 | 3}>
+                  <div
+                    className="aspect-square w-full rounded-2xl"
+                    style={coverImage(
+                      s.photo_url ?? `/images/conference/speaker-${(i % 4) + 1}.jpg`,
+                      SPEAKER_ACCENTS[i % SPEAKER_ACCENTS.length],
+                    )}
+                    aria-hidden="true"
+                  />
+                  <p className="mt-3 font-serif text-lg text-brand-brown">{s.name}</p>
+                  <p className="text-sm text-brand-brown/80">
+                    {s.is_keynote ? "Keynote · " : ""}
+                    {s.title}
+                    {s.org ? ` — ${s.org}` : ""}
+                  </p>
+                  {s.bio && (
+                    <p className="mt-1 text-xs text-brand-brown/70 line-clamp-3">{s.bio}</p>
+                  )}
+                </Reveal>
+              ))
+            : [0, 1, 2, 3].map((i) => (
+                <Reveal as="li" key={i} delay={((i % 3) + 1) as 1 | 2 | 3}>
+                  <div
+                    className="aspect-square w-full rounded-2xl"
+                    style={coverImage(
+                      `/images/conference/speaker-${i + 1}.jpg`,
+                      SPEAKER_ACCENTS[i],
+                    )}
+                    aria-hidden="true"
+                  />
+                  <p className="mt-3 font-serif text-lg text-brand-brown">To be announced</p>
+                  <p className="text-sm text-brand-brown/80">Keynote</p>
+                </Reveal>
+              ))}
         </ul>
       </section>
 
