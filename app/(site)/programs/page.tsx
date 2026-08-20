@@ -1,11 +1,11 @@
-// OWNED BY: serge — Programs & Initiatives. (Built by rhamon's Claude as help, with owner's
-// approval — see .claude/journal/rhamon.md and OWNERSHIP.yml.) See docs/CONTENT.md §3.
-// The 7 programs are NBW's canonical list; descriptions are placeholders until NBW provides
-// final copy, and the list is ready to be sourced from the `programs` Supabase table.
+// OWNED BY: serge — Programs & Initiatives. See docs/CONTENT.md §3 and
+// docs/DATA-MODEL.md (table `programs`, public read on is_active — see
+// supabase/migrations/0002_programs.sql).
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
 import { coverImage, slugify } from "@/lib/media";
+import { supabase } from "@/lib/supabase";
 
 export const metadata: Metadata = {
   title: "Programs — Network of Black Women (NBW)",
@@ -15,53 +15,59 @@ export const metadata: Metadata = {
 
 const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
 
-// docs/CONTENT.md §3 — 7 programs. desc = placeholder, serves = short audience note.
-const PROGRAMS = [
-  {
-    title: "Professional Development",
-    desc: "Workshops, tools, and skill-building to help members grow their careers.",
-    serves: "Working professionals & career changers",
-    accent: "linear-gradient(160deg,#97ac9f,#e8dcc8)",
-  },
-  {
-    title: "Leadership Development",
-    desc: "Programs that shape the next generation of confident, capable leaders.",
-    serves: "Emerging & established leaders",
-    accent: "linear-gradient(160deg,#e9c8c9,#ffbbbb)",
-  },
-  {
-    title: "Mentorship",
-    desc: "One-to-one and group mentoring that connects experience with ambition.",
-    serves: "Mentees & mentors",
-    accent: "linear-gradient(160deg,#c9a24b,#e8dcc8)",
-  },
-  {
-    title: "Community Events",
-    desc: "Gatherings that build connection, belonging, and sisterhood.",
-    serves: "The whole community",
-    accent: "linear-gradient(160deg,#97ac9f,#6e9179)",
-  },
-  {
-    title: "Health & Wellness",
-    desc: "Caring for mind and body — because wellbeing is foundational.",
-    serves: "Members & families",
-    accent: "linear-gradient(160deg,#e8dcc8,#c9a24b)",
-  },
-  {
-    title: "Youth Programming",
-    desc: "Mentorship, skills, and celebration for Black girls and young women.",
-    serves: "Youth & young adults",
-    accent: "linear-gradient(160deg,#f6828f,#44312b)",
-  },
-  {
-    title: "Annual Conference & Summit",
-    desc: "A flagship gathering of speakers, workshops, and community.",
-    serves: "Everyone — members & allies",
-    accent: "linear-gradient(160deg,#e9c8c9,#97ac9f)",
-  },
+const ACCENTS = [
+  "linear-gradient(160deg,#97ac9f,#e8dcc8)",
+  "linear-gradient(160deg,#e9c8c9,#ffbbbb)",
+  "linear-gradient(160deg,#c9a24b,#e8dcc8)",
+  "linear-gradient(160deg,#97ac9f,#6e9179)",
+  "linear-gradient(160deg,#e8dcc8,#c9a24b)",
+  "linear-gradient(160deg,#f6828f,#44312b)",
+  "linear-gradient(160deg,#e9c8c9,#97ac9f)",
 ];
 
-export default function ProgramsPage() {
+type Program = {
+  title: string;
+  desc: string;
+  serves: string;
+  outcomes: string[];
+  accent: string;
+};
+
+// Fallback if the `programs` table is empty or unreachable (e.g. Supabase env vars
+// not yet set) — NBW's canonical 7-program list from docs/CONTENT.md §3, so the page
+// never breaks. Same copy is seeded into the DB by supabase/migrations/0002_programs.sql.
+const FALLBACK_PROGRAMS: Program[] = [
+  { title: "Professional Development", desc: "Workshops, tools, and skill-building to help members grow their careers.", serves: "Working professionals & career changers", outcomes: [], accent: ACCENTS[0] },
+  { title: "Leadership Development", desc: "Programs that shape the next generation of confident, capable leaders.", serves: "Emerging & established leaders", outcomes: [], accent: ACCENTS[1] },
+  { title: "Mentorship", desc: "One-to-one and group mentoring that connects experience with ambition.", serves: "Mentees & mentors", outcomes: [], accent: ACCENTS[2] },
+  { title: "Community Events", desc: "Gatherings that build connection, belonging, and sisterhood.", serves: "The whole community", outcomes: [], accent: ACCENTS[3] },
+  { title: "Health & Wellness", desc: "Caring for mind and body — because wellbeing is foundational.", serves: "Members & families", outcomes: [], accent: ACCENTS[4] },
+  { title: "Youth Programming", desc: "Mentorship, skills, and celebration for Black girls and young women.", serves: "Youth & young adults", outcomes: [], accent: ACCENTS[5] },
+  { title: "Annual Conference & Summit", desc: "A flagship gathering of speakers, workshops, and community.", serves: "Everyone — members & allies", outcomes: [], accent: ACCENTS[6] },
+];
+
+async function getPrograms(): Promise<Program[]> {
+  if (!supabase) return FALLBACK_PROGRAMS;
+
+  const { data, error } = await supabase
+    .from("programs")
+    .select("title, purpose, who_it_serves, outcomes")
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true });
+
+  if (error || !data || data.length === 0) return FALLBACK_PROGRAMS;
+
+  return data.map((row, i) => ({
+    title: row.title,
+    desc: row.purpose,
+    serves: row.who_it_serves,
+    outcomes: row.outcomes ?? [],
+    accent: ACCENTS[i % ACCENTS.length],
+  }));
+}
+
+export default async function ProgramsPage() {
+  const PROGRAMS = await getPrograms();
   return (
     <div className="bg-brand-cream text-brand-brown">
       {/* Hero */}
@@ -99,8 +105,21 @@ export default function ProgramsPage() {
               />
               <div className="flex flex-1 flex-col p-6">
                 <h2 className="font-serif text-2xl text-brand-brown">{p.title}</h2>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-brown/80">{p.desc}</p>
-                <p className="mt-4 text-xs uppercase tracking-wider text-brand-brown/75">
+                <p className="mt-2 text-sm leading-relaxed text-brand-brown/80">{p.desc}</p>
+                {p.outcomes.length > 0 && (
+                  <ul className="mt-3 space-y-1 text-sm text-brand-brown/80">
+                    {p.outcomes.map((o) => (
+                      <li key={o} className="flex gap-2">
+                        <span aria-hidden="true" className="text-brand-goldText">
+                          &bull;
+                        </span>
+                        <span>{o}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <p className="mt-4 flex-1" />
+                <p className="text-xs uppercase tracking-wider text-brand-brown/75">
                   {p.serves}
                 </p>
               </div>
