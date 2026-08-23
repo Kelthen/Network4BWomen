@@ -10,16 +10,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Palette officielle NBW — voir docs/BRAND.md (Brand Guidelines, août 2026).
         brand: {
-          pink: "#f6828f", // accent / fonds de boutons (PAS de texte sur blanc)
+          pink: "#F6828F", // Pink Primary — accent / fonds de boutons (PAS de texte sur blanc)
           pinkLight: "#ffbbbb",
-          brown: "#44312b", // texte principal
-          cream: "#FBF7F0",
+          crimson: "#B84C65", // Pink Secondary — fonds/CTA foncés, texte blanc dessus
+          brown: "#573425", // Brown Primary — texte principal, fonds foncés
+          brownDark: "#642F19", // Brown Secondary — headers, contraste fort
+          cream: "#FBF7F0", // neutre chaud (base)
           beige: "#E8DCC8",
-          gold: "#C9A24B", // graphique (filets, num sur brun)
+          gold: "#C9962C", // Gold (accent) — graphique (filets, num sur brun)
           goldText: "#8a6d1f", // gold accessible (AA) pour texte sur fond clair
           rose: "#b23a4e", // rose accessible (AA) pour liens/texte sur fond clair
-          sage: "#97AC9F",
+          sage: "#528574", // Tilda Sage Blue (accent)
           blush: "#E9C8C9",
         },
       },

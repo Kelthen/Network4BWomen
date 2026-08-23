@@ -1,69 +1,68 @@
 # BRAND.md — Identité de marque NBW
 
-Source : « NBW Website Vision & Content Plan » + « Operational Staff Onboarding ».
-Direction visuelle complète → `docs/DESIGN.md`.
+Source : **NBW Brand Guidelines (officiel, août 2026)** — charte fournie par le client.
+Direction visuelle complète → `docs/DESIGN.md`. Logos officiels → `public/images/brand/`.
 
-## 🎨 Palette (l'essentiel, en un coup d'œil)
+> Ton de marque : **warm · black luxury · professional · empowering.** Rich browns, pink signature, accents parcimonieux.
 
-| Token | Nom | Hex | Usage |
+## 🎨 Palette officielle
+
+### Couleurs primaires (fondation)
+| Token | Nom | Hex | RGB |
 |---|---|---|---|
-| `brand.pink` | Rose | **`#f6828f`** | accent principal, CTA |
-| `brand.pinkLight` | Rose clair | **`#ffbbbb`** | accents doux, fonds (⚠️ jamais texte) |
-| `brand.brown` | Brun profond | **`#44312b`** | **texte principal**, sections sombres |
-| `brand.cream` | Crème/Ivoire | **`#FBF7F0`** | fond dominant |
-| `brand.beige` | Beige chaud | **`#E8DCC8`** | fonds secondaires, séparateurs |
-| `brand.gold` | Or | **`#C9A24B`** | filets, hovers, détails précieux |
-| `brand.sage` | Sauge | **`#97AC9F`** | secondaire |
-| `brand.blush` | Blush | **`#E9C8C9`** | secondaire |
+| `brand.brown` | Brown Primary | **`#573425`** | 87, 52, 37 |
+| `brand.brownDark` | Brown Secondary | **`#642F19`** | 100, 47, 25 |
+| `brand.pink` | Pink Primary | **`#F6828F`** | 246, 130, 143 |
+| `brand.crimson` | Pink Secondary (Crimson) | **`#B84C65`** | 184, 76, 101 |
 
-**Ratio 60/30/10** : 60% crème · 30% brun · 10% rose/or. (Hex crème/beige/or/sauge/blush : proposés, à confirmer avec la charte NBW.)
+### Texte & fonds
+| Nom | Hex |
+|---|---|
+| Black | `#000000` |
+| White | `#FFFFFF` |
+| Cream (neutre chaud, base du site) | `#FBF7F0` |
+| Beige | `#E8DCC8` |
 
-## Feel général
-Sophistiqué et professionnel · chaleureux et accueillant · communautaire · épuré et facile à naviguer · photographie de qualité de vraies femmes et filles noires · grandes images, texte minimal · **storytelling** partout.
+### Accents (avec parcimonie — jamais dominants)
+| Token | Nom | Hex | RGB |
+|---|---|---|---|
+| `brand.sage` | Tilda Sage Blue | **`#528574`** | 82, 133, 116 |
+| `brand.gold` | Gold | **`#C9962C`** | 201, 150, 44 |
 
-Le visiteur doit comprendre qui est NBW en **10 secondes** sur l'accueil. Chaque page pousse à l'action (rejoindre, participer à un événement, faire du bénévolat, donner, devenir partenaire). Professionnalisme + chaleur et authenticité de la sororité.
+## Règle 60 / 30 / 10
+- **60 %** — base neutre : blanc/crème ou noir (fonds, corps de texte)
+- **30 %** — primaires : **Brown & Pink** (headers, structure, visuels clés)
+- **10 %** — accents : **Sage Blue** ou **Gold** (CTA, highlights, icônes, dates)
 
-## Palette de couleurs (documentée)
+**Pairings recommandés** : Brown Primary + White (headers/hero) · Pink Primary + Black/Brown Secondary (CTA) · texte blanc sur Brown/Pink Secondary · Gold & Sage en petits accents (icônes, filets, dates), jamais en grands aplats. **Max 3 couleurs par mise en page.**
 
-| Rôle | Couleur | Hex |
-|---|---|---|
-| Rose (primaire) | Pink | `#f6828f` |
-| Rose clair | Light pink | `#ffbbbb` |
-| Brun profond | Deep Brown | `#44312b` |
-| Crème / Ivoire | Cream / Ivory | `#FBF7F0` (à valider) |
-| Noir | Black | `#000000` |
-| Beige chaud | Warm Beige | `#E8DCC8` (à valider) |
-| Or (accents) | Gold | `#C9A24B` (à valider) |
-| Secondaires | Soft sage · muted blush | sage `#97AC9F` · blush `#E9C8C9` |
+### ⚠️ Accessibilité (WCAG AA — obligatoire)
+- **Ne pas** mettre Pink Primary ou Gold en **texte** sur fond blanc/clair (contraste trop faible).
+- Texte courant : **Black, Brown Secondary, ou blanc-sur-foncé.** Tokens texte accessibles fournis : `brand.goldText #8a6d1f`, `brand.rose #b23a4e` (≥ 4.5:1 sur crème).
+- Rose/Gold vifs réservés aux **fonds de boutons / éléments décoratifs**.
 
-Palette secondaire « Pastel Paradise » (référence design fournie) : `#C9B6C1` · `#E9C8C9` · `#98B4AD` · `#97AC9F` · `#6E9179` (teintes lavande/blush/sauge — à caler précisément sur l'image de référence).
+## Logo (officiel — ne jamais recréer)
+6 versions approuvées fournies (`public/images/brand/`, générées transparentes depuis la charte) :
+- `logo-black.png` — tout noir → **fonds clairs/crème** (nav)
+- `logo-white.png` — tout blanc → **fonds foncés** (footer, hero)
+- `logo-primary.png` — blanc + pink → **fonds brun/noir** (version primaire par défaut)
 
-> Les hex marqués « à valider » sont des propositions cohérentes avec le brief ; à confirmer avec NBW / la charte finale.
+Le logo = wordmark serif « NETWORK OF » (font *The Seasons*), display rétro « BLACK », filet « EST 2025 », script « Women » (*Beautifully Delicious Script*).
 
-### ⚠️ Accessibilité (contraste — obligatoire, WCAG AA)
-- Le rose `#f6828f` et surtout `#ffbbbb` **n'ont pas un contraste suffisant** pour du texte sur fond blanc.
-- Règle : **texte principal en brun profond `#44312b`** sur crème/ivoire/blanc (contraste élevé). Le rose sert aux **accents, boutons, éléments graphiques**, pas au texte long.
-- Boutons roses : texte en brun profond ou blanc selon le test de contraste (viser ratio ≥ 4.5:1 pour le texte courant, ≥ 3:1 pour le gros texte).
+**À faire** : garder l'espace de protection (hauteur des initiales), min. 120 px de large à l'écran, ratio verrouillé. **Ne pas** étirer, recolorer hors charte, ajouter ombres/contours, poser sur photo chargée, **ni recréer avec des polices système**, ni mettre des visages/imagerie dans le logo.
 
 ## Typographie
-- **Titres** : serif élégant (ex. Playfair Display, Cormorant, Fraunces).
-- **Corps** : sans-serif moderne (ex. Inter, Nunito Sans, Work Sans).
-- Charger via `next/font`. Définir en variables CSS + tokens Tailwind (`font-serif`, `font-sans`).
+- **Titres / H1** : *The Seasons* (Canva) → web : **Georgia / Playfair Display** (déjà en place), Brown Primary, généreux.
+- **Sous-titres / H2** : **Montserrat** (ou Georgia Bold/Semibold), Brown Secondary.
+- **Corps** : *Calibri* → web : **Lato** (propre, ≥ 14 px à l'écran).
+- **Emphase** : gras pour le poids ; Pink Primary pour **un seul** mot/phrase mis en avant — jamais gras + couleur + italique en même temps.
+- Charger via `next/font` (variables CSS + tokens `font-serif` / `font-sans`).
 
-## Tokens Tailwind (cible `tailwind.config.ts`)
-```
-colors:
-  brand.pink      #f6828f
-  brand.pinkLight #ffbbbb
-  brand.brown     #44312b   (texte principal)
-  brand.cream     #FBF7F0
-  brand.beige     #E8DCC8
-  brand.gold      #C9A24B
-  brand.sage      #97AC9F
-  brand.blush     #E9C8C9
-fontFamily:
-  serif -> titres · sans -> corps
-```
+## Voix & ton
+Piliers : **Warm · Empowering · Grounded · Professional · Community-rooted.** On écrit comme une amie de confiance, à la 1re personne du pluriel (« we / us »), jamais corporate-froid. Person-first, inclusif, clair ; on épelle « Network of Black Women » à la 1re mention. Sentence case pour le social, title case seulement pour les titres formels.
+
+## ⚠️ Imagerie (politique officielle)
+**Pas d'imagerie IA** pour le contenu de marque. Les visuels doivent refléter de **vraies personnes, vraie photographie**, propriété de NBW à **≥ 85 %**. L'IA texte n'est qu'un support de brouillon interne, révisé avant publication. → Les dégradés/placeholders du site sont décoratifs (OK) ; les photos réelles remplacent les slots.
 
 ## Reconnaissance du territoire (obligatoire)
-NBW est situé à **Toronto (Ontario)**, sur le **territoire traditionnel de nombreuses nations** (visé par le Traité 13 et le Dish With One Spoon Wampum). Un énoncé de reconnaissance doit figurer dans le **footer** de chaque page (composant `LandAcknowledgment`).
+NBW est situé à **Toronto (Ontario)**, sur le **territoire traditionnel de nombreuses nations** (visé par le Traité 13 et le Dish With One Spoon Wampum). Énoncé dans le **footer** de chaque page (`LandAcknowledgment`).

@@ -1,5 +1,6 @@
 // OWNED BY: shared — footer global. Modif = coordonner (voir CLAUDE.md §1.2).
 import Link from "next/link";
+import Image from "next/image";
 import LandAcknowledgment from "./LandAcknowledgment";
 import CookiePreferencesButton from "./CookiePreferencesButton";
 
@@ -8,8 +9,14 @@ export default function Footer() {
     <footer className="mt-16 bg-brand-brown text-brand-cream">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3">
         <div>
-          <p className="font-serif text-lg font-bold">Network of Black Women</p>
-          <p className="mt-2 text-sm text-brand-cream/80">
+          <Image
+            src="/images/brand/logo-white.png"
+            alt="Network of Black Women"
+            width={900}
+            height={443}
+            className="h-14 w-auto"
+          />
+          <p className="mt-3 text-sm text-brand-cream/80">
             Empowering Black Women. Building Community. Creating Leaders.
           </p>
         </div>
