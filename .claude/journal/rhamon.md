@@ -13,6 +13,12 @@ updated: 2026-08-19T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-08-20 — Fix course de déploiement team-sync (`fix/rhamon/team-sync-deploy-race`)
+- **Cause racine** confirmée du « le site ne se met pas à jour » récurrent : le workflow `.github/workflows/team-sync.yml` écoutait les push sur `main`. À chaque merge de PR, il repoussait un commit bot `[skip ci]` par-dessus ; Vercel (qui n'honore PAS `[skip ci]` ici) **annulait** le build du merge et déployait le commit bot → parfois le merge n'atteignait jamais la prod (ex. PR #30 brand : logo/palette bloqués en preview). Vu dans les logs Vercel (builds CANCELED).
+- **Fix** : le workflow n'écoute plus `main`, seulement `feat/**` + `paths: .claude/journal/**`. Les merges sur main se déploient donc proprement (aucun commit bot pour les annuler). TEAM-STATUS reste frais (agrège les journaux de toutes les branches aux push de dev).
+- Optionnel (action humaine) : Vercel → Settings → Git → **Ignored Build Step** = `bash -c 'git log -1 --pretty=%B | grep -q "\[skip ci\]" && exit 0 || exit 1'` pour ignorer *tout* commit team-sync et supprimer le churn résiduel.
+- **Diag serge (lecture seule, zone non touchée)** : ses builds PR #29 échouent car ses pages créent le client Supabase au build sans garde → `supabaseUrl is required` (clés NBW absentes). N'affecte pas la prod. À régler par serge / une fois le Supabase NBW en place.
+
 ## 2026-08-20 — Identité de marque officielle (`feat/rhamon/brand-identity`)
 - Le client a envoyé la **charte officielle** (NBW Brand Guidelines, août 2026). Appliquée au site.
 - **Logo réel** : extrait les 6 versions du .docx, généré des PNG **transparents + cropés** (Pillow) → `public/images/brand/logo-black.png` (fonds clairs), `logo-white.png` (fonds foncés), `logo-primary.png` (blanc+pink). Remplacé le faux wordmark texte « NBW » par le vrai logo dans **Nav** (noir) et **Footer** (blanc). ⚠️ la charte interdit de recréer le logo en police système — c'est désormais respecté.

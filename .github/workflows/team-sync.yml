@@ -6,9 +6,15 @@ name: team-sync
 
 on:
   push:
+    # ⚠️ NE PAS écouter `main` : un push sur main (merge de PR) déclenchait ce job,
+    # qui repoussait un commit bot par-dessus → Vercel annulait le déploiement du merge
+    # (course qui « perdait » les vrais changements en prod). On n'écoute donc que les
+    # branches de dev, et seulement quand un journal change. TEAM-STATUS reste à jour car
+    # il agrège les journaux de TOUTES les branches à chaque push de dev.
     branches:
-      - main
       - "feat/**"
+    paths:
+      - ".claude/journal/**"
 
 # Un seul run à la fois pour éviter les pushs concurrents sur main.
 concurrency:
