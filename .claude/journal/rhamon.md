@@ -13,6 +13,15 @@ updated: 2026-08-19T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-08-20 — Identité de marque officielle (`feat/rhamon/brand-identity`)
+- Le client a envoyé la **charte officielle** (NBW Brand Guidelines, août 2026). Appliquée au site.
+- **Logo réel** : extrait les 6 versions du .docx, généré des PNG **transparents + cropés** (Pillow) → `public/images/brand/logo-black.png` (fonds clairs), `logo-white.png` (fonds foncés), `logo-primary.png` (blanc+pink). Remplacé le faux wordmark texte « NBW » par le vrai logo dans **Nav** (noir) et **Footer** (blanc). ⚠️ la charte interdit de recréer le logo en police système — c'est désormais respecté.
+- **Palette officielle** dans `tailwind.config.ts` : Brown Primary `#573425` (était `#44312b`), + `brownDark #642F19`, Pink `#F6828F` (déjà), + `crimson #B84C65`, Gold `#C9962C` (était `#C9A24B`), Sage `#528574` (était `#97AC9F`). Tokens texte accessibles `goldText`/`rose` conservés.
+- **`docs/BRAND.md`** réécrit = charte officielle (palette, 60/30/10, règles logo, typo The Seasons/Georgia/Playfair + Montserrat + Lato, voix, politique anti-IA imagery, accessibilité).
+- Vérifié au rendu (capture home : logo nav lisible, brun officiel OK).
+- **Reste (proposé au client)** : basculer la police corps Inter→**Lato** + ajouter **Montserrat** (sous-titres) pour coller à la charto typo ; favicon = mark carré (le wordmark ne tient pas en 32px).
+- Validé : `tsc --noEmit` OK · `next build` OK (19 routes).
+
 ## 2026-08-20 — Lightbox galerie interactive (`feat/rhamon/gallery-lightbox`)
 - Manque UX : cliquer une photo de la galerie ne faisait rien (tuiles décoratives `aria-hidden`). Ajout d'une **vraie lightbox**.
 - `components/gallery/Lightbox.tsx` : modal (backdrop flou), fermeture Esc/clic/bouton, navigation ◀▶ + flèches clavier, compteur, scroll-lock. **Tilt 3D + reflet (glare)** qui suit **souris ET tactile** — implémenté **sans Framer Motion** : ressort maison en `requestAnimationFrame` (lerp), écrit directement dans le DOM (0 re-render), `prefers-reduced-motion` désactive le tilt. Choix « meilleur rendement » (bundle léger, Lighthouse).
