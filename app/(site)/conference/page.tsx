@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "NBW's flagship annual conference — keynotes, workshops, and community for Black women in Toronto, Ontario.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
 
 const HIGHLIGHTS = [
   { title: "Keynote speakers", desc: "Voices leading change across business, wellness, and the arts." },

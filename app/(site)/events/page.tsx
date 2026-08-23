@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Upcoming gatherings, the annual conference and retreat, networking, and community events for Black women in Toronto, Ontario.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
 
 // Placeholder — real events come from the `events` table.
 const UPCOMING = [

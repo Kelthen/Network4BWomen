@@ -27,8 +27,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"], // titres (Playfair)
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"], // corps (Lato)
+        sub: ["var(--font-sub)", "var(--font-sans)", "system-ui", "sans-serif"], // sous-titres / UI (Montserrat)
       },
     },
   },

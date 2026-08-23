@@ -13,6 +13,14 @@ updated: 2026-08-19T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-08-20 — Typographie officielle (`feat/rhamon/typography`)
+- Charte NBW appliquée : **Playfair** (titres, déjà en place) + **Lato** (corps, remplace Inter) + **Montserrat** (sous-titres / UI).
+- `app/layout.tsx` : `next/font` charge Lato (`--font-sans`, weights 400/700) et Montserrat (`--font-sub`). `tailwind.config.ts` : nouveau token `font-sub` (Montserrat, fallback Lato).
+- Montserrat appliqué aux **eyebrows** (12 pages via `font-sub` + `.eyebrow` du home.module.css) et à la **nav** (`font-sub`).
+- Vérifié au rendu : nav + eyebrows en Montserrat, titres en Playfair, corps en Lato.
+- Note : la base Supabase existe déjà (compte `kelthenrift@gmail.com`, projet Network4BWomen) → à brancher ensuite (récupérer URL + clés dans Supabase → Settings → API, les mettre dans Vercel).
+- Validé : `tsc --noEmit` OK · `next build` OK (19 routes).
+
 ## 2026-08-20 — Fix course de déploiement team-sync (`fix/rhamon/team-sync-deploy-race`)
 - **Cause racine** confirmée du « le site ne se met pas à jour » récurrent : le workflow `.github/workflows/team-sync.yml` écoutait les push sur `main`. À chaque merge de PR, il repoussait un commit bot `[skip ci]` par-dessus ; Vercel (qui n'honore PAS `[skip ci]` ici) **annulait** le build du merge et déployait le commit bot → parfois le merge n'atteignait jamais la prod (ex. PR #30 brand : logo/palette bloqués en preview). Vu dans les logs Vercel (builds CANCELED).
 - **Fix** : le workflow n'écoute plus `main`, seulement `feat/**` + `paths: .claude/journal/**`. Les merges sur main se déploient donc proprement (aucun commit bot pour les annuler). TEAM-STATUS reste frais (agrège les journaux de toutes les branches aux push de dev).
