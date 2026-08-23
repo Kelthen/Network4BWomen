@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Professional development, leadership, mentorship, wellness, youth programming, and more — NBW's programs for Black women and girls.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
 
 // docs/CONTENT.md §3 — 7 programs. desc = placeholder, serves = short audience note.
 const PROGRAMS = [

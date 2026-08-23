@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Volunteer, mentor, speak, partner, sponsor, or serve on the board — many ways to help NBW grow.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
 
 type Way = {
   title: string;
@@ -118,7 +118,7 @@ export default function GetInvolvedPage() {
         <div className="overflow-hidden rounded-3xl bg-brand-brown text-brand-cream">
           <div className="grid gap-8 p-10 md:grid-cols-2 md:items-center md:p-14">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-pinkLight">
+              <p className="text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-pinkLight">
                 Donate
               </p>
               <h2 className="mt-4 font-serif text-3xl md:text-4xl">

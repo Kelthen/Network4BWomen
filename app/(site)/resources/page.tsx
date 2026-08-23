@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Career, scholarships, mental health, business directory, and community resources for Black women in Toronto, Ontario.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
 
 const RESOURCES = [
   { title: "Career", desc: "Job boards, résumé help, and interview preparation." },

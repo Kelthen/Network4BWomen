@@ -43,7 +43,7 @@ export default function Nav() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-brand-beige bg-brand-cream/85 backdrop-blur">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4" aria-label="Main">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 font-sub" aria-label="Main">
         <Link href="/" aria-label="Network of Black Women — home" className="flex items-center">
           <Image
             src="/images/brand/logo-black.png"

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Moments from NBW events and gatherings — celebrating Black women and girls in Toronto, Ontario.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
 
 // Albums by year. `photos` lists the real files present in public/images/gallery/
 // (lowercase .jpg). Remaining tiles render as brand-gradient placeholders.
