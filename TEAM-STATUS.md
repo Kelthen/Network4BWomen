@@ -1,7 +1,7 @@
 <!-- AUTO-GÉNÉRÉ PAR .github/workflows/team-sync.yml — NE PAS ÉDITER À LA MAIN -->
 # TEAM-STATUS — État de l'équipe en temps réel
 
-_Dernière régénération : **2026-09-01 00:23 UTC**_
+_Dernière régénération : **2026-09-01 00:25 UTC**_
 
 > Avant d'agir, lis ce tableau + le journal de l'autre (`.claude/journal/`).
 > Ne touche jamais un fichier listé dans `files_locked` de l'autre.
