@@ -1,3 +1,6 @@
+
+
+- Note (Vercel) : cles env corrigees dans Vercel (Preview coche pour NEXT_PUBLIC_SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY). Ce commit ne sert qu a declencher un nouveau build sur cette branche.
 ---
 dev: serge
 github: sergesanou
