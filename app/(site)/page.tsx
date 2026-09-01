@@ -8,6 +8,9 @@ import ImpactStats from "@/components/home/ImpactStats";
 import Reveal from "@/components/home/Reveal";
 import CtaBand from "@/components/home/CtaBand";
 import NewsletterTeaser from "@/components/home/NewsletterTeaser";
+import UpcomingEvents from "@/components/home/UpcomingEvents";
+import Testimonials from "@/components/home/Testimonials";
+import Sponsors from "@/components/home/Sponsors";
 
 // Program teasers (3 of NBW's 7 programs — see docs/CONTENT.md §3).
 // img = photo path (drop the file in public/); grad = brand-gradient fallback.
@@ -72,17 +75,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Témoignage pleine largeur (fond blush) */}
-      <section className={styles.quote}>
-        <div className={styles.wrap}>
-          <Reveal as="blockquote">
-            “NBW gave me the confidence to step into leadership.”
-          </Reveal>
-          <Reveal as="cite" delay={1}>
-            — A community member
-          </Reveal>
-        </div>
-      </section>
+      {/* Upcoming events (teaser → /events) */}
+      <UpcomingEvents />
+
+      {/* Témoignages — plusieurs voix de la communauté */}
+      <Testimonials />
+
+      {/* Sponsors & partenaires */}
+      <Sponsors />
 
       {/* Newsletter — « Stay Connected. » */}
       <NewsletterTeaser />

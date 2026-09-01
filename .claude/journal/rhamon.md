@@ -13,6 +13,16 @@ updated: 2026-08-19T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-09-01 — Accueil complété + menu regroupé (`feat/rhamon/home-nav-polish`)
+- **Audit vs Website Vision & Content Plan** → comblé les écarts accueil/footer/nav.
+- **Hero** : 5 boutons (Join our community, Donate, About us, Programs, Upcoming events) — conforme au plan. Fix dégradé de secours `#44312b`→`#573425`.
+- **Our Impact** : 6 stats (ajout Volunteer hours + Community partnerships) ; grille `.stats` 4→3 colonnes (2 rangées propres).
+- **Nouvelles sections accueil** : `UpcomingEvents` (teaser → /events), `Testimonials` (3 voix, remplace le témoignage unique), `Sponsors` (logos placeholder + Become a partner).
+- **Footer** refait : mission, bouton Donate, réseaux sociaux (`lib/site.ts` `SOCIALS`, URLs placeholder à remplacer), **inscription newsletter** compacte (`FooterNewsletter` → /api/newsletter), liens Explore + Get involved étendus, coordonnées.
+- **Nav élégante** : 9 liens à plat → **5 entrées + déroulants** (Programs▾ = Conference ; Events▾ = Gallery + News ; Get Involved▾ = Resources). Desktop hover/focus, mobile sous-liens indentés. Zone `shared` (Nav/Footer) — améliorations transverses.
+- ⚠️ À fournir par le client : vraies URLs réseaux sociaux ; vrais chiffres d'impact ; logos sponsors.
+- Validé : `tsc --noEmit` OK · `next build` OK (20 routes). Rendu vérifié (capture).
+
 ## 2026-08-20 — Typographie officielle (`feat/rhamon/typography`)
 - Charte NBW appliquée : **Playfair** (titres, déjà en place) + **Lato** (corps, remplace Inter) + **Montserrat** (sous-titres / UI).
 - `app/layout.tsx` : `next/font` charge Lato (`--font-sans`, weights 400/700) et Montserrat (`--font-sub`). `tailwind.config.ts` : nouveau token `font-sub` (Montserrat, fallback Lato).

@@ -9,7 +9,9 @@ const STATS = [
   { end: 480, label: "Members connected" },
   { end: 65, label: "Events hosted" },
   { end: 30, label: "Professional workshops" },
+  { end: 1200, label: "Volunteer hours" },
   { end: 18, label: "Scholarships awarded" },
+  { end: 24, label: "Community partnerships" },
 ] as const;
 
 function Counter({ end }: { end: number }) {

@@ -59,19 +59,25 @@ export default function Hero() {
         </p>
         <div className={styles.heroCta}>
           <Link href="/get-involved" className={`${styles.btn} ${styles.btnDark}`}>
-            Join the community
-          </Link>
-          <Link href="/programs" className={`${styles.btn} ${styles.btnOutline}`}>
-            Explore our programs
+            Join our community
           </Link>
           <Link href="/donate" className={`${styles.btn} ${styles.btnPink}`}>
             Donate
+          </Link>
+          <Link href="/about" className={`${styles.btn} ${styles.btnOutline}`}>
+            About us
+          </Link>
+          <Link href="/programs" className={`${styles.btn} ${styles.btnOutline}`}>
+            Programs
+          </Link>
+          <Link href="/events" className={`${styles.btn} ${styles.btnOutline}`}>
+            Upcoming events
           </Link>
         </div>
         <div
           ref={visualRef}
           className={styles.heroVisual}
-          style={coverImage("/images/hero.jpg", "linear-gradient(150deg,#e9c8c9,#f6828f 45%,#44312b)")}
+          style={coverImage("/images/hero.jpg", "linear-gradient(150deg,#e9c8c9,#f6828f 45%,#573425)")}
           aria-hidden="true"
         />
       </div>
