@@ -1,6 +1,3 @@
-
-
-- Note (Vercel) : cles env corrigees dans Vercel (Preview coche pour NEXT_PUBLIC_SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY). Ce commit ne sert qu a declencher un nouveau build sur cette branche.
 ---
 dev: serge
 github: sergesanou
@@ -24,25 +21,7 @@ updated: 2026-08-31T00:00:00Z
 - Ajouté `app/(site)/news/[slug]/page.tsx` (manquait complètement) : les liens "Read more →" de `/news` menaient à un 404.
 - Reste à faire : clés Supabase NBW dans Vercel (PR #29 en échec de build sans ça), puis review croisée de Rhamon + merge PR #28 avant #29.
 
-## 2026-08-17 — Amorçage du repo
-- Repo amorcé par le Claude de rhamon (doctrine + automatisation + squelette + docs).
-- Ma zone : Programmes, Événements (+ inscriptions), Conférence, Ressources, News/Blog, Galerie, Recherche.
-- Prochaine étape : `git clone`, lire CLAUDE.md en entier, puis se coordonner sur les fondations avant d'attaquer mes pages.
-- Rien de verrouillé pour l'instant.
----
-dev: serge
-github: sergesanou
-branch: main
-current_task: "Aucune — session non démarrée"
-files_locked: []
-updated: 2026-08-17T00:00:00Z
----
-
-# Journal — serge
-
-> Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
-> Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de rhamon, vérifier OWNERSHIP.yml.
-> Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+- Note : clés env corrigées dans Vercel (Preview coché pour NEXT_PUBLIC_SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY). Redeploy à declencher sur cette branche.
 
 ## 2026-08-17 — Amorçage du repo
 - Repo amorcé par le Claude de rhamon (doctrine + automatisation + squelette + docs).
