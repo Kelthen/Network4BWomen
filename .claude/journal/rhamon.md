@@ -1,10 +1,10 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/contact-email
-current_task: "Contact → email (Resend) : notif NBW + auto-réponse"
+branch: claude/rhamon-docs-update-5c8xe5
+current_task: "Photos cliquables + zoomables partout (visionneuse 3D globale)"
 files_locked: []
-updated: 2026-08-19T00:00:00Z
+updated: 2026-09-01T00:00:00Z
 ---
 
 # Journal — rhamon
@@ -12,6 +12,15 @@ updated: 2026-08-19T00:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-09-01 — Photos zoomables partout (`claude/rhamon-docs-update-5c8xe5`)
+- **Problème client** : « la photo des membres, je zoome et y'a rien ». Les avatars équipe étaient des placeholders dégradés non cliquables.
+- **Visionneuse globale** : `components/photo/PhotoLightboxProvider.tsx` (contexte, un seul `Lightbox` monté dans `app/layout.tsx`) + hook `usePhotoLightbox()`. Réutilise l'effet 3D + zoom existant du Lightbox de la galerie.
+- **Primitive** : `components/photo/ZoomablePhoto.tsx` — dégradé de secours + overlay (initiales) tant que la photo n'existe pas (NON cliquable) ; dès que la vraie photo charge → bouton « zoom » (pastille au survol, `cursor-zoom-in`, accessible clavier) qui ouvre la visionneuse. Détecte le chargement via `<img>` onLoad/onError (+ cache `img.complete`).
+- **Câblé** : `about/TeamGrid` (membres) + accueil (cartes Programs). Galerie inchangée (elle a déjà son Lightbox 3D).
+- ⚠️ Zones serge (conférence/programmes/événements) : primitive prête à adopter, mais je ne touche pas ses fichiers sans accord (CLAUDE.md §1.2). À signaler.
+- ⚠️ Rappel client : déposer les photos dans `public/images/team/<slug>.jpg`, `public/images/home/*.jpg` — elles deviennent alors cliquables/zoomables automatiquement.
+- Validé : `tsc --noEmit` OK · `next build` OK (24 routes).
 
 ## 2026-09-01 — Accueil complété + menu regroupé (`feat/rhamon/home-nav-polish`)
 - **Audit vs Website Vision & Content Plan** → comblé les écarts accueil/footer/nav.

@@ -1,8 +1,12 @@
 // OWNED BY: rhamon — À propos. Grille équipe (Board + Leadership).
-// Données : docs/TEAM.md / docs/CONTENT.md §2. Photos & bios à venir (placeholders élégants).
-// Déposer les photos dans public/images/team/<slug>.jpg (ex. maleeka-thomas.jpg).
+// Données : docs/TEAM.md / docs/CONTENT.md §2. Déposer les photos dans
+// public/images/team/<slug>.jpg (ex. maleeka-thomas.jpg) — elles deviennent alors
+// cliquables et zoomables (visionneuse 3D). Sans photo : placeholder élégant (initiales).
+"use client";
+
 import Reveal from "@/components/home/Reveal";
-import { coverImage, slugify } from "@/lib/media";
+import ZoomablePhoto from "@/components/photo/ZoomablePhoto";
+import { slugify } from "@/lib/media";
 
 type Member = { name: string; role: string };
 
@@ -27,23 +31,19 @@ export default function TeamGrid({ members }: { members: Member[] }) {
   return (
     <ul className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
       {members.map((m, i) => (
-        <Reveal
-          as="li"
-          key={m.name}
-          delay={((i % 3) + 1) as 1 | 2 | 3}
-          className="group"
-        >
-          <div
-            className="aspect-[4/5] w-full overflow-hidden rounded-2xl"
-            style={coverImage(`/images/team/${slugify(m.name)}.jpg`, GRADIENTS[i % GRADIENTS.length])}
-            aria-hidden="true"
+        <Reveal as="li" key={m.name} delay={((i % 3) + 1) as 1 | 2 | 3} className="group">
+          <ZoomablePhoto
+            src={`/images/team/${slugify(m.name)}.jpg`}
+            gradient={GRADIENTS[i % GRADIENTS.length]}
+            alt={`${m.name} — ${m.role}`}
+            className="aspect-[4/5] w-full rounded-2xl"
           >
             <div className="flex h-full items-end p-4">
               <span className="font-serif text-3xl font-semibold text-brand-cream/85">
                 {initials(m.name)}
               </span>
             </div>
-          </div>
+          </ZoomablePhoto>
           <h3 className="mt-4 font-serif text-xl text-brand-brown">{m.name}</h3>
           <p className="mt-1 text-sm text-brand-brown/80">{m.role}</p>
         </Reveal>
