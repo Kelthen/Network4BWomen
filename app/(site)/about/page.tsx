@@ -33,7 +33,7 @@ const TEAM = [
   { name: "Aytia Police", role: "Board Member" },
 ];
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
 
 export default function AboutPage() {
   return (
@@ -77,7 +77,7 @@ export default function AboutPage() {
       <section className="bg-brand-brown text-brand-cream">
         <div className="mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-2 md:py-28">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-pinkLight">
+            <p className="text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-pinkLight">
               Our mission
             </p>
             <p className="mt-5 text-lg leading-relaxed text-brand-cream/90">
@@ -91,7 +91,7 @@ export default function AboutPage() {
             </p>
           </Reveal>
           <Reveal delay={1}>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-pinkLight">
+            <p className="text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-pinkLight">
               Our vision
             </p>
             <p className="mt-5 text-lg leading-relaxed text-brand-cream/90">

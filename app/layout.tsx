@@ -1,6 +1,6 @@
 // OWNED BY: shared — layout global. Modif = coordonner (voir CLAUDE.md §1.2).
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Lato, Montserrat } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -16,8 +16,10 @@ import {
   CONTACT_PHONE,
 } from "@/lib/site";
 
+// Charte NBW : Playfair (titres), Lato (corps), Montserrat (sous-titres / UI géométrique).
 const serif = Playfair_Display({ subsets: ["latin"], variable: "--font-serif", display: "swap" });
-const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const sans = Lato({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-sans", display: "swap" });
+const sub = Montserrat({ subsets: ["latin"], variable: "--font-sub", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -78,7 +80,7 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${sub.variable}`}>
       <body className="font-sans">
         <a href="#main" className="skip-link">Skip to content</a>
         <Nav />

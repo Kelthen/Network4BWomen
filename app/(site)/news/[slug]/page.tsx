@@ -49,7 +49,7 @@ export default async function NewsArticlePage({ params }: Props) {
 
   if (!post) notFound();
 
-  const paragraphs = (post.body ?? "").split(/\n\s*\n/).filter(Boolean);
+  const paragraphs: string[] = String(post.body ?? "").split(/\n\s*\n/).filter(Boolean);
 
   return (
     <div className="bg-brand-cream text-brand-brown">

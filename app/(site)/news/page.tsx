@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Success stories, community news, leadership articles, and wellness tips from Network of Black Women.",
 };
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
 
 const CATEGORIES = ["Success Stories", "Community News", "Leadership", "Wellness Tips", "Event Recaps", "Announcements"];
 

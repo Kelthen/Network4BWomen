@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const LINKS = [
@@ -42,8 +43,17 @@ export default function Nav() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-brand-beige bg-brand-cream/85 backdrop-blur">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4" aria-label="Main">
-        <Link href="/" className="font-serif text-xl font-bold text-brand-brown">NBW</Link>
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 font-sub" aria-label="Main">
+        <Link href="/" aria-label="Network of Black Women — home" className="flex items-center">
+          <Image
+            src="/images/brand/logo-black.png"
+            alt="Network of Black Women"
+            width={900}
+            height={443}
+            priority
+            className="h-9 w-auto sm:h-10"
+          />
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden flex-wrap items-center gap-4 text-sm lg:flex">
