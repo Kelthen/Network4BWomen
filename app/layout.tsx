@@ -4,6 +4,7 @@ import { Playfair_Display, Lato, Montserrat } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import PhotoLightboxProvider from "@/components/photo/PhotoLightboxProvider";
 import CookieConsent from "@/components/CookieConsent";
 import Analytics from "@/components/Analytics";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
@@ -83,9 +84,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${serif.variable} ${sans.variable} ${sub.variable}`}>
       <body className="font-sans">
         <a href="#main" className="skip-link">Skip to content</a>
-        <Nav />
-        <main id="main">{children}</main>
-        <Footer />
+        <PhotoLightboxProvider>
+          <Nav />
+          <main id="main">{children}</main>
+          <Footer />
+        </PhotoLightboxProvider>
         <CookieConsent />
         <Analytics />
         {/* Vercel Analytics — cookieless & privacy-friendly (aucun consentement requis).

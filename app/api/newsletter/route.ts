@@ -1,6 +1,7 @@
 // OWNED BY: rhamon — Newsletter API. See docs/DATA-MODEL.md (newsletter_subscribers).
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -8,6 +9,10 @@ export const dynamic = "force-dynamic";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
+  // Rate limiting : 5 inscriptions / minute / IP.
+  const rl = rateLimit(`newsletter:${getClientIp(req)}`, 5, 60_000);
+  if (!rl.ok) return tooManyRequests(rl.retryAfter);
+
   let body: Record<string, unknown>;
   try {
     body = await req.json();
@@ -16,9 +21,9 @@ export async function POST(req: Request) {
   }
 
   const email = String(body.email ?? "").trim().toLowerCase();
-  const source = String(body.source ?? "site").trim();
+  const source = String(body.source ?? "site").trim().slice(0, 100);
 
-  if (!EMAIL_RE.test(email)) {
+  if (!EMAIL_RE.test(email) || email.length > 200) {
     return NextResponse.json({ error: "Please enter a valid email address." }, { status: 422 });
   }
 

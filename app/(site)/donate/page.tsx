@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Your gift funds programs, scholarships, events, and wellness for Black women in Toronto, Ontario.",
 };
 
-const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
 
 const IMPACT = [
   "Workshops and professional development",
