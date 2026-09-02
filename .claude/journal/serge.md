@@ -2,7 +2,7 @@
 dev: serge
 github: sergesanou
 branch: feat/serge/ui-primitives
-current_task: "Primitives UI (Button, Card, Input, Container, Section) créées. En attente de review croisée (Rhamon) — PR à ouvrir. + PR feat/serge/search en attente de review."
+current_task: "Primitives UI + page Search créées, PR #39 (search) mergée. PR #41 (ui-primitives) en cours de résolution de conflit avec main."
 files_locked: []
 updated: 2026-09-01T01:00:00Z
 ---
@@ -18,13 +18,13 @@ updated: 2026-09-01T01:00:00Z
 - Ajouté `Button.tsx` (variantes primary/secondary/outline), `Card.tsx`, `Input.tsx` (+ Textarea, Label), `Container.tsx` (tailles sm/md/lg), `Section.tsx` (espacement vertical sm/md/lg) et un `README.md` d'usage.
 - Calés au caractère près sur le style déjà en production (`components/events/RegistrationForm.tsx`, `components/home/Hero.tsx`) — mêmes couleurs de marque, mêmes arrondis, même comportement au survol. Rien de nouveau visuellement.
 - Volontairement **additif, opt-in** : aucune page existante n'a été touchée ni migrée. À utiliser pour tout nouveau composant.
-- PR à ouvrir avec Rhamon en reviewer (zone `shared`, coordination nécessaire).
+- PR #41 ouverte avec Rhamon en reviewer (zone `shared`, coordination nécessaire). Conflit avec main résolu ici (main avait avancé entre-temps : search, editorial pass, hardening sécurité mergés).
 
 ## 2026-09-01 — Page Search (feat/serge/search)
 - Dernière zone de mon plan encore à `todo` : Recherche site.
 - Ajouté `components/search/SearchClient.tsx` (composant client : champ de recherche, filtrage instantané sur un index déjà chargé, pas de requête réseau par lettre tapée) et `app/(site)/search/page.tsx` (Server Component qui construit l'index : pages statiques + programs/events/resources/posts via Supabase, fallback pages statiques seules si Supabase indisponible).
-- N'a touché à aucun fichier partagé (Nav.tsx notamment) : la page existe à `/search` mais n'est pas encore liée dans la navigation — à faire avec Rhamon (fichier shared) une fois la review passée.
-- PR #39 ouverte, Rhamon en reviewer.
+- Lien "Search" ajouté à `Nav.tsx` (icône desktop + entrée mobile) — seul changement dans un fichier `shared`, annoncé et fait après accord implicite (finir la fonctionnalité).
+- PR #39 mergée par kelthenrift-prog.
 
 ## 2026-08-31 — Migrations Supabase manquantes + fix sécurité + page news/[slug]
 - Constat : PR #29 branche events/conference/resources/news/gallery sur Supabase mais aucune migration SQL versionnée n'existait pour ces tables (seule `programs` en avait une, dans PR #28 non mergée).

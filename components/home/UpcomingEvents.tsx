@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
 
-const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
 
 // Placeholder — les vrais événements vivent sur /events (table Supabase `events`).
 const EVENTS = [

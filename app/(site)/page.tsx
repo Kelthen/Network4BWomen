@@ -2,7 +2,7 @@
 // design docs/nbw-home-reference.html (maquette validée).
 import Link from "next/link";
 import styles from "@/components/home/home.module.css";
-import { coverImage } from "@/lib/media";
+import ZoomablePhoto from "@/components/photo/ZoomablePhoto";
 import Hero from "@/components/home/Hero";
 import ImpactStats from "@/components/home/ImpactStats";
 import Reveal from "@/components/home/Reveal";
@@ -61,7 +61,7 @@ export default function HomePage() {
                 delay={i === 0 ? undefined : (i as 1 | 2)}
                 className={styles.card}
               >
-                <div className={styles.img} style={coverImage(p.img, p.grad)} aria-hidden="true" />
+                <ZoomablePhoto src={p.img} gradient={p.grad} alt={p.title} className={styles.img} />
                 <div className={styles.body}>
                   <h3>{p.title}</h3>
                   <p>{p.text}</p>

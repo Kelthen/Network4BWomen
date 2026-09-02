@@ -22,12 +22,24 @@
 }
 
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
   font-family: var(--font-sub), var(--font-sans), system-ui, sans-serif;
   font-size: 0.75rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--gold-text);
   font-weight: 600;
+}
+/* Filet or éditorial — détail précieux (docs/DESIGN.md §5). currentColor s'adapte
+   au fond (or sur clair, rose clair sur brun). */
+.eyebrow::before {
+  content: "";
+  width: clamp(1.5rem, 3vw, 2.5rem);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
 }
 
 /* Boutons / pilules */
@@ -248,11 +260,11 @@
 .sec h2 {
   font-family: var(--font-serif), Georgia, serif;
   font-weight: 600;
-  letter-spacing: -0.02em;
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
-  line-height: 1.05;
-  margin: 0.6rem 0 1rem;
-  max-width: 20ch;
+  letter-spacing: -0.025em;
+  font-size: clamp(2.15rem, 4.8vw, 3.5rem);
+  line-height: 1.04;
+  margin: 0.9rem 0 1rem;
+  max-width: 18ch;
 }
 
 /* Cartes programmes */

@@ -37,45 +37,53 @@ foundations:
 files: ["tailwind.config.ts", "app/globals.css", "docs/BRAND.md"]
 owner: shared
 status: done
-note: "Amorcé en premier. Tokens de marque NBW. Changement = petit + atomique + push rapide."
+note: "Amorcé en premier. Tokens de marque NBW officielle appliqués (PR brand-identity)."
 - area: layout-global
 files: ["app/layout.tsx", "components/Nav.tsx", "components/Footer.tsx", "components/LandAcknowledgment.tsx"]
 owner: shared
 status: done
-note: "Nav + Footer + reconnaissance territoire Blackfoot (obligatoire)."
+note: "Nav (menu regroupé + lien Search) + Footer + reconnaissance territoire Toronto/Traité 13 (à valider par le client)."
 - area: supabase-schema
 files: ["lib/supabase.ts", "supabase/**", "docs/DATA-MODEL.md"]
 owner: shared
 status: done
-note: "Client fait (lib/supabase.ts). Toutes les tables créées + migrations versionnées (0001-0007)."
+note: "Toutes les tables créées + migrations versionnées (0001-0007)."
 - area: ui-primitives
 files: ["components/ui/**"]
 owner: shared
 status: wip
-note: "PR feat/serge/ui-primitives ouverte : Button, Card, Input/Textarea/Label, Container, Section — calés sur le style déjà en prod (RegistrationForm, Hero). Additif/opt-in, aucune page migrée. Review croisée de Rhamon nécessaire (zone shared)."
+note: "PR #41 ouverte (serge) : Button, Card, Input, Container, Section — calés sur le style déjà en prod. Additif/opt-in. En cours de review croisée avec Rhamon."
 
 # --- PAGES / ZONES rhamon ---
 rhamon:
 - area: homepage
 files: ["app/(site)/page.tsx", "components/home/**"]
 status: done
+note: "Hero, Our Impact, Upcoming Events, Testimonials, Sponsors — complété (PR home-nav-polish)."
 - area: about
 files: ["app/(site)/about/**", "components/about/**"]
 status: done
+note: "Équipe à jour (PR #42 : Khamaya Cawley → Miriam Ngungkpan, photo en attente)."
 - area: get-involved
 files: ["app/(site)/get-involved/**", "components/getinvolved/**"]
 status: done
 - area: donate-stripe
 files: ["app/(site)/donate/**", "app/api/stripe/**", "components/donate/**"]
 status: done
-note: "Dons sécurisés Stripe Checkout + webhook."
+note: "Dons sécurisés Stripe Checkout + webhook + option PayPal."
 - area: contact
 files: ["app/(site)/contact/**", "app/api/contact/**", "components/contact/**"]
 status: done
+note: "Rate limiting + honeypot anti-spam ajoutés."
 - area: newsletter
 files: ["app/api/newsletter/**", "components/Newsletter.tsx"]
 status: done
-note: "Signup newsletter (footer + accueil)."
+note: "Signup newsletter (footer + accueil), rate limiting ajouté."
+- area: photo-lightbox
+files: ["components/photo/**", "components/gallery/Lightbox.tsx"]
+owner: shared
+status: done
+note: "Visionneuse 3D globale (PhotoLightboxProvider) : photos équipe + accueil cliquables/zoomables. Galerie a son propre Lightbox."
 
 # --- PAGES / ZONES serge ---
 serge:
@@ -86,15 +94,15 @@ note: "Branchée sur Supabase (table programs). Reste : testimonials par program
 - area: events
 files: ["app/(site)/events/**", "app/api/registrations/**", "components/events/**"]
 status: done
-note: "Branchée sur Supabase (events, registrations) + page détail + inscription. Reste : vue calendrier."
+note: "Branchée sur Supabase (events, registrations) + page détail + inscription + rate limiting (Rhamon). Reste : vue calendrier."
 - area: conference
 files: ["app/(site)/conference/**", "components/conference/**"]
 status: wip
-note: "Speakers branchés (conference_speakers). Reste : itinéraire, hébergement, FAQ, pricing — bloqué sur contenu réel NBW."
+note: "Speakers branchés (conference_speakers). Reste : itinéraire, hébergement, FAQ, pricing — questionnaire envoyé à NBW, réponses en cours."
 - area: resources
 files: ["app/(site)/resources/**", "components/resources/**"]
 status: done
-note: "Branchée sur Supabase (table resources), 7 catégories."
+note: "Branchée sur Supabase (table resources), 7 catégories. Contenu réel en attente (questionnaire NBW)."
 - area: news-blog
 files: ["app/(site)/news/**", "components/news/**"]
 status: done
@@ -105,5 +113,5 @@ status: done
 note: "Branchée sur Supabase (table gallery_media), par année."
 - area: search
 files: ["app/(site)/search/**", "components/search/SearchClient.tsx"]
-status: wip
-note: "PR #39 ouverte : index (pages statiques + programs/events/resources/posts) + filtrage instantané. Reste : lien dans la Nav (fichier shared, à coordonner avec rhamon) + review croisée."
+status: done
+note: "PR #39 mergée : index (pages statiques + programs/events/resources/posts) + filtrage instantané + lien Nav (icône desktop + entrée mobile)."

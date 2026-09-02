@@ -7,6 +7,10 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { sendEmail, escapeHtml } from "@/lib/email";
 import { CONTACT_EMAIL, SITE_NAME } from "@/lib/site";
+import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rate-limit";
+
+// Plafonds de longueur (anti-abus / payload) — voir checklist sécurité.
+const MAX = { name: 100, email: 200, message: 5000 };
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -28,6 +32,10 @@ const SUBJECT_LABEL: Record<string, string> = {
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
+  // Rate limiting : 5 envois / minute / IP (best-effort, anti-spam).
+  const rl = rateLimit(`contact:${getClientIp(req)}`, 5, 60_000);
+  if (!rl.ok) return tooManyRequests(rl.retryAfter);
+
   let body: Record<string, unknown>;
   try {
     body = await req.json();
@@ -46,10 +54,14 @@ export async function POST(req: Request) {
   const message = String(body.message ?? "").trim();
   const subject = String(body.subject ?? "general").trim();
 
-  // Validation serveur.
-  if (name.length < 2 || !EMAIL_RE.test(email) || message.length < 10) {
+  // Validation serveur (bornes min ET max).
+  if (
+    name.length < 2 || name.length > MAX.name ||
+    !EMAIL_RE.test(email) || email.length > MAX.email ||
+    message.length < 10 || message.length > MAX.message
+  ) {
     return NextResponse.json(
-      { error: "Please check your name, email, and message (min. 10 characters)." },
+      { error: "Please check your name, email, and message (10–5000 characters)." },
       { status: 422 },
     );
   }
