@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Volunteer, mentor, speak, partner, sponsor, or serve on the board — many ways to help NBW grow.",
 };
 
-const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
 
 type Way = {
   title: string;

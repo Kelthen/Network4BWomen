@@ -1,7 +1,7 @@
 // OWNED BY: rhamon — Accueil. Témoignages (plusieurs vraies histoires — CONTENT §1).
 import Reveal from "@/components/home/Reveal";
 
-const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
 
 // Placeholder — à remplacer par de vrais témoignages de membres (verbatim NBW).
 const QUOTES = [

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Professional development, leadership, mentorship, wellness, youth programming, and more — NBW's programs for Black women and girls.",
 };
 
-const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
 
 // Fallback data when Supabase is unavailable or empty.
 const FALLBACK_PROGRAMS = [

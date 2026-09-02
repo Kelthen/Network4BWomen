@@ -9,7 +9,7 @@ import RegistrationForm from "@/components/events/RegistrationForm";
 
 export const revalidate = 60;
 
-const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
 
 type Props = { params: Promise<{ slug: string }> };
 

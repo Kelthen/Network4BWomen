@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "How Network of Black Women collects, uses, and protects your information, and how we use cookies.",
 };
 
-const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText";
+const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
 
 export default function PrivacyPage() {
   return (

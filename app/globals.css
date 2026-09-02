@@ -19,6 +19,23 @@ body {
   outline-offset: 2px;
 }
 
+/* Filet or éditorial sur les eyebrows — détail précieux, cohérent sur tout le site
+   (docs/DESIGN.md §5). currentColor s'adapte au fond (or sur clair, clair sur brun).
+   inline-flex → respecte text-align (centré ou aligné à gauche selon la section). */
+.nbw-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.nbw-eyebrow::before {
+  content: "";
+  width: clamp(1.5rem, 3vw, 2.5rem);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+  flex: none;
+}
+
 /* Décalage pour l'ancre #main (nav sticky) */
 html {
   scroll-behavior: smooth;
