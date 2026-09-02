@@ -24,7 +24,7 @@ const VALUES = [
 const TEAM = [
   { name: "Maleeka Thomas", role: "Founding Executive Director" },
   { name: "Kimoya Edwards", role: "Associate Director" },
-  { name: "Khamaya Cawley", role: "Board Member & Signing Authority" },
+  { name: "Miriam Ngungkpan", role: "Board Member" },
   { name: "Jodine Robin", role: "Board Member" },
   { name: "Martha Mathurin-Moe", role: "Advisor to the Executive Director" },
   { name: "Abishey Anderson", role: "Director of Operations" },
