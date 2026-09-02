@@ -9,13 +9,13 @@ _Dernière régénération : **2026-09-02 02:48 UTC**_
 | Dev | GitHub | Branche active | Tâche en cours | Fichiers verrouillés | Journal MAJ |
 |---|---|---|---|---|---|
 | **rhamon** | `RhamonK` | `feat/rhamon/contact-email` | Contact → email (Resend) : notif NBW + auto-réponse | — | 2026-08-19T00:00:00Z |
-| **serge** | `sergesanou` | `feat/serge/ui-primitives` | Primitives UI (Button, Card, Input, Container, Section) créées. En attente de review croisée (Rhamon) — PR à ouvrir. + PR feat/serge/search en attente de review. | — | 2026-09-01T01:00:00Z |
+| **serge** | `sergesanou` | `feat/serge/search` | Page Search créée (index statique + programs/events/resources/posts). En attente de review croisée (Rhamon) — PR à ouvrir. | — | 2026-09-01T00:00:00Z |
 
 ---
 
 ### Détails par branche
 
 - **rhamon** → dernière activité sur `feat/rhamon/brand-identity` (2026-08-23T02:09:50Z)
-- **serge** → dernière activité sur `feat/serge/ui-primitives` (2026-09-01T22:47:55-04:00)
+- **serge** → dernière activité sur `feat/serge/search` (2026-09-01T17:45:41-04:00)
 
 _Ce fichier est régénéré automatiquement à chaque push. Pour changer l'état, édite TON journal et pousse._
