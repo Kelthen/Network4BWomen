@@ -13,6 +13,14 @@ updated: 2026-09-01T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-09-02 — Contenu client (questionnaire NBW) : maj équipe (`claude/rhamon-docs-update-5c8xe5`)
+- Reçu `NBWquestionnairecontenu.docx` (questionnaire de contenu rempli par NBW).
+- **Équipe (About)** : sur demande client explicite → **retiré Khamaya Cawley**, **ajouté Miriam Ngungkpan** (rôle « Board Member » par défaut, à confirmer). Supprimé `public/images/team/khamaya-cawley.jpg`. Miriam sans photo → placeholder (initiales).
+- Land acknowledgment vérifié : déjà correct (Toronto, Treaty 13, Dish With One Spoon) — le doc demandait confirmation.
+- **À fournir par NBW** (extrait du doc) : bios des 9 membres ; photos Martha/Felisha/Atyia/Miriam ; descriptions des 7 programmes ; détails conférence (tout TBA) ; 3+ articles News ; photos Gallery ; URLs réseaux sociaux, chiffres d'impact, logos sponsors.
+- **Zone serge** : événement réel « Girl Talk & Gratitude » (17/10/2026, The Loft on 5th, Networking, max 30, billetterie bloomtickets) + flyer fourni → à insérer en base Supabase (events) par serge. Flyer extrait, dispo.
+- Validé : `next build` OK (21 routes).
+
 ## 2026-09-01 — Filet or partout + vraies photos membres zoomables (`claude/rhamon-docs-update-5c8xe5`)
 - **Filet or éditorial sur TOUTES les eyebrows** : classe globale `.nbw-eyebrow` (+ `::before` en `currentColor`) dans `globals.css`, appliquée aux 16 définitions `EYEBROW` du site (mes pages + zone serge, demande client « partout »). Cohérence éditoriale totale.
 - **Photos membres** : serge a mergé 6 vraies photos (`public/images/team/*.jpg`) dans `main`. J'ai mergé `main` dans ma branche → les photos rendent + sont **cliquables/zoomables** via `ZoomablePhoto` (prouvé en capture : clic Maleeka → visionneuse 3D). ✅
