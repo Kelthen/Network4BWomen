@@ -13,6 +13,15 @@ updated: 2026-09-01T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-09-01 — Hardening sécurité : rate limiting + plafonds de longueur (`claude/rhamon-docs-update-5c8xe5`)
+- Audit du site vs checklist « 20 trucs avant la prod » : 11/14 points applicables ✅ (secrets en env, .env gitignored, service role côté serveur uniquement, HTTPS, webhook Stripe signé, erreurs génériques, honeypot…).
+- **#3 Rate limiting** : nouveau `lib/rate-limit.ts` (fenêtre glissante en mémoire, best-effort ; Upstash recommandé pour du distribué). Appliqué à `/api/contact`, `/api/newsletter`, `/api/registrations` (5 req/min/IP → 429 + Retry-After).
+- **#11 Plafonds de longueur** sur les champs texte (contact: name≤100/email≤200/message≤5000 ; newsletter: email≤200/source≤100 ; registrations: name≤100/email≤200/phone≤40/notes≤2000).
+- ⚠️ **Zone serge** : `app/api/registrations/route.ts` modifié (ajout surgical rate-limit + bornes) car demande sécurité transverse du client. Signalé ici. Risque de conflit faible (ajouts en tête). @serge : `lib/rate-limit.ts` dispo si besoin ailleurs.
+- 🔴 **À FAIRE côté client (rhamon humain)** : vérifier **RLS Supabase** sur toutes les tables (surtout `registrations`/`form_submissions` = données perso). `select tablename, rowsecurity from pg_tables where schemaname='public';`
+- 🟡 npm audit : 2 high *build-time* (PostCSS via Next) — fix = montée Next (breaking), à planifier après le 6/09.
+- Validé : `tsc --noEmit` OK · `next build` OK.
+
 ## 2026-09-01 — Photos zoomables partout (`claude/rhamon-docs-update-5c8xe5`)
 - **Problème client** : « la photo des membres, je zoome et y'a rien ». Les avatars équipe étaient des placeholders dégradés non cliquables.
 - **Visionneuse globale** : `components/photo/PhotoLightboxProvider.tsx` (contexte, un seul `Lightbox` monté dans `app/layout.tsx`) + hook `usePhotoLightbox()`. Réutilise l'effet 3D + zoom existant du Lightbox de la galerie.

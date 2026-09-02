@@ -2,11 +2,20 @@
 // Pattern from rhamon: secrets in env, 503 if absent, honeypot, Supabase SERVICE_ROLE_KEY.
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+// Hardening sécurité ajouté par rhamon (checklist #3/#11), coordonné — voir journal.
+import { getClientIp, rateLimit, tooManyRequests } from "@/lib/rate-limit";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+// Plafonds de longueur (anti-abus / payload).
+const MAX = { name: 100, email: 200, phone: 40, notes: 2000 };
+
 export async function POST(req: Request) {
+  // Rate limiting : 5 inscriptions / minute / IP (best-effort, anti-spam).
+  const rl = rateLimit(`registrations:${getClientIp(req)}`, 5, 60_000);
+  if (!rl.ok) return tooManyRequests(rl.retryAfter);
+
   // Guard: Supabase not configured
   if (!url || !serviceKey) {
     return NextResponse.json(
@@ -43,6 +52,16 @@ export async function POST(req: Request) {
   // Validate email format
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ error: "Invalid email." }, { status: 400 });
+  }
+
+  // Validate lengths (anti-abus / payload)
+  if (
+    name.length > MAX.name ||
+    email.length > MAX.email ||
+    (phone != null && phone.length > MAX.phone) ||
+    (notes != null && notes.length > MAX.notes)
+  ) {
+    return NextResponse.json({ error: "One or more fields are too long." }, { status: 422 });
   }
 
   // Check event exists
