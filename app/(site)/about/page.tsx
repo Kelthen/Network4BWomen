@@ -34,40 +34,47 @@ const TEAM = [
 ];
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
+const EYEBROW_LIGHT = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-pinkLight nbw-eyebrow";
 
 export default function AboutPage() {
   return (
     <div className="bg-brand-cream text-brand-brown">
       {/* Hero */}
-      <header className="mx-auto max-w-6xl px-6 pt-24 pb-16 md:pt-32">
+      <header className="mx-auto max-w-6xl px-6 pt-28 pb-20 md:pt-36 md:pb-24">
         <Reveal as="p" className={EYEBROW}>
           About · Network of Black Women
         </Reveal>
         <Reveal
           as="h1"
           delay={1}
-          className="mt-4 max-w-4xl font-serif text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl"
+          className="mt-6 max-w-4xl font-serif text-5xl font-semibold leading-[1.02] tracking-[-0.025em] sm:text-6xl md:text-7xl"
         >
           This is a space curated by Black&nbsp;Women for Black&nbsp;Women.
         </Reveal>
-        <Reveal as="p" delay={2} className="mt-6 max-w-2xl text-lg text-brand-brown/80">
+        <Reveal as="p" delay={2} className="mt-7 max-w-2xl text-lg leading-relaxed text-brand-brown/80">
           A sisterhood for Black women and girls in Toronto, Ontario — on the traditional
           territory of many nations, covered by Treaty 13. A space to be celebrated, to be
           yourself, and to grow together.
         </Reveal>
       </header>
 
-      {/* Our Story */}
+      {/* Our Story — grande citation avec guillemet surdimensionné */}
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
         <div className="grid gap-10 md:grid-cols-12">
-          <Reveal as="p" className={`${EYEBROW} md:col-span-3`}>
+          <Reveal as="p" className={`${EYEBROW} md:col-span-3 md:pt-4`}>
             Our Story
           </Reveal>
-          <Reveal as="blockquote" delay={1} className="md:col-span-9">
-            <p className="font-serif text-2xl leading-snug md:text-4xl">
-              “Network of Black Women was created on the goal to create a sisterhood community in
+          <Reveal as="blockquote" delay={1} className="relative md:col-span-9">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-1 -top-10 font-serif text-[7rem] leading-none text-brand-gold/25 md:-top-16 md:text-[11rem]"
+            >
+              &ldquo;
+            </span>
+            <p className="relative font-serif text-[1.7rem] leading-[1.2] md:text-[2.6rem] md:leading-[1.15]">
+              Network of Black Women was created on the goal to create a sisterhood community in
               Toronto for Black Women and a space for Black Women to be celebrated, to be
-              themselves.”
+              themselves.
             </p>
           </Reveal>
         </div>
@@ -75,12 +82,10 @@ export default function AboutPage() {
 
       {/* Mission + Vision — dark section for visual rhythm (DESIGN §4) */}
       <section className="bg-brand-brown text-brand-cream">
-        <div className="mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-2 md:py-28">
-          <Reveal>
-            <p className="text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-pinkLight">
-              Our mission
-            </p>
-            <p className="mt-5 text-lg leading-relaxed text-brand-cream/90">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2 md:gap-0 md:py-28">
+          <Reveal className="md:pr-14">
+            <p className={EYEBROW_LIGHT}>Our mission</p>
+            <p className="mt-6 text-lg leading-relaxed text-brand-cream/90">
               Our mission is to empower, connect, and uplift Black Women by fostering a
               supportive community by curating meaningful opportunities to grow. We are dedicated
               to creating spaces where Black Women can share their stories, celebrate one
@@ -90,11 +95,9 @@ export default function AboutPage() {
               personally and professionally.
             </p>
           </Reveal>
-          <Reveal delay={1}>
-            <p className="text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-pinkLight">
-              Our vision
-            </p>
-            <p className="mt-5 text-lg leading-relaxed text-brand-cream/90">
+          <Reveal delay={1} className="md:border-l md:border-brand-gold/30 md:pl-14">
+            <p className={EYEBROW_LIGHT}>Our vision</p>
+            <p className="mt-6 text-lg leading-relaxed text-brand-cream/90">
               Our vision is to create a strong, inclusive, safe and supportive environment where
               Black Women are celebrated for their work, creativity and contributions to society.
               Through our initiatives we envision a future where Black Women, united in
@@ -107,45 +110,51 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Values */}
+      {/* Our Values — numéros surdimensionnés, filet or au survol */}
       <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <Reveal as="p" className={EYEBROW}>
           Our values
         </Reveal>
-        <Reveal as="h2" delay={1} className="mt-3 max-w-2xl font-serif text-3xl md:text-4xl">
+        <Reveal as="h2" delay={1} className="mt-4 max-w-2xl font-serif text-3xl tracking-[-0.02em] md:text-5xl">
           What guides us, every day.
         </Reveal>
-        <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {VALUES.map((v, i) => (
             <Reveal
               as="li"
               key={v.name}
               delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="border-t border-brand-beige pt-5"
+              className="group border-t border-brand-beige pt-6 transition-colors duration-300 hover:border-brand-gold"
             >
-              <span className="font-serif text-4xl text-brand-goldText">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-3 font-serif text-2xl text-brand-brown">{v.name}</h3>
-              <p className="mt-3 text-brand-brown/75">{v.desc}</p>
+              <div className="transition-transform duration-300 group-hover:-translate-y-1">
+                <span className="font-serif text-5xl leading-none text-brand-goldText">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-4 font-serif text-2xl text-brand-brown">{v.name}</h3>
+                <p className="mt-3 text-brand-brown/75">{v.desc}</p>
+              </div>
             </Reveal>
           ))}
         </ul>
       </section>
 
-      {/* Why NBW Exists */}
+      {/* Why NBW Exists — moment éditorial (grande citation) */}
       <section className="bg-brand-beige/50">
-        <div className="mx-auto max-w-4xl px-6 py-20 text-center md:py-28">
-          <Reveal as="p" className={EYEBROW}>
+        <div className="mx-auto max-w-4xl px-6 py-24 text-center md:py-32">
+          <Reveal as="p" className={`${EYEBROW} justify-center`}>
             Why NBW exists
           </Reveal>
-          <Reveal
-            as="p"
-            delay={1}
-            className="mt-6 font-serif text-2xl leading-snug text-brand-brown md:text-3xl"
-          >
-            Because every Black woman deserves a space where her voice is amplified, her successes
-            recognized, and her collective strength drives positive change.
+          <Reveal as="figure" delay={1} className="relative mt-8">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 -top-12 -translate-x-1/2 font-serif text-[8rem] leading-none text-brand-gold/20 md:-top-16 md:text-[11rem]"
+            >
+              &ldquo;
+            </span>
+            <p className="relative font-serif text-[1.75rem] leading-[1.25] text-brand-brown md:text-[2.9rem] md:leading-[1.15]">
+              Because every Black woman deserves a space where her voice is amplified, her
+              successes recognized, and her collective strength drives positive change.
+            </p>
           </Reveal>
         </div>
       </section>
@@ -155,7 +164,7 @@ export default function AboutPage() {
         <Reveal as="p" className={EYEBROW}>
           Governance
         </Reveal>
-        <Reveal as="h2" delay={1} className="mt-3 max-w-3xl font-serif text-3xl md:text-4xl">
+        <Reveal as="h2" delay={1} className="mt-4 max-w-3xl font-serif text-3xl tracking-[-0.02em] md:text-5xl">
           Meet Our Board &amp; Leadership.
         </Reveal>
         <Reveal as="p" delay={2} className="mt-4 max-w-2xl text-brand-brown/80">

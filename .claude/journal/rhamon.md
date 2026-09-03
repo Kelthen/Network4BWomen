@@ -13,6 +13,15 @@ updated: 2026-09-01T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-09-03 — Passe éditoriale About (`claude/rhamon-docs-update-5c8xe5`)
+- Retouches typo/espacement, texte verbatim intact. Hero agrandi (jusqu'à text-7xl, tracking serré, plus d'air).
+- « Our Story » : guillemet or surdimensionné derrière la grande citation.
+- Mission/Vision (section brune) : filet or vertical entre les 2 colonnes + eyebrows avec hairline (nbw-eyebrow).
+- « Our Values » : numéros 01–05 agrandis (text-5xl), filet passe en or au survol + léger lift.
+- « Why NBW exists » : transformé en moment éditorial — grande citation centrée + guillemet or surdimensionné.
+- Titres de section agrandis (md:text-5xl). Vérifié desktop ET mobile (iPhone) — captures.
+- Validé : `tsc` OK · `next build` OK (21 routes).
+
 ## 2026-09-03 — « Mode événement » : bandeau + flyer d'accueil (`claude/rhamon-docs-update-5c8xe5`)
 - Promotion automatique de l'événement vedette quand il approche. Data-driven via `lib/featuredEvent.ts` (config rhamon : Girl Talk & Gratitude, dates, flyer, billetterie, fenêtre `promoteFrom` → fin). `isFeaturedActive()` décide seul quand afficher.
 - `components/event/EventAnnouncementBar.tsx` : bandeau fin en haut (fermable, mémorisé par session), lien billetterie.
