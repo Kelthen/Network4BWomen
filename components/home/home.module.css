@@ -459,7 +459,24 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(92, 34, 51, 0.35), rgba(92, 34, 51, 0.05) 45%);
+  /* Vignette : assez sombre en haut et en bas (là où va le texte) pour garantir
+     la lisibilité sur une vraie photo, tout en laissant respirer le centre. */
+  background: linear-gradient(
+    180deg,
+    rgba(68, 49, 43, 0.62) 0%,
+    rgba(68, 49, 43, 0.28) 42%,
+    rgba(68, 49, 43, 0.55) 100%
+  );
+}
+/* Sur mobile, le texte occupe toute la hauteur → on renforce encore le voile. */
+@media (max-width: 820px) {
+  .ctaBand .overlay {
+    background: rgba(68, 49, 43, 0.6);
+  }
+}
+.ctaBand h2,
+.ctaBand .cols {
+  text-shadow: 0 1px 14px rgba(44, 31, 27, 0.4);
 }
 .ctaBand .content {
   position: relative;
