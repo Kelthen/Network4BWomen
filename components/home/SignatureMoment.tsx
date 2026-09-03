@@ -50,8 +50,8 @@ export default function SignatureMoment() {
       card.style.transform = `scale(${scale.toFixed(4)})`;
       card.style.borderRadius = `${radius.toFixed(1)}px`;
 
-      // Voile + texte se révèlent sur les 45 derniers % du parcours.
-      const t = Math.max(0, Math.min(1, (p - 0.45) / 0.4));
+      // Voile + texte se révèlent plus tôt (à partir de ~35% du parcours).
+      const t = Math.max(0, Math.min(1, (p - 0.35) / 0.35));
       if (overlay) overlay.style.opacity = (0.6 * t).toFixed(3);
       if (text) {
         text.style.opacity = t.toFixed(3);
@@ -76,7 +76,7 @@ export default function SignatureMoment() {
   }, []);
 
   return (
-    <section ref={trackRef} className="relative" style={{ height: "220vh" }} aria-label="Our community">
+    <section ref={trackRef} className="relative" style={{ height: "150vh" }} aria-label="Our community">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-brand-cream">
         <div
           ref={cardRef}
