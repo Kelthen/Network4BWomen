@@ -13,6 +13,12 @@ updated: 2026-09-01T00:00:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-09-02 — Moment signature accueil (`claude/rhamon-docs-update-5c8xe5`)
+- `components/home/SignatureMoment.tsx` : vraie photo NBW qui s'agrandit du format carte au plein cadre pendant le scroll (sticky + progression, rAF 60fps, sans dépendance), voile brun + ligne éditoriale « A sisterhood where every Black woman is seen, celebrated, and lifted. » révélée. `prefers-reduced-motion` → statique.
+- Intégré dans `app/(site)/page.tsx` entre Our Impact et Programmes (moment mémorable §6 de DESIGN.md ; 2e moment signature après le Hero).
+- Photo : `/images/gallery/2025-2.jpg` (remplaçable).
+- Validé : `tsc` OK · `next build` OK (21 routes) · capturé (état contenu + état plein cadre avec texte).
+
 ## 2026-09-02 — Contenu client (questionnaire NBW) : maj équipe (`claude/rhamon-docs-update-5c8xe5`)
 - Reçu `NBWquestionnairecontenu.docx` (questionnaire de contenu rempli par NBW).
 - **Équipe (About)** : sur demande client explicite → **retiré Khamaya Cawley**, **ajouté Miriam Ngungkpan** (rôle « Board Member » par défaut, à confirmer). Supprimé `public/images/team/khamaya-cawley.jpg`. Miriam sans photo → placeholder (initiales).

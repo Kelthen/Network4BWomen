@@ -6,6 +6,7 @@ import ZoomablePhoto from "@/components/photo/ZoomablePhoto";
 import Hero from "@/components/home/Hero";
 import ImpactStats from "@/components/home/ImpactStats";
 import Reveal from "@/components/home/Reveal";
+import SignatureMoment from "@/components/home/SignatureMoment";
 import CtaBand from "@/components/home/CtaBand";
 import NewsletterTeaser from "@/components/home/NewsletterTeaser";
 import UpcomingEvents from "@/components/home/UpcomingEvents";
@@ -43,6 +44,9 @@ export default function HomePage() {
 
       {/* Our Impact — fond brun, compteurs animés */}
       <ImpactStats />
+
+      {/* Moment signature — photo qui s'agrandit en plein cadre au scroll */}
+      <SignatureMoment />
 
       {/* Programmes & initiatives */}
       <section className={styles.sec}>
