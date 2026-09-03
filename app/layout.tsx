@@ -5,6 +5,8 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import PhotoLightboxProvider from "@/components/photo/PhotoLightboxProvider";
+import EventAnnouncementBar from "@/components/event/EventAnnouncementBar";
+import EventFlyerModal from "@/components/event/EventFlyerModal";
 import CookieConsent from "@/components/CookieConsent";
 import Analytics from "@/components/Analytics";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
@@ -85,9 +87,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans">
         <a href="#main" className="skip-link">Skip to content</a>
         <PhotoLightboxProvider>
+          <EventAnnouncementBar />
           <Nav />
           <main id="main">{children}</main>
           <Footer />
+          <EventFlyerModal />
         </PhotoLightboxProvider>
         <CookieConsent />
         <Analytics />
