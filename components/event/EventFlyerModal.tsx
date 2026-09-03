@@ -86,7 +86,7 @@ export default function EventFlyerModal() {
       <div
         ref={dialogRef}
         onClick={(e) => e.stopPropagation()}
-        className="relative grid max-h-[92vh] w-full max-w-3xl grid-cols-1 overflow-hidden rounded-2xl bg-brand-cream shadow-2xl sm:grid-cols-2"
+        className="relative grid max-h-[92vh] w-full max-w-3xl grid-cols-1 overflow-y-auto rounded-2xl bg-brand-cream shadow-2xl sm:grid-cols-2 sm:overflow-hidden"
       >
         {/* Close */}
         <button
@@ -103,7 +103,7 @@ export default function EventFlyerModal() {
         <img
           src={ev.flyer}
           alt={`${ev.title} — event flyer`}
-          className="max-h-[38vh] w-full object-cover sm:max-h-none sm:h-full"
+          className="max-h-[48vh] w-full bg-brand-brown object-contain sm:max-h-none sm:h-full sm:object-cover"
         />
 
         {/* Content */}
