@@ -64,14 +64,14 @@ export default function AboutPage() {
           <Reveal as="p" className={`${EYEBROW} md:col-span-3 md:pt-4`}>
             Our Story
           </Reveal>
-          <Reveal as="blockquote" delay={1} className="relative md:col-span-9">
+          <Reveal as="blockquote" delay={1} className="md:col-span-9">
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute -left-1 -top-10 font-serif text-[7rem] leading-none text-brand-gold/25 md:-top-16 md:text-[11rem]"
+              className="block font-serif text-[5.5rem] leading-[0.4] text-brand-gold/30 md:text-[8rem]"
             >
               &ldquo;
             </span>
-            <p className="relative font-serif text-[1.7rem] leading-[1.2] md:text-[2.6rem] md:leading-[1.15]">
+            <p className="mt-7 font-serif text-[1.7rem] leading-[1.2] md:mt-9 md:text-[2.6rem] md:leading-[1.15]">
               Network of Black Women was created on the goal to create a sisterhood community in
               Toronto for Black Women and a space for Black Women to be celebrated, to be
               themselves.
@@ -144,14 +144,14 @@ export default function AboutPage() {
           <Reveal as="p" className={`${EYEBROW} justify-center`}>
             Why NBW exists
           </Reveal>
-          <Reveal as="figure" delay={1} className="relative mt-8">
+          <Reveal as="figure" delay={1} className="mt-6">
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 -top-12 -translate-x-1/2 font-serif text-[8rem] leading-none text-brand-gold/20 md:-top-16 md:text-[11rem]"
+              className="block font-serif text-[6rem] leading-[0.4] text-brand-gold/25 md:text-[8rem]"
             >
               &ldquo;
             </span>
-            <p className="relative font-serif text-[1.75rem] leading-[1.25] text-brand-brown md:text-[2.9rem] md:leading-[1.15]">
+            <p className="mt-6 font-serif text-[1.75rem] leading-[1.25] text-brand-brown md:mt-8 md:text-[2.9rem] md:leading-[1.15]">
               Because every Black woman deserves a space where her voice is amplified, her
               successes recognized, and her collective strength drives positive change.
             </p>
