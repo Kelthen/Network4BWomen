@@ -2,12 +2,20 @@
 dev: rhamon
 github: RhamonK
 branch: claude/rhamon-docs-update-5c8xe5
-current_task: "Photos cliquables + zoomables partout (visionneuse 3D globale)"
+current_task: "Contenu client (questionnaire NBW #2) : photo réelle de Miriam Ngungkpan"
 files_locked: []
-updated: 2026-09-01T00:00:00Z
+updated: 2026-09-06T00:00:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-09-06 — Photo réelle de Miriam Ngungkpan (`claude/rhamon-docs-update-5c8xe5`)
+- Reçu un 2e questionnaire de contenu NBW avec une image intégrée : le vrai headshot de Miriam.
+- Extrait et déposé `public/images/team/miriam-ngungkpan.jpg` (compressé 2048×2048 → 1200×1200, 244 Ko). Zoomable automatiquement via `ZoomablePhoto`.
+- ⚠️ Le doc mentionne aussi une photo de Felisha, mais **elle n'est pas réellement jointe** dans ce fichier (vérifié : un seul embed image dans le docx) — à redemander à NBW.
+- ⚠️ Rien d'autre n'a été complété dans le questionnaire (bios, programmes, conférence, news, gallery, réseaux sociaux, chiffres, sponsors, land ack, PayPal = tous encore vides/TBA).
+- Validé : `next build` OK (21 routes) + capture (About → équipe, Miriam visible).
+
 
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de serge, vérifier OWNERSHIP.yml.
