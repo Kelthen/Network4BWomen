@@ -10,11 +10,11 @@ export const SITE_DESCRIPTION =
 export const CONTACT_EMAIL = "info.networkofblackwomen@gmail.com";
 export const CONTACT_PHONE = "(403) 635-8688";
 
-// Réseaux sociaux — ⚠️ URLs placeholder, à remplacer par les vrais comptes NBW.
+// Réseaux sociaux — comptes réels NBW (questionnaire de contenu). Facebook/TikTok
+// pas encore fournis par NBW → volontairement absents (pas de lien mort/placeholder).
 export const SOCIALS = [
-  { label: "Instagram", href: "https://instagram.com" },
-  { label: "Facebook", href: "https://facebook.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
+  { label: "Instagram", href: "https://www.instagram.com/networkofblackwomen/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/network-of-black-women-32461342a/" },
 ] as const;
 
 // Routes indexables (hors routes API).
