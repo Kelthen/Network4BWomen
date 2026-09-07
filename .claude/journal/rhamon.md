@@ -2,12 +2,18 @@
 dev: rhamon
 github: RhamonK
 branch: claude/rhamon-docs-update-5c8xe5
-current_task: "SEO : JSON-LD sameAs/logo + emplacements vérification (Search Console/Pinterest)"
+current_task: "Photo réelle du hero d'accueil"
 files_locked: []
-updated: 2026-09-07T01:00:00Z
+updated: 2026-09-07T02:00:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-09-07 (3) — Photo réelle du hero d'accueil (`claude/rhamon-docs-update-5c8xe5`)
+- `public/images/hero.jpg` : vraie photo NBW (groupe qui rit), recadrée en 4:5 (portrait, centrée horizontalement — source plus large que le ratio cible), compressée 1152×864 → 691×864, 57 Ko.
+- Remplace le dégradé de secours dans `Hero.tsx` (chemin déjà anticipé, aucun changement de code nécessaire).
+- Validé : `next build` OK (21 routes) + capture (hero avec vraie photo, visible desktop).
+
 
 ## 2026-09-07 (2) — SEO : JSON-LD enrichi + vérification sites externes (`claude/rhamon-docs-update-5c8xe5`)
 - `app/layout.tsx` : JSON-LD `orgJsonLd` — ajout `logo` (logo-primary.png) + `sameAs` (Instagram/LinkedIn depuis `lib/site.ts` SOCIALS, maintenant réels).
