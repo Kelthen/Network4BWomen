@@ -2,12 +2,20 @@
 dev: rhamon
 github: RhamonK
 branch: claude/rhamon-docs-update-5c8xe5
-current_task: "Contenu client (questionnaire NBW #3) : About, équipe, réseaux, Get Involved — voir points en attente ci-dessous"
+current_task: "SEO : JSON-LD sameAs/logo + emplacements vérification (Search Console/Pinterest)"
 files_locked: []
-updated: 2026-09-07T00:00:00Z
+updated: 2026-09-07T01:00:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-09-07 (2) — SEO : JSON-LD enrichi + vérification sites externes (`claude/rhamon-docs-update-5c8xe5`)
+- `app/layout.tsx` : JSON-LD `orgJsonLd` — ajout `logo` (logo-primary.png) + `sameAs` (Instagram/LinkedIn depuis `lib/site.ts` SOCIALS, maintenant réels).
+- `metadata.verification` : emplacements Google Search Console + Pinterest, pilotés par `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` / `NEXT_PUBLIC_PINTEREST_VERIFICATION` (même pattern que `NEXT_PUBLIC_GA_ID`). Omis proprement si absents (vérifié : 0 balise vide dans le HTML généré).
+- Déjà en place avant cette session (vérifié, rien à refaire) : robots.txt, sitemap.xml, image OG/Twitter générée dynamiquement, Google Analytics consent-gated, Vercel Analytics.
+- Reste à faire côté NBW/humain (comptes externes, hors code) : créer + vérifier Google Search Console (soumettre sitemap), créer propriété GA4 → `NEXT_PUBLIC_GA_ID` sur Vercel, Pinterest Business (claim du domaine), envisager Google Business Profile (SEO local). Détaillé dans la réponse à l'humain.
+- Validé : `tsc` + `next build` OK (21 routes).
+
 
 ## 2026-09-07 — Contenu client (questionnaire NBW #3) (`claude/rhamon-docs-update-5c8xe5`)
 **Appliqué (sans ambiguïté, verbatim client) :**

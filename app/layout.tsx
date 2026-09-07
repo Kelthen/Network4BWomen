@@ -17,6 +17,7 @@ import {
   SITE_DESCRIPTION,
   CONTACT_EMAIL,
   CONTACT_PHONE,
+  SOCIALS,
 } from "@/lib/site";
 
 // Charte NBW : Playfair (titres), Lato (corps), Montserrat (sous-titres / UI géométrique).
@@ -60,15 +61,34 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
   },
   robots: { index: true, follow: true },
+  // Codes de vérification (Search Console, Pinterest...) — pilotés par variable
+  // d'environnement, sur le même principe que NEXT_PUBLIC_GA_ID. Ajouter la variable
+  // sur Vercel dès qu'un code de vérification est obtenu ; aucun redéploiement de code
+  // n'est nécessaire au-delà de ça. Omis tant que la variable n'existe pas (pas de
+  // balise meta vide dans le HTML).
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || process.env.NEXT_PUBLIC_PINTEREST_VERIFICATION
+    ? {
+        verification: {
+          ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
+            google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+          }),
+          ...(process.env.NEXT_PUBLIC_PINTEREST_VERIFICATION && {
+            other: { "p:domain_verify": process.env.NEXT_PUBLIC_PINTEREST_VERIFICATION },
+          }),
+        },
+      }
+    : {}),
 };
 
-// Données structurées (JSON-LD) — aide Google à comprendre l'organisation.
+// Données structurées (JSON-LD) — aide Google à comprendre l'organisation et à la
+// relier à ses comptes sociaux (sameAs). Alimenté par lib/site.ts, pas de duplication.
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "NGO",
   name: SITE_NAME,
   alternateName: "NBW",
   url: SITE_URL,
+  logo: `${SITE_URL}/images/brand/logo-primary.png`,
   description: SITE_DESCRIPTION,
   email: CONTACT_EMAIL,
   telephone: CONTACT_PHONE,
@@ -79,6 +99,7 @@ const orgJsonLd = {
     addressRegion: "ON",
     addressCountry: "CA",
   },
+  sameAs: SOCIALS.map((s) => s.href),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
