@@ -2,12 +2,31 @@
 dev: rhamon
 github: RhamonK
 branch: claude/rhamon-docs-update-5c8xe5
-current_task: "Contenu client (questionnaire NBW #2) : photo réelle de Miriam Ngungkpan"
+current_task: "Contenu client (questionnaire NBW #3) : About, équipe, réseaux, Get Involved — voir points en attente ci-dessous"
 files_locked: []
-updated: 2026-09-06T00:00:00Z
+updated: 2026-09-07T00:00:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-09-07 — Contenu client (questionnaire NBW #3) (`claude/rhamon-docs-update-5c8xe5`)
+**Appliqué (sans ambiguïté, verbatim client) :**
+- About — hero : remplacé le paragraphe par le texte fourni (ne mentionne plus Toronto/Treaty 13 dans le hero — reste uniquement dans le footer via `LandAcknowledgment`).
+- Équipe : ajout de **Kadeja Edwards — Social Media & Content Creator Intern** (pas de photo fournie → placeholder, comme les autres membres sans photo).
+- `lib/site.ts` SOCIALS : vrais liens Instagram + LinkedIn fournis. Facebook/TikTok retirés (aucune URL donnée) plutôt que de garder un lien placeholder mort.
+- Get Involved : nouvelle carte **« Become a Vendor »** (« join our Black Marketplace »), lien → `/contact` en attendant un formulaire dédié.
+
+**🔴 PAS appliqué — nécessite une décision humaine (signalé au client) :**
+- **Land acknowledgment** : le questionnaire donne « NBW is located on the traditional Blackfoot Confederacy Territory » — ça **contredit directement** la relocalisation Toronto/Treaty 13 faite plus tôt dans le projet sur demande explicite du client. Je n'ai PAS touché `components/LandAcknowledgment.tsx`. À trancher avec le client avant tout changement (footer légal + JSON-LD + meta).
+- **Logos sponsors** (RBC, McCain Foods, University of Lethbridge, BIPOC) : noms donnés mais **aucun fichier logo ni confirmation explicite de permission** — je ne publie pas de noms de grandes marques sans les deux. À redemander.
+- **« Domain for Wix: networkofblackwomen.ca »** : phrase ambiguë (un autre site Wix existe ? migration DNS à faire ?) — à clarifier, aucune action possible de mon côté sans plus de contexte.
+- **« Link for Join the board »** : aucune URL fournie — la carte « Board Opportunities » pointe déjà vers `/contact` (comportement inchangé) en attendant un lien précis.
+- **Conférence** : « Replicate please https://www.everystylishgirl.com/sipnslay » — site bloqué par le proxy réseau de cet environnement, je n'ai pas pu le consulter. À décrire/capturer par le client, ou à regarder moi-même hors de cet environnement.
+- Gallery : légende « Emancipation BBQ 2026 » reçue mais **aucune photo jointe** — rien à ajouter pour l'instant.
+- Toujours en attente (inchangé) : bios des 9 membres, photos Martha/Felisha/Aytia, descriptions des 7 programmes, détails conférence, articles News.
+
+Validé : `tsc` + `next build` OK (21 routes) · vérifié au rendu (About hero, équipe avec Kadeja, carte Vendor).
+
 
 ## 2026-09-06 — Photo réelle de Miriam Ngungkpan (`claude/rhamon-docs-update-5c8xe5`)
 - Reçu un 2e questionnaire de contenu NBW avec une image intégrée : le vrai headshot de Miriam.

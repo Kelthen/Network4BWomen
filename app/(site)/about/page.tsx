@@ -31,6 +31,7 @@ const TEAM = [
   { name: "Felisha Boehme", role: "Director of Communications" },
   { name: "Tobore Okome", role: "Board Member" },
   { name: "Aytia Police", role: "Board Member" },
+  { name: "Kadeja Edwards", role: "Social Media & Content Creator Intern" },
 ];
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
@@ -52,9 +53,10 @@ export default function AboutPage() {
           This is a space curated by Black&nbsp;Women for Black&nbsp;Women.
         </Reveal>
         <Reveal as="p" delay={2} className="mt-7 max-w-2xl text-lg leading-relaxed text-brand-brown/80">
-          A sisterhood for Black women and girls in Toronto, Ontario — on the traditional
-          territory of many nations, covered by Treaty 13. A space to be celebrated, to be
-          yourself, and to grow together.
+          A network created for Black women and girls to connect, learn from one another, and
+          feel empowered and inspired to grow both personally and professionally. We create
+          meaningful opportunities to build confidence, share experiences, develop skills, and
+          cultivate connections that support women and girls at every stage of their journey.
         </Reveal>
       </header>
 

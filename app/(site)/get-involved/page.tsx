@@ -64,6 +64,13 @@ const WAYS: Way[] = [
     href: "/contact",
     accent: "linear-gradient(160deg,#e8dcc8,#c9a24b)",
   },
+  {
+    title: "Become a Vendor",
+    desc: "Sell your products or services to our community — join our Black Marketplace.",
+    cta: "Apply as a vendor",
+    href: "/contact",
+    accent: "linear-gradient(160deg,#b23a4e,#e9c8c9)",
+  },
 ];
 
 export default function GetInvolvedPage() {
