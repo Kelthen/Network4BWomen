@@ -2,12 +2,19 @@
 dev: rhamon
 github: RhamonK
 branch: claude/rhamon-docs-update-5c8xe5
-current_task: "Photo réelle du hero d'accueil"
+current_task: "Fix crop hero — format zone photo adapté à la vraie photo (groupe)"
 files_locked: []
-updated: 2026-09-07T02:00:00Z
+updated: 2026-09-07T03:00:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-09-07 (4) — Fix crop hero : format 4:3 au lieu de 4:5 (`claude/rhamon-docs-update-5c8xe5`)
+- Retour client : la photo de groupe (5 personnes) était trop recadrée en portrait 4:5, des personnes sortaient du cadre sur les côtés.
+- **Diagnostic** : la zone `.heroVisual` était pensée pour un portrait vertical (arche 200px). La vraie photo est un format paysage 4:3 (groupe large) — les deux formats sont incompatibles sans perte.
+- **Fix** : `public/images/hero.jpg` réexportée **sans recadrage** (1152×864, ratio natif 4:3, 91 Ko). `home.module.css` `.heroVisual` : `aspect-ratio` 4:5 → **4:3** (épouse le format natif, `cover` n'a donc plus besoin de rogner), largeur 42vw/560px → 46vw/620px (compense la baisse de hauteur), `border-radius` arche portrait (200px 200px 24px 24px) → rectangle arrondi uniforme (32px), plus adapté à un format large.
+- Validé : `next build` OK (21 routes) + capture — les 5 personnes sont visibles.
+
 
 ## 2026-09-07 (3) — Photo réelle du hero d'accueil (`claude/rhamon-docs-update-5c8xe5`)
 - `public/images/hero.jpg` : vraie photo NBW (groupe qui rit), recadrée en 4:5 (portrait, centrée horizontalement — source plus large que le ratio cible), compressée 1152×864 → 691×864, 57 Ko.
