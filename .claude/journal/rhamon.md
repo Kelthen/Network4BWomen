@@ -2,12 +2,20 @@
 dev: rhamon
 github: RhamonK
 branch: claude/rhamon-docs-update-5c8xe5
-current_task: "Fix crop hero — format zone photo adapté à la vraie photo (groupe)"
+current_task: "Hero : retour au dégradé — la version 4:3 sans recadrage jugée moins réussie que l'arche d'origine"
 files_locked: []
-updated: 2026-09-07T03:00:00Z
+updated: 2026-09-07T04:00:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-09-07 (5) — Hero : retour au dégradé (`claude/rhamon-docs-update-5c8xe5`)
+- Retour client sur la v4:3 (sans recadrage) : « tellement plus moche qu'avant ». Probablement la forme (rectangle arrondi générique) perçue comme moins premium que l'arche signature d'origine, plutôt que le cadrage lui-même.
+- **Retiré `public/images/hero.jpg`** → le dégradé de secours reprend automatiquement (comportement voulu de `coverImage`, aucun changement de code).
+- **`.heroVisual` restauré** à l'état d'origine : 42vw/560px, `aspect-ratio: 4/5`, arche `200px 200px 24px 24px`.
+- À rediscuter avec le client avant tout nouvel essai : soit une photo au format portrait (compatible avec l'arche signature sans recadrage), soit garder cette photo de groupe mais ailleurs sur le site (About/CTA band, formats plus flexibles) plutôt que dans le hero.
+- Validé : `next build` OK (21 routes) + capture (retour à l'état d'origine confirmé).
+
 
 ## 2026-09-07 (4) — Fix crop hero : format 4:3 au lieu de 4:5 (`claude/rhamon-docs-update-5c8xe5`)
 - Retour client : la photo de groupe (5 personnes) était trop recadrée en portrait 4:5, des personnes sortaient du cadre sur les côtés.
