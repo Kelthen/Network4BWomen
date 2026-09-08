@@ -1,21 +1,22 @@
 // OWNED BY: rhamon — Accueil. Hero éditorial signature (masque + parallaxe).
+// EXPÉRIMENTATION : version pleine largeur (photo en fond + voile éditorial).
 "use client";
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./home.module.css";
-import { coverImage } from "@/lib/media";
 
 /**
- * Hero : eyebrow + titre serif révélé par masque (lignes qui montent),
- * sous-titre, CTA pilules, visuel arrondi à droite avec parallaxe légère.
+ * Hero pleine largeur : la vraie photo NBW occupe tout le fond de la section,
+ * un voile brun s'estompe de gauche à droite pour préserver la lisibilité du
+ * texte à gauche. Titres révélés par masque, sous-titre + CTA pilules.
  * Textes = verbatim (docs/CONTENT.md §0). `prefers-reduced-motion` : parallaxe désactivée.
  */
 export default function Hero() {
-  const visualRef = useRef<HTMLDivElement | null>(null);
+  const bgRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const el = visualRef.current;
+    const el = bgRef.current;
     if (!el) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
@@ -25,7 +26,8 @@ export default function Hero() {
       if (frame) return;
       frame = requestAnimationFrame(() => {
         const y = window.scrollY;
-        el.style.transform = `translateY(calc(-50% + ${y * 0.12}px)) rotate(${y * 0.006}deg)`;
+        // Parallaxe légère : la photo monte 2× moins vite que le scroll.
+        el.style.transform = `translate3d(0, ${y * 0.15}px, 0) scale(1.05)`;
         frame = 0;
       });
     };
@@ -37,12 +39,16 @@ export default function Hero() {
   }, []);
 
   return (
-    <header className={styles.hero}>
-      <div className={styles.wrap}>
-        <p className={`${styles.eyebrow} ${styles.heroEyebrow}`}>
+    <header className={styles.heroFull}>
+      {/* Fond photo + voile — sous le contenu, non interactifs. */}
+      <div ref={bgRef} className={styles.heroBg} aria-hidden="true" />
+      <div className={styles.heroOverlay} aria-hidden="true" />
+
+      <div className={`${styles.wrap} ${styles.heroContent}`}>
+        <p className={`${styles.eyebrow} ${styles.heroEyebrowLight} nbw-eyebrow`}>
           Network of Black Women · Toronto, Ontario
         </p>
-        <h1>
+        <h1 className={styles.heroTitle}>
           <span className={styles.line}>
             <span>Empowering Black Women.</span>
           </span>
@@ -52,34 +58,22 @@ export default function Hero() {
             </span>
           </span>
         </h1>
-        <p className={styles.heroText}>
+        <p className={styles.heroTextLight}>
           A safe and empowering space where Black women and girls grow personally,
           professionally, and collectively through connection, leadership, wellness, and
           opportunity.
         </p>
         <div className={styles.heroCta}>
-          <Link href="/get-involved" className={`${styles.btn} ${styles.btnDark}`}>
-            Join our community
-          </Link>
           <Link href="/donate" className={`${styles.btn} ${styles.btnPink}`}>
             Donate
           </Link>
-          <Link href="/about" className={`${styles.btn} ${styles.btnOutline}`}>
+          <Link href="/get-involved" className={`${styles.btn} ${styles.btnCream}`}>
+            Join our community
+          </Link>
+          <Link href="/about" className={`${styles.btn} ${styles.btnGhost}`}>
             About us
           </Link>
-          <Link href="/programs" className={`${styles.btn} ${styles.btnOutline}`}>
-            Programs
-          </Link>
-          <Link href="/events" className={`${styles.btn} ${styles.btnOutline}`}>
-            Upcoming events
-          </Link>
         </div>
-        <div
-          ref={visualRef}
-          className={styles.heroVisual}
-          style={coverImage("/images/hero.jpg", "linear-gradient(150deg,#e9c8c9,#f6828f 45%,#573425)")}
-          aria-hidden="true"
-        />
       </div>
     </header>
   );

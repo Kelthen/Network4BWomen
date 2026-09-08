@@ -97,6 +97,102 @@
   transform: translateY(-2px);
 }
 
+/* Hero pleine largeur — EXPÉRIMENTATION photo en fond + voile éditorial. */
+.heroFull {
+  position: relative;
+  min-height: min(88vh, 820px);
+  padding: clamp(6rem, 13vw, 10rem) 0 clamp(5rem, 10vw, 8rem);
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--cream);
+  background: var(--brown);
+}
+.heroBg {
+  position: absolute;
+  inset: -4% -4% -4% -4%;
+  z-index: 0;
+  background-image: url('/images/hero.jpg');
+  background-size: cover;
+  background-position: 55% 40%;
+  will-change: transform;
+}
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(68,49,43,0.92) 0%, rgba(68,49,43,0.75) 40%, rgba(68,49,43,0.25) 75%, rgba(68,49,43,0.12) 100%),
+    linear-gradient(180deg, rgba(68,49,43,0.35) 0%, rgba(68,49,43,0) 30%, rgba(68,49,43,0.45) 100%);
+}
+.heroContent {
+  position: relative;
+  z-index: 2;
+}
+.heroEyebrowLight {
+  color: rgba(251, 247, 240, 0.85);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: rise 0.8s 0.1s ease forwards;
+}
+.heroTitle {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  font-size: clamp(2.8rem, 7.5vw, 5.6rem);
+  line-height: 1.02;
+  margin: 1.2rem 0;
+  max-width: 22ch;
+  color: var(--cream);
+  text-shadow: 0 2px 24px rgba(44, 31, 27, 0.5);
+}
+.heroTitle em {
+  font-style: italic;
+  color: #f6c1ca;
+}
+.heroTitle .line {
+  display: block;
+  overflow: hidden;
+}
+.heroTitle .line span {
+  display: block;
+  transform: translateY(105%);
+  animation: mask 1s ease forwards;
+}
+.heroTitle .line:nth-child(1) span { animation-delay: 0.2s; }
+.heroTitle .line:nth-child(2) span { animation-delay: 0.35s; }
+.heroTextLight {
+  max-width: 34rem;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: rgba(251, 247, 240, 0.9);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: rise 0.8s 0.7s ease forwards;
+  text-shadow: 0 1px 12px rgba(44, 31, 27, 0.4);
+}
+.btnCream {
+  background: var(--cream);
+  color: var(--brown);
+}
+.btnCream:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.35);
+}
+.btnGhost {
+  border: 1.5px solid rgba(251, 247, 240, 0.55);
+  color: var(--cream);
+}
+.btnGhost:hover {
+  background: rgba(251, 247, 240, 0.1);
+}
+@media (max-width: 640px) {
+  .heroOverlay {
+    background:
+      linear-gradient(180deg, rgba(68,49,43,0.55) 0%, rgba(68,49,43,0.75) 55%, rgba(68,49,43,0.92) 100%);
+  }
+  .heroBg { background-position: 60% 30%; }
+}
+
 /* Hero signature */
 .hero {
   position: relative;
