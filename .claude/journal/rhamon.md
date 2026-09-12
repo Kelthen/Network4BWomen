@@ -2,12 +2,24 @@
 dev: rhamon
 github: RhamonK
 branch: claude/rhamon-docs-update-5c8xe5
-current_task: "Hero : retour au dégradé — la version 4:3 sans recadrage jugée moins réussie que l'arche d'origine"
+current_task: "Relocalisation Toronto → Alberta (re-confirmée client), sur la branche content/alberta-events-nov9 initiée par serge"
 files_locked: []
-updated: 2026-09-07T04:00:00Z
+updated: 2026-09-12T00:00:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-09-12 — Relocalisation Toronto → Alberta (`content/alberta-events-nov9`)
+- Contexte : la cliente NBW a re-confirmé (via serge, PDF « PRIORITÉ #1 ») que l'organisation est basée en Alberta. Note importante : c'est le 2ᵉ revirement — le projet avait été relocalisé Alberta → Toronto en août 2026 sur demande client également. **Cette version est officielle.**
+- **Branche** : partie de `content/alberta-events-nov9` (déjà initiée par serge, contenait uniquement le commit LandAcknowledgment). Ajout de mes commits par-dessus, pas de duplication.
+- **Wording adopté partout** (repris du commit de serge) : "in Alberta, on the traditional territory of the Blackfoot Confederacy (Siksika, Kainai, and Piikani Nations)".
+- **13 fichiers de code modifiés** : Hero, UpcomingEvents, About (hero paragraph + Our Story quote + "women and girls" → "the black community" — 3 mots demandés dans questionnaire #4), Contact (description + reconnaissance locale), Donate, Conference, Events, Gallery, Get-involved, Resources, opengraph-image, layout.tsx (keywords, JSON-LD `areaServed`/`address`), lib/site.ts.
+- **layout.tsx** JSON-LD : `addressLocality` supprimé (pas de ville fournie), `addressRegion: "ON"` → `"AB"`, `areaServed` → `"Alberta, Canada"`.
+- **CONTACT_PHONE** (`(403) 635-8688`) **inchangé** — indicatif Alberta déjà correct.
+- **6 fichiers de doc mis à jour** : README, CLAUDE.md (+ avertissement anti-régression pour éviter un 3ᵉ revirement accidentel), docs/BRAND.md, docs/TEAM.md, docs/CONTENT.md, PLAN-rhamon.md.
+- Validé : `tsc` OK · `next build` OK (21 routes) · captures desktop + mobile (home, about, contact).
+- ⚠️ **PAS MERGÉ** — en attente de validation visuelle par rhamon (le client humain) avant push sur main.
+
 
 ## 2026-09-07 (5) — Hero : retour au dégradé (`claude/rhamon-docs-update-5c8xe5`)
 - Retour client sur la v4:3 (sans recadrage) : « tellement plus moche qu'avant ». Probablement la forme (rectangle arrondi générique) perçue comme moins premium que l'arche signature d'origine, plutôt que le cadrage lui-même.

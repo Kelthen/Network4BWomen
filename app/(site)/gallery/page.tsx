@@ -10,7 +10,7 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Gallery — Network of Black Women (NBW)",
-  description: "Moments from NBW events and gatherings — celebrating Black women and girls in Toronto, Ontario.",
+  description: "Moments from NBW events and gatherings — celebrating Black women and girls in Alberta.",
 };
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";

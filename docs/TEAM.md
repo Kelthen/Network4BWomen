@@ -18,7 +18,7 @@ Source : PDF « Operational Staff Onboarding — NBW ». À utiliser pour les pa
 ## Contact organisation
 - Email : info.networkofblackwomen@gmail.com
 - Téléphone : (403) 635-8688
-- Localisation : Toronto, Ontario — territoire traditionnel de nombreuses nations, visé par le Traité 13.
+- Localisation : Alberta — territoire traditionnel de la Blackfoot Confederacy (Nations Siksika, Kainai et Piikani).
 
 ## Culture & communication (contexte pour le ton du site)
 - Modes principaux : iMessage + Email (parfois Google Workspace / WhatsApp / Instagram).
