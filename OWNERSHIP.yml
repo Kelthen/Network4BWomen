@@ -76,9 +76,16 @@ files: ["app/(site)/contact/**", "app/api/contact/**", "components/contact/**"]
 status: done
 note: "Rate limiting + honeypot anti-spam ajoutés."
 - area: newsletter
-files: ["app/api/newsletter/**", "components/Newsletter.tsx"]
+files: ["app/api/newsletter/**", "app/(site)/newsletter/**", "components/Newsletter.tsx", "components/FooterNewsletter.tsx", "components/home/NewsletterTeaser.tsx", "lib/newsletterEmails.ts"]
 status: done
-note: "Signup newsletter (footer + accueil), rate limiting ajouté."
+note: |
+  Signup newsletter (footer + accueil), rate limiting.
+  ⚠️ 2026-09-13 — passage en **double opt-in** + désabonnement CASL (migration 0009) :
+  POST /api/newsletter envoie un email de confirmation (48h), GET /api/newsletter/confirm
+  active + envoie welcome + notifie NBW, GET /api/newsletter/unsubscribe désactive
+  (rang conservé pour audit). Nouvelles pages /newsletter/confirmed et /newsletter/unsubscribed.
+  Fix UX au passage : le message d'erreur du FooterNewsletter était en sr-only
+  (invisible aux voyants) — désormais visible avec role=alert.
 - area: photo-lightbox
 files: ["components/photo/**", "components/gallery/Lightbox.tsx"]
 owner: shared

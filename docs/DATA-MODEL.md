@@ -16,7 +16,14 @@ Activer **RLS** sur toutes les tables ; les écritures publiques (formulaires, w
 `id, name, logo_url, url, tier, sort_order`
 
 ### `newsletter_subscribers` [rhamon]
-`id, email (unique), source, subscribed_at, is_active`
+`id, email (unique), source, subscribed_at, is_active, confirmation_token, token_expires_at, confirmed_at, manage_token, unsubscribed_at`
+
+**Double opt-in + CASL** (migration `0009`) :
+- `confirmation_token` : généré à l'inscription, valide `token_expires_at` (48h), consommé au `GET /api/newsletter/confirm`.
+- `confirmed_at` : timestamp de confirmation (clic sur le lien de l'email).
+- `manage_token` : token permanent généré à la confirmation, utilisé par `GET /api/newsletter/unsubscribe`.
+- `unsubscribed_at` : le rang est conservé (audit CASL) — `is_active` passe à `false`.
+- Notif à `NEWSLETTER_NOTIFY_TO` (ou `CONTACT_EMAIL` par défaut) uniquement à la **confirmation**, pas à l'inscription.
 
 ### `donations` [rhamon – Stripe webhook]
 `id, stripe_session_id, amount_cents, currency, donor_name, donor_email, recurring (bool), status, created_at`

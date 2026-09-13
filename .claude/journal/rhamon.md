@@ -1,19 +1,42 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/events-detail-override
-current_task: "Refonte ergonomie /events (override zone serge autorisé par le client) : carte cliquable mobile, CTA Register externe, sections Speakers/Agenda, migration 0008"
+branch: feat/rhamon/newsletter-double-optin
+current_task: "Newsletter : passage en double opt-in (A+B+C) — fix bug erreur invisible du footer, email de confirmation + welcome + notif NBW via Resend, unsubscribe CASL"
 files_locked:
-  - app/(site)/events/page.tsx
-  - app/(site)/events/[slug]/page.tsx
-  - lib/eventText.ts
-  - supabase/migrations/0008_events_registration_speakers_agenda.sql
+  - app/api/newsletter/route.ts
+  - app/api/newsletter/confirm/route.ts
+  - app/api/newsletter/unsubscribe/route.ts
+  - app/(site)/newsletter/**
+  - components/FooterNewsletter.tsx
+  - components/home/NewsletterTeaser.tsx
+  - lib/newsletterEmails.ts
+  - supabase/migrations/0009_newsletter_double_optin.sql
 updated: 2026-09-13T00:00:00Z
 ---
 
 # Journal — rhamon
 
-## 2026-09-13 — Ergonomie /events (override zone serge) — `feat/rhamon/events-detail-override`
+## 2026-09-13 — Newsletter : double opt-in + désabonnement CASL — `feat/rhamon/newsletter-double-optin`
+- **Contexte** : le client (rhamon humain) s'est inscrit avec son mail, aucun feedback visible. Diagnostic : (1) bug FooterNewsletter — message d'erreur en `sr-only` invisible aux voyants ; (2) aucun email de confirmation envoyé, aucune notif à NBW, aucun moyen de désabonnement.
+- **A) Fix bug FooterNewsletter** : erreur passe de `<span className="sr-only">` à `<p role="alert">` visible, avec message spécifique retourné par l'API. Le composant est zone `shared` — modif ciblée UX, sans changement d'API. Serge : rien à refaire.
+- **B+C) Double opt-in complet** :
+  - `POST /api/newsletter` insère un rang **inactif**, génère un `confirmation_token` (48h), envoie un email « Confirm your subscription » via Resend (`lib/newsletterEmails.ts`). Si l'email existe déjà et est confirmé → réponse "already_confirmed" sans re-envoi (privacy). Sinon → upsert et régénération du token.
+  - `GET /api/newsletter/confirm?token=…` (nouvelle route) : vérifie token + expiry, active, génère un `manage_token` permanent (pour unsubscribe), envoie **welcome au subscriber** + **notif à NBW** (`NEWSLETTER_NOTIFY_TO` ou `CONTACT_EMAIL`), redirige vers `/newsletter/confirmed` (avec `?state=…` sur erreur).
+  - `GET /api/newsletter/unsubscribe?token=<manage_token>` (nouvelle route) : `is_active=false`, `unsubscribed_at=now()`, rang conservé (audit CASL). Redirige vers `/newsletter/unsubscribed`.
+  - Pages `/newsletter/confirmed` et `/newsletter/unsubscribed` : landings soignées avec états `ok | already | expired | invalid | unavailable`. `robots: noindex`.
+- **Migration `0009`** : ajoute `confirmation_token, token_expires_at, confirmed_at, manage_token, unsubscribed_at` à `newsletter_subscribers`, plus 2 index uniques partiels sur les tokens. Toutes colonnes nullable, l'existant continue de marcher. Fichier inclut un script SQL commenté pour « grand-parenter » les subscribers existants (leur générer un `manage_token`).
+- **Composants adaptés** : `FooterNewsletter` + `NewsletterTeaser` gèrent 3 états success : `sent` (« check your inbox to confirm 💌 »), `already` (« you're already on the list 💛 »), `error` (visible).
+- **Nouveaux env vars** : `NEWSLETTER_NOTIFY_TO` (fallback `CONTACT_EMAIL`). Documenté dans `.env.example`.
+- **CASL** : conforme (double opt-in = express consent, lien unsubscribe en 1 clic dans chaque welcome email, identification de l'expéditeur + adresse physique dans le footer email).
+- **📌 TODO côté humain** :
+  1. Appliquer migration `0009` sur Supabase.
+  2. Configurer `SUPABASE_SERVICE_ROLE_KEY` + `RESEND_API_KEY` sur Vercel (si pas déjà fait). Sans elles → 503 « Newsletter isn't active yet ».
+  3. Optionnel : script `update … set manage_token = encode(gen_random_bytes(24), 'hex')` pour grand-parenter les subscribers existants (script commenté dans la migration).
+- Validé : (à ce stade) TBD `tsc` + `next build` + capture.
+- ⚠️ **PAS MERGÉ** — en attente de validation par rhamon (client humain).
+
+## 2026-09-13 — Ergonomie /events (override zone serge) — `feat/rhamon/events-detail-override` — MERGÉ (PR #55)
 - **Autorisation** : client humain, sur retour utilisateur mobile (le clic sur une carte ne faisait rien — bouton « Details » masqué en `hidden sm:inline-block` — et description de « Girl Talk » contenait le lien Bloomtickets brut, moche).
 - **Ergonomie liste (`app/(site)/events/page.tsx`)** : carte entière wrappée dans un `<Link>` (mobile & desktop), teaser 2 lignes `line-clamp-2`, chevron `→` visible au hover, focus visible AA. Le teaser est calculé côté serveur par `parseEventDescription()` — retire toute URL brute et coupe à ~140 caractères sur une frontière de mot/phrase.
 - **Page détail (`[slug]/page.tsx`)** : deux améliorations principales — (1) CTA `Register` externe (priorité colonne `registration_url`, sinon URL extraite de la description en rétro-compat), (2) sections optionnelles Speakers + Agenda pilotées par colonnes JSONB. Le formulaire interne `RegistrationForm` est masqué quand un lien externe est présent. Ajout aussi : `dl` structuré (When / Where / Capacity / Category), plage horaire compacte (`OCT 17 → OCT 18 02:30`), JSON-LD schema.org `Event` pour SEO (Google indexe les events).
