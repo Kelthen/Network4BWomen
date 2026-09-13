@@ -28,7 +28,11 @@ Activer **RLS** sur toutes les tables ; les écritures publiques (formulaires, w
 `id, slug, title, purpose, who_it_serves, outcomes (text[]), photos (text[]), sort_order, is_active`
 
 ### `events` [serge]
-`id, slug, title, description, category, starts_at, ends_at, location, cover_url, is_conference (bool), capacity, created_at`
+`id, slug, title, description, category, starts_at, ends_at, location, cover_url, is_conference (bool), capacity, registration_url, speakers (jsonb), agenda (jsonb), created_at`
+
+- `registration_url` : lien externe vers la billetterie (Bloomtickets, Eventbrite…). Si présent, le CTA « Register » de la page détail pointe dessus et le formulaire interne (registrations) est masqué.
+- `speakers` : `jsonb` array de `{ name, role?, bio?, photo_url? }`.
+- `agenda` : `jsonb` array de `{ time, item }`.
 
 ### `registrations` [serge]
 `id, event_id (fk events), name, email, phone, notes, status, created_at`

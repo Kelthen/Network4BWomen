@@ -1,11 +1,17 @@
 // OWNED BY: serge — Events. Wired to Supabase `events` table.
 // Fallback to static placeholder data when Supabase is unavailable.
 // See docs/CONTENT.md §4.
+//
+// ⚠️ 2026-09-13 — édition par rhamon sous override (voir OWNERSHIP.yml + PR).
+//   Ergonomie mobile : carte entièrement cliquable, teaser court sans URL brute,
+//   nouveaux champs optionnels registration_url / speakers / agenda.
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
 import EventsView from "@/components/events/EventsView";
 import { supabase } from "@/lib/supabase";
+import { parseEventDescription } from "@/lib/eventText";
+import { FALLBACK_EVENTS, type EventRow as SharedEventRow } from "@/lib/eventFallbacks";
 
 export const revalidate = 60;
 
@@ -26,26 +32,7 @@ const CATEGORIES = [
   "Past Events Gallery",
 ];
 
-type Event = {
-  id: string;
-  slug: string;
-  title: string;
-  description: string | null;
-  category: string | null;
-  starts_at: string | null;
-  ends_at: string | null;
-  location: string | null;
-  cover_url: string | null;
-  is_conference: boolean;
-  capacity: number | null;
-};
-
-// Fallback placeholder events
-const FALLBACK_EVENTS: Event[] = [
-  { id: "1", slug: "fall-networking-mixer", title: "Fall Networking Mixer", description: null, category: "Networking", starts_at: "2026-09-14T18:00:00Z", ends_at: null, location: "Alberta", cover_url: null, is_conference: false, capacity: null },
-  { id: "2", slug: "wellness-self-care-morning", title: "Wellness & Self-Care Morning", description: null, category: "Health & Wellness", starts_at: "2026-10-05T10:00:00Z", ends_at: null, location: "Alberta", cover_url: null, is_conference: false, capacity: null },
-  { id: "3", slug: "leadership-roundtable", title: "Leadership Roundtable", description: null, category: "Leadership", starts_at: "2026-11-23T14:00:00Z", ends_at: null, location: "Online", cover_url: null, is_conference: false, capacity: null },
-];
+export type Event = SharedEventRow;
 
 function formatDate(iso: string): { month: string; day: string } {
   const d = new Date(iso);
@@ -59,7 +46,9 @@ async function getUpcomingEvents(): Promise<Event[]> {
   try {
     const { data, error } = await supabase
       .from("events")
-      .select("id, slug, title, description, category, starts_at, ends_at, location, cover_url, is_conference, capacity")
+      .select(
+        "id, slug, title, description, category, starts_at, ends_at, location, cover_url, is_conference, capacity, registration_url, speakers, agenda"
+      )
       .gte("starts_at", new Date().toISOString())
       .order("starts_at", { ascending: true })
       .limit(50);
@@ -67,7 +56,7 @@ async function getUpcomingEvents(): Promise<Event[]> {
     if (error || !data || data.length === 0) {
       return FALLBACK_EVENTS;
     }
-    return data;
+    return data as Event[];
   } catch {
     return FALLBACK_EVENTS;
   }
@@ -80,32 +69,38 @@ export default async function EventsPage() {
     <ul className="grid gap-4">
       {events.map((e, i) => {
         const date = e.starts_at ? formatDate(e.starts_at) : { month: "TBD", day: "—" };
+        const parsed = parseEventDescription(e.description);
         return (
           <Reveal
             as="li"
             key={e.id}
             delay={((i % 3) + 1) as 1 | 2 | 3}
-            className="flex items-center gap-5 rounded-2xl bg-white p-5 shadow-[0_1px_0_#e8dcc8] transition hover:-translate-y-1 hover:shadow-[0_24px_48px_-24px_rgba(68,49,43,0.35)] sm:gap-7"
           >
-            <div className="flex w-16 flex-none flex-col items-center rounded-xl bg-brand-brown py-2 text-brand-cream">
-              <span className="text-xs uppercase tracking-wider text-brand-pinkLight">{date.month}</span>
-              <span className="font-serif text-2xl leading-none">{date.day}</span>
-            </div>
-            <div className="flex-1">
-              <h3 className="font-serif text-xl text-brand-brown">{e.title}</h3>
-              <p className="mt-1 text-sm text-brand-brown/80">
-                {e.category}{e.location ? ` · ${e.location}` : ""}
-                {e.capacity ? ` · ${e.capacity} places` : ""}
-              </p>
-              {e.description && (
-                <p className="mt-1 text-sm text-brand-brown/70">{e.description}</p>
-              )}
-            </div>
             <Link
               href={`/events/${e.slug}`}
-              className="hidden flex-none rounded-full border border-brand-brown px-5 py-2 text-sm font-semibold text-brand-brown transition hover:bg-brand-beige sm:inline-block"
+              aria-label={`See details for ${e.title}`}
+              className="group flex items-center gap-5 rounded-2xl bg-white p-5 shadow-[0_1px_0_#e8dcc8] transition hover:-translate-y-1 hover:shadow-[0_24px_48px_-24px_rgba(68,49,43,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-brown sm:gap-7"
             >
-              Details
+              <div className="flex w-16 flex-none flex-col items-center rounded-xl bg-brand-brown py-2 text-brand-cream">
+                <span className="text-xs uppercase tracking-wider text-brand-pinkLight">{date.month}</span>
+                <span className="font-serif text-2xl leading-none">{date.day}</span>
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-serif text-xl text-brand-brown group-hover:underline">{e.title}</h3>
+                <p className="mt-1 text-sm text-brand-brown/80">
+                  {e.category}{e.location ? ` · ${e.location}` : ""}
+                  {e.capacity ? ` · ${e.capacity} places` : ""}
+                </p>
+                {parsed.teaser && (
+                  <p className="mt-1 line-clamp-2 text-sm text-brand-brown/70">{parsed.teaser}</p>
+                )}
+              </div>
+              <span
+                aria-hidden="true"
+                className="flex-none text-brand-brown/60 transition group-hover:translate-x-0.5 group-hover:text-brand-brown"
+              >
+                →
+              </span>
             </Link>
           </Reveal>
         );

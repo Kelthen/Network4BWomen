@@ -10,7 +10,6 @@ import SignatureMoment from "@/components/home/SignatureMoment";
 import CtaBand from "@/components/home/CtaBand";
 import NewsletterTeaser from "@/components/home/NewsletterTeaser";
 import UpcomingEvents from "@/components/home/UpcomingEvents";
-import Testimonials from "@/components/home/Testimonials";
 import Sponsors from "@/components/home/Sponsors";
 
 // Program teasers (3 of NBW's 7 programs — see docs/CONTENT.md §3).
@@ -81,9 +80,6 @@ export default function HomePage() {
 
       {/* Upcoming events (teaser → /events) */}
       <UpcomingEvents />
-
-      {/* Témoignages — plusieurs voix de la communauté */}
-      <Testimonials />
 
       {/* Sponsors & partenaires */}
       <Sponsors />

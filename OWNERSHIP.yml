@@ -94,7 +94,15 @@ note: "Branchée sur Supabase (table programs). Reste : testimonials par program
 - area: events
 files: ["app/(site)/events/**", "app/api/registrations/**", "components/events/**"]
 status: done
-note: "Branchée sur Supabase (events, registrations) + page détail + inscription + rate limiting (Rhamon). Reste : vue calendrier."
+note: |
+  Branchée sur Supabase (events, registrations) + page détail + inscription + rate limiting (Rhamon). Reste : vue calendrier.
+  ⚠️ OVERRIDE 2026-09-13 (rhamon, autorisation explicite du client humain) : refonte ergonomie
+  liste (carte 100% cliquable mobile, teaser sans URL brute) + page détail (CTA Register externe
+  via nouvelle colonne `registration_url` OU URL extraite de la description, sections Speakers
+  et Agenda pilotées par JSONB, JSON-LD schema.org Event). Nouveaux champs Supabase :
+  registration_url + speakers + agenda (migration 0008). Le fichier `lib/eventText.ts`
+  (helper d'extraction d'URL) reste zone rhamon. Serge : prévenir Rhamon avant tout
+  refactor de EventsView / RegistrationForm pour éviter conflit.
 - area: conference
 files: ["app/(site)/conference/**", "components/conference/**"]
 status: wip
