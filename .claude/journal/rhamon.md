@@ -1,15 +1,21 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: claude/rhamon-docs-update-5c8xe5
-current_task: "Relocalisation Toronto → Alberta (re-confirmée client), sur la branche content/alberta-events-nov9 initiée par serge"
+branch: feat/rhamon/home-girl-talk-event
+current_task: "Home UpcomingEvents : remplacement placeholder Fall Networking Mixer par vrai événement Girl Talk & Gratitude (OCT 17, The Loft on 5th)"
 files_locked: []
-updated: 2026-09-12T00:00:00Z
+updated: 2026-09-13T00:00:00Z
 ---
 
 # Journal — rhamon
 
-## 2026-09-12 — Relocalisation Toronto → Alberta (`content/alberta-events-nov9`)
+## 2026-09-13 — Home : vrai événement « Girl Talk & Gratitude » (`feat/rhamon/home-girl-talk-event`)
+- Source : patch `nbw-remaining-fixes.patch.txt` (Drive Kelthen, envoyé par serge/kelthenrift le 11/09). Le patch propose 2 changements résiduels après la relocalisation Alberta — un dans ma zone (home), un dans la zone serge (events).
+- **Ma part (appliquée)** : `components/home/UpcomingEvents.tsx` → premier événement de la carte accueil passe de `SEP 14 · Fall Networking Mixer · Alberta` (placeholder) à `OCT 17 · Girl Talk & Gratitude · The Loft on 5th` (vrai événement, inscription Bloomtickets).
+- **Zone serge (non touchée)** : `app/(site)/events/page.tsx` `FALLBACK_EVENTS[0]` contient encore l'ancien placeholder. À traiter par serge sur sa branche — protocole non-collision respecté. À signaler.
+- Validé : `tsc` OK · `next build` OK (21 routes).
+
+## 2026-09-12 — Relocalisation Toronto → Alberta (`content/alberta-events-nov9`) — MERGÉ (PR #53)
 - Contexte : la cliente NBW a re-confirmé (via serge, PDF « PRIORITÉ #1 ») que l'organisation est basée en Alberta. Note importante : c'est le 2ᵉ revirement — le projet avait été relocalisé Alberta → Toronto en août 2026 sur demande client également. **Cette version est officielle.**
 - **Branche** : partie de `content/alberta-events-nov9` (déjà initiée par serge, contenait uniquement le commit LandAcknowledgment). Ajout de mes commits par-dessus, pas de duplication.
 - **Wording adopté partout** (repris du commit de serge) : "in Alberta, on the traditional territory of the Blackfoot Confederacy (Siksika, Kainai, and Piikani Nations)".
