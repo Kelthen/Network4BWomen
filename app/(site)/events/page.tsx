@@ -12,7 +12,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Events — Network of Black Women (NBW)",
   description:
-    "Upcoming gatherings, the annual conference and retreat, networking, and community events for Black women in Toronto, Ontario.",
+    "Upcoming gatherings, the annual conference and retreat, networking, and community events for Black women in Alberta.",
 };
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
@@ -42,8 +42,8 @@ type Event = {
 
 // Fallback placeholder events
 const FALLBACK_EVENTS: Event[] = [
-  { id: "1", slug: "fall-networking-mixer", title: "Fall Networking Mixer", description: null, category: "Networking", starts_at: "2026-09-14T18:00:00Z", ends_at: null, location: "Toronto", cover_url: null, is_conference: false, capacity: null },
-  { id: "2", slug: "wellness-self-care-morning", title: "Wellness & Self-Care Morning", description: null, category: "Health & Wellness", starts_at: "2026-10-05T10:00:00Z", ends_at: null, location: "Toronto", cover_url: null, is_conference: false, capacity: null },
+  { id: "1", slug: "fall-networking-mixer", title: "Fall Networking Mixer", description: null, category: "Networking", starts_at: "2026-09-14T18:00:00Z", ends_at: null, location: "Alberta", cover_url: null, is_conference: false, capacity: null },
+  { id: "2", slug: "wellness-self-care-morning", title: "Wellness & Self-Care Morning", description: null, category: "Health & Wellness", starts_at: "2026-10-05T10:00:00Z", ends_at: null, location: "Alberta", cover_url: null, is_conference: false, capacity: null },
   { id: "3", slug: "leadership-roundtable", title: "Leadership Roundtable", description: null, category: "Leadership", starts_at: "2026-11-23T14:00:00Z", ends_at: null, location: "Online", cover_url: null, is_conference: false, capacity: null },
 ];
 

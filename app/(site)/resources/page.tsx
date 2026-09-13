@@ -11,7 +11,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Resources — Network of Black Women (NBW)",
   description:
-    "Career, scholarships, mental health, business directory, and community resources for Black women in Toronto, Ontario.",
+    "Career, scholarships, mental health, business directory, and community resources for Black women in Alberta.",
 };
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";

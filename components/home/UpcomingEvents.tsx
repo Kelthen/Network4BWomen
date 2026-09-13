@@ -6,8 +6,8 @@ const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text
 
 // Placeholder — les vrais événements vivent sur /events (table Supabase `events`).
 const EVENTS = [
-  { month: "SEP", day: "14", title: "Fall Networking Mixer", cat: "Networking", where: "Toronto" },
-  { month: "OCT", day: "05", title: "Wellness & Self-Care Morning", cat: "Health & Wellness", where: "Toronto" },
+  { month: "SEP", day: "14", title: "Fall Networking Mixer", cat: "Networking", where: "Alberta" },
+  { month: "OCT", day: "05", title: "Wellness & Self-Care Morning", cat: "Health & Wellness", where: "Alberta" },
   { month: "NOV", day: "23", title: "Leadership Roundtable", cat: "Leadership", where: "Online" },
 ];
 

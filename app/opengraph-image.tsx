@@ -32,7 +32,7 @@ export default function Image() {
             fontWeight: 600,
           }}
         >
-          Network of Black Women · Toronto, Ontario
+          Network of Black Women · Alberta
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>

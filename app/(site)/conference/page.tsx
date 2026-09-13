@@ -12,7 +12,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Annual Conference — Network of Black Women (NBW)",
   description:
-    "NBW's flagship annual conference — keynotes, workshops, and community for Black women in Toronto, Ontario.",
+    "NBW's flagship annual conference — keynotes, workshops, and community for Black women in Alberta.",
 };
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
