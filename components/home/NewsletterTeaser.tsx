@@ -4,7 +4,7 @@
 import { useState } from "react";
 import styles from "./home.module.css";
 
-type Status = "idle" | "sending" | "ok" | "error";
+type Status = "idle" | "sending" | "sent" | "already" | "error";
 
 export default function NewsletterTeaser() {
   const [status, setStatus] = useState<Status>("idle");
@@ -22,9 +22,9 @@ export default function NewsletterTeaser() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, source: "home" }),
       });
-      const json = (await res.json().catch(() => ({}))) as { error?: string };
+      const json = (await res.json().catch(() => ({}))) as { error?: string; state?: string };
       if (res.ok) {
-        setStatus("ok");
+        setStatus(json.state === "already_confirmed" ? "already" : "sent");
         form.reset();
       } else {
         setStatus("error");
@@ -44,9 +44,13 @@ export default function NewsletterTeaser() {
             Stay connected
           </p>
           <h2>Stay Connected.</h2>
-          {status === "ok" ? (
+          {status === "sent" ? (
             <p className={styles.fieldNote} role="status">
-              Thank you! You&apos;re on the list. 💛
+              Almost there — check your inbox to confirm your subscription. 💌
+            </p>
+          ) : status === "already" ? (
+            <p className={styles.fieldNote} role="status">
+              You&apos;re already on the list — thanks for being with us. 💛
             </p>
           ) : (
             <>
