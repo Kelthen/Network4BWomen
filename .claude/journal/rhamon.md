@@ -1,15 +1,33 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: claude/rhamon-docs-update-5c8xe5
-current_task: "Relocalisation Toronto → Alberta (re-confirmée client), sur la branche content/alberta-events-nov9 initiée par serge"
-files_locked: []
-updated: 2026-09-12T00:00:00Z
+branch: feat/rhamon/events-detail-override
+current_task: "Refonte ergonomie /events (override zone serge autorisé par le client) : carte cliquable mobile, CTA Register externe, sections Speakers/Agenda, migration 0008"
+files_locked:
+  - app/(site)/events/page.tsx
+  - app/(site)/events/[slug]/page.tsx
+  - lib/eventText.ts
+  - supabase/migrations/0008_events_registration_speakers_agenda.sql
+updated: 2026-09-13T00:00:00Z
 ---
 
 # Journal — rhamon
 
-## 2026-09-12 — Relocalisation Toronto → Alberta (`content/alberta-events-nov9`)
+## 2026-09-13 — Ergonomie /events (override zone serge) — `feat/rhamon/events-detail-override`
+- **Autorisation** : client humain, sur retour utilisateur mobile (le clic sur une carte ne faisait rien — bouton « Details » masqué en `hidden sm:inline-block` — et description de « Girl Talk » contenait le lien Bloomtickets brut, moche).
+- **Ergonomie liste (`app/(site)/events/page.tsx`)** : carte entière wrappée dans un `<Link>` (mobile & desktop), teaser 2 lignes `line-clamp-2`, chevron `→` visible au hover, focus visible AA. Le teaser est calculé côté serveur par `parseEventDescription()` — retire toute URL brute et coupe à ~140 caractères sur une frontière de mot/phrase.
+- **Page détail (`[slug]/page.tsx`)** : deux améliorations principales — (1) CTA `Register` externe (priorité colonne `registration_url`, sinon URL extraite de la description en rétro-compat), (2) sections optionnelles Speakers + Agenda pilotées par colonnes JSONB. Le formulaire interne `RegistrationForm` est masqué quand un lien externe est présent. Ajout aussi : `dl` structuré (When / Where / Capacity / Category), plage horaire compacte (`OCT 17 → OCT 18 02:30`), JSON-LD schema.org `Event` pour SEO (Google indexe les events).
+- **Nouveau util (`lib/eventText.ts`, zone rhamon)** : `parseEventDescription()` + `shortTeaser()` + `registerLabelFor()`. Testable en isolation, aucun side-effect Supabase.
+- **Schéma (`supabase/migrations/0008_events_registration_speakers_agenda.sql`)** : ajoute `registration_url` (text), `speakers` (jsonb), `agenda` (jsonb) — tous nullable. Contraintes légères `jsonb_typeof = 'array'`. **La migration doit être exécutée manuellement** dans Supabase (je n'ai pas pu identifier le projet NBW dans l'org MCP visible depuis cette session).
+- **Fallback events code** : mis à jour pour matcher — `FALLBACK_EVENTS[0]` = Girl Talk & Gratitude (avec `registration_url`, description propre, capacity 30, ends_at).
+- **📌 TODO données Supabase** (à faire par la personne qui a accès à la base NBW) :
+  1. Girl Talk : sortir l'URL Bloomtickets de `description` → `registration_url`, laisser la prose seule dans `description`.
+  2. Wellness & Self-Care Morning : `location` = « Toronto » en base → passer à « Alberta » (le fallback code est déjà correct — c'est la donnée qui traîne).
+- **Docs mis à jour** : `docs/DATA-MODEL.md` (3 nouveaux champs `events`), `OWNERSHIP.yml` (override daté avec périmètre précis, mention à Serge de prévenir avant refactor EventsView/RegistrationForm).
+- Validé : (à ce stade) TBD `tsc` + `next build`. Captures TBD.
+- ⚠️ **PAS MERGÉ** — en attente de validation visuelle par rhamon (client humain).
+
+## 2026-09-12 — Relocalisation Toronto → Alberta (`content/alberta-events-nov9`) — MERGÉ (PR #53)
 - Contexte : la cliente NBW a re-confirmé (via serge, PDF « PRIORITÉ #1 ») que l'organisation est basée en Alberta. Note importante : c'est le 2ᵉ revirement — le projet avait été relocalisé Alberta → Toronto en août 2026 sur demande client également. **Cette version est officielle.**
 - **Branche** : partie de `content/alberta-events-nov9` (déjà initiée par serge, contenait uniquement le commit LandAcknowledgment). Ajout de mes commits par-dessus, pas de duplication.
 - **Wording adopté partout** (repris du commit de serge) : "in Alberta, on the traditional territory of the Blackfoot Confederacy (Siksika, Kainai, and Piikani Nations)".
