@@ -17,10 +17,14 @@ type TeaserEvent = {
   where: string;
 };
 
+// Programme réel NBW (questionnaire 2026-09-15). Ordre chronologique.
 const EVENTS: TeaserEvent[] = [
-  { slug: "girl-talk-and-gratitude",       month: "OCT", day: "17", title: "Girl Talk & Gratitude",         cat: "Networking",       where: "The Loft on 5th" },
-  { slug: "wellness-self-care-morning",    month: "OCT", day: "05", title: "Wellness & Self-Care Morning", cat: "Health & Wellness", where: "Alberta" },
-  { slug: "leadership-roundtable",         month: "NOV", day: "23", title: "Leadership Roundtable",         cat: "Leadership",        where: "Online" },
+  { slug: "girl-talk-and-gratitude",      month: "OCT", day: "17", title: "Girl Talk & Gratitude",       cat: "Networking",         where: "Lethbridge AB" },
+  { slug: "chapter-collective",           month: "NOV", day: "01", title: "Chapter Collective",           cat: "Community",          where: "TBA" },
+  { slug: "nbw-career-conversations",     month: "JAN", day: "TBD", title: "NBW: Career Conversations",   cat: "Professional",       where: "TBA" },
+  { slug: "paint-and-sip",                month: "MAR", day: "05", title: "Paint & Sip",                  cat: "Community",          where: "Lethbridge AB" },
+  { slug: "our-essence-conference",       month: "MAR", day: "06", title: "Our Essence Conference",      cat: "Annual Conference",  where: "Excite Lethbridge" },
+  { slug: "she-deserves-rest",            month: "MAR", day: "07", title: "She Deserves Rest",            cat: "Wellness",           where: "TBA" },
 ];
 
 export default function UpcomingEvents() {

@@ -4,7 +4,7 @@ import Image from "next/image";
 import LandAcknowledgment from "./LandAcknowledgment";
 import CookiePreferencesButton from "./CookiePreferencesButton";
 import FooterNewsletter from "./FooterNewsletter";
-import { SOCIALS, CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/site";
+import { SOCIALS, CONTACT_EMAIL } from "@/lib/site";
 
 const EXPLORE = [
   { href: "/about", label: "About" },
@@ -76,7 +76,6 @@ export default function Footer() {
           </ul>
           <div className="mt-5 text-brand-cream/80">
             <a href={`mailto:${CONTACT_EMAIL}`} className="block hover:text-brand-pink">{CONTACT_EMAIL}</a>
-            <a href={`tel:${CONTACT_PHONE.replace(/[^0-9+]/g, "")}`} className="hover:text-brand-pink">{CONTACT_PHONE}</a>
           </div>
         </nav>
 

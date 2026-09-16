@@ -10,26 +10,27 @@ import SignatureMoment from "@/components/home/SignatureMoment";
 import CtaBand from "@/components/home/CtaBand";
 import NewsletterTeaser from "@/components/home/NewsletterTeaser";
 import UpcomingEvents from "@/components/home/UpcomingEvents";
+import Testimonials from "@/components/home/Testimonials";
 import Sponsors from "@/components/home/Sponsors";
 
-// Program teasers (3 of NBW's 7 programs — see docs/CONTENT.md §3).
-// img = photo path (drop the file in public/); grad = brand-gradient fallback.
+// Program teasers (3 of NBW's programs — see docs/CONTENT.md §3).
+// Subheadings verbatim from questionnaire 2026-09-15.
 const PROGRAMS = [
   {
-    title: "Professional Development",
-    text: "Workshops, mentorship, and tools to move your career forward.",
+    title: "Networking",
+    text: "Opportunities for professional connections for Business Owners & Thought Leaders.",
     img: "/images/home/professional-development.jpg",
     grad: "linear-gradient(160deg,#97ac9f,#e8dcc8)",
   },
   {
     title: "Leadership",
-    text: "Shaping the next generation of leaders and voices.",
+    text: "Inspiring the next generation of leaders & voices.",
     img: "/images/home/leadership.jpg",
     grad: "linear-gradient(160deg,#e9c8c9,#ffbbbb)",
   },
   {
-    title: "Health & Wellness",
-    text: "Caring for yourself and the community, without guilt.",
+    title: "Community & Events",
+    text: "Fostering a safe space for the Black community to thrive.",
     img: "/images/home/health-wellness.jpg",
     grad: "linear-gradient(160deg,#c9a24b,#e8dcc8)",
   },
@@ -54,7 +55,7 @@ export default function HomePage() {
             Programs &amp; initiatives
           </Reveal>
           <Reveal as="h2" delay={1}>
-            Spaces to grow, together.
+            Opportunities to connect, Network &amp; Thrive.
           </Reveal>
           <div className={styles.cards}>
             {PROGRAMS.map((p, i) => (
@@ -80,6 +81,9 @@ export default function HomePage() {
 
       {/* Upcoming events (teaser → /events) */}
       <UpcomingEvents />
+
+      {/* Témoignages — voix réelles de la communauté (fallback + Supabase) */}
+      <Testimonials />
 
       {/* Sponsors & partenaires */}
       <Sponsors />

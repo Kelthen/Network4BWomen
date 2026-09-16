@@ -51,13 +51,13 @@ export default function CtaBand() {
           <div className={styles.grid}>
             <h2>
               <span className={styles.line}>
-                <span>Every Black Woman</span>
+                <span>A Safe Space</span>
               </span>
               <span className={styles.line}>
-                <span>Deserves To Be</span>
+                <span>For Black Women</span>
               </span>
               <span className={styles.line}>
-                <span>Celebrated.</span>
+                <span>To&nbsp;Thrive.</span>
               </span>
             </h2>
             <div>
@@ -68,13 +68,12 @@ export default function CtaBand() {
                     Email us:{" "}
                     <a href="mailto:info.networkofblackwomen@gmail.com">
                       info.networkofblackwomen@gmail.com
-                    </a>{" "}
-                    · <a href="tel:+14036358688">(403) 635-8688</a>
+                    </a>
                   </p>
                 </div>
                 <div>
                   <b>Other ways to help</b>
-                  <p>Volunteer · Mentor · Share our mission · Host a fundraiser</p>
+                  <p>Volunteer · Vend · Sponsor · Become a Speaker</p>
                 </div>
               </div>
               <div className={styles.actions}>

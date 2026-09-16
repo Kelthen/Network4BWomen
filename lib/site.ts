@@ -5,10 +5,12 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3
 export const SITE_NAME = "Network of Black Women";
 export const SITE_TAGLINE = "Empowering Black Women. Building Community. Creating Leaders.";
 export const SITE_DESCRIPTION =
-  "Network of Black Women (NBW) is a sisterhood for Black women and girls in Alberta — empowering, connecting, and uplifting through community, leadership, wellness, and opportunity.";
+  "Network of Black Women (NBW) is a network for Black women and girls in Alberta — empowering, connecting, and uplifting through community, leadership, and opportunity.";
 
 export const CONTACT_EMAIL = "info.networkofblackwomen@gmail.com";
-export const CONTACT_PHONE = "(403) 635-8688";
+// Numéro retiré du site public sur demande NBW (2026-09-15). L'e-mail reste
+// le point d'entrée principal. Ré-activation possible en réintroduisant la
+// constante — le composant Footer / JSON-LD ne l'affichent plus.
 
 // Réseaux sociaux — comptes réels NBW (questionnaire de contenu). Facebook/TikTok
 // pas encore fournis par NBW → volontairement absents (pas de lien mort/placeholder).

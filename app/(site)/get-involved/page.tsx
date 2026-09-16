@@ -8,7 +8,7 @@ import Reveal from "@/components/home/Reveal";
 export const metadata: Metadata = {
   title: "Get Involved — Network of Black Women (NBW)",
   description:
-    "Volunteer, mentor, speak, partner, sponsor, or serve on the board — many ways to help NBW grow.",
+    "Volunteer, speak, partner, sponsor, serve on the board, or become a vendor — many ways to help NBW grow.",
 };
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
@@ -30,13 +30,6 @@ const WAYS: Way[] = [
     accent: "linear-gradient(160deg,#97ac9f,#e8dcc8)",
   },
   {
-    title: "Become a Mentor",
-    desc: "Share your experience and guide a woman or girl on her journey.",
-    cta: "Become a mentor",
-    href: "/contact",
-    accent: "linear-gradient(160deg,#e9c8c9,#ffbbbb)",
-  },
-  {
     title: "Become a Speaker",
     desc: "Speak at a workshop, a panel, or our annual conference.",
     cta: "Propose a talk",
@@ -51,8 +44,8 @@ const WAYS: Way[] = [
     accent: "linear-gradient(160deg,#97ac9f,#6e9179)",
   },
   {
-    title: "Corporate Sponsorship",
-    desc: "Support our programs and annual conference through corporate sponsorship.",
+    title: "Sponsorship",
+    desc: "Support our programs and annual conference through sponsorship.",
     cta: "Become a sponsor",
     href: "/contact",
     accent: "linear-gradient(160deg,#f6828f,#44312b)",
@@ -86,10 +79,10 @@ export default function GetInvolvedPage() {
           delay={1}
           className="mt-4 max-w-4xl font-serif text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl"
         >
-          There&apos;s a place for you in this sisterhood.
+          There&apos;s a place for you in this network.
         </Reveal>
         <Reveal as="p" delay={2} className="mt-6 max-w-2xl text-lg text-brand-brown/80">
-          Volunteering, mentoring, speaking, partnering, or giving — every contribution helps the
+          Volunteering, speaking, partnering, sponsoring, or giving — every contribution helps the
           community grow and uplifts Black women across Alberta.
         </Reveal>
       </header>
@@ -132,7 +125,7 @@ export default function GetInvolvedPage() {
                 Your gift funds spaces where Black women thrive.
               </h2>
               <p className="mt-4 max-w-md text-brand-cream/80">
-                Programs, scholarships, events, wellness — every contribution has a real, lasting
+                Programs, scholarships, events, community — every contribution has a real, lasting
                 impact.
               </p>
             </div>

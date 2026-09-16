@@ -34,15 +34,15 @@
 ## 2. À propos `/about` — [rhamon] → `app/(site)/about/**`
 
 **Our Story / About Us (verbatim, 🟢 PUBLIC)** :
-> « Network of Black Women was created on the goal to create a sisterhood community in Alberta for Black Women and a space for Black Women to be celebrated, to be themselves. »
+> « Network of Black Women was created on the goal to create a network community in Alberta for Black Women and a space for Black Women to be celebrated, to be themselves. »
 
 **Mission (verbatim, 🟢 PUBLIC)** :
 > « Our mission is to empower, connect, and uplift Black Women by fostering a supportive community by curating meaningful opportunities to grow. We are dedicated to creating spaces where Black Women can share their stories, celebrate one another's successes, and build lasting, transformative networks. Through collaboration and mutual support, we aim to break down barriers, amplify voices, and ensure that Black women gain the skills and tools needed to thrive both personally and professionally. »
 
 **Vision (verbatim, 🟢 PUBLIC)** :
-> « Our vision is to create a strong, inclusive, safe and supportive environment where Black Women are celebrated for their work, creativity and contributions to society. Through our initiatives we envision a future where Black Women, united in sisterhood, empower one another through shared experiences and mutual support, while being equipped to succeed in all aspects of their lives. In this community, Black Women's voices are amplified, their achievements are recognized, and their collective strength drives positive change. »
+> « Our vision is to create a strong, inclusive, safe and supportive environment where Black Women are celebrated for their work, creativity and contributions to society. Through our initiatives we envision a future where Black Women, united in network, empower one another through shared experiences and mutual support, while being equipped to succeed in all aspects of their lives. In this community, Black Women's voices are amplified, their achievements are recognized, and their collective strength drives positive change. »
 
-**Valeurs (verbatim, 🟢 PUBLIC)** : Équité (Equity) · Sororité (Sisterhood) · Community Care · Responsabilité (Accountability) · Autonomisation collective (Collective Empowerment).
+**Valeurs (verbatim, 🟢 PUBLIC)** : Équité (Equity) · Network · Community Care · Responsabilité (Accountability) · Autonomisation collective (Collective Empowerment).
 
 **Sections de la page** : Our Story · Mission · Vision · Our Values · Why NBW Exists · Community Impact · Timeline of Growth · Meet Our Board of Directors · Meet Our Leadership Team.
 

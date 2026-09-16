@@ -78,7 +78,7 @@ export default async function GalleryPage() {
           Our community, in full colour.
         </Reveal>
         <Reveal as="p" delay={2} className="mt-6 max-w-2xl text-lg text-brand-brown/80">
-          Moments from our events and gatherings — celebrating Black women and sisterhood.
+          Moments from our events and gatherings — celebrating Black women and our network.
         </Reveal>
       </header>
 

@@ -44,7 +44,7 @@ export default function Image() {
         </div>
 
         <div style={{ fontSize: 28, color: "rgba(251,247,240,0.75)", fontFamily: "Arial, sans-serif" }}>
-          A sisterhood for Black women & girls · info.networkofblackwomen@gmail.com
+          A network for Black women & girls · info.networkofblackwomen@gmail.com
         </div>
       </div>
     ),

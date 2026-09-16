@@ -7,16 +7,25 @@ const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text
 
 type Sponsor = { name: string; logo_url: string | null };
 
+// Sponsors passés fournis par NBW (questionnaire 2026-09-15). Logos + permissions
+// d'affichage explicites toujours en attente — pour le moment on montre les noms
+// en wordmark comme reconnaissance publique. Fallback quand Supabase est vide.
+const FALLBACK_SPONSORS: Sponsor[] = [
+  { name: "RBC", logo_url: null },
+  { name: "McCain Foods", logo_url: null },
+  { name: "BIPOC", logo_url: null },
+];
+
 async function getSponsors(): Promise<Sponsor[]> {
   try {
     const { data, error } = await supabase
       .from("sponsors")
       .select("name, logo_url")
       .order("sort_order", { ascending: true });
-    if (error || !data) return [];
+    if (error || !data || data.length === 0) return FALLBACK_SPONSORS;
     return data;
   } catch {
-    return [];
+    return FALLBACK_SPONSORS;
   }
 }
 
@@ -32,7 +41,7 @@ export default async function Sponsors() {
               Sponsors &amp; community partners
             </Reveal>
             <Reveal as="h2" delay={1} className="mt-3 font-serif text-3xl md:text-4xl text-brand-brown">
-              Built together, with our partners.
+              Previous sponsors &amp; community partners.
             </Reveal>
           </div>
           <Reveal delay={1}>

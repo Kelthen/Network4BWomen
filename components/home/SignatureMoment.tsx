@@ -101,7 +101,7 @@ export default function SignatureMoment() {
               Our community
             </p>
             <h2 className="mt-5 max-w-3xl font-serif text-3xl font-semibold leading-[1.08] text-brand-cream sm:text-5xl md:text-6xl">
-              A sisterhood where every Black woman is seen, celebrated, and&nbsp;lifted.
+              Creating a space where Black Women are seen, celebrated and encouraged to strive for&nbsp;success.
             </h2>
           </div>
         </div>
