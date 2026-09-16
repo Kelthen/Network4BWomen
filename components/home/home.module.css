@@ -451,6 +451,16 @@
   filter: blur(0) saturate(1.08) brightness(1);
   clip-path: inset(0 0 0 0 round 44px);
 }
+/* Ancre le crop vers le haut (position 15%) — sur desktop le container est
+   plus large que la photo native, `cover` rognerait 60 px en haut/bas et
+   coupait la tête des femmes en bordure. Avec « center 15% » le crop se fait
+   en bas (pieds) plutôt qu'en haut (têtes) — visages toujours visibles.
+   `!important` force le surclassement du `background-position: center` inline
+   posé par coverImage(). */
+.ctaBand .bg,
+.ctaBand.in .bg {
+  background-position: center 15% !important;
+}
 /* Sur mobile la photo horizontale est trop rognée par `cover` — on la ramène
    en pleine largeur (les 6 femmes du groupe restent visibles) et le dégradé
    de secours prend le dessus/dessous.
