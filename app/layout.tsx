@@ -16,7 +16,6 @@ import {
   SITE_TAGLINE,
   SITE_DESCRIPTION,
   CONTACT_EMAIL,
-  CONTACT_PHONE,
   SOCIALS,
 } from "@/lib/site";
 
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
     "Network of Black Women",
     "NBW",
     "Black women",
-    "sisterhood",
+    "network",
     "Alberta",
     "Blackfoot Confederacy",
     "community",
@@ -91,7 +90,6 @@ const orgJsonLd = {
   logo: `${SITE_URL}/images/brand/logo-primary.png`,
   description: SITE_DESCRIPTION,
   email: CONTACT_EMAIL,
-  telephone: CONTACT_PHONE,
   areaServed: "Alberta, Canada",
   address: {
     "@type": "PostalAddress",

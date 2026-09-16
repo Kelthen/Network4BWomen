@@ -8,13 +8,13 @@ import TeamGrid from "@/components/about/TeamGrid";
 export const metadata: Metadata = {
   title: "About — Network of Black Women (NBW)",
   description:
-    "Our story, mission, vision, and the team behind NBW — a sisterhood for Black women in Alberta.",
+    "Our story, mission, vision, and the team behind NBW — a network for Black women in Alberta.",
 };
 
 // Values (verbatim CONTENT §2) + short editorial gloss.
 const VALUES = [
   { name: "Equity", desc: "Opening doors and levelling the playing field." },
-  { name: "Sisterhood", desc: "Standing by one another, celebrating each woman." },
+  { name: "Network", desc: "Standing by one another, celebrating each woman." },
   { name: "Community Care", desc: "Caring for one another, unconditionally." },
   { name: "Accountability", desc: "Keeping our commitments, with integrity." },
   { name: "Collective Empowerment", desc: "The strength of the group moves each of us forward." },
@@ -74,7 +74,7 @@ export default function AboutPage() {
               &ldquo;
             </span>
             <p className="mt-7 font-serif text-[1.7rem] leading-[1.2] md:mt-9 md:text-[2.6rem] md:leading-[1.15]">
-              Network of Black Women was created on the goal to create a sisterhood community in
+              Network of Black Women was created on the goal to create a network community in
               Alberta for Black Women and a space for Black Women to be celebrated, to be
               themselves.
             </p>
@@ -103,7 +103,7 @@ export default function AboutPage() {
               Our vision is to create a strong, inclusive, safe and supportive environment where
               Black Women are celebrated for their work, creativity and contributions to society.
               Through our initiatives we envision a future where Black Women, united in
-              sisterhood, empower one another through shared experiences and mutual support, while
+              network, empower one another through shared experiences and mutual support, while
               being equipped to succeed in all aspects of their lives. In this community, Black
               Women&apos;s voices are amplified, their achievements are recognized, and their
               collective strength drives positive change.

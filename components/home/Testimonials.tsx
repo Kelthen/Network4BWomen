@@ -6,6 +6,23 @@ const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text
 
 type Testimonial = { quote: string; author_name: string; author_role: string | null };
 
+// Citations réelles fournies par NBW (questionnaire 2026-09-15). Servent de fallback
+// tant que la table Supabase `testimonials` n'est pas peuplée.
+const FALLBACK_TESTIMONIALS: Testimonial[] = [
+  {
+    quote:
+      "The Network of Black Women is a wonderful organization that provides accessibility to resources and personal/professional support systems to Black women of all ages across Southern Alberta and beyond. Through partnerships and collaborations the NBW opens the door for creativity whilst highlighting the necessity of self-care and accessibility.",
+    author_name: "Board of Directors Member",
+    author_role: null,
+  },
+  {
+    quote:
+      "I have had the pleasure of attending a Network of Black Women's event. The pickleball event was thoughtfully organized and was filled with friendly faces and a warm community of Black women uplifting each other, with a side of friendly competition. I strongly encourage anyone looking to come hang out and try something new. Everyone is so welcoming.",
+    author_name: "Community member",
+    author_role: null,
+  },
+];
+
 async function getTestimonials(): Promise<Testimonial[]> {
   try {
     const { data, error } = await supabase
@@ -14,10 +31,10 @@ async function getTestimonials(): Promise<Testimonial[]> {
       .eq("is_featured", true)
       .order("sort_order", { ascending: true })
       .limit(3);
-    if (error || !data) return [];
+    if (error || !data || data.length === 0) return FALLBACK_TESTIMONIALS;
     return data;
   } catch {
-    return [];
+    return FALLBACK_TESTIMONIALS;
   }
 }
 
@@ -31,7 +48,7 @@ export default async function Testimonials() {
           Voices from the community
         </Reveal>
         <Reveal as="h2" delay={1} className="mt-3 max-w-2xl font-serif text-3xl md:text-4xl text-brand-brown">
-          Sisterhood, in their own words.
+          Our network, in their own words.
         </Reveal>
 
         {quotes.length === 0 ? (

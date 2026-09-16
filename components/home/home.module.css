@@ -165,6 +165,19 @@
   opacity: 0.9;
   filter: saturate(1.05);
   will-change: transform;
+  /* Placer la forme DERRIÈRE le texte du hero (demande NBW 2026-09-15 :
+     « edit the shape at the front to be behind the word Women »). */
+  z-index: 0;
+}
+/* Le wrap doit créer un contexte de pile pour que z-index sur .heroVisual /
+   .heroEyebrow / h1 / heroText / heroCta fonctionne comme prévu. */
+.hero .wrap {
+  position: relative;
+  z-index: 1;
+}
+.hero .wrap > *:not(.heroVisual) {
+  position: relative;
+  z-index: 1;
 }
 .heroVisual::after {
   content: "";
@@ -231,7 +244,7 @@
 }
 .stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 2rem;
   margin-top: 2.5rem;
 }
@@ -245,6 +258,12 @@
   font-size: 0.9rem;
   opacity: 0.8;
   margin-top: 0.3rem;
+}
+@media (max-width: 1080px) {
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
+  }
 }
 @media (max-width: 820px) {
   .stats {

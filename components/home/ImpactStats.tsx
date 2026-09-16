@@ -4,14 +4,14 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./home.module.css";
 
-// Chiffres = placeholder (à confirmer avec NBW) — voir docs/CONTENT.md §1.
+// Chiffres réels fournis par NBW (questionnaire 2026-09-15). Le "+" trailing est
+// ajouté par <Counter/> une fois l'animation terminée — signifie « au moins ».
 const STATS = [
-  { end: 480, label: "Members connected" },
-  { end: 65, label: "Events hosted" },
-  { end: 30, label: "Professional workshops" },
+  { end: 200, label: "Women supported" },
+  { end: 10, label: "Events hosted" },
+  { end: 15, label: "Professional programming" },
   { end: 1200, label: "Volunteer hours" },
-  { end: 18, label: "Scholarships awarded" },
-  { end: 24, label: "Community partnerships" },
+  { end: 20, label: "Black Businesses supported" },
 ] as const;
 
 function Counter({ end }: { end: number }) {

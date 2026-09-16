@@ -37,7 +37,7 @@ export const FALLBACK_EVENTS: EventRow[] = [
     cover_url: null,
     is_conference: false,
     capacity: 30,
-    registration_url: "https://network-of-black-women.bloomtickets.ca/event/2960?GirlTalk&Gratitude",
+    registration_url: "https://network-of-black-women.bloomtickets.ca/event/3228",
     speakers: null,
     agenda: null,
   },

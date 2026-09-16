@@ -31,7 +31,7 @@ export const FEATURED_EVENT: FeaturedEvent | null = {
   location: "The Loft on 5th",
   category: "Networking",
   flyer: "/images/events/girl-talk-gratitude.jpg",
-  ticketUrl: "https://network-of-black-women.bloomtickets.ca/event/2960?GirlTalk&Gratitude",
+  ticketUrl: "https://network-of-black-women.bloomtickets.ca/event/3228",
   promoteFrom: "2026-09-01T00:00:00-04:00",
 };
 

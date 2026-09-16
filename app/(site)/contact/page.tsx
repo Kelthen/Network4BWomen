@@ -40,15 +40,6 @@ export default function ContactPage() {
                 </a>
               </div>
               <div>
-                <p className={EYEBROW}>Phone</p>
-                <a
-                  href="tel:+14036358688"
-                  className="mt-2 block font-serif text-xl text-brand-brown hover:text-brand-pink"
-                >
-                  (403) 635-8688
-                </a>
-              </div>
-              <div>
                 <p className={EYEBROW}>Where we are</p>
                 <p className="mt-2 text-brand-brown/80">
                   Alberta — traditional territory of the Blackfoot Confederacy.

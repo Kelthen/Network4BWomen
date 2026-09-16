@@ -69,7 +69,7 @@ The ${SITE_NAME} team
 ${CONTACT_EMAIL}`,
     html: shell(`
       <p style="margin:0 0 12px;font-size:22px;font-family:Georgia,serif">Welcome to ${escapeHtml(SITE_NAME)} 💛</p>
-      <p style="margin:0 0 16px">Thank you for joining our community. You'll hear from us about programs, events, scholarships, and stories from the sisterhood.</p>
+      <p style="margin:0 0 16px">Thank you for joining our community. You'll hear from us about programs, events, scholarships, and stories from the network.</p>
       <p style="margin:0 0 24px">We keep things warm, useful, and never too frequent.</p>
       <p style="margin:24px 0 0;font-size:12px;color:#8a6d1f">
         You subscribed as ${escapeHtml(email)}. Not you, or changed your mind?
