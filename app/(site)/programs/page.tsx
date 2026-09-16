@@ -133,8 +133,14 @@ export default async function ProgramsPage() {
                 className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_1px_0_#e8dcc8] transition hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-24px_rgba(68,49,43,0.35)]"
               >
                 <div
-                  className="h-32 w-full"
-                  style={coverImage(photoSrc, p.accent ?? ACCENTS[i % ACCENTS.length])}
+                  className="h-48 w-full sm:h-56"
+                  style={coverImage(
+                    photoSrc,
+                    p.accent ?? ACCENTS[i % ACCENTS.length],
+                    // Focus haut-centre : les visages des femmes sont généralement
+                    // dans la moitié haute des photos NBW (portrait ou groupe).
+                    "center 20%",
+                  )}
                   aria-hidden="true"
                 />
                 <div className="flex flex-1 flex-col p-6">

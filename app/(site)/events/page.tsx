@@ -23,13 +23,15 @@ export const metadata: Metadata = {
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
 
-const CATEGORIES = [
-  "Annual Conference",
-  "Annual Retreat",
-  "Networking",
-  "Community Gatherings",
-  "Sports & Wellness",
-  "Past Events Gallery",
+// Chaque catégorie pointe vers l'événement correspondant (fallback events NBW 2026-09-15).
+// « Past Events Gallery » va sur la galerie. Cliquable sur mobile + desktop.
+const CATEGORIES: { label: string; href: string }[] = [
+  { label: "Annual Conference", href: "/events/our-essence-conference" },
+  { label: "Annual Retreat", href: "/events/she-deserves-rest" },
+  { label: "Networking", href: "/events/girl-talk-and-gratitude" },
+  { label: "Community Gatherings", href: "/events/chapter-collective" },
+  { label: "Sports & Wellness", href: "/events/paint-and-sip" },
+  { label: "Past Events Gallery", href: "/gallery" },
 ];
 
 export type Event = SharedEventRow;
@@ -134,8 +136,14 @@ export default async function EventsPage() {
         <Reveal as="p" className={EYEBROW}>Explore</Reveal>
         <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {CATEGORIES.map((c, i) => (
-            <Reveal as="li" key={c} delay={((i % 3) + 1) as 1 | 2 | 3} className="rounded-xl border border-brand-beige bg-brand-beige/30 px-5 py-4 font-serif text-lg text-brand-brown">
-              {c}
+            <Reveal as="li" key={c.label} delay={((i % 3) + 1) as 1 | 2 | 3}>
+              <Link
+                href={c.href}
+                className="group flex items-center justify-between gap-3 rounded-xl border border-brand-beige bg-brand-beige/30 px-5 py-4 font-serif text-lg text-brand-brown transition hover:-translate-y-0.5 hover:bg-brand-beige/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-brown"
+              >
+                <span className="group-hover:underline">{c.label}</span>
+                <span aria-hidden="true" className="text-brand-brown/60 transition group-hover:translate-x-0.5 group-hover:text-brand-brown">→</span>
+              </Link>
             </Reveal>
           ))}
         </ul>

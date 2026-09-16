@@ -429,14 +429,16 @@
   align-items: flex-start;
   isolation: isolate;
 }
-/* la "photo" (placeholder) : état initial caché, zoomée, floue, désaturée */
+/* la "photo" (placeholder) : état initial caché, floue, désaturée.
+   Le scale reste très proche de 1 pour éviter de rogner les sujets aux
+   extrémités d'une photo horizontale (groupe NBW). */
 .ctaBand .bg {
   position: absolute;
   inset: 0;
   background:
     radial-gradient(120% 90% at 72% 18%, #ffe6cf 0%, transparent 55%),
     linear-gradient(160deg, #8aa9d4 0%, var(--pink) 55%, var(--wine) 100%);
-  transform: scale(1.28);
+  transform: scale(1.06);
   filter: blur(26px) saturate(0.65) brightness(0.9);
   clip-path: inset(100% 0 0 0 round 44px);
   transition: clip-path 1.25s cubic-bezier(0.16, 1, 0.3, 1),
@@ -448,6 +450,15 @@
   transform: scale(1);
   filter: blur(0) saturate(1.08) brightness(1);
   clip-path: inset(0 0 0 0 round 44px);
+}
+/* Sur mobile la photo horizontale est trop rognée par `cover` — on la ramène
+   en pleine largeur (les 6 femmes du groupe restent visibles) et le dégradé
+   de secours prend le dessus/dessous. */
+@media (max-width: 820px) {
+  .ctaBand .bg {
+    background-size: 100% auto, cover;
+    background-position: center 30%, center;
+  }
 }
 .ctaBand .bg::after {
   content: "";

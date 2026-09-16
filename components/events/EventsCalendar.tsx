@@ -1,4 +1,9 @@
 // OWNED BY: serge — Events. Vue calendrier mensuelle (client).
+//
+// ⚠️ 2026-09-16 — édité par rhamon sous override : les jours affichent
+// désormais les TITRES des événements (pas seulement un point) — cellule plus
+// haute, titre tronqué, clic sur l'événement ouvre la page détail directement,
+// clic ailleurs sur la cellule ouvre le panneau du jour comme avant.
 "use client";
 
 import { useMemo, useState } from "react";
@@ -82,25 +87,80 @@ export default function EventsCalendar({ events }: { events: CalendarEvent[] }) 
           const dayEvents = eventsOn(day);
           const isSelected = selected && sameDay(day, selected);
           const isToday = sameDay(day, new Date());
-          return (
-            <button
-              key={i}
-              type="button"
-              disabled={dayEvents.length === 0}
-              onClick={() => setSelected(isSelected ? null : day)}
-              className={`flex aspect-square flex-col items-center justify-center rounded-lg text-sm transition ${
-                isSelected
-                  ? "bg-brand-brown text-brand-cream"
-                  : dayEvents.length > 0
-                    ? "bg-brand-beige/50 text-brand-brown hover:bg-brand-beige"
-                    : "text-brand-brown/40"
-              } ${isToday && !isSelected ? "ring-1 ring-inset ring-brand-pink" : ""}`}
-            >
-              <span>{day.getDate()}</span>
-              {dayEvents.length > 0 && (
-                <span className={`mt-0.5 h-1 w-1 rounded-full ${isSelected ? "bg-brand-cream" : "bg-brand-pink"}`} />
+          const hasEvent = dayEvents.length > 0;
+          const single = dayEvents.length === 1 ? dayEvents[0] : null;
+
+          const cellClass = `flex min-h-[68px] flex-col overflow-hidden rounded-lg p-1.5 text-left transition sm:min-h-[92px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand-brown ${
+            isSelected
+              ? "bg-brand-brown text-brand-cream"
+              : hasEvent
+                ? "bg-brand-beige/40 text-brand-brown hover:bg-brand-beige"
+                : "text-brand-brown/40"
+          } ${isToday && !isSelected ? "ring-1 ring-inset ring-brand-pink" : ""}`;
+
+          // Contenu de cellule commun.
+          const cellInner = (
+            <>
+              <span className="text-[11px] font-semibold sm:text-xs">{day.getDate()}</span>
+              {hasEvent && (
+                <ul className="mt-1 flex flex-col gap-0.5">
+                  {dayEvents.slice(0, 2).map((e) => (
+                    <li
+                      key={e.id}
+                      title={e.title}
+                      className={`truncate rounded px-1 py-0.5 text-[10px] leading-tight sm:text-[11px] ${
+                        isSelected
+                          ? "bg-brand-cream/20 text-brand-cream"
+                          : "bg-brand-pink/25 text-brand-brown"
+                      }`}
+                    >
+                      {e.title}
+                    </li>
+                  ))}
+                  {dayEvents.length > 2 && (
+                    <li className={`px-1 text-[10px] ${isSelected ? "text-brand-cream/80" : "text-brand-brown/60"}`}>
+                      +{dayEvents.length - 2} more
+                    </li>
+                  )}
+                </ul>
               )}
-            </button>
+            </>
+          );
+
+          // 1 événement → cellule entière = Link direct vers la page détail.
+          if (single) {
+            return (
+              <Link
+                key={i}
+                href={`/events/${single.slug}`}
+                aria-label={`${day.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })} — ${single.title}`}
+                className={cellClass}
+              >
+                {cellInner}
+              </Link>
+            );
+          }
+
+          // Plusieurs événements → cellule = bouton qui ouvre le panneau du jour.
+          if (hasEvent) {
+            return (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setSelected(isSelected ? null : day)}
+                aria-label={`${day.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}: ${dayEvents.length} events`}
+                className={cellClass}
+              >
+                {cellInner}
+              </button>
+            );
+          }
+
+          // Jour sans événement → simple div.
+          return (
+            <div key={i} className={cellClass} aria-hidden="true">
+              {cellInner}
+            </div>
           );
         })}
       </div>

@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "Blackfoot Confederacy",
     "community",
     "leadership",
-    "mentorship",
+    "networking",
     "wellness",
     "nonprofit",
   ],
