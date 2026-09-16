@@ -97,7 +97,11 @@ serge:
 - area: programs
 files: ["app/(site)/programs/**", "components/programs/**"]
 status: done
-note: "Branchée sur Supabase (table programs). Reste : testimonials par programme + bouton d'inscription (voir PLAN-serge.md)."
+note: |
+  Branchée sur Supabase (table programs). Reste : testimonials par programme + bouton d'inscription (voir PLAN-serge.md).
+  ⚠️ OVERRIDE 2026-09-15 (rhamon, autorisation client) : refonte content questionnaire NBW —
+  suppression Mentorship + Health & Wellness (7 → 5 programmes), subheadings NBW verbatim,
+  quote hero « Want to Make An Impact », suppression du mot « sisterhood » (§ purge globale).
 - area: events
 files: ["app/(site)/events/**", "app/api/registrations/**", "components/events/**"]
 status: done
@@ -110,14 +114,25 @@ note: |
   registration_url + speakers + agenda (migration 0008). Le fichier `lib/eventText.ts`
   (helper d'extraction d'URL) reste zone rhamon. Serge : prévenir Rhamon avant tout
   refactor de EventsView / RegistrationForm pour éviter conflit.
+  ⚠️ OVERRIDE 2026-09-15 (rhamon) : fallback events remis à jour avec les 6 événements réels
+  du questionnaire NBW (Girl Talk, Chapter Collective, Career Conversations, Paint & Sip,
+  Our Essence Conference, She Deserves Rest). Fichier `lib/eventFallbacks.ts` reste zone rhamon.
 - area: conference
 files: ["app/(site)/conference/**", "components/conference/**"]
 status: wip
-note: "Speakers branchés (conference_speakers). Reste : itinéraire, hébergement, FAQ, pricing — questionnaire envoyé à NBW, réponses en cours."
+note: |
+  Speakers branchés (conference_speakers). Reste : itinéraire, hébergement, FAQ, pricing — questionnaire envoyé à NBW, réponses en cours.
+  ⚠️ OVERRIDE 2026-09-15 (rhamon, autorisation client) : contenu Our Essence Conference
+  (mars 5-7 2027, Excite Lethbridge, thème « She Deserves Rest ») intégré verbatim du
+  questionnaire NBW. Nouvelles sections Who is this for + Takeaways + Work with us +
+  FAQ à jour. Speakers, agenda, pricing = TBA (à peupler quand NBW livre).
 - area: resources
 files: ["app/(site)/resources/**", "components/resources/**"]
 status: done
-note: "Branchée sur Supabase (table resources), 7 catégories. Contenu réel en attente (questionnaire NBW)."
+note: |
+  Branchée sur Supabase (table resources), 5 catégories. Contenu réel en attente (questionnaire NBW).
+  ⚠️ OVERRIDE 2026-09-15 (rhamon, autorisation client) : Templates & Guides retirée,
+  Scholarships passe en « Coming Soon », wording aligné questionnaire NBW.
 - area: news-blog
 files: ["app/(site)/news/**", "components/news/**"]
 status: done

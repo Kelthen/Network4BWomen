@@ -12,46 +12,35 @@ export const revalidate = 60; // ISR — revalidate every 60s
 export const metadata: Metadata = {
   title: "Programs — Network of Black Women (NBW)",
   description:
-    "Professional development, leadership, mentorship, wellness, youth programming, and more — NBW's programs for Black women and girls.",
+    "Networking, leadership, community events, youth programming, and our annual conference — NBW's programs for Black women and girls.",
 };
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
 
-// Fallback data when Supabase is unavailable or empty.
+// Fallback data when Supabase is unavailable or empty. Aligné sur le questionnaire
+// NBW 2026-09-15 : Mentorship + Health & Wellness retirés, subheadings mis à jour.
 const FALLBACK_PROGRAMS = [
   {
-    title: "Professional Development",
-    purpose: "Workshops, tools, and skill-building to help members grow their careers.",
-    who_it_serves: "Working professionals & career changers",
+    title: "Networking",
+    purpose: "Opportunities for professional connections for Business Owners & Thought Leaders.",
+    who_it_serves: "Business owners & thought leaders",
     accent: "linear-gradient(160deg,#97ac9f,#e8dcc8)",
   },
   {
     title: "Leadership Development",
-    purpose: "Programs that shape the next generation of confident, capable leaders.",
+    purpose: "Inspiring the next generation of leaders & voices.",
     who_it_serves: "Emerging & established leaders",
     accent: "linear-gradient(160deg,#e9c8c9,#ffbbbb)",
   },
   {
-    title: "Mentorship",
-    purpose: "One-to-one and group mentoring that connects experience with ambition.",
-    who_it_serves: "Mentees & mentors",
-    accent: "linear-gradient(160deg,#c9a24b,#e8dcc8)",
-  },
-  {
-    title: "Community Events",
-    purpose: "Gatherings that build connection, belonging, and sisterhood.",
+    title: "Community & Events",
+    purpose: "Fostering a safe space for the Black community to thrive.",
     who_it_serves: "The whole community",
     accent: "linear-gradient(160deg,#97ac9f,#6e9179)",
   },
   {
-    title: "Health & Wellness",
-    purpose: "Caring for mind and body — because wellbeing is foundational.",
-    who_it_serves: "Members & families",
-    accent: "linear-gradient(160deg,#e8dcc8,#c9a24b)",
-  },
-  {
     title: "Youth Programming",
-    purpose: "Mentorship, skills, and celebration for Black girls and young women.",
+    purpose: "Skills, celebration, and belonging for Black girls and young women.",
     who_it_serves: "Youth & young adults",
     accent: "linear-gradient(160deg,#f6828f,#44312b)",
   },
@@ -119,11 +108,11 @@ export default async function ProgramsPage() {
           delay={1}
           className="mt-4 max-w-4xl font-serif text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl"
         >
-          Spaces to grow — personally, professionally, together.
+          Want to Make An Impact.
         </Reveal>
         <Reveal as="p" delay={2} className="mt-6 max-w-2xl text-lg text-brand-brown/80">
           NBW&apos;s programs support Black women and girls at every stage — through connection,
-          leadership, wellness, and opportunity.
+          leadership, community, and opportunity.
         </Reveal>
       </header>
 
@@ -144,8 +133,15 @@ export default async function ProgramsPage() {
                 className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_1px_0_#e8dcc8] transition hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-24px_rgba(68,49,43,0.35)]"
               >
                 <div
-                  className="h-32 w-full"
-                  style={coverImage(photoSrc, p.accent ?? ACCENTS[i % ACCENTS.length])}
+                  className="h-56 w-full sm:h-64"
+                  style={coverImage(
+                    photoSrc,
+                    p.accent ?? ACCENTS[i % ACCENTS.length],
+                    // Ancré tout en haut : les visages ET les cheveux des femmes
+                    // doivent rester visibles (retour NBW 2026-09-16 : « on doit
+                    // voir les visages des personnes avec leur chevelure »).
+                    "center top",
+                  )}
                   aria-hidden="true"
                 />
                 <div className="flex flex-1 flex-col p-6">
