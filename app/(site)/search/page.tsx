@@ -20,10 +20,10 @@ const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text
 // Pages statiques du site — toujours présentes dans l'index, même si Supabase tombe.
 const STATIC_PAGES: SearchHit[] = [
   { type: "Page", title: "About", excerpt: "Our story, mission, vision, and the team behind NBW.", href: "/about" },
-  { type: "Page", title: "Programs", excerpt: "Professional development, leadership, mentorship, and more.", href: "/programs" },
+  { type: "Page", title: "Programs", excerpt: "Networking, leadership, community events, youth programming, and our annual conference.", href: "/programs" },
   { type: "Page", title: "Events", excerpt: "Upcoming gatherings, workshops, and networking.", href: "/events" },
   { type: "Page", title: "Conference", excerpt: "NBW's annual conference — speakers, schedule, registration.", href: "/conference" },
-  { type: "Page", title: "Get Involved", excerpt: "Volunteer, mentor, speak, or partner with NBW.", href: "/get-involved" },
+  { type: "Page", title: "Get Involved", excerpt: "Volunteer, speak, partner, sponsor, or become a vendor with NBW.", href: "/get-involved" },
   { type: "Page", title: "Donate", excerpt: "Support NBW with a one-time or monthly gift.", href: "/donate" },
   { type: "Page", title: "Resources", excerpt: "Career, scholarships, mental health, and community resources.", href: "/resources" },
   { type: "Page", title: "News & Stories", excerpt: "Success stories, community news, and wellness tips.", href: "/news" },

@@ -4,11 +4,17 @@
 // elle s'affiche par-dessus.
 import type { CSSProperties } from "react";
 
-export function coverImage(src: string, fallbackGradient: string): CSSProperties {
+export function coverImage(
+  src: string,
+  fallbackGradient: string,
+  /** CSS background-position (défaut: center). Utile pour des portraits où on
+   *  veut garder les visages visibles (ex: "center top" ou "50% 25%"). */
+  position: string = "center",
+): CSSProperties {
   return {
     backgroundImage: `url('${src}'), ${fallbackGradient}`,
     backgroundSize: "cover",
-    backgroundPosition: "center",
+    backgroundPosition: position,
     backgroundRepeat: "no-repeat",
   };
 }
