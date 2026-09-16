@@ -26,14 +26,14 @@ const ACCENTS = [
   "linear-gradient(160deg,#e9c8c9,#97ac9f)",
 ];
 
+// Descriptions alignées sur le questionnaire NBW 2026-09-15. « Templates & Guides » retiré.
+// « Scholarships » explicitement marqué "Coming Soon" côté copy (Supabase peut surcharger).
 const FALLBACK_RESOURCES = [
-  { title: "Career", description: "Job boards, résumé help, and interview preparation.", category: "Career", url: null, file_url: null },
-  { title: "Scholarships", description: "Funding opportunities for members and youth.", category: "Scholarships", url: null, file_url: null },
+  { title: "Scholarships (Coming Soon)", description: "Funding opportunities for the black community.", category: "Scholarships", url: null, file_url: null },
+  { title: "Career", description: "Job Boards, resume help, & Professional Development tools.", category: "Career", url: null, file_url: null },
   { title: "Mental Health", description: "Culturally-aware wellness and counselling resources.", category: "Mental Health", url: null, file_url: null },
   { title: "Business Directory", description: "Discover and support Black-owned businesses.", category: "Business Directory", url: null, file_url: null },
-  { title: "Professional Development Tools", description: "Courses, templates, and skill-building.", category: "Professional Development", url: null, file_url: null },
   { title: "Community Resources", description: "Local services and support networks.", category: "Community", url: null, file_url: null },
-  { title: "Templates & Guides", description: "Practical downloads to help you move forward.", category: "Templates", url: null, file_url: null },
 ];
 
 type Resource = {

@@ -1,21 +1,28 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/newsletter-double-optin
-current_task: "Newsletter : passage en double opt-in (A+B+C) — fix bug erreur invisible du footer, email de confirmation + welcome + notif NBW via Resend, unsubscribe CASL"
+branch: content/serge-override-nbw-202609
+current_task: "Passe questionnaire NBW 2026-09-15 : 2 PRs (rhamon zone puis override serge). Sisterhood → Network site-wide, 6 nouveaux événements, Our Essence Conference, phone gone, real impact numbers, real testimonials, real CTA photo."
 files_locked:
-  - app/api/newsletter/route.ts
-  - app/api/newsletter/confirm/route.ts
-  - app/api/newsletter/unsubscribe/route.ts
-  - app/(site)/newsletter/**
-  - components/FooterNewsletter.tsx
-  - components/home/NewsletterTeaser.tsx
-  - lib/newsletterEmails.ts
-  - supabase/migrations/0009_newsletter_double_optin.sql
-updated: 2026-09-13T00:00:00Z
+  - app/(site)/programs/page.tsx
+  - app/(site)/conference/page.tsx
+  - app/(site)/resources/page.tsx
+  - lib/eventFallbacks.ts
+updated: 2026-09-16T00:00:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-09-16 — Questionnaire NBW 2026-09-15 (rhamon PR #57 + serge override)
+- **Scope** : passe complète du questionnaire client daté du 2026-09-15 en 2 PRs distinctes.
+- **PR #57 (zone rhamon)** : Hero eyebrow strippé, arche z-index derrière texte, Impact Stats 5 chiffres réels, UpcomingEvents 6 événements, Programs teaser (Networking + Community & Events, Health & Wellness sorti), SignatureMoment quote, Testimonials réintégrée + 2 vraies citations, Sponsors fallback RBC/McCain/BIPOC, CtaBand (nouvelle tagline + boutons Volunteer/Vend/Sponsor/Speaker + vraie photo NBW), numéro (403) 635-8688 supprimé partout, Get Involved cleanup (Mentor gone, Corporate → Sponsorship), sisterhood → network site-wide (about verbatim inclus, opengraph, keywords, docs).
+- **PR override serge (this)** : Programs (7 → 5, subheadings NBW verbatim, quote "Want to Make An Impact"), Events fallback (6 événements réels), Conference (Our Essence complet, thème "She Deserves Rest", Excite Lethbridge, Who is this for + Takeaways + Work with us + FAQ), Resources (5 catégories, Templates & Guides sorti).
+- **Décisions humaines confirmées** : option A pour sisterhood (purge partout, y compris Vision verbatim). Override serge autorisé. Photo CTA branchée direct.
+- **Photo CTA band** : image17.jpg du docx (6 femmes NBW en floral) → `/public/images/cta-band.jpg` (1920×1279, 355 KB).
+- Validé : `tsc` OK · `next build` OK (23 routes).
+- ⚠️ Toujours en attente NBW : logos + permissions sponsors, contenu Board Governance section, photos Pixieset pickleball, speakers + agenda + pricing Our Essence.
+
+## 2026-09-13 — Newsletter : double opt-in + désabonnement CASL — `feat/rhamon/newsletter-double-optin` — MERGÉ (PR #56)
 
 ## 2026-09-13 — Newsletter : double opt-in + désabonnement CASL — `feat/rhamon/newsletter-double-optin`
 - **Contexte** : le client (rhamon humain) s'est inscrit avec son mail, aucun feedback visible. Diagnostic : (1) bug FooterNewsletter — message d'erreur en `sr-only` invisible aux voyants ; (2) aucun email de confirmation envoyé, aucune notif à NBW, aucun moyen de désabonnement.
