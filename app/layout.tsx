@@ -65,14 +65,26 @@ export const metadata: Metadata = {
   // sur Vercel dès qu'un code de vérification est obtenu ; aucun redéploiement de code
   // n'est nécessaire au-delà de ça. Omis tant que la variable n'existe pas (pas de
   // balise meta vide dans le HTML).
-  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || process.env.NEXT_PUBLIC_PINTEREST_VERIFICATION
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+  process.env.NEXT_PUBLIC_PINTEREST_VERIFICATION ||
+  process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
     ? {
         verification: {
           ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
             google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
           }),
-          ...(process.env.NEXT_PUBLIC_PINTEREST_VERIFICATION && {
-            other: { "p:domain_verify": process.env.NEXT_PUBLIC_PINTEREST_VERIFICATION },
+          // « other » accepte plusieurs paires clé/valeur. Pinterest (p:domain_verify)
+          // et Bing (msvalidate.01) coexistent ici quand les deux env vars sont posées.
+          ...((process.env.NEXT_PUBLIC_PINTEREST_VERIFICATION ||
+            process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION) && {
+            other: {
+              ...(process.env.NEXT_PUBLIC_PINTEREST_VERIFICATION && {
+                "p:domain_verify": process.env.NEXT_PUBLIC_PINTEREST_VERIFICATION,
+              }),
+              ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION && {
+                "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION,
+              }),
+            },
           }),
         },
       }
