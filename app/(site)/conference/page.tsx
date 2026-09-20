@@ -279,19 +279,19 @@ export default async function ConferencePage() {
               </Link>
             </Reveal>
           </div>
-          {/* Collage 3 photos — Sip N' Slay pattern.
-              Chaque photo cliquable (visionneuse album), reveal cascadé depuis
-              la droite, objectPosition qui garde les visages en cadre.
-              Mobile : 2 col (big pleine largeur + 2 petites côte à côte).
-              Desktop : L-shape (big 2x2 + 2 petites empilées à droite). */}
-          <div className="relative grid grid-cols-2 gap-3 md:grid-cols-3">
-            <Reveal from="right" className="col-span-2 md:row-span-2">
+          {/* Collage 3 photos — pattern « feature + 2 sous » :
+              1 grande photo landscape en top, 2 portraits côte à côte en dessous.
+              Aucune géométrie tortueuse, aucun décalage, chaque photo lit
+              son ratio natif (pas de tête coupée). Toutes cliquables et
+              groupées en album (navigation ◀▶ dans la visionneuse). */}
+          <div className="grid gap-3">
+            <Reveal from="right">
               <ZoomablePhoto
                 src="/images/events/img-6705.jpg"
                 gradient="linear-gradient(160deg,#8aa9d4,#f6828f)"
                 alt="Group photo — NBW community gathering"
-                className="aspect-square rounded-2xl"
-                objectPosition="center 35%"
+                className="aspect-[4/3] rounded-2xl"
+                objectPosition="center 40%"
                 group={[
                   "/images/events/img-6705.jpg",
                   "/images/events/img-6720.jpg",
@@ -300,36 +300,38 @@ export default async function ConferencePage() {
                 index={0}
               />
             </Reveal>
-            <Reveal from="right" delay={1}>
-              <ZoomablePhoto
-                src="/images/events/img-6720.jpg"
-                gradient="linear-gradient(160deg,#c9a24b,#e8dcc8)"
-                alt="Speaker moment — NBW event"
-                className="aspect-square rounded-2xl"
-                objectPosition="center 25%"
-                group={[
-                  "/images/events/img-6705.jpg",
-                  "/images/events/img-6720.jpg",
-                  "/images/events/img-6793.jpg",
-                ]}
-                index={1}
-              />
-            </Reveal>
-            <Reveal from="right" delay={2}>
-              <ZoomablePhoto
-                src="/images/events/img-6793.jpg"
-                gradient="linear-gradient(160deg,#97ac9f,#6e9179)"
-                alt="Panel session — NBW event"
-                className="aspect-square rounded-2xl"
-                objectPosition="center 25%"
-                group={[
-                  "/images/events/img-6705.jpg",
-                  "/images/events/img-6720.jpg",
-                  "/images/events/img-6793.jpg",
-                ]}
-                index={2}
-              />
-            </Reveal>
+            <div className="grid grid-cols-2 gap-3">
+              <Reveal from="right" delay={1}>
+                <ZoomablePhoto
+                  src="/images/events/img-6720.jpg"
+                  gradient="linear-gradient(160deg,#c9a24b,#e8dcc8)"
+                  alt="Speaker moment — NBW event"
+                  className="aspect-[3/4] rounded-2xl"
+                  objectPosition="center 20%"
+                  group={[
+                    "/images/events/img-6705.jpg",
+                    "/images/events/img-6720.jpg",
+                    "/images/events/img-6793.jpg",
+                  ]}
+                  index={1}
+                />
+              </Reveal>
+              <Reveal from="right" delay={2}>
+                <ZoomablePhoto
+                  src="/images/events/img-6793.jpg"
+                  gradient="linear-gradient(160deg,#97ac9f,#6e9179)"
+                  alt="Panel session — NBW event"
+                  className="aspect-[3/4] rounded-2xl"
+                  objectPosition="center 20%"
+                  group={[
+                    "/images/events/img-6705.jpg",
+                    "/images/events/img-6720.jpg",
+                    "/images/events/img-6793.jpg",
+                  ]}
+                  index={2}
+                />
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
