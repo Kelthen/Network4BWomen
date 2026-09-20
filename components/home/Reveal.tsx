@@ -10,6 +10,10 @@ type RevealProps = {
   as?: ElementType;
   /** Délai en cascade : 1, 2 ou 3 (mappe .d1/.d2/.d3). */
   delay?: 1 | 2 | 3;
+  /** Direction d'apparition. « up » (défaut) monte de 30px. « left »/« right »
+   *  glissent depuis le côté correspondant sur 60px avec un léger scale — donne
+   *  un effet éditorial « lux » demandé par NBW 2026-09-20. */
+  from?: "up" | "left" | "right";
   className?: string;
 };
 
@@ -17,7 +21,7 @@ type RevealProps = {
  * Enveloppe un bloc et lui ajoute la classe `.in` quand il entre dans le viewport.
  * Se dégrade proprement : si `prefers-reduced-motion`, le CSS neutralise la transition.
  */
-export default function Reveal({ children, as, delay, className }: RevealProps) {
+export default function Reveal({ children, as, delay, from, className }: RevealProps) {
   const Tag = as ?? "div";
   const ref = useRef<HTMLElement | null>(null);
   const [shown, setShown] = useState(false);
@@ -40,8 +44,10 @@ export default function Reveal({ children, as, delay, className }: RevealProps) 
     return () => io.disconnect();
   }, []);
 
+  const fromClass =
+    from === "left" ? styles.revealLeft : from === "right" ? styles.revealRight : styles.reveal;
   const classes = [
-    styles.reveal,
+    fromClass,
     delay ? styles[`d${delay}`] : "",
     shown ? styles.in : "",
     className ?? "",

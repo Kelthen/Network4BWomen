@@ -74,7 +74,7 @@ export default function AboutPage() {
               &ldquo;
             </span>
             <p className="mt-7 font-serif text-[1.7rem] leading-[1.2] md:mt-9 md:text-[2.6rem] md:leading-[1.15]">
-              Network of Black Women was created on the goal to create a network community in
+              Network of Black Women was created on the goal to create a community in
               Alberta for Black Women and a space for Black Women to be celebrated, to be
               themselves.
             </p>
@@ -103,7 +103,7 @@ export default function AboutPage() {
               Our vision is to create a strong, inclusive, safe and supportive environment where
               Black Women are celebrated for their work, creativity and contributions to society.
               Through our initiatives we envision a future where Black Women, united in
-              network, empower one another through shared experiences and mutual support, while
+              community, empower one another through shared experiences and mutual support, while
               being equipped to succeed in all aspects of their lives. In this community, Black
               Women&apos;s voices are amplified, their achievements are recognized, and their
               collective strength drives positive change.

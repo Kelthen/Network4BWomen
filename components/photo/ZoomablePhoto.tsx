@@ -21,6 +21,9 @@ type Props = {
   /** Overlay affiché sur le dégradé de secours (ex. initiales). Disparaît quand la photo charge. */
   children?: React.ReactNode;
   priority?: boolean;
+  /** Décalage du crop (CSS object-position). Défaut « center ». Ex. « center 20% »
+   *  pour ancrer les visages en haut de cadre. */
+  objectPosition?: string;
 };
 
 export default function ZoomablePhoto({
@@ -32,6 +35,7 @@ export default function ZoomablePhoto({
   index = 0,
   children,
   priority = false,
+  objectPosition = "center",
 }: Props) {
   const open = usePhotoLightbox();
   const imgRef = useRef<HTMLImageElement>(null);
@@ -68,6 +72,7 @@ export default function ZoomablePhoto({
         onError={() => setReady(false)}
         loading={priority ? "eager" : "lazy"}
         draggable={false}
+        style={{ objectPosition }}
         className={`absolute inset-0 h-full w-full select-none object-cover transition-opacity duration-700 ${
           ready ? "opacity-100" : "opacity-0"
         }`}

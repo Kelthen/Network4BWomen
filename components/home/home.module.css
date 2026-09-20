@@ -223,6 +223,31 @@
   opacity: 1;
   transform: none;
 }
+/* Variantes directionnelles : entrée éditoriale plus lente, cubic-bezier
+   qui décélère joliment. La distance (60px) + le léger scale(0.98) donnent
+   la sensation « lux » — pas un simple slide brut. */
+.revealLeft,
+.revealRight {
+  opacity: 0;
+  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-60px) scale(0.98);
+}
+.revealRight {
+  transform: translateX(60px) scale(0.98);
+}
+.revealLeft.in,
+.revealRight.in {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .revealLeft, .revealRight {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
 .d1 {
   transition-delay: 0.1s;
 }
