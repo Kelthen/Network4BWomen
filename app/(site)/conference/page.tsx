@@ -269,7 +269,6 @@ export default async function ConferencePage() {
                 gradient="linear-gradient(160deg,#8aa9d4,#f6828f)"
                 label="Group photo"
                 aspectClass="aspect-square"
-                src="/images/conference/collage-1.jpg"
               />
             </Reveal>
             <Reveal delay={1}>
@@ -277,7 +276,6 @@ export default async function ConferencePage() {
                 gradient="linear-gradient(160deg,#c9a24b,#e8dcc8)"
                 label="Speaker moment"
                 aspectClass="aspect-square"
-                src="/images/conference/collage-2.jpg"
               />
             </Reveal>
             <Reveal delay={2}>
@@ -285,7 +283,6 @@ export default async function ConferencePage() {
                 gradient="linear-gradient(160deg,#97ac9f,#6e9179)"
                 label="Panel session"
                 aspectClass="aspect-square"
-                src="/images/conference/collage-3.jpg"
               />
             </Reveal>
           </div>
@@ -300,7 +297,6 @@ export default async function ConferencePage() {
               gradient="linear-gradient(160deg,#e9c8c9,#f6828f 60%,#b23a4e)"
               label="Attendees celebrating"
               aspectClass="aspect-[4/5]"
-              src="/images/conference/who.jpg"
             />
           </Reveal>
           <div>
@@ -355,7 +351,6 @@ export default async function ConferencePage() {
                 gradient="linear-gradient(160deg,#e9c8c9,#c9a24b)"
                 label="Keynote speaker on stage"
                 aspectClass="aspect-[4/5]"
-                src="/images/conference/takeaway.jpg"
               />
             </Reveal>
           </div>
@@ -482,7 +477,6 @@ export default async function ConferencePage() {
               gradient="linear-gradient(160deg,#8aa9d4 0%,#c9a24b 55%,#573425 100%)"
               label="Excite Lethbridge — venue photo"
               aspectClass="aspect-[4/3]"
-              src="/images/conference/venue.jpg"
             />
           </Reveal>
           <div className="flex flex-col justify-center">
