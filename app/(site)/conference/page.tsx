@@ -13,6 +13,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
+import ZoomablePhoto from "@/components/photo/ZoomablePhoto";
 import { coverImage } from "@/lib/media";
 import { supabase } from "@/lib/supabase";
 
@@ -232,13 +233,16 @@ export default async function ConferencePage() {
               </Link>
             </Reveal>
           </div>
-          <Reveal className="relative">
-            <PhotoSlot
-              gradient="linear-gradient(160deg,#f6828f 0%,#b23a4e 55%,#573425 100%)"
-              label="Hero photo — Our Essence"
-              aspectClass="aspect-[4/5] w-full max-w-md ml-auto"
-              className="shadow-[0_24px_60px_-24px_rgba(68,49,43,0.35)]"
+          {/* Photo hero — reveal depuis la droite, ratio natif de la photo
+              (paysage 4:3, aucune coupe des visages), cliquable (visionneuse). */}
+          <Reveal from="right" className="relative">
+            <ZoomablePhoto
               src="/images/conference/hero.jpg"
+              gradient="linear-gradient(160deg,#f6828f 0%,#b23a4e 55%,#573425 100%)"
+              alt="Network of Black Women — Our Essence gathering, group photo"
+              className="aspect-[4/3] w-full rounded-2xl shadow-[0_24px_60px_-24px_rgba(68,49,43,0.35)]"
+              objectPosition="center 45%"
+              priority
             />
           </Reveal>
         </div>
@@ -275,30 +279,55 @@ export default async function ConferencePage() {
               </Link>
             </Reveal>
           </div>
-          {/* Collage 3 photos placeholder — reproduit le pattern Sip N' Slay */}
-          <div className="relative grid grid-cols-3 gap-3">
-            <Reveal className="col-span-2 row-span-2">
-              <PhotoSlot
-                gradient="linear-gradient(160deg,#8aa9d4,#f6828f)"
-                label="Group photo"
-                aspectClass="aspect-square"
+          {/* Collage 3 photos — Sip N' Slay pattern.
+              Chaque photo cliquable (visionneuse album), reveal cascadé depuis
+              la droite, objectPosition qui garde les visages en cadre.
+              Mobile : 2 col (big pleine largeur + 2 petites côte à côte).
+              Desktop : L-shape (big 2x2 + 2 petites empilées à droite). */}
+          <div className="relative grid grid-cols-2 gap-3 md:grid-cols-3">
+            <Reveal from="right" className="col-span-2 md:row-span-2">
+              <ZoomablePhoto
                 src="/images/events/img-6705.jpg"
+                gradient="linear-gradient(160deg,#8aa9d4,#f6828f)"
+                alt="Group photo — NBW community gathering"
+                className="aspect-square rounded-2xl"
+                objectPosition="center 35%"
+                group={[
+                  "/images/events/img-6705.jpg",
+                  "/images/events/img-6720.jpg",
+                  "/images/events/img-6793.jpg",
+                ]}
+                index={0}
               />
             </Reveal>
-            <Reveal delay={1}>
-              <PhotoSlot
-                gradient="linear-gradient(160deg,#c9a24b,#e8dcc8)"
-                label="Speaker moment"
-                aspectClass="aspect-square"
+            <Reveal from="right" delay={1}>
+              <ZoomablePhoto
                 src="/images/events/img-6720.jpg"
+                gradient="linear-gradient(160deg,#c9a24b,#e8dcc8)"
+                alt="Speaker moment — NBW event"
+                className="aspect-square rounded-2xl"
+                objectPosition="center 25%"
+                group={[
+                  "/images/events/img-6705.jpg",
+                  "/images/events/img-6720.jpg",
+                  "/images/events/img-6793.jpg",
+                ]}
+                index={1}
               />
             </Reveal>
-            <Reveal delay={2}>
-              <PhotoSlot
-                gradient="linear-gradient(160deg,#97ac9f,#6e9179)"
-                label="Panel session"
-                aspectClass="aspect-square"
+            <Reveal from="right" delay={2}>
+              <ZoomablePhoto
                 src="/images/events/img-6793.jpg"
+                gradient="linear-gradient(160deg,#97ac9f,#6e9179)"
+                alt="Panel session — NBW event"
+                className="aspect-square rounded-2xl"
+                objectPosition="center 25%"
+                group={[
+                  "/images/events/img-6705.jpg",
+                  "/images/events/img-6720.jpg",
+                  "/images/events/img-6793.jpg",
+                ]}
+                index={2}
               />
             </Reveal>
           </div>
@@ -308,12 +337,13 @@ export default async function ConferencePage() {
       {/* Who is this for — photo gauche, contenu droite */}
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-          <Reveal className="lg:sticky lg:top-24 lg:self-start">
-            <PhotoSlot
-              gradient="linear-gradient(160deg,#e9c8c9,#f6828f 60%,#b23a4e)"
-              label="Attendees celebrating"
-              aspectClass="aspect-[4/5]"
+          <Reveal from="left" className="lg:sticky lg:top-24 lg:self-start">
+            <ZoomablePhoto
               src="/images/events/img-1702.jpg"
+              gradient="linear-gradient(160deg,#e9c8c9,#f6828f 60%,#b23a4e)"
+              alt="Attendees celebrating at an NBW gathering"
+              className="aspect-[4/5] rounded-2xl"
+              objectPosition="center 20%"
             />
           </Reveal>
           <div>
@@ -363,12 +393,13 @@ export default async function ConferencePage() {
                 ))}
               </ul>
             </div>
-            <Reveal className="lg:sticky lg:top-24 lg:self-start">
-              <PhotoSlot
-                gradient="linear-gradient(160deg,#e9c8c9,#c9a24b)"
-                label="Keynote speaker on stage"
-                aspectClass="aspect-[4/5]"
+            <Reveal from="right" className="lg:sticky lg:top-24 lg:self-start">
+              <ZoomablePhoto
                 src="/images/events/img-6724.jpg"
+                gradient="linear-gradient(160deg,#e9c8c9,#c9a24b)"
+                alt="NBW community — women together at a gathering"
+                className="aspect-[4/3] rounded-2xl"
+                objectPosition="center 40%"
               />
             </Reveal>
           </div>
@@ -500,12 +531,13 @@ export default async function ConferencePage() {
       {/* Event Location — photo landscape gauche, texte droite */}
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
-          <Reveal>
-            <PhotoSlot
-              gradient="linear-gradient(160deg,#8aa9d4 0%,#c9a24b 55%,#573425 100%)"
-              label="Excite Lethbridge — venue photo"
-              aspectClass="aspect-[4/3]"
+          <Reveal from="left">
+            <ZoomablePhoto
               src="/images/conference/hero.jpg"
+              gradient="linear-gradient(160deg,#8aa9d4 0%,#c9a24b 55%,#573425 100%)"
+              alt="NBW community — Our Essence gathering"
+              className="aspect-[4/3] rounded-2xl"
+              objectPosition="center 45%"
             />
           </Reveal>
           <div className="flex flex-col justify-center">
