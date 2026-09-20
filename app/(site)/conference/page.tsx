@@ -46,6 +46,19 @@ const TAKEAWAYS = [
 
 // 3 passes façon Sip N' Slay. Prix + perks = « Coming Soon » tant que NBW n'a
 // pas fixé les tarifs.
+// 6 photos NBW réutilisées comme « teaser » de la grille speakers tant que le
+// lineup n'est pas confirmé. Chaque tuile porte un label « Speaker to be
+// announced » — on ne prétend jamais que ce sont les intervenantes réelles.
+// Objectif : vibrer communauté, jamais de placeholder vide à l'écran.
+const SPEAKER_TEASE_PHOTOS = [
+  "/images/events/img-1702.jpg",
+  "/images/events/img-6720.jpg",
+  "/images/events/img-6793.jpg",
+  "/images/conference/hero.jpg",
+  "/images/events/img-6705.jpg",
+  "/images/events/img-6724.jpg",
+];
+
 const PASSES = [
   {
     name: "Wallet Friendly",
@@ -396,15 +409,25 @@ export default async function ConferencePage() {
                   </p>
                 </Reveal>
               ))
-            : [0, 1, 2, 3, 4, 5].map((i) => (
+            : SPEAKER_TEASE_PHOTOS.map((photo, i) => (
                 <Reveal as="li" key={i} delay={((i % 3) + 1) as 1 | 2 | 3}>
-                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-brand-beige/50">
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-brand-brown/40">
-                      <svg viewBox="0 0 24 24" className="h-14 w-14" fill="currentColor" aria-hidden="true">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20c0-4.418 3.582-8 8-8s8 3.582 8 8" />
-                      </svg>
-                      <span className="text-[10px] font-semibold font-sub uppercase tracking-[0.22em]">Coming soon</span>
+                  <div
+                    className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl"
+                    style={coverImage(photo, "linear-gradient(160deg,#e8dcc8,#c9a24b)", "center 20%")}
+                  >
+                    {/* Voile brun bas → haut pour lisibilité du label */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, rgba(87,52,37,0) 45%, rgba(87,52,37,0.75) 100%)",
+                      }}
+                      aria-hidden="true"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 p-4 text-center">
+                      <span className="inline-block rounded-full bg-brand-cream/95 px-3 py-1 text-[10px] font-semibold font-sub uppercase tracking-[0.22em] text-brand-brown shadow-[0_1px_0_rgba(0,0,0,0.06)]">
+                        Speaker to be announced
+                      </span>
                     </div>
                   </div>
                 </Reveal>
@@ -482,6 +505,7 @@ export default async function ConferencePage() {
               gradient="linear-gradient(160deg,#8aa9d4 0%,#c9a24b 55%,#573425 100%)"
               label="Excite Lethbridge — venue photo"
               aspectClass="aspect-[4/3]"
+              src="/images/conference/hero.jpg"
             />
           </Reveal>
           <div className="flex flex-col justify-center">
