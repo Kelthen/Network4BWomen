@@ -23,7 +23,7 @@ Ce dossier tire les leçons du projet NBW et contient le **kit de démarrage** d
 
 ## Démarrer un nouveau projet
 
-1. **Créer le repo** depuis le modèle `kelthen/website-starter` (bouton « Use this template »), ou à défaut copier le contenu de `starter/` à la racine du nouveau repo.
+1. **Créer le repo** depuis le modèle `Kelthen/website-starter` (bouton « Use this template »), ou à défaut copier le contenu de `starter/` à la racine du nouveau repo.
 2. **Remplir les `{{…}}`** dans `CLAUDE.md` (équipe, zones) et `STATUS.md` (infos client).
 3. **Faire le kickoff** avec `docs/KICKOFF.md`, puis recopier les infos confirmées dans `STATUS.md`.
 4. **Brancher les notifications** (voir ci-dessous) et tester avec une PR d'essai.
@@ -33,10 +33,12 @@ Ce dossier tire les leçons du projet NBW et contient le **kit de démarrage** d
 
 Dans GitHub : *Settings → Secrets and variables → Actions*.
 
-**Slack (recommandé)**
-1. Créer un espace Slack gratuit « Kelthen » et un canal par projet (ex. `#projet-x`).
-2. Ajouter l'app « Incoming Webhooks » sur ce canal et copier l'URL.
-3. Ajouter le secret `SLACK_WEBHOOK_URL` avec cette URL.
+**Slack (recommandé)** — espace Kelthen, canal par défaut **#prd-site-template**
+1. Sur [api.slack.com/apps](https://api.slack.com/apps) : créer une app « Kelthen GitHub » dans l'espace Kelthen (une seule fois pour tous les projets).
+2. Activer **Incoming Webhooks**, puis **Add New Webhook to Workspace** et choisir le canal (#prd-site-template, ou un canal dédié au projet client).
+3. Dans le repo du projet, ajouter le secret `SLACK_WEBHOOK_URL` avec l'URL copiée.
+
+Le connecteur Slack de Claude permet à Claude d'écrire dans Slack pendant une session, mais pas de créer ce webhook : l'étape 1-2 se fait à la main, une fois.
 
 **Email (en plus ou à la place)**
 1. Domaine d'envoi vérifié dans Resend (sinon Resend n'envoie qu'au propriétaire du compte : c'est ce qui a bloqué les emails NBW).
