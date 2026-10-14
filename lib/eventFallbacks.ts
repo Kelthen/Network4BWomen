@@ -86,7 +86,7 @@ export const FALLBACK_EVENTS: EventRow[] = [
     slug: "she-deserves-rest",
     title: "She Deserves Rest",
     description: null,
-    category: "Wellness",
+    category: "Retreat",
     starts_at: "2027-03-07T10:00:00-07:00",
     ends_at: null,
     location: "TBA",

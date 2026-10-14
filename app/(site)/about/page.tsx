@@ -1,5 +1,6 @@
 // OWNED BY: rhamon — About NBW. See PLAN-rhamon.md, docs/CONTENT.md §2 (verbatim),
 // docs/DESIGN.md + docs/BRAND.md. Text marked "verbatim" is reproduced as-is (client copy).
+import { TEAM } from "@/lib/team";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
@@ -20,19 +21,7 @@ const VALUES = [
   { name: "Collective Empowerment", desc: "The strength of the group moves each of us forward." },
 ];
 
-// Board + Leadership (docs/TEAM.md / CONTENT §2).
-const TEAM = [
-  { name: "Maleeka Thomas", role: "Founding Executive Director" },
-  { name: "Kimoya Edwards", role: "Associate Director" },
-  { name: "Miriam Ngungkpan", role: "Board Member" },
-  { name: "Jodine Robin", role: "Board Member" },
-  { name: "Martha Mathurin-Moe", role: "Advisor to the Executive Director" },
-  { name: "Abishey Anderson", role: "Director of Operations" },
-  { name: "Felisha Boehme", role: "Director of Communications" },
-  { name: "Tobore Okome", role: "Board Member" },
-  { name: "Aytia Police", role: "Board Member" },
-  { name: "Kadeja Edwards", role: "Social Media & Content Creator Intern" },
-];
+// Board + Leadership : lib/team.ts (partagé avec la section « Board Governance » de l'accueil).
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
 const EYEBROW_LIGHT = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-pinkLight nbw-eyebrow";
@@ -162,7 +151,7 @@ export default function AboutPage() {
       </section>
 
       {/* Board & Leadership */}
-      <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <section id="board" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:py-28">
         <Reveal as="p" className={EYEBROW}>
           Governance
         </Reveal>
