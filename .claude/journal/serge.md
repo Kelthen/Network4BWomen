@@ -2,9 +2,14 @@
 dev: serge
 github: sergesanou
 branch: feat/serge/nbw-detail-edits-oct
-current_task: "Fiche NBW du 2026-10-10 : PR code ouverte (events dates/precision, conference). Synchro data Supabase prête (supabase/data/2026-10-14_sync-fiche-nbw.sql), en attente du feu vert humain."
-files_locked: []
-updated: 2026-10-14T22:30:00Z
+current_task: "Girl Talk & Gratitude reporté à l'an prochain (demande Serge 2026-10-14) : retrait poster/bandeau + événement partout. OVERRIDE zone rhamon (featuredEvent, UpcomingEvents, eventFallbacks) sur instruction humaine."
+files_locked:
+  - lib/featuredEvent.ts
+  - components/home/UpcomingEvents.tsx
+  - lib/eventFallbacks.ts
+  - app/(site)/events/page.tsx
+  - supabase/data/2026-10-14_sync-fiche-nbw.sql
+updated: 2026-10-14T22:45:00Z
 ---
 
 # Journal — serge
