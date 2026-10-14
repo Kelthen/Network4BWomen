@@ -1,10 +1,10 @@
 ---
 dev: serge
 github: sergesanou
-branch: feat/serge/ui-primitives
-current_task: "Primitives UI + page Search créées, PR #39 (search) mergée. PR #41 (ui-primitives) en cours de résolution de conflit avec main."
+branch: feat/serge/nbw-detail-edits-oct
+current_task: "PR #64 en review. Scripts data Supabase (sync fiche + galerie 15 photos) prêts, en attente d'exécution (confirmation annulée côté app)."
 files_locked: []
-updated: 2026-09-01T01:00:00Z
+updated: 2026-10-14T22:45:00Z
 ---
 
 # Journal — serge
@@ -12,6 +12,29 @@ updated: 2026-09-01T01:00:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de rhamon, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-10-14 (2) — Girl Talk & Gratitude reporté à l'an prochain — OVERRIDE zone rhamon (instruction Serge)
+- Serge : « l'événement n'a plus lieu cette année mais l'année prochaine, on enlève le poster et tout ».
+- `lib/featuredEvent.ts` : `FEATURED_EVENT = null` → bandeau + flyer disparaissent (les composants gèrent déjà `null`, layout inchangé).
+- `components/home/UpcomingEvents.tsx` + `lib/eventFallbacks.ts` : ligne Girl Talk retirée (5 événements).
+- `/events` Explore : « Networking » (pointait sur Girl Talk) → « Creative Socials » → Paint & Sip.
+- Script data : Girl Talk n'est plus mis à jour mais supprimé (ligne complète dans la sauvegarde JSON, réutilisable l'an prochain).
+- Les signalements « Friday / 5:30 PM » pour rhamon deviennent sans objet. Flyer `public/images/events/girl-talk-gratitude.jpg` conservé (plus référencé).
+
+## 2026-10-14 — Fiche NBW « Website Detail Edits » (Drive, partagée 2026-10-10) — `feat/serge/nbw-detail-edits-oct`
+- **Diagnostic** : la fiche du 10 oct. reprend le questionnaire du 15 sept. Le code (passe rhamon #57/#58) est à jour, mais **Programs / Resources / Events / Gallery lisent Supabase en priorité** et la base n'avait jamais été resynchronisée → en ligne : Mentorship + Health & Wellness + « sisterhood », Templates & Guides, « NBW Annual Conference — Toronto, 5 déc. », faux « Leadership Roundtable », ancien lien Bloomtickets (2960). C'est ce que NBW voyait.
+- **Base** : migration `0010_events_date_precision` **appliquée en prod** (additive, défaut `datetime`). Script de synchro `supabase/data/2026-10-14_sync-fiche-nbw.sql` (+ sauvegarde JSON avant modif) : programs 7→5 (2 désactivés, pas supprimés), resources 7→5, events = les 6 réels (Girl Talk : lien 3228 + horaire billetterie 6:30–8:30 PM MT ; ex-conférence Toronto → Our Essence, même id), placeholder speaker retiré. ⚠️ **Pas encore exécuté** : l'exécution a été annulée côté confirmation — en attente du feu vert de Serge.
+- **Code (zone serge)** :
+  - `lib/eventDates.ts` (nouveau) : affichage en `America/Edmonton` (la liste calculait le jour en UTC → un événement à 18 h MST tombait au lendemain) + gestion `date_precision` (jamais d'heure/jour inventés ; « JAN · TBD » pour Career Conversations).
+  - `events/page.tsx` : pastilles via `listBadge`, événements « month » hors calendrier, lien Explore « Sports & Wellness » → « Career & Professional ».
+  - `events/[slug]/page.tsx` : « When » via `formatEventWhen`, JSON-LD aligné (omis si seul le mois est connu).
+  - `conference/page.tsx` : passes « Sold out — join the waitlist » → « Tickets coming soon » (billetterie pas ouverte).
+- Validé : `tsc` OK, helper testé sur les 6 événements. `next build` local impossible (Google Fonts bloqué par le bac à sable) → build réel sur la preview Vercel. `next lint` non configuré dans le repo (prompt interactif, préexistant).
+- **Pour rhamon (sa zone, non touché)** :
+  1. `lib/featuredEvent.ts` — Girl Talk : `dateLabel` dit « Friday » mais le 17 oct. 2026 est un **samedi** ; billetterie = **6:30–8:30 PM MT** (pas 5:30) ; `start/end` en `-04:00` au lieu de `-06:00` (la promo disparaît 2 h trop tôt). Urgent : événement samedi.
+  2. `components/home/UpcomingEvents.tsx` + `lib/eventFallbacks.ts` : She Deserves Rest catégorie « Wellness » (en base : « Retreat »).
+  3. « Create Board Governance section » (accueil) : toujours pas de contenu NBW.
+- **Restant côté NBW / humain** : photos pickleball réelles (Pixieset, non téléchargeables d'ici), galerie conférence : Serge a validé « garde 15 photos » → script `supabase/data/2026-10-14_galerie-conference-15-photos.sql` prêt (+ sauvegarde des 89 lignes), exécution annulée à la confirmation — à relancer, confirmation année conférence (fiche = « March 5-7 2026 », site = 2027).
 
 ## 2026-09-01 (2) — Primitives UI partagées (feat/serge/ui-primitives)
 - Zone `shared` encore à `todo` : `components/ui/**` n'existait pas du tout (vérifié : 404 sur main).

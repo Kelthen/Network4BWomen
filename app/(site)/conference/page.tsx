@@ -2,6 +2,8 @@
 // Fallback to placeholder data when Supabase is unavailable.
 // See docs/CONTENT.md §5.
 //
+// 2026-10-14 (serge) — bouton des passes : « Sold out — join the waitlist » → « Tickets
+//   coming soon » (la billetterie n'est pas ouverte ; « sold out » induisait en erreur).
 // ⚠️ 2026-09-17 — édité par rhamon sous override :
 //   Reprise structure « Sip N' Slay » (référence design NBW) : sections alternées
 //   texte ↔ photo. Chaque emplacement photo est un placeholder visible (dégradé
@@ -513,7 +515,7 @@ export default async function ConferencePage() {
                     disabled
                     className="w-full cursor-not-allowed rounded-full bg-brand-brown/20 px-5 py-2.5 text-sm font-semibold text-brand-brown/60"
                   >
-                    Sold out — join the waitlist
+                    Tickets coming soon
                   </button>
                 </div>
               </Reveal>

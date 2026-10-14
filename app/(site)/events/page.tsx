@@ -5,6 +5,9 @@
 // ⚠️ 2026-09-13 — édition par rhamon sous override (voir OWNERSHIP.yml + PR).
 //   Ergonomie mobile : carte entièrement cliquable, teaser court sans URL brute,
 //   nouveaux champs optionnels registration_url / speakers / agenda.
+// 2026-10-14 (serge) — dates en fuseau Alberta + `date_precision` (migration 0010) :
+//   « JAN · TBD » au lieu d'un jour inventé ; les événements sans jour confirmé
+//   restent dans la liste mais pas dans le calendrier.
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
@@ -12,6 +15,7 @@ import EventsView from "@/components/events/EventsView";
 import { supabase } from "@/lib/supabase";
 import { parseEventDescription } from "@/lib/eventText";
 import { FALLBACK_EVENTS, type EventRow as SharedEventRow } from "@/lib/eventFallbacks";
+import { listBadge, precisionOf } from "@/lib/eventDates";
 
 export const revalidate = 60;
 
@@ -28,28 +32,20 @@ const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text
 const CATEGORIES: { label: string; href: string }[] = [
   { label: "Annual Conference", href: "/events/our-essence-conference" },
   { label: "Annual Retreat", href: "/events/she-deserves-rest" },
-  { label: "Networking", href: "/events/girl-talk-and-gratitude" },
   { label: "Community Gatherings", href: "/events/chapter-collective" },
-  { label: "Sports & Wellness", href: "/events/paint-and-sip" },
+  { label: "Career & Professional", href: "/events/nbw-career-conversations" },
+  { label: "Creative Socials", href: "/events/paint-and-sip" },
   { label: "Past Events Gallery", href: "/gallery" },
 ];
 
-export type Event = SharedEventRow;
-
-function formatDate(iso: string): { month: string; day: string } {
-  const d = new Date(iso);
-  return {
-    month: d.toLocaleString("en-US", { month: "short" }).toUpperCase(),
-    day: String(d.getDate()),
-  };
-}
+export type Event = SharedEventRow & { date_precision?: string | null };
 
 async function getUpcomingEvents(): Promise<Event[]> {
   try {
     const { data, error } = await supabase
       .from("events")
       .select(
-        "id, slug, title, description, category, starts_at, ends_at, location, cover_url, is_conference, capacity, registration_url, speakers, agenda"
+        "id, slug, title, description, category, starts_at, ends_at, location, cover_url, is_conference, capacity, registration_url, speakers, agenda, date_precision"
       )
       .gte("starts_at", new Date().toISOString())
       .order("starts_at", { ascending: true })
@@ -70,7 +66,7 @@ export default async function EventsPage() {
   const listView = (
     <ul className="grid gap-4">
       {events.map((e, i) => {
-        const date = e.starts_at ? formatDate(e.starts_at) : { month: "TBD", day: "—" };
+        const date = listBadge(e.starts_at, precisionOf(e.date_precision));
         const parsed = parseEventDescription(e.description);
         return (
           <Reveal
@@ -127,7 +123,10 @@ export default async function EventsPage() {
       <section className="mx-auto max-w-6xl px-6 pb-6">
         <Reveal as="h2" className="font-serif text-2xl md:text-3xl">Upcoming events</Reveal>
         <div className="mt-8">
-          <EventsView events={events} listView={listView} />
+          <EventsView
+            events={events.filter((e) => precisionOf(e.date_precision) !== "month")}
+            listView={listView}
+          />
         </div>
       </section>
 

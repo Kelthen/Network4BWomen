@@ -18,8 +18,8 @@ type TeaserEvent = {
 };
 
 // Programme réel NBW (questionnaire 2026-09-15). Ordre chronologique.
+// 2026-10-14 (serge, override sur demande humaine) : Girl Talk & Gratitude reporté à l'an prochain → retiré.
 const EVENTS: TeaserEvent[] = [
-  { slug: "girl-talk-and-gratitude",      month: "OCT", day: "17", title: "Girl Talk & Gratitude",       cat: "Networking",         where: "Lethbridge AB" },
   { slug: "chapter-collective",           month: "NOV", day: "01", title: "Chapter Collective",           cat: "Community",          where: "TBA" },
   { slug: "nbw-career-conversations",     month: "JAN", day: "TBD", title: "NBW: Career Conversations",   cat: "Professional",       where: "TBA" },
   { slug: "paint-and-sip",                month: "MAR", day: "05", title: "Paint & Sip",                  cat: "Community",          where: "Lethbridge AB" },

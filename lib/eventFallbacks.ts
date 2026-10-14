@@ -24,25 +24,9 @@ export type EventRow = {
 };
 
 // Événements réels NBW (questionnaire 2026-09-15). Ordre chronologique.
+// 2026-10-14 (serge, override sur demande humaine) : Girl Talk & Gratitude reporté à l'an prochain → retiré.
 // Le fuseau Alberta est en UTC-6 (heure d'été UTC-6, hiver UTC-7).
 export const FALLBACK_EVENTS: EventRow[] = [
-  {
-    id: "1",
-    slug: "girl-talk-and-gratitude",
-    title: "Girl Talk & Gratitude",
-    description:
-      "An intimate evening built around honest conversation, hands-on flower making, and gratitude. A space where Black women can talk openly about the things that matter to them, in a room where they don't have to explain themselves first. Wine, finger snacks, a bright orange–yellow–red–pink theme, and a room of Black women ready to celebrate each other.",
-    category: "Networking",
-    starts_at: "2026-10-17T23:30:00Z",
-    ends_at: "2026-10-18T02:30:00Z",
-    location: "Lethbridge AB",
-    cover_url: "/images/events/girl-talk-gratitude.jpg",
-    is_conference: false,
-    capacity: 30,
-    registration_url: "https://network-of-black-women.bloomtickets.ca/event/3228",
-    speakers: null,
-    agenda: null,
-  },
   {
     id: "2",
     slug: "chapter-collective",

@@ -21,19 +21,12 @@ export type FeaturedEvent = {
   promoteFrom: string;
 };
 
-// Événement vedette actuel — « Girl Talk & Gratitude » (questionnaire NBW).
-export const FEATURED_EVENT: FeaturedEvent | null = {
-  title: "Girl Talk & Gratitude",
-  tagline: "An intimate evening of honest conversation, flower-making, and gratitude.",
-  start: "2026-10-17T17:30:00-04:00",
-  end: "2026-10-17T20:30:00-04:00",
-  dateLabel: "Friday, October 17, 2026 · 5:30–8:30 PM",
-  location: "The Loft on 5th",
-  category: "Networking",
-  flyer: "/images/events/girl-talk-gratitude.jpg",
-  ticketUrl: "https://network-of-black-women.bloomtickets.ca/event/3228",
-  promoteFrom: "2026-09-01T00:00:00-04:00",
-};
+// Aucun événement vedette pour l'instant.
+// 2026-10-14 (serge, override sur demande humaine) : « Girl Talk & Gratitude » (prévu le
+// 17 oct. 2026) est reporté à l'an prochain → bandeau + flyer retirés. Pour relancer le
+// « mode événement », remettre ici un objet FeaturedEvent (l'exemple Girl Talk complet
+// est dans l'historique git de ce fichier).
+export const FEATURED_EVENT: FeaturedEvent | null = null;
 
 /** L'événement est-il à promouvoir maintenant ? (fenêtre promoteFrom → fin) */
 export function isFeaturedActive(now: Date = new Date()): boolean {
