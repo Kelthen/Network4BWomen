@@ -1,10 +1,13 @@
 ---
 dev: serge
 github: sergesanou
-branch: feat/serge/ui-primitives
-current_task: "Primitives UI + page Search créées, PR #39 (search) mergée. PR #41 (ui-primitives) en cours de résolution de conflit avec main."
-files_locked: []
-updated: 2026-09-01T01:00:00Z
+branch: feat/serge/nbw-detail-edits-oct
+current_task: "Fiche NBW « Website Detail Edits » (partagée 2026-10-10) : synchro Supabase (programs, resources, events, conference_speakers) + correctifs pages serge (conference, events)."
+files_locked:
+  - app/(site)/conference/page.tsx
+  - app/(site)/events/page.tsx
+  - supabase/data/**
+updated: 2026-10-14T22:30:00Z
 ---
 
 # Journal — serge
