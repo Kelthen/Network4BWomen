@@ -54,15 +54,10 @@ delete from resources where id in (
   '5372cafc-6e7c-43c1-83a8-cae3da1c73c5'   -- Professional Development Tools (« courses, templates »)
 );
 
--- ── Events : les 6 événements réels de la fiche ──
--- Girl Talk : nouveau lien Bloomtickets (3228) + horaire réel de la billetterie
--- (6:30–8:30 PM Mountain Time) + ville.
-update events set
-  starts_at = '2026-10-17T18:30:00-06:00', ends_at = '2026-10-17T20:30:00-06:00',
-  location = 'The Loft on 5th, Lethbridge AB',
-  registration_url = 'https://network-of-black-women.bloomtickets.ca/event/3228',
-  cover_url = '/images/events/girl-talk-gratitude.jpg', date_precision = 'datetime'
-  where id = 'ed706ce2-ac92-4e42-a2b2-6578277f53ad';
+-- ── Events : les événements réels de la fiche (Girl Talk reporté) ──
+-- Girl Talk & Gratitude : reporté à l'an prochain (Serge, 2026-10-14) → retiré.
+-- Aucune inscription liée ; la ligne complète est dans la sauvegarde JSON pour 2027.
+delete from events where id = 'ed706ce2-ac92-4e42-a2b2-6578277f53ad';
 
 -- L'ancienne « NBW Annual Conference & Summit — Toronto, 5 déc. » devient Our Essence
 -- (même id → le placeholder conference_speakers reste rattaché, puis on le retire).

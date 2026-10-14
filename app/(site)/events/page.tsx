@@ -32,9 +32,9 @@ const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text
 const CATEGORIES: { label: string; href: string }[] = [
   { label: "Annual Conference", href: "/events/our-essence-conference" },
   { label: "Annual Retreat", href: "/events/she-deserves-rest" },
-  { label: "Networking", href: "/events/girl-talk-and-gratitude" },
   { label: "Community Gatherings", href: "/events/chapter-collective" },
   { label: "Career & Professional", href: "/events/nbw-career-conversations" },
+  { label: "Creative Socials", href: "/events/paint-and-sip" },
   { label: "Past Events Gallery", href: "/gallery" },
 ];
 
