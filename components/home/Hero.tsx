@@ -4,7 +4,6 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./home.module.css";
-import { coverImage } from "@/lib/media";
 
 /**
  * Hero : eyebrow + titre serif révélé par masque (lignes qui montent),
@@ -54,7 +53,7 @@ export default function Hero() {
         </h1>
         <p className={styles.heroText}>
           A safe and empowering space where Black women and girls grow personally,
-          professionally, and collectively through connection, leadership, wellness, and
+          professionally, and collectively through connection, leadership, community, and
           opportunity.
         </p>
         <div className={styles.heroCta}>
@@ -74,12 +73,8 @@ export default function Hero() {
             Upcoming events
           </Link>
         </div>
-        <div
-          ref={visualRef}
-          className={styles.heroVisual}
-          style={coverImage("/images/hero.jpg", "linear-gradient(150deg,#e9c8c9,#f6828f 45%,#573425)")}
-          aria-hidden="true"
-        />
+        {/* Forme rose seule, sans photo : photo refusée par le client le 07/09 (#52) et le 10/10. */}
+        <div ref={visualRef} className={styles.heroVisual} aria-hidden="true" />
       </div>
     </header>
   );

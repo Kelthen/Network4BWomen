@@ -3,14 +3,8 @@ dev: rhamon
 github: RhamonK
 branch: feat/rhamon/nbw-oct-finitions
 current_task: "Fiche NBW oct. — finitions après #64/#65 (on garde tout ce que Serge a fait) : hero sans photo + texte lisible, lieu retiré des cartes événements de l'accueil, derniers « wellness » (hero, footer, SEO)."
-files_locked:
-  - components/home/Hero.tsx
-  - components/home/home.module.css
-  - components/home/UpcomingEvents.tsx
-  - components/Footer.tsx        # shared — changement d'un mot, annoncé ici
-  - app/layout.tsx               # shared — mot-clé SEO « wellness » retiré, annoncé ici
-  - public/images/hero.jpg       # supprimée (refusée par le client le 07/09 et le 10/10)
-updated: 2026-10-14T23:30:00Z
+files_locked: []
+updated: 2026-10-15T00:10:00Z
 ---
 
 # Journal — rhamon
@@ -21,6 +15,7 @@ updated: 2026-10-14T23:30:00Z
 - **Accueil** : plus de lieu sur les cartes Upcoming Events (« No location on the Main page »).
 - **Wellness** : derniers restes dans le sous-titre du hero, le footer (shared) et les mots-clés SEO (shared). News « Wellness Tips » et Resources « Mental Health » non touchés : ce ne sont pas des programmes « Health & Wellness ».
 - **Pickleball** : le dossier Drive « Highlights » = photos du pickleball (cf. journal serge). Upload manuel nécessaire, hors de cette PR.
+- **Fait** : hero sans photo (`public/images/hero.jpg` supprimée, dégradé blush → pink-light → pink, plus de brun), cartes accueil sans lieu, « wellness » retiré (hero, footer, mots-clés SEO, CONTENT.md). Vérifié en captures 1440 / 1100 / 390 px. `tsc` + `next build` OK. Verrous libérés.
 
 ## 2026-09-16 — Questionnaire NBW 2026-09-15 (rhamon PR #57 + serge override)
 - **Scope** : passe complète du questionnaire client daté du 2026-09-15 en 2 PRs distinctes.

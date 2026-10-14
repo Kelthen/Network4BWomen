@@ -11,7 +11,7 @@
 - **Nom** : Network of Black Women (NBW)
 - **Tagline hero** : « Empowering Black Women. Building Community. Creating Leaders. »
 - **Phrase signature** : « This is a space curated by Black Women for Black Women. »
-- **Sous-titre hero** (placeholder validé) : « A safe and empowering space where Black women and girls grow personally, professionally, and collectively through connection, leadership, wellness, and opportunity. »
+- **Sous-titre hero** (placeholder validé) : « A safe and empowering space where Black women and girls grow personally, professionally, and collectively through connection, leadership, community, and opportunity. » _(« wellness » retiré à la demande de NBW, fiche du 2026-10-10)_
 - **Localisation** : Alberta — territoire traditionnel de la Blackfoot Confederacy (Nations Siksika, Kainai et Piikani).
 - **Contact** : info.networkofblackwomen@gmail.com · (403) 635-8688
 - **Reconnaissance du territoire** (footer, obligatoire) : voir `components/LandAcknowledgment.tsx`.

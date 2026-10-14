@@ -42,7 +42,6 @@ export const metadata: Metadata = {
     "community",
     "leadership",
     "networking",
-    "wellness",
     "nonprofit",
   ],
   authors: [{ name: SITE_NAME }],
