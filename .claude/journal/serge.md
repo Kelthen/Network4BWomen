@@ -2,7 +2,7 @@
 dev: serge
 github: sergesanou
 branch: feat/serge/nbw-detail-edits-oct
-current_task: "PR #64 en review. Scripts data Supabase (sync fiche + galerie 15 photos) prêts, en attente d'exécution (confirmation annulée côté app)."
+current_task: "PR #64 mergée ; PR Board Governance mergée sur instruction de Serge. Scripts data Supabase (sync fiche + galerie 15 photos) prêts, en attente d'exécution (confirmation annulée côté app)."
 files_locked: []
 updated: 2026-10-14T22:45:00Z
 ---
@@ -12,6 +12,9 @@ updated: 2026-10-14T22:45:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de rhamon, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-10-14 (4) — Merge sur instruction de Serge
+- PR #64 mergée à 22:44 UTC (kelthenrift-prog). Le commit Board Governance, poussé après ce merge, part dans une PR dédiée, **mergée sans review croisée sur instruction explicite de Serge** (« Merge tout ça », réunion NBW ce soir). Rhamon : merci de relire après coup.
 
 ## 2026-10-14 (3) — Fiche NBW : tout finaliser avant la réunion de ce soir (instruction Serge) — OVERRIDES documentés
 - **Base (appliqué en prod, non destructif)** : programs 7→5 (Mentorship + Health & Wellness `is_active=false`, sous-titres NBW, photos avec visages), resources (Scholarships « Coming Soon », Career), events : conf. « Toronto » → Our Essence + 4 événements ajoutés (Chapter Collective, Career Conversations, Paint & Sip, She Deserves Rest).
