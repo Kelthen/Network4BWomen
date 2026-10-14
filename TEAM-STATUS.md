@@ -1,7 +1,7 @@
 <!-- AUTO-GÉNÉRÉ PAR .github/workflows/team-sync.yml — NE PAS ÉDITER À LA MAIN -->
 # TEAM-STATUS — État de l'équipe en temps réel
 
-_Dernière régénération : **2026-10-14 22:31 UTC**_
+_Dernière régénération : **2026-10-14 22:41 UTC**_
 
 > Avant d'agir, lis ce tableau + le journal de l'autre (`.claude/journal/`).
 > Ne touche jamais un fichier listé dans `files_locked` de l'autre.
@@ -16,6 +16,6 @@ _Dernière régénération : **2026-10-14 22:31 UTC**_
 ### Détails par branche
 
 - **rhamon** → dernière activité sur `feat/rhamon/nbw-content-update` (2026-09-16T00:18:24Z)
-- **serge** → dernière activité sur `feat/serge/nbw-detail-edits-oct` (2026-10-14T18:31:20-04:00)
+- **serge** → dernière activité sur `feat/serge/nbw-detail-edits-oct` (2026-10-14T18:41:01-04:00)
 
 _Ce fichier est régénéré automatiquement à chaque push. Pour changer l'état, édite TON journal et pousse._
