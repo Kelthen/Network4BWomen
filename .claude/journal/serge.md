@@ -26,7 +26,7 @@ updated: 2026-10-14T22:30:00Z
   1. `lib/featuredEvent.ts` — Girl Talk : `dateLabel` dit « Friday » mais le 17 oct. 2026 est un **samedi** ; billetterie = **6:30–8:30 PM MT** (pas 5:30) ; `start/end` en `-04:00` au lieu de `-06:00` (la promo disparaît 2 h trop tôt). Urgent : événement samedi.
   2. `components/home/UpcomingEvents.tsx` + `lib/eventFallbacks.ts` : She Deserves Rest catégorie « Wellness » (en base : « Retreat »).
   3. « Create Board Governance section » (accueil) : toujours pas de contenu NBW.
-- **Restant côté NBW / humain** : photos pickleball réelles (Pixieset, non téléchargeables d'ici), galerie conférence à réduire à 10–15 photos (89 en base, dont doublons `_1`), confirmation année conférence (fiche = « March 5-7 2026 », site = 2027).
+- **Restant côté NBW / humain** : photos pickleball réelles (Pixieset, non téléchargeables d'ici), galerie conférence : Serge a validé « garde 15 photos » → script `supabase/data/2026-10-14_galerie-conference-15-photos.sql` prêt (+ sauvegarde des 89 lignes), exécution annulée à la confirmation — à relancer, confirmation année conférence (fiche = « March 5-7 2026 », site = 2027).
 
 ## 2026-09-01 (2) — Primitives UI partagées (feat/serge/ui-primitives)
 - Zone `shared` encore à `todo` : `components/ui/**` n'existait pas du tout (vérifié : 404 sur main).
