@@ -2,13 +2,8 @@
 dev: serge
 github: sergesanou
 branch: feat/serge/nbw-detail-edits-oct
-current_task: "Girl Talk & Gratitude reporté à l'an prochain (demande Serge 2026-10-14) : retrait poster/bandeau + événement partout. OVERRIDE zone rhamon (featuredEvent, UpcomingEvents, eventFallbacks) sur instruction humaine."
-files_locked:
-  - lib/featuredEvent.ts
-  - components/home/UpcomingEvents.tsx
-  - lib/eventFallbacks.ts
-  - app/(site)/events/page.tsx
-  - supabase/data/2026-10-14_sync-fiche-nbw.sql
+current_task: "PR #64 en review. Scripts data Supabase (sync fiche + galerie 15 photos) prêts, en attente d'exécution (confirmation annulée côté app)."
+files_locked: []
 updated: 2026-10-14T22:45:00Z
 ---
 
@@ -17,6 +12,14 @@ updated: 2026-10-14T22:45:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de rhamon, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-10-14 (2) — Girl Talk & Gratitude reporté à l'an prochain — OVERRIDE zone rhamon (instruction Serge)
+- Serge : « l'événement n'a plus lieu cette année mais l'année prochaine, on enlève le poster et tout ».
+- `lib/featuredEvent.ts` : `FEATURED_EVENT = null` → bandeau + flyer disparaissent (les composants gèrent déjà `null`, layout inchangé).
+- `components/home/UpcomingEvents.tsx` + `lib/eventFallbacks.ts` : ligne Girl Talk retirée (5 événements).
+- `/events` Explore : « Networking » (pointait sur Girl Talk) → « Creative Socials » → Paint & Sip.
+- Script data : Girl Talk n'est plus mis à jour mais supprimé (ligne complète dans la sauvegarde JSON, réutilisable l'an prochain).
+- Les signalements « Friday / 5:30 PM » pour rhamon deviennent sans objet. Flyer `public/images/events/girl-talk-gratitude.jpg` conservé (plus référencé).
 
 ## 2026-10-14 — Fiche NBW « Website Detail Edits » (Drive, partagée 2026-10-10) — `feat/serge/nbw-detail-edits-oct`
 - **Diagnostic** : la fiche du 10 oct. reprend le questionnaire du 15 sept. Le code (passe rhamon #57/#58) est à jour, mais **Programs / Resources / Events / Gallery lisent Supabase en priorité** et la base n'avait jamais été resynchronisée → en ligne : Mentorship + Health & Wellness + « sisterhood », Templates & Guides, « NBW Annual Conference — Toronto, 5 déc. », faux « Leadership Roundtable », ancien lien Bloomtickets (2960). C'est ce que NBW voyait.
