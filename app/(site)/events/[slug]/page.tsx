@@ -4,6 +4,8 @@
 //   Ajout : CTA « Register » externe (via registration_url OU URL extraite de
 //   la description), sections optionnelles Speakers + Agenda, mise en forme
 //   propre de la description (URLs retirées, retours paragraphe préservés).
+// 2026-10-14 (serge) — « When » respecte `date_precision` (migration 0010) : on
+//   n'affiche jamais une heure ou un jour non confirmés ; JSON-LD aligné.
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -13,6 +15,7 @@ import { supabase } from "@/lib/supabase";
 import RegistrationForm from "@/components/events/RegistrationForm";
 import { parseEventDescription, registerLabelFor } from "@/lib/eventText";
 import { FALLBACK_EVENTS } from "@/lib/eventFallbacks";
+import { formatEventWhen, precisionOf, schemaDate } from "@/lib/eventDates";
 
 export const revalidate = 60;
 
@@ -39,50 +42,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// NBW opère en Alberta → fuseau Mountain Time. On affiche toutes les dates dans
-// ce fuseau pour éviter les surprises quand un rang est saisi en UTC.
-const EVENT_TZ = "America/Edmonton";
-
-function formatEventDateTime(startIso: string, endIso: string | null): string {
-  const start = new Date(startIso);
-  const dateOpts: Intl.DateTimeFormatOptions = {
-    timeZone: EVENT_TZ,
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  };
-  const timeOpts: Intl.DateTimeFormatOptions = {
-    timeZone: EVENT_TZ,
-    hour: "numeric",
-    minute: "2-digit",
-  };
-  const startDate = start.toLocaleDateString("en-US", dateOpts);
-  const startTime = start.toLocaleTimeString("en-US", timeOpts);
-  if (!endIso) return `${startDate} · ${startTime}`;
-  const end = new Date(endIso);
-  const endTime = end.toLocaleTimeString("en-US", timeOpts);
-  // Même jour local Alberta ? on compare via des composantes formatées.
-  const dayKey = (d: Date) =>
-    d.toLocaleDateString("en-CA", { timeZone: EVENT_TZ });
-  if (dayKey(start) === dayKey(end)) {
-    return `${startDate} · ${startTime} – ${endTime}`;
-  }
-  const endDate = end.toLocaleDateString("en-US", dateOpts);
-  return `${startDate} · ${startTime} → ${endDate} · ${endTime}`;
-}
-
 export default async function EventDetailPage({ params }: Props) {
   const { slug } = await params;
 
-  let raw: EventRow | null = null;
+  let raw: (EventRow & { date_precision?: string | null }) | null = null;
   try {
     const { data } = await supabase
       .from("events")
       .select("*")
       .eq("slug", slug)
       .single();
-    raw = (data as EventRow | null) ?? null;
+    raw = (data as (EventRow & { date_precision?: string | null }) | null) ?? null;
   } catch (err) {
     console.warn("[events/[slug]] Supabase unreachable, falling back to static list:", err);
     raw = null;
@@ -94,7 +64,8 @@ export default async function EventDetailPage({ params }: Props) {
     if (found) raw = found;
   }
   if (!raw) notFound();
-  const event: EventRow = raw;
+  const event = raw;
+  const precision = precisionOf(event.date_precision);
 
   const parsed = parseEventDescription(event.description);
   // Priorité 1 : colonne registration_url (propre). Priorité 2 : URL extraite
@@ -136,7 +107,7 @@ export default async function EventDetailPage({ params }: Props) {
             {event.starts_at && (
               <div>
                 <dt className="font-semibold text-brand-brown">When</dt>
-                <dd>{formatEventDateTime(event.starts_at, event.ends_at)}</dd>
+                <dd>{formatEventWhen(event.starts_at, event.ends_at, precision)}</dd>
               </div>
             )}
             {event.location && (
@@ -259,43 +230,45 @@ export default async function EventDetailPage({ params }: Props) {
         </Link>
       </section>
 
-      {/* JSON-LD schema.org Event */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Event",
-            name: event.title,
-            startDate: event.starts_at,
-            endDate: event.ends_at ?? undefined,
-            eventStatus: "https://schema.org/EventScheduled",
-            eventAttendanceMode:
-              event.location?.toLowerCase() === "online"
-                ? "https://schema.org/OnlineEventAttendanceMode"
-                : "https://schema.org/OfflineEventAttendanceMode",
-            location: event.location
-              ? {
-                  "@type": event.location.toLowerCase() === "online" ? "VirtualLocation" : "Place",
-                  name: event.location,
-                }
-              : undefined,
-            description: cleanDescription || undefined,
-            organizer: {
-              "@type": "NGO",
-              name: "Network of Black Women",
-              url: "https://www.networkofblackwomen.ca",
-            },
-            offers: registerUrl
-              ? {
-                  "@type": "Offer",
-                  url: registerUrl,
-                  availability: "https://schema.org/InStock",
-                }
-              : undefined,
-          }),
-        }}
-      />
+      {/* JSON-LD schema.org Event — omis tant que le jour n'est pas confirmé */}
+      {precision !== "month" && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Event",
+              name: event.title,
+              startDate: schemaDate(event.starts_at, precision),
+              endDate: precision === "datetime" ? event.ends_at ?? undefined : undefined,
+              eventStatus: "https://schema.org/EventScheduled",
+              eventAttendanceMode:
+                event.location?.toLowerCase() === "online"
+                  ? "https://schema.org/OnlineEventAttendanceMode"
+                  : "https://schema.org/OfflineEventAttendanceMode",
+              location: event.location
+                ? {
+                    "@type": event.location.toLowerCase() === "online" ? "VirtualLocation" : "Place",
+                    name: event.location,
+                  }
+                : undefined,
+              description: cleanDescription || undefined,
+              organizer: {
+                "@type": "NGO",
+                name: "Network of Black Women",
+                url: "https://www.networkofblackwomen.ca",
+              },
+              offers: registerUrl
+                ? {
+                    "@type": "Offer",
+                    url: registerUrl,
+                    availability: "https://schema.org/InStock",
+                  }
+                : undefined,
+            }),
+          }}
+        />
+      )}
     </div>
   );
 }
