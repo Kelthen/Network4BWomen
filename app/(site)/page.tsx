@@ -12,6 +12,7 @@ import NewsletterTeaser from "@/components/home/NewsletterTeaser";
 import UpcomingEvents from "@/components/home/UpcomingEvents";
 import Testimonials from "@/components/home/Testimonials";
 import Sponsors from "@/components/home/Sponsors";
+import BoardGovernance from "@/components/home/BoardGovernance";
 
 // Program teasers (3 of NBW's programs — see docs/CONTENT.md §3).
 // Subheadings verbatim from questionnaire 2026-09-15.
@@ -87,6 +88,9 @@ export default function HomePage() {
 
       {/* Sponsors & partenaires */}
       <Sponsors />
+
+      {/* Board Governance — fiche NBW 2026-10-10 (ajout serge, override sur instruction humaine) */}
+      <BoardGovernance />
 
       {/* Newsletter — « Stay Connected. » */}
       <NewsletterTeaser />

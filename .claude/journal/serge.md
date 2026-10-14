@@ -13,6 +13,13 @@ updated: 2026-10-14T22:45:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de rhamon, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-10-14 (3) — Fiche NBW : tout finaliser avant la réunion de ce soir (instruction Serge) — OVERRIDES documentés
+- **Base (appliqué en prod, non destructif)** : programs 7→5 (Mentorship + Health & Wellness `is_active=false`, sous-titres NBW, photos avec visages), resources (Scholarships « Coming Soon », Career), events : conf. « Toronto » → Our Essence + 4 événements ajoutés (Chapter Collective, Career Conversations, Paint & Sip, She Deserves Rest).
+- **Base, reste à exécuter (suppressions, confirmation annulée 4×)** : resources Templates & Guides + PD Tools, events Girl Talk / Leadership Roundtable / Wellness Morning, placeholder speaker, galerie conférence 89→15 → `supabase/data/2026-10-14_suppressions.sql`.
+- **Accueil** : nouvelle section `BoardGovernance` (direction + Board, photos existantes, lien `/about#board`) ; données équipe extraites dans `lib/team.ts` (About importe de là, + ancre `id="board"`).
+- She Deserves Rest : « Wellness » → « Retreat » (accueil + fallbacks). Donate : « Health & wellness programming » → « Networking & leadership programming ».
+- **Pickleball** : vraies photos = dossier Drive « Highlights » (Tobore, 2026-10-09) = set « Highlights » Pixieset. Import auto impossible : Pixieset bloque les serveurs (403), fichiers Drive non publics, ~1 Mo chacun. Fonction edge temporaire `nbw-import-pickleball` déployée puis désactivée (stub 410, JWT requis). → Upload manuel nécessaire (Storage `gallery/pickleball/`), le câblage DB suit.
+
 ## 2026-10-14 (2) — Girl Talk & Gratitude reporté à l'an prochain — OVERRIDE zone rhamon (instruction Serge)
 - Serge : « l'événement n'a plus lieu cette année mais l'année prochaine, on enlève le poster et tout ».
 - `lib/featuredEvent.ts` : `FEATURED_EVENT = null` → bandeau + flyer disparaissent (les composants gèrent déjà `null`, layout inchangé).
