@@ -1,4 +1,5 @@
 // OWNED BY: rhamon — Donate (Stripe). See PLAN-rhamon.md, docs/CONTENT.md §6.
+// 2026-10-14 (serge, override sur instruction humaine) : « Health & wellness » retiré (fiche NBW : programme supprimé).
 import type { Metadata } from "next";
 import Reveal from "@/components/home/Reveal";
 import DonateForm from "@/components/donate/DonateForm";
@@ -6,7 +7,7 @@ import DonateForm from "@/components/donate/DonateForm";
 export const metadata: Metadata = {
   title: "Donate — Network of Black Women (NBW)",
   description:
-    "Your gift funds programs, scholarships, events, and wellness for Black women in Alberta.",
+    "Your gift funds programs, scholarships, and events for Black women in Alberta.",
 };
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
@@ -15,7 +16,7 @@ const IMPACT = [
   "Workshops and professional development",
   "Scholarships for members and youth",
   "Community events and gatherings",
-  "Health & wellness programming",
+  "Networking & leadership programming",
 ];
 
 export default function DonatePage({
