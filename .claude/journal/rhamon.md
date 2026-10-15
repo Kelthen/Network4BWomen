@@ -1,13 +1,20 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/nbw-oct-finitions
+branch: chore/rhamon/journal-2026-10-15
 current_task: "Fiche NBW oct. — finitions après #64/#65 (on garde tout ce que Serge a fait) : hero sans photo + texte lisible, lieu retiré des cartes événements de l'accueil, derniers « wellness » (hero, footer, SEO)."
 files_locked: []
-updated: 2026-10-15T00:10:00Z
+updated: 2026-10-15T00:30:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-10-15 — Galerie pickleball : vraies photos (PR #67) — MERGÉ + base à jour
+- #66 et #67 mergées. 15 vraies photos du pickleball (Drive « Highlights », fournies par rhamon en .docx) dans `public/images/gallery/pickleball/`, allégées (16 Mo → 2,5 Mo).
+- Galerie : cadrage `center 20%` (visages gardés sur les portraits). Override zone serge (gallery) sur instruction de rhamon.
+- **Base** : `supabase/data/2026-10-15_galerie-pickleball-highlights.sql` exécuté après déploiement (11 lignes mises à jour + 4 ajoutées, aucune suppression ; sauvegarde `2026-10-15_backup-galerie-pickleball.json`). Les 11 anciennes captures restent dans le bucket `gallery`, plus référencées.
+- Vérifié en ligne : /gallery = 15 photos pickleball + 15 photos conférence, 0 capture.
+- ⚠️ À corriger (en attente du feu vert rhamon) : `NEXT_PUBLIC_SITE_URL` sur Vercel vaut `https://wwww.networkofblackwomen.ca` (4 « w ») → og:url / JSON-LD faux.
 
 ## 2026-10-14 — Finitions fiche NBW d'octobre (après #64/#65 de Serge) — `feat/rhamon/nbw-oct-finitions`
 - **Décision humaine (rhamon)** : on garde tout ce que Serge a fait dans #64/#65, y compris le retrait complet de Girl Talk (pas de mention « Coming next year »).
