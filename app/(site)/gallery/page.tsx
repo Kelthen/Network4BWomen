@@ -21,8 +21,14 @@ type Album = {
   photos: string[];
 };
 
+const PICKLEBALL_PHOTOS = Array.from(
+  { length: 15 },
+  (_, i) => `/images/gallery/pickleball/pickleball-highlights-${String(i + 1).padStart(2, "0")}.jpg`,
+);
+
 // Fallback albums with local photos
 const FALLBACK_ALBUMS: Album[] = [
+  { year: "2026", label: "Pastels & Pickleball", photos: PICKLEBALL_PHOTOS },
   {
     year: "2025",
     label: "Community & events",
@@ -33,7 +39,6 @@ const FALLBACK_ALBUMS: Album[] = [
       "/images/gallery/2025-4.jpg",
     ],
   },
-  { year: "2024", label: "Conference & retreat", photos: [] },
 ];
 
 async function getAlbums(): Promise<Album[]> {
