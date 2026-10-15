@@ -2,9 +2,16 @@
 dev: rhamon
 github: RhamonK
 branch: chore/rhamon/journal-2026-10-15
-current_task: "Fiche NBW oct. — finitions après #64/#65 (on garde tout ce que Serge a fait) : hero sans photo + texte lisible, lieu retiré des cartes événements de l'accueil, derniers « wellness » (hero, footer, SEO)."
-files_locked: []
-updated: 2026-10-15T00:30:00Z
+current_task: "Retirer les mentions de lieu génériques (décision rhamon 15/10) : reconnaissance territoriale du footer reformulée sans « Alberta », Alberta retiré de Donate / Get Involved / Contact / image de partage / emails newsletter. Textes client verbatim, adresses d'événements et SEO invisible conservés."
+files_locked:
+  - components/LandAcknowledgment.tsx   # shared (footer) — annoncé ici
+  - app/(site)/donate/page.tsx
+  - app/(site)/get-involved/page.tsx
+  - app/(site)/contact/page.tsx
+  - app/opengraph-image.tsx            # shared — annoncé ici
+  - lib/newsletterEmails.ts
+  - docs/CONTENT.md
+updated: 2026-10-15T00:45:00Z
 ---
 
 # Journal — rhamon
