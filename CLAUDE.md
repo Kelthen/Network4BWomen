@@ -115,7 +115,7 @@ npx tsc --noEmit    # typecheck
 
 ## 5. Le client : NBW (contexte à ne jamais perdre)
 
-Network of Black Women — sororité pour les femmes noires de l'**Alberta**, sur le **territoire traditionnel de la Blackfoot Confederacy (Nations Siksika, Kainai et Piikani)** (reconnaissance obligatoire dans le footer). ⚠️ Historique : le projet a été relocalisé de Toronto → Alberta le 12/09/2026 après re-confirmation client — ne pas réintroduire de mentions Toronto/Ontario/Treaty 13 dans le site rendu.
+Network of Black Women — sororité pour les femmes noires de l'**Alberta**, sur le **territoire traditionnel de la Blackfoot Confederacy (Nations Siksika, Kainai et Piikani)** (reconnaissance obligatoire dans le footer, **sans afficher « Alberta »** : décision client du 10/10/2026, pas de localisation sur le site hors textes client verbatim et adresses d'événements). ⚠️ Historique : le projet a été relocalisé de Toronto → Alberta le 12/09/2026 après re-confirmation client — ne pas réintroduire de mentions Toronto/Ontario/Treaty 13 dans le site rendu.
 
 **Mission** : autonomiser, connecter et élever les femmes noires via une communauté de soutien et des opportunités de croissance.
 **Vision** : un environnement fort, inclusif, sûr où les femmes noires sont célébrées ; voix amplifiées, réussites reconnues, force collective motrice de changement positif.

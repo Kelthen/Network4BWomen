@@ -12,7 +12,7 @@ function shell(inner: string): string {
     <div style="font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:${BRAND_BROWN};max-width:560px;margin:0 auto;background:${BRAND_CREAM};padding:32px 24px;border-radius:16px;line-height:1.6">
       ${inner}
       <p style="margin:32px 0 0;font-size:12px;color:#8a6d1f">
-        ${escapeHtml(SITE_NAME)} · Alberta · <a href="mailto:${CONTACT_EMAIL}" style="color:#8a6d1f">${CONTACT_EMAIL}</a>
+        ${escapeHtml(SITE_NAME)} · <a href="mailto:${CONTACT_EMAIL}" style="color:#8a6d1f">${CONTACT_EMAIL}</a>
       </p>
     </div>`;
 }
