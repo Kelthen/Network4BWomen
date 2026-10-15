@@ -65,4 +65,4 @@ Piliers : **Warm · Empowering · Grounded · Professional · Community-rooted.*
 **Pas d'imagerie IA** pour le contenu de marque. Les visuels doivent refléter de **vraies personnes, vraie photographie**, propriété de NBW à **≥ 85 %**. L'IA texte n'est qu'un support de brouillon interne, révisé avant publication. → Les dégradés/placeholders du site sont décoratifs (OK) ; les photos réelles remplacent les slots.
 
 ## Reconnaissance du territoire (obligatoire)
-NBW est situé en **Alberta**, sur le **territoire traditionnel de la Blackfoot Confederacy (Nations Siksika, Kainai et Piikani)**. Énoncé dans le **footer** de chaque page (`LandAcknowledgment`).
+NBW est situé en **Alberta**, sur le **territoire traditionnel de la Blackfoot Confederacy (Nations Siksika, Kainai et Piikani)**. Énoncé dans le **footer** de chaque page (`LandAcknowledgment`), **sans afficher « Alberta »** (décision client du 2026-10-10 : pas de localisation sur le site) : « Network of Black Women gathers on the traditional territory of the Blackfoot Confederacy… ».
