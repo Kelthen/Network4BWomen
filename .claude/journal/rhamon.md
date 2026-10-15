@@ -1,17 +1,22 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: content/serge-override-nbw-202609
-current_task: "Passe questionnaire NBW 2026-09-15 : 2 PRs (rhamon zone puis override serge). Sisterhood → Network site-wide, 6 nouveaux événements, Our Essence Conference, phone gone, real impact numbers, real testimonials, real CTA photo."
-files_locked:
-  - app/(site)/programs/page.tsx
-  - app/(site)/conference/page.tsx
-  - app/(site)/resources/page.tsx
-  - lib/eventFallbacks.ts
-updated: 2026-09-16T00:00:00Z
+branch: feat/rhamon/nbw-oct-finitions
+current_task: "Fiche NBW oct. — finitions après #64/#65 (on garde tout ce que Serge a fait) : hero sans photo + texte lisible, lieu retiré des cartes événements de l'accueil, derniers « wellness » (hero, footer, SEO)."
+files_locked: []
+updated: 2026-10-15T00:10:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-10-14 — Finitions fiche NBW d'octobre (après #64/#65 de Serge) — `feat/rhamon/nbw-oct-finitions`
+- **Décision humaine (rhamon)** : on garde tout ce que Serge a fait dans #64/#65, y compris le retrait complet de Girl Talk (pas de mention « Coming next year »).
+- **Hero** : la photo est retirée pour de bon. Elle avait été refusée par le client le 07/09 (#52) puis réintroduite par erreur le 20/09 (#61) ; le client a redemandé de l'enlever le 10/10. On garde la forme rose, le texte doit rester lisible dessus.
+- **Accueil** : plus de lieu sur les cartes Upcoming Events (« No location on the Main page »).
+- **Wellness** : derniers restes dans le sous-titre du hero, le footer (shared) et les mots-clés SEO (shared). News « Wellness Tips » et Resources « Mental Health » non touchés : ce ne sont pas des programmes « Health & Wellness ».
+- **Pickleball** : le dossier Drive « Highlights » = photos du pickleball (cf. journal serge). Upload manuel nécessaire, hors de cette PR.
+- **Fait** : hero sans photo (`public/images/hero.jpg` supprimée, dégradé blush → pink-light → pink, plus de brun), cartes accueil sans lieu, « wellness » retiré (hero, footer, mots-clés SEO, CONTENT.md). Vérifié en captures 1440 / 1100 / 390 px. `tsc` + `next build` OK. Verrous libérés.
+- **Base Supabase (2026-10-14, soir)** : `supabase/data/2026-10-14_suppressions.sql` de Serge **exécuté** (par rhamon, SQL Editor ; l'outil MCP expirait sur la confirmation). Vérifié en base : 2 ressources, 3 événements, 1 faux speaker supprimés ; galerie conférence 2025 = 15 photos (ordre 1→15). Vérifié en ligne : /resources, /events, /gallery à jour. Sauvegardes : `supabase/data/2026-10-14_backup-*.json`.
 
 ## 2026-09-16 — Questionnaire NBW 2026-09-15 (rhamon PR #57 + serge override)
 - **Scope** : passe complète du questionnaire client daté du 2026-09-15 en 2 PRs distinctes.

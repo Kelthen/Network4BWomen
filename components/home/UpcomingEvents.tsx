@@ -14,17 +14,16 @@ type TeaserEvent = {
   day: string;
   title: string;
   cat: string;
-  where: string;
 };
 
 // Programme réel NBW (questionnaire 2026-09-15). Ordre chronologique.
 // 2026-10-14 (serge, override sur demande humaine) : Girl Talk & Gratitude reporté à l'an prochain → retiré.
 const EVENTS: TeaserEvent[] = [
-  { slug: "chapter-collective",           month: "NOV", day: "01", title: "Chapter Collective",           cat: "Community",          where: "TBA" },
-  { slug: "nbw-career-conversations",     month: "JAN", day: "TBD", title: "NBW: Career Conversations",   cat: "Professional",       where: "TBA" },
-  { slug: "paint-and-sip",                month: "MAR", day: "05", title: "Paint & Sip",                  cat: "Community",          where: "Lethbridge AB" },
-  { slug: "our-essence-conference",       month: "MAR", day: "06", title: "Our Essence Conference",      cat: "Annual Conference",  where: "Excite Lethbridge" },
-  { slug: "she-deserves-rest",            month: "MAR", day: "07", title: "She Deserves Rest",            cat: "Retreat",            where: "TBA" },
+  { slug: "chapter-collective",           month: "NOV", day: "01", title: "Chapter Collective",           cat: "Community" },
+  { slug: "nbw-career-conversations",     month: "JAN", day: "TBD", title: "NBW: Career Conversations",   cat: "Professional" },
+  { slug: "paint-and-sip",                month: "MAR", day: "05", title: "Paint & Sip",                  cat: "Community" },
+  { slug: "our-essence-conference",       month: "MAR", day: "06", title: "Our Essence Conference",      cat: "Annual Conference" },
+  { slug: "she-deserves-rest",            month: "MAR", day: "07", title: "She Deserves Rest",            cat: "Retreat" },
 ];
 
 export default function UpcomingEvents() {
@@ -63,7 +62,7 @@ export default function UpcomingEvents() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="font-serif text-xl text-brand-brown group-hover:underline">{e.title}</h3>
-                  <p className="mt-1 text-sm text-brand-brown/80">{e.cat} · {e.where}</p>
+                  <p className="mt-1 text-sm text-brand-brown/80">{e.cat}</p>
                 </div>
                 <span
                   aria-hidden="true"

@@ -161,7 +161,8 @@
   max-width: 560px;
   aspect-ratio: 4 / 5;
   border-radius: 200px 200px 24px 24px;
-  background: linear-gradient(150deg, var(--blush), var(--pink) 45%, var(--brown));
+  /* Dégradé clair uniquement : le titre brun passe par-dessus la forme et doit rester lisible. */
+  background: linear-gradient(150deg, var(--blush), var(--pink-light) 45%, var(--pink));
   opacity: 0.9;
   filter: saturate(1.05);
   will-change: transform;
