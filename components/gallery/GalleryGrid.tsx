@@ -44,7 +44,7 @@ export default function GalleryGrid({ photos, minTiles = 8 }: { photos: string[]
                 >
                   <span
                     className="block h-full w-full transition duration-500 group-hover:scale-[1.03]"
-                    style={coverImage(src, g)}
+                    style={coverImage(src, g, "center 20%")}
                   />
                   <span className="pointer-events-none absolute inset-0 bg-brand-brown/0 transition group-hover:bg-brand-brown/10" />
                 </button>
