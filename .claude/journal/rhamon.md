@@ -3,18 +3,16 @@ dev: rhamon
 github: RhamonK
 branch: chore/rhamon/journal-2026-10-15
 current_task: "Retirer les mentions de lieu génériques (décision rhamon 15/10) : reconnaissance territoriale du footer reformulée sans « Alberta », Alberta retiré de Donate / Get Involved / Contact / image de partage / emails newsletter. Textes client verbatim, adresses d'événements et SEO invisible conservés."
-files_locked:
-  - components/LandAcknowledgment.tsx   # shared (footer) — annoncé ici
-  - app/(site)/donate/page.tsx
-  - app/(site)/get-involved/page.tsx
-  - app/(site)/contact/page.tsx
-  - app/opengraph-image.tsx            # shared — annoncé ici
-  - lib/newsletterEmails.ts
-  - docs/CONTENT.md
-updated: 2026-10-15T00:45:00Z
+files_locked: []
+updated: 2026-10-15T01:00:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-10-15 — Plus de localisation affichée — PR #69
+- Décision rhamon : reconnaissance territoriale du footer **gardée mais sans « Alberta »** ; « Alberta » retiré de Donate, Get Involved, image OG, emails newsletter ; bloc « Where we are » de Contact supprimé.
+- Conservé : textes client verbatim (About, Conference, témoignage), adresses d'événements, SEO invisible. Règle ajoutée dans CLAUDE.md §5, BRAND.md, CONTENT.md.
+- Repéré, hors PR : Contact affiche « Social links to be confirmed with NBW. » (note interne visible). Verrous libérés.
 
 ## 2026-10-15 — Galerie pickleball : vraies photos (PR #67) — MERGÉ + base à jour
 - #66 et #67 mergées. 15 vraies photos du pickleball (Drive « Highlights », fournies par rhamon en .docx) dans `public/images/gallery/pickleball/`, allégées (16 Mo → 2,5 Mo).
