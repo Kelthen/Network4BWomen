@@ -1,0 +1,107 @@
+{
+  "taken_at": "2026-10-17",
+  "note": "Valeurs avant 2026-10-17_notes-nbw.sql (lignes complètes pour Our Essence et She Deserves Rest, champs modifiés pour les autres).",
+  "events": [
+    {
+      "id": "7b46618f-63a5-4101-af18-2947a7740d8e",
+      "slug": "our-essence-conference",
+      "title": "Our Essence Conference",
+      "description": "Alberta's most premium and anticipated Black Women Leadership conference for young professionals, entrepreneurs, creatives and leaders coming together to serve our community. Theme: She Deserves Rest.",
+      "category": "Annual Conference",
+      "starts_at": "2027-03-06T16:00:00+00:00",
+      "ends_at": null,
+      "location": "Excite Lethbridge, 101 Exhibition Way South, Lethbridge AB",
+      "cover_url": "/images/conference/hero.jpg",
+      "is_conference": true,
+      "capacity": null,
+      "created_at": "2026-09-01T00:02:55.47804+00:00",
+      "registration_url": null,
+      "speakers": null,
+      "agenda": null,
+      "date_precision": "day"
+    },
+    {
+      "id": "1b078d3a-63b0-47f2-8d5e-d421f49c3cca",
+      "slug": "chapter-collective",
+      "cover_url": "/images/events/img-1702.jpg"
+    },
+    {
+      "id": "bafb2632-1401-410b-a998-8e2b69a57e84",
+      "slug": "nbw-career-conversations",
+      "cover_url": "/images/events/img-6705.jpg"
+    },
+    {
+      "id": "a8969874-1c9b-4c48-9fe4-9952a47a5336",
+      "slug": "paint-and-sip",
+      "cover_url": "/images/events/img-6720.jpg"
+    },
+    {
+      "id": "1bfda32b-647c-430d-894f-bd1c5d59585a",
+      "slug": "she-deserves-rest",
+      "title": "She Deserves Rest",
+      "description": null,
+      "category": "Retreat",
+      "starts_at": "2027-03-07T17:00:00+00:00",
+      "ends_at": null,
+      "location": "TBA",
+      "cover_url": "/images/events/img-6793.jpg",
+      "is_conference": false,
+      "capacity": null,
+      "created_at": "2026-10-14T22:50:30.14107+00:00",
+      "registration_url": null,
+      "speakers": null,
+      "agenda": null,
+      "date_precision": "day"
+    }
+  ],
+  "programs": [
+    {
+      "slug": "networking",
+      "photos": [
+        "/images/programs/networking.jpg"
+      ]
+    },
+    {
+      "slug": "leadership-development",
+      "photos": [
+        "/images/programs/leadership-development.jpg"
+      ]
+    },
+    {
+      "slug": "community-events",
+      "photos": [
+        "/images/programs/community-events.jpg"
+      ]
+    },
+    {
+      "slug": "youth-programming",
+      "photos": [
+        "/images/programs/youth-programming.jpg"
+      ]
+    },
+    {
+      "slug": "annual-conference-summit",
+      "photos": [
+        "/images/programs/annual-conference-summit.jpg"
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "slug": "celebrating-wins",
+      "cover_url": null
+    },
+    {
+      "slug": "small-habits",
+      "cover_url": null
+    },
+    {
+      "slug": "looking-back",
+      "cover_url": null
+    },
+    {
+      "slug": "jamaica-hurricane-relief",
+      "cover_url": null
+    }
+  ]
+}

@@ -22,7 +22,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Events — Network of Black Women (NBW)",
   description:
-    "Upcoming gatherings, the annual conference and retreat, networking, and community events for Black women in Alberta.",
+    "Upcoming gatherings, the annual conference, networking, and community events for Black women in Alberta.",
 };
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
@@ -31,7 +31,6 @@ const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text
 // « Past Events Gallery » va sur la galerie. Cliquable sur mobile + desktop.
 const CATEGORIES: { label: string; href: string }[] = [
   { label: "Annual Conference", href: "/events/our-essence-conference" },
-  { label: "Annual Retreat", href: "/events/she-deserves-rest" },
   { label: "Community Gatherings", href: "/events/chapter-collective" },
   { label: "Career & Professional", href: "/events/nbw-career-conversations" },
   { label: "Creative Socials", href: "/events/paint-and-sip" },
@@ -66,7 +65,7 @@ export default async function EventsPage() {
   const listView = (
     <ul className="grid gap-4">
       {events.map((e, i) => {
-        const date = listBadge(e.starts_at, precisionOf(e.date_precision));
+        const date = listBadge(e.starts_at, precisionOf(e.date_precision), e.ends_at);
         const parsed = parseEventDescription(e.description);
         return (
           <Reveal
@@ -81,7 +80,7 @@ export default async function EventsPage() {
             >
               <div className="flex w-16 flex-none flex-col items-center rounded-xl bg-brand-brown py-2 text-brand-cream">
                 <span className="text-xs uppercase tracking-wider text-brand-pinkLight">{date.month}</span>
-                <span className="font-serif text-2xl leading-none">{date.day}</span>
+                <span className={`font-serif leading-none ${date.day.includes("–") ? "text-lg" : "text-2xl"}`}>{date.day}</span>
               </div>
               <div className="min-w-0 flex-1">
                 <h3 className="font-serif text-xl text-brand-brown group-hover:underline">{e.title}</h3>

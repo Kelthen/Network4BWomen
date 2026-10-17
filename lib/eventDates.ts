@@ -15,13 +15,24 @@ export function precisionOf(value: unknown): DatePrecision {
   return value === "day" || value === "month" ? value : "datetime";
 }
 
-/** Pastille de la liste : { month: "OCT", day: "17" } — ou "TBD" si seul le mois est connu. */
-export function listBadge(iso: string | null, precision: DatePrecision): { month: string; day: string } {
+/** Pastille de la liste : { month: "OCT", day: "17" } — ou "TBD" si seul le mois est connu.
+ *  Événement sur plusieurs jours du même mois (ex. Our Essence) : { month: "MAR", day: "6–7" }. */
+export function listBadge(
+  iso: string | null,
+  precision: DatePrecision,
+  endIso?: string | null,
+): { month: string; day: string } {
   if (!iso) return { month: "TBD", day: "—" };
   const d = new Date(iso);
   const month = d.toLocaleString("en-US", { timeZone: EVENT_TZ, month: "short" }).toUpperCase();
   if (precision === "month") return { month, day: "TBD" };
   const day = d.toLocaleString("en-US", { timeZone: EVENT_TZ, day: "numeric" });
+  if (endIso) {
+    const end = new Date(endIso);
+    const endMonth = end.toLocaleString("en-US", { timeZone: EVENT_TZ, month: "short" }).toUpperCase();
+    const endDay = end.toLocaleString("en-US", { timeZone: EVENT_TZ, day: "numeric" });
+    if (endMonth === month && endDay !== day) return { month, day: `${day}–${endDay}` };
+  }
   return { month, day };
 }
 
@@ -42,7 +53,16 @@ export function formatEventWhen(startIso: string, endIso: string | null, precisi
     year: "numeric",
   };
   const startDate = start.toLocaleDateString("en-US", dateOpts);
-  if (precision === "day") return `${startDate} · Time to be announced`;
+  const dayKey = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: EVENT_TZ });
+  if (precision === "day") {
+    // Plusieurs jours (ex. Our Essence, 6–7 mars) : « Saturday, March 6 → Sunday, March 7, 2027 ».
+    if (endIso && dayKey(new Date(endIso)) !== dayKey(start)) {
+      const shortOpts: Intl.DateTimeFormatOptions = { timeZone: EVENT_TZ, weekday: "long", month: "long", day: "numeric" };
+      const endDate = new Date(endIso).toLocaleDateString("en-US", dateOpts);
+      return `${start.toLocaleDateString("en-US", shortOpts)} → ${endDate} · Time to be announced`;
+    }
+    return `${startDate} · Time to be announced`;
+  }
 
   const timeOpts: Intl.DateTimeFormatOptions = { timeZone: EVENT_TZ, hour: "numeric", minute: "2-digit" };
   const startTime = start.toLocaleTimeString("en-US", timeOpts);
@@ -50,7 +70,6 @@ export function formatEventWhen(startIso: string, endIso: string | null, precisi
 
   const end = new Date(endIso);
   const endTime = end.toLocaleTimeString("en-US", timeOpts);
-  const dayKey = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: EVENT_TZ });
   if (dayKey(start) === dayKey(end)) return `${startDate} · ${startTime} – ${endTime}`;
   const endDate = end.toLocaleDateString("en-US", dateOpts);
   return `${startDate} · ${startTime} → ${endDate} · ${endTime}`;

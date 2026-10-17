@@ -2,6 +2,9 @@
 // Fallback to placeholder data when Supabase is unavailable.
 // See docs/CONTENT.md §5.
 //
+// 2026-10-17 (rhamon, notes NBW du 16/10, override zone serge) : dates 6–7 mars, thème
+//   « She Deserves Rest » retiré, tuiles speakers vides, une photo par emplacement sur
+//   tout le site (Who is this for, Takeaways et Event Location passent en texte seul).
 // 2026-10-14 (serge) — bouton des passes : « Sold out — join the waitlist » → « Tickets
 //   coming soon » (la billetterie n'est pas ouverte ; « sold out » induisait en erreur).
 // ⚠️ 2026-09-17 — édité par rhamon sous override :
@@ -24,7 +27,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Our Essence Conference — Network of Black Women (NBW)",
   description:
-    "Our Essence is Alberta's most premium and anticipated Black Women Leadership conference — March 5–7, 2027, Excite Lethbridge. Theme: She Deserves Rest.",
+    "Our Essence is Alberta's most premium and anticipated Black Women Leadership conference — March 6–7, 2027, Excite Lethbridge.",
 };
 
 const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-goldText nbw-eyebrow";
@@ -47,21 +50,19 @@ const TAKEAWAYS = [
   "A renewed sense of purpose, leaving with the motivation, connections, and tools to continue growing both personally and professionally.",
 ];
 
-// 3 passes façon Sip N' Slay. Prix + perks = « Coming Soon » tant que NBW n'a
-// pas fixé les tarifs.
-// 6 photos NBW réutilisées comme « teaser » de la grille speakers tant que le
-// lineup n'est pas confirmé. Chaque tuile porte un label « Speaker to be
-// announced » — on ne prétend jamais que ce sont les intervenantes réelles.
-// Objectif : vibrer communauté, jamais de placeholder vide à l'écran.
-const SPEAKER_TEASE_PHOTOS = [
-  "/images/events/img-1702.jpg",
-  "/images/events/img-6720.jpg",
+// Collage « About the event » (3 photos de la conférence, utilisées nulle part ailleurs).
+const COLLAGE = [
   "/images/events/img-6793.jpg",
-  "/images/conference/hero.jpg",
-  "/images/events/img-6705.jpg",
-  "/images/events/img-6724.jpg",
+  "/images/gallery/2025-1.jpg",
+  "/images/events/img-6720.jpg",
 ];
 
+// Lineup pas encore confirmé : 6 tuiles vides « Speaker to be announced » (notes NBW
+// du 16/10 : pas de photos dans les tuiles speakers).
+const SPEAKER_SLOTS = 6;
+
+// 3 passes façon Sip N' Slay. Prix + perks = « Coming Soon » tant que NBW n'a
+// pas fixé les tarifs.
 const PASSES = [
   {
     name: "Wallet Friendly",
@@ -99,7 +100,7 @@ const PASSES = [
 ];
 
 const FAQ = [
-  { q: "When is the conference?", a: "March 5–7, 2027." },
+  { q: "When is the conference?", a: "March 6–7, 2027." },
   { q: "Where is it held?", a: "Excite Lethbridge, 101 Exhibition Way South, Lethbridge, AB." },
   { q: "How much does it cost?", a: "Ticket pricing will be announced soon — join the newsletter to be the first to know." },
   { q: "Who is speaking?", a: "The full lineup will be revealed in the coming months." },
@@ -200,24 +201,20 @@ export default async function ConferencePage() {
               delay={1}
               className="mt-4 font-serif text-4xl font-semibold leading-[1.02] tracking-tight md:text-6xl"
             >
-              Our Essence — <em className="text-brand-rose">She&nbsp;Deserves&nbsp;Rest.</em>
+              Our Essence <em className="text-brand-rose">Conference.</em>
             </Reveal>
             <Reveal as="p" delay={2} className="mt-6 max-w-xl text-lg text-brand-brown/80">
               Alberta&apos;s most premium and anticipated Black Women Leadership conference for young
               professionals, entrepreneurs, creatives and leaders coming together to serve our community.
             </Reveal>
-            <Reveal as="dl" delay={3} className="mt-8 grid gap-3 text-sm text-brand-brown/85 sm:grid-cols-3">
+            <Reveal as="dl" delay={3} className="mt-8 grid gap-3 text-sm text-brand-brown/85 sm:grid-cols-2">
               <div>
                 <dt className="font-semibold text-brand-brown">When</dt>
-                <dd>March 5–7, 2027</dd>
+                <dd>March 6–7, 2027</dd>
               </div>
               <div>
                 <dt className="font-semibold text-brand-brown">Where</dt>
                 <dd>Excite Lethbridge, AB</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-brand-brown">Theme</dt>
-                <dd>She Deserves Rest</dd>
               </div>
             </Reveal>
             <Reveal delay={3} className="mt-8 flex flex-wrap gap-3">
@@ -289,47 +286,35 @@ export default async function ConferencePage() {
           <div className="grid gap-3">
             <Reveal from="right">
               <ZoomablePhoto
-                src="/images/events/img-6705.jpg"
+                src={COLLAGE[0]}
                 gradient="linear-gradient(160deg,#8aa9d4,#f6828f)"
-                alt="Group photo — NBW community gathering"
+                alt="Group photo — Our Essence attendees"
                 className="aspect-[4/3] rounded-2xl"
                 objectPosition="center 40%"
-                group={[
-                  "/images/events/img-6705.jpg",
-                  "/images/events/img-6720.jpg",
-                  "/images/events/img-6793.jpg",
-                ]}
+                group={COLLAGE}
                 index={0}
               />
             </Reveal>
             <div className="grid grid-cols-2 gap-3">
               <Reveal from="right" delay={1}>
                 <ZoomablePhoto
-                  src="/images/events/img-6720.jpg"
+                  src={COLLAGE[1]}
                   gradient="linear-gradient(160deg,#c9a24b,#e8dcc8)"
-                  alt="Speaker moment — NBW event"
+                  alt="Attendee at an Our Essence table"
                   className="aspect-[3/4] rounded-2xl"
                   objectPosition="center 20%"
-                  group={[
-                    "/images/events/img-6705.jpg",
-                    "/images/events/img-6720.jpg",
-                    "/images/events/img-6793.jpg",
-                  ]}
+                  group={COLLAGE}
                   index={1}
                 />
               </Reveal>
               <Reveal from="right" delay={2}>
                 <ZoomablePhoto
-                  src="/images/events/img-6793.jpg"
+                  src={COLLAGE[2]}
                   gradient="linear-gradient(160deg,#97ac9f,#6e9179)"
-                  alt="Panel session — NBW event"
+                  alt="Attendee holding roses at Our Essence"
                   className="aspect-[3/4] rounded-2xl"
                   objectPosition="center 20%"
-                  group={[
-                    "/images/events/img-6705.jpg",
-                    "/images/events/img-6720.jpg",
-                    "/images/events/img-6793.jpg",
-                  ]}
+                  group={COLLAGE}
                   index={2}
                 />
               </Reveal>
@@ -338,75 +323,49 @@ export default async function ConferencePage() {
         </div>
       </section>
 
-      {/* Who is this for — photo gauche, contenu droite */}
+      {/* Who is this for — texte seul (sa photo est passée sur l'accueil, carte Leadership) */}
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-          <Reveal from="left" className="lg:sticky lg:top-24 lg:self-start">
-            <ZoomablePhoto
-              src="/images/events/img-1702.jpg"
-              gradient="linear-gradient(160deg,#e9c8c9,#f6828f 60%,#b23a4e)"
-              alt="Attendees celebrating at an NBW gathering"
-              className="aspect-[4/5] rounded-2xl"
-              objectPosition="center 20%"
-            />
-          </Reveal>
-          <div>
-            <Reveal as="p" className={EYEBROW}>Who is this for?</Reveal>
-            <Reveal as="h2" delay={1} className="mt-3 font-serif text-3xl md:text-4xl">
-              A room for every stage of your journey.
+        <Reveal as="p" className={EYEBROW}>Who is this for?</Reveal>
+        <Reveal as="h2" delay={1} className="mt-3 font-serif text-3xl md:text-4xl">
+          A room for every stage of your journey.
+        </Reveal>
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {WHO_ITS_FOR.map((line, i) => (
+            <Reveal
+              as="li"
+              key={i}
+              delay={((i % 3) + 1) as 1 | 2 | 3}
+              className="flex items-start gap-3 rounded-2xl bg-white p-5 shadow-[0_1px_0_#e8dcc8]"
+            >
+              <span aria-hidden="true" className="mt-0.5 font-serif text-xl leading-none text-brand-pink">✓</span>
+              <p className="text-sm leading-relaxed text-brand-brown/85">{line}</p>
             </Reveal>
-            <ul className="mt-8 grid gap-4">
-              {WHO_ITS_FOR.map((line, i) => (
-                <Reveal
-                  as="li"
-                  key={i}
-                  delay={((i % 3) + 1) as 1 | 2 | 3}
-                  className="flex items-start gap-3 rounded-2xl bg-white p-5 shadow-[0_1px_0_#e8dcc8]"
-                >
-                  <span aria-hidden="true" className="mt-0.5 font-serif text-xl leading-none text-brand-pink">✓</span>
-                  <p className="text-sm leading-relaxed text-brand-brown/85">{line}</p>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
-        </div>
+          ))}
+        </ul>
       </section>
 
-      {/* Takeaways — contenu gauche, photo droite (fond brun inversé) */}
+      {/* Takeaways — fond brun inversé, texte seul (une photo par emplacement sur le site) */}
       <section className="bg-brand-brown text-brand-cream">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
-            <div>
-              <Reveal as="p" className="text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-pinkLight nbw-eyebrow">
-                What you'll walk away with
+          <Reveal as="p" className="text-xs font-semibold font-sub uppercase tracking-[0.22em] text-brand-pinkLight nbw-eyebrow">
+            What you&apos;ll walk away with
+          </Reveal>
+          <Reveal as="h2" delay={1} className="mt-3 font-serif text-3xl md:text-4xl">
+            Takeaways
+          </Reveal>
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {TAKEAWAYS.map((line, i) => (
+              <Reveal
+                as="li"
+                key={i}
+                delay={((i % 3) + 1) as 1 | 2 | 3}
+                className="flex items-start gap-3 rounded-xl border border-brand-cream/15 p-4"
+              >
+                <span aria-hidden="true" className="mt-0.5 font-serif text-lg leading-none text-brand-pink">→</span>
+                <p className="text-sm leading-relaxed text-brand-cream/90">{line}</p>
               </Reveal>
-              <Reveal as="h2" delay={1} className="mt-3 font-serif text-3xl md:text-4xl">
-                Takeaways
-              </Reveal>
-              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                {TAKEAWAYS.map((line, i) => (
-                  <Reveal
-                    as="li"
-                    key={i}
-                    delay={((i % 3) + 1) as 1 | 2 | 3}
-                    className="flex items-start gap-3 rounded-xl border border-brand-cream/15 p-4"
-                  >
-                    <span aria-hidden="true" className="mt-0.5 font-serif text-lg leading-none text-brand-pink">→</span>
-                    <p className="text-sm leading-relaxed text-brand-cream/90">{line}</p>
-                  </Reveal>
-                ))}
-              </ul>
-            </div>
-            <Reveal from="right" className="lg:sticky lg:top-24 lg:self-start">
-              <ZoomablePhoto
-                src="/images/events/img-6724.jpg"
-                gradient="linear-gradient(160deg,#e9c8c9,#c9a24b)"
-                alt="NBW community — women together at a gathering"
-                className="aspect-[4/3] rounded-2xl"
-                objectPosition="center 40%"
-              />
-            </Reveal>
-          </div>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -415,7 +374,7 @@ export default async function ConferencePage() {
         <div className="text-center">
           <Reveal as="p" className={EYEBROW}>Event Schedule</Reveal>
           <Reveal as="h2" delay={1} className="mt-3 font-serif text-3xl md:text-5xl">
-            March 5–7, 2027
+            March 6–7, 2027
           </Reveal>
           <Reveal as="p" delay={2} className="mt-3 text-brand-brown/70">Coming soon.</Reveal>
         </div>
@@ -444,26 +403,12 @@ export default async function ConferencePage() {
                   </p>
                 </Reveal>
               ))
-            : SPEAKER_TEASE_PHOTOS.map((photo, i) => (
+            : Array.from({ length: SPEAKER_SLOTS }, (_, i) => (
                 <Reveal as="li" key={i} delay={((i % 3) + 1) as 1 | 2 | 3}>
-                  <div
-                    className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl"
-                    style={coverImage(photo, "linear-gradient(160deg,#e8dcc8,#c9a24b)", "center 20%")}
-                  >
-                    {/* Voile brun bas → haut pour lisibilité du label */}
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          "linear-gradient(180deg, rgba(87,52,37,0) 45%, rgba(87,52,37,0.75) 100%)",
-                      }}
-                      aria-hidden="true"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 p-4 text-center">
-                      <span className="inline-block rounded-full bg-brand-cream/95 px-3 py-1 text-[10px] font-semibold font-sub uppercase tracking-[0.22em] text-brand-brown shadow-[0_1px_0_rgba(0,0,0,0.06)]">
-                        Speaker to be announced
-                      </span>
-                    </div>
+                  <div className="flex aspect-[3/4] w-full items-end justify-center rounded-2xl border border-brand-beige bg-brand-beige/40 p-4">
+                    <span className="text-center text-[10px] font-semibold font-sub uppercase tracking-[0.22em] text-brand-brown/70">
+                      Speaker to be announced
+                    </span>
                   </div>
                 </Reveal>
               ))}
@@ -532,24 +477,17 @@ export default async function ConferencePage() {
         </div>
       </section>
 
-      {/* Event Location — photo landscape gauche, texte droite */}
+      {/* Event Location — texte seul : pas encore de vraie photo de la salle */}
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
-          <Reveal from="left">
-            <ZoomablePhoto
-              src="/images/conference/hero.jpg"
-              gradient="linear-gradient(160deg,#8aa9d4 0%,#c9a24b 55%,#573425 100%)"
-              alt="NBW community — Our Essence gathering"
-              className="aspect-[4/3] rounded-2xl"
-              objectPosition="center 45%"
-            />
-          </Reveal>
-          <div className="flex flex-col justify-center">
+        <div className="grid gap-8 rounded-3xl border border-brand-beige bg-white p-8 md:grid-cols-2 md:items-center md:p-12">
+          <div>
             <Reveal as="p" className={EYEBROW}>Event Location</Reveal>
             <Reveal as="h2" delay={1} className="mt-3 font-serif text-3xl md:text-4xl">
               Excite Lethbridge
             </Reveal>
-            <Reveal as="p" delay={2} className="mt-4 text-brand-brown/85 md:text-lg">
+          </div>
+          <div>
+            <Reveal as="p" delay={2} className="text-brand-brown/85 md:text-lg">
               101 Exhibition Way South<br />
               Lethbridge, AB
             </Reveal>

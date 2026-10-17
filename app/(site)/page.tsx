@@ -16,23 +16,27 @@ import BoardGovernance from "@/components/home/BoardGovernance";
 
 // Program teasers (3 of NBW's programs — see docs/CONTENT.md §3).
 // Subheadings verbatim from questionnaire 2026-09-15.
+// Photos (notes NBW 16/10) : une photo par emplacement sur tout le site, aucune reprise.
 const PROGRAMS = [
   {
     title: "Networking",
     text: "Opportunities for professional connections for Business Owners & Thought Leaders.",
-    img: "/images/home/professional-development.jpg",
+    img: "/images/events/img-6705.jpg",
+    pos: "center 35%",
     grad: "linear-gradient(160deg,#97ac9f,#e8dcc8)",
   },
   {
     title: "Leadership",
     text: "Inspiring the next generation of leaders & voices.",
-    img: "/images/home/leadership.jpg",
+    img: "/images/events/img-1702.jpg",
+    pos: "center 20%",
     grad: "linear-gradient(160deg,#e9c8c9,#ffbbbb)",
   },
   {
     title: "Community & Events",
     text: "Fostering a safe space for the Black community to thrive.",
-    img: "/images/home/health-wellness.jpg",
+    img: "/images/gallery/pickleball/pickleball-highlights-01.jpg",
+    pos: "center 40%",
     grad: "linear-gradient(160deg,#c9a24b,#e8dcc8)",
   },
 ];
@@ -66,7 +70,7 @@ export default function HomePage() {
                 delay={i === 0 ? undefined : (i as 1 | 2)}
                 className={styles.card}
               >
-                <ZoomablePhoto src={p.img} gradient={p.grad} alt={p.title} className={styles.img} />
+                <ZoomablePhoto src={p.img} gradient={p.grad} alt={p.title} className={styles.img} objectPosition={p.pos} />
                 <div className={styles.body}>
                   <h3>{p.title}</h3>
                   <p>{p.text}</p>

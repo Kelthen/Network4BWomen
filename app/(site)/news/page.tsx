@@ -37,9 +37,9 @@ type Post = {
 };
 
 const FALLBACK_POSTS: Post[] = [
-  { slug: "celebrating-wins", title: "Celebrating our members' wins", excerpt: "Stories of growth, leadership, and community from across the network.", category: "Success Stories", cover_url: null, author: null, published_at: null },
-  { slug: "small-habits", title: "Small habits, big change", excerpt: "Practical, culturally-aware ideas for looking after your wellbeing.", category: "Wellness Tips", cover_url: null, author: null, published_at: null },
-  { slug: "looking-back", title: "Looking back on our gatherings", excerpt: "Highlights and moments from recent NBW events.", category: "Event Recaps", cover_url: null, author: null, published_at: null },
+  { slug: "celebrating-wins", title: "Celebrating our members' wins", excerpt: "Stories of growth, leadership, and community from across the network.", category: "Success Stories", cover_url: "/images/gallery/pickleball/pickleball-highlights-05.jpg", author: null, published_at: null },
+  { slug: "small-habits", title: "Small habits, big change", excerpt: "Practical, culturally-aware ideas for looking after your wellbeing.", category: "Wellness Tips", cover_url: "/images/gallery/pickleball/pickleball-highlights-13.jpg", author: null, published_at: null },
+  { slug: "looking-back", title: "Looking back on our gatherings", excerpt: "Highlights and moments from recent NBW events.", category: "Event Recaps", cover_url: "/images/gallery/pickleball/pickleball-highlights-11.jpg", author: null, published_at: null },
 ];
 
 async function getPosts(): Promise<Post[]> {
@@ -102,10 +102,13 @@ export default async function NewsPage() {
             >
               <div
                 className="aspect-[16/10] w-full"
-                style={coverImage(
-                  p.cover_url ?? `/images/news/${(i % 3) + 1}.jpg`,
-                  ACCENTS[i % ACCENTS.length],
-                )}
+                style={
+                  // Chaque article porte sa propre photo (posts.cover_url) : plus de photo
+                  // générique recyclée d'un autre emplacement du site (notes NBW 16/10).
+                  p.cover_url
+                    ? coverImage(p.cover_url, ACCENTS[i % ACCENTS.length], "center 30%")
+                    : { background: ACCENTS[i % ACCENTS.length] }
+                }
                 aria-hidden="true"
               />
               <div className="flex flex-1 flex-col p-6">
