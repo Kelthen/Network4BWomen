@@ -1,10 +1,19 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: chore/rhamon/journal-2026-10-15
-current_task: "Retirer les mentions de lieu génériques (décision rhamon 15/10) : reconnaissance territoriale du footer reformulée sans « Alberta », Alberta retiré de Donate / Get Involved / Contact / image de partage / emails newsletter. Textes client verbatim, adresses d'événements et SEO invisible conservés."
-files_locked: []
-updated: 2026-10-15T01:00:00Z
+branch: feat/rhamon/notes-nbw-16-10
+current_task: "Notes NBW du 16/10 : Our Essence le 6–7 mars, She Deserves Rest retiré (événement + thème), une photo par emplacement (planche validée), rotation de photos dans « Our community », tuiles speakers vides. Override zone serge (conference, events, programs, news) sur instruction de rhamon."
+files_locked:
+  - "app/(site)/conference/page.tsx"
+  - "app/(site)/events/page.tsx"
+  - "app/(site)/page.tsx"
+  - "app/(site)/programs/page.tsx"
+  - "app/(site)/news/page.tsx"
+  - components/home/SignatureMoment.tsx
+  - components/home/UpcomingEvents.tsx
+  - lib/eventFallbacks.ts
+  - lib/eventDates.ts
+updated: 2026-10-17T12:00:00Z
 ---
 
 # Journal — rhamon
