@@ -18,12 +18,12 @@ type TeaserEvent = {
 
 // Programme réel NBW (questionnaire 2026-09-15). Ordre chronologique.
 // 2026-10-14 (serge, override sur demande humaine) : Girl Talk & Gratitude reporté à l'an prochain → retiré.
+// 2026-10-17 (rhamon, notes NBW) : Our Essence sur deux jours (6–7 mars) ; She Deserves Rest retiré.
 const EVENTS: TeaserEvent[] = [
   { slug: "chapter-collective",           month: "NOV", day: "01", title: "Chapter Collective",           cat: "Community" },
   { slug: "nbw-career-conversations",     month: "JAN", day: "TBD", title: "NBW: Career Conversations",   cat: "Professional" },
   { slug: "paint-and-sip",                month: "MAR", day: "05", title: "Paint & Sip",                  cat: "Community" },
-  { slug: "our-essence-conference",       month: "MAR", day: "06", title: "Our Essence Conference",      cat: "Annual Conference" },
-  { slug: "she-deserves-rest",            month: "MAR", day: "07", title: "She Deserves Rest",            cat: "Retreat" },
+  { slug: "our-essence-conference",       month: "MAR", day: "06–07", title: "Our Essence Conference",   cat: "Annual Conference" },
 ];
 
 export default function UpcomingEvents() {
@@ -58,7 +58,7 @@ export default function UpcomingEvents() {
               >
                 <div className="flex w-16 flex-none flex-col items-center rounded-xl bg-brand-brown py-2 text-brand-cream">
                   <span className="text-xs uppercase tracking-wider text-brand-pinkLight">{e.month}</span>
-                  <span className="font-serif text-2xl leading-none">{e.day}</span>
+                  <span className={`font-serif leading-none ${e.day.includes("–") ? "text-lg" : "text-2xl"}`}>{e.day}</span>
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="font-serif text-xl text-brand-brown group-hover:underline">{e.title}</h3>

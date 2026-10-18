@@ -1,13 +1,34 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/nbw-oct-finitions
-current_task: "Fiche NBW oct. — finitions après #64/#65 (on garde tout ce que Serge a fait) : hero sans photo + texte lisible, lieu retiré des cartes événements de l'accueil, derniers « wellness » (hero, footer, SEO)."
+branch: feat/rhamon/notes-nbw-16-10
+current_task: "Notes NBW du 16/10 : Our Essence le 6–7 mars, She Deserves Rest retiré (événement + thème), une photo par emplacement (planche validée), rotation de photos dans « Our community », tuiles speakers vides. Override zone serge (conference, events, programs, news) sur instruction de rhamon."
 files_locked: []
-updated: 2026-10-15T00:10:00Z
+updated: 2026-10-17T15:00:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-10-17 — Notes NBW du 16/10 — `feat/rhamon/notes-nbw-16-10`
+- **Dates** : Our Essence = 6–7 mars 2027 (accueil « MAR 06–07 », liste Events « MAR 6–7 », page détail, page Conférence + FAQ). Seule la conférence change (décision rhamon) ; Paint & Sip reste le 5. `listBadge` / `formatEventWhen` gèrent maintenant les plages de jours.
+- **She Deserves Rest** retiré : événement (accueil, fallbacks, lien « Annual Retreat ») + thème (titre et ligne « Theme » de la page Conférence, descriptions).
+- **Photos** : une photo par emplacement sur tout le site (hors galerie), planche validée par rhamon. Seule reprise assumée : la couverture d'Our Essence = photo hero de la page Conférence (même événement). Cartes Networking / Leadership de l'accueil = photos de la conférence (pas de pickleball, retour rhamon). « Who is this for », « Takeaways » et « Event Location » passent en texte seul. Copies d'images supprimées : `public/images/home|programs|news`.
+- **« Our community »** (accueil) : la photo change à chaque passage (fondu, sessionStorage). 2 photos de la conférence pour l'instant, ajouter des photos = enrichir `PHOTOS`.
+- **Speakers** : 6 tuiles vides « Speaker to be announced ».
+- **Base** : `supabase/data/2026-10-17_notes-nbw.sql` exécuté via le connecteur (fin Our Essence, description sans thème, couvertures events, photos programs, couvertures news ; sauvegarde `2026-10-17_backup-notes-nbw.json`). ⏳ Reste la suppression de She Deserves Rest : `2026-10-17_suppression-she-deserves-rest.sql` à lancer dans le SQL Editor (le connecteur bloque les DELETE).
+- Override zone serge (conference, events, programs, news, eventDates, eventFallbacks) sur instruction de rhamon. Verrous libérés.
+
+## 2026-10-15 — Plus de localisation affichée — PR #69
+- Décision rhamon : reconnaissance territoriale du footer **gardée mais sans « Alberta »** ; « Alberta » retiré de Donate, Get Involved, image OG, emails newsletter ; bloc « Where we are » de Contact supprimé.
+- Conservé : textes client verbatim (About, Conference, témoignage), adresses d'événements, SEO invisible. Règle ajoutée dans CLAUDE.md §5, BRAND.md, CONTENT.md.
+- Repéré, hors PR : Contact affiche « Social links to be confirmed with NBW. » (note interne visible). Verrous libérés.
+
+## 2026-10-15 — Galerie pickleball : vraies photos (PR #67) — MERGÉ + base à jour
+- #66 et #67 mergées. 15 vraies photos du pickleball (Drive « Highlights », fournies par rhamon en .docx) dans `public/images/gallery/pickleball/`, allégées (16 Mo → 2,5 Mo).
+- Galerie : cadrage `center 20%` (visages gardés sur les portraits). Override zone serge (gallery) sur instruction de rhamon.
+- **Base** : `supabase/data/2026-10-15_galerie-pickleball-highlights.sql` exécuté après déploiement (11 lignes mises à jour + 4 ajoutées, aucune suppression ; sauvegarde `2026-10-15_backup-galerie-pickleball.json`). Les 11 anciennes captures restent dans le bucket `gallery`, plus référencées.
+- Vérifié en ligne : /gallery = 15 photos pickleball + 15 photos conférence, 0 capture.
+- ⚠️ À corriger (en attente du feu vert rhamon) : `NEXT_PUBLIC_SITE_URL` sur Vercel vaut `https://wwww.networkofblackwomen.ca` (4 « w ») → og:url / JSON-LD faux.
 
 ## 2026-10-14 — Finitions fiche NBW d'octobre (après #64/#65 de Serge) — `feat/rhamon/nbw-oct-finitions`
 - **Décision humaine (rhamon)** : on garde tout ce que Serge a fait dans #64/#65, y compris le retrait complet de Girl Talk (pas de mention « Coming next year »).

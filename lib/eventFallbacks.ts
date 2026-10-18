@@ -25,6 +25,8 @@ export type EventRow = {
 
 // Événements réels NBW (questionnaire 2026-09-15). Ordre chronologique.
 // 2026-10-14 (serge, override sur demande humaine) : Girl Talk & Gratitude reporté à l'an prochain → retiré.
+// 2026-10-17 (rhamon, notes NBW du 16/10) : Our Essence sur deux jours (6–7 mars), She Deserves Rest
+//   retiré (événement + thème), couvertures sans reprise d'une photo déjà utilisée ailleurs.
 // Le fuseau Alberta est en UTC-6 (heure d'été UTC-6, hiver UTC-7).
 export const FALLBACK_EVENTS: EventRow[] = [
   {
@@ -36,7 +38,7 @@ export const FALLBACK_EVENTS: EventRow[] = [
     starts_at: "2026-11-01T18:00:00-06:00",
     ends_at: null,
     location: "TBA",
-    cover_url: "/images/events/img-1702.jpg",
+    cover_url: "/images/gallery/pickleball/pickleball-highlights-12.jpg",
     is_conference: false,
     capacity: null,
   },
@@ -50,7 +52,7 @@ export const FALLBACK_EVENTS: EventRow[] = [
     starts_at: "2027-01-15T18:00:00-07:00",
     ends_at: null,
     location: "TBA",
-    cover_url: "/images/events/img-6705.jpg",
+    cover_url: "/images/gallery/pickleball/pickleball-highlights-07.jpg",
     is_conference: false,
     capacity: null,
   },
@@ -63,7 +65,7 @@ export const FALLBACK_EVENTS: EventRow[] = [
     starts_at: "2027-03-05T18:00:00-07:00",
     ends_at: null,
     location: "Lethbridge AB",
-    cover_url: "/images/events/img-6720.jpg",
+    cover_url: "/images/gallery/pickleball/pickleball-highlights-15.jpg",
     is_conference: false,
     capacity: null,
   },
@@ -72,26 +74,13 @@ export const FALLBACK_EVENTS: EventRow[] = [
     slug: "our-essence-conference",
     title: "Our Essence Conference",
     description:
-      "Alberta's most premium and anticipated Black Women Leadership conference for young professionals, entrepreneurs, creatives and leaders coming together to serve our community. Theme: She Deserves Rest.",
+      "Alberta's most premium and anticipated Black Women Leadership conference for young professionals, entrepreneurs, creatives and leaders coming together to serve our community.",
     category: "Annual Conference",
     starts_at: "2027-03-06T09:00:00-07:00",
-    ends_at: "2027-03-06T18:00:00-07:00",
+    ends_at: "2027-03-07T18:00:00-07:00",
     location: "Excite Lethbridge, 101 Exhibition Way South",
     cover_url: "/images/conference/hero.jpg",
     is_conference: true,
-    capacity: null,
-  },
-  {
-    id: "6",
-    slug: "she-deserves-rest",
-    title: "She Deserves Rest",
-    description: null,
-    category: "Retreat",
-    starts_at: "2027-03-07T10:00:00-07:00",
-    ends_at: null,
-    location: "TBA",
-    cover_url: "/images/events/img-6793.jpg",
-    is_conference: false,
     capacity: null,
   },
 ];

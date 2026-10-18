@@ -1,10 +1,10 @@
 ---
 dev: serge
 github: sergesanou
-branch: feat/serge/nbw-detail-edits-oct
-current_task: "PR #64 mergée ; PR Board Governance mergée sur instruction de Serge. Scripts data Supabase (sync fiche + galerie 15 photos) prêts, en attente d'exécution (confirmation annulée côté app)."
+branch: feat/serge/conference-venue-photo
+current_task: "Photo du lieu Excite Lethbridge : PR ouverte vers feat/rhamon/notes-nbw-16-10 (à merger avant #70)."
 files_locked: []
-updated: 2026-10-14T22:45:00Z
+updated: 2026-10-18T14:15:00Z
 ---
 
 # Journal — serge
@@ -12,6 +12,13 @@ updated: 2026-10-14T22:45:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de rhamon, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-10-18 — Photo du lieu dans Event Location (/conference) — `feat/serge/conference-venue-photo`
+- Serge a fourni une photo du bâtiment Excite Lethbridge pour remplacer la photo de groupe en double dans « Event Location ».
+- PR #70 de rhamon (non mergée) réécrit cette section en texte seul « pas encore de vraie photo de la salle » → branche créée **depuis feat/rhamon/notes-nbw-16-10**, PR qui cible sa branche (aucun conflit, rien écrit sur sa branche).
+- Section : encadré blanc de rhamon conservé, photo à gauche (`ZoomablePhoto`, 5:4, cadrage centre 60 %), adresse + bouton Google Maps à droite. Fichier `public/images/conference/venue-excite-lethbridge.jpg` (1080×864, 125 Ko, métadonnées retirées).
+- `tsc` OK.
+- ⚠️ Droits : photo architecturale professionnelle (probablement du site du lieu/de l'architecte) → NBW doit confirmer qu'elle peut l'utiliser.
 
 ## 2026-10-14 (4) — Merge sur instruction de Serge
 - PR #64 mergée à 22:44 UTC (kelthenrift-prog). Le commit Board Governance, poussé après ce merge, part dans une PR dédiée, **mergée sans review croisée sur instruction explicite de Serge** (« Merge tout ça », réunion NBW ce soir). Rhamon : merci de relire après coup.

@@ -4,7 +4,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/home/Reveal";
-import { coverImage, slugify } from "@/lib/media";
+import { coverImage } from "@/lib/media";
 import { supabase } from "@/lib/supabase";
 
 export const revalidate = 60; // ISR — revalidate every 60s
@@ -19,35 +19,42 @@ const EYEBROW = "text-xs font-semibold font-sub uppercase tracking-[0.22em] text
 
 // Fallback data when Supabase is unavailable or empty. Aligné sur le questionnaire
 // NBW 2026-09-15 : Mentorship + Health & Wellness retirés, subheadings mis à jour.
+// Photos (notes NBW 16/10) : mêmes chemins que la table `programs`, une photo par
+// emplacement sur tout le site (aucune reprise de l'accueil, des events ou de la conférence).
 const FALLBACK_PROGRAMS = [
   {
     title: "Networking",
     purpose: "Opportunities for professional connections for Business Owners & Thought Leaders.",
     who_it_serves: "Business owners & thought leaders",
+    photos: ["/images/gallery/pickleball/pickleball-highlights-09.jpg"],
     accent: "linear-gradient(160deg,#97ac9f,#e8dcc8)",
   },
   {
     title: "Leadership Development",
     purpose: "Inspiring the next generation of leaders & voices.",
     who_it_serves: "Emerging & established leaders",
+    photos: ["/images/gallery/pickleball/pickleball-highlights-10.jpg"],
     accent: "linear-gradient(160deg,#e9c8c9,#ffbbbb)",
   },
   {
     title: "Community & Events",
     purpose: "Fostering a safe space for the Black community to thrive.",
     who_it_serves: "The whole community",
+    photos: ["/images/gallery/pickleball/pickleball-highlights-06.jpg"],
     accent: "linear-gradient(160deg,#97ac9f,#6e9179)",
   },
   {
     title: "Youth Programming",
     purpose: "Skills, celebration, and belonging for Black girls and young women.",
     who_it_serves: "Youth & young adults",
+    photos: ["/images/gallery/pickleball/pickleball-highlights-03.jpg"],
     accent: "linear-gradient(160deg,#f6828f,#44312b)",
   },
   {
     title: "Annual Conference & Summit",
     purpose: "A flagship gathering of speakers, workshops, and community.",
     who_it_serves: "Everyone — members & allies",
+    photos: ["/images/events/img-6724.jpg"],
     accent: "linear-gradient(160deg,#e9c8c9,#97ac9f)",
   },
 ];
@@ -120,10 +127,8 @@ export default async function ProgramsPage() {
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {programs.map((p, i) => {
-            const photoSrc =
-              p.photos && p.photos.length > 0
-                ? p.photos[0]
-                : `/images/programs/${slugify(p.title)}.jpg`;
+            const photoSrc = p.photos?.[0];
+            const accent = p.accent ?? ACCENTS[i % ACCENTS.length];
 
             return (
               <Reveal
@@ -134,14 +139,14 @@ export default async function ProgramsPage() {
               >
                 <div
                   className="h-56 w-full sm:h-64"
-                  style={coverImage(
+                  style={photoSrc ? coverImage(
                     photoSrc,
-                    p.accent ?? ACCENTS[i % ACCENTS.length],
+                    accent,
                     // Ancré tout en haut : les visages ET les cheveux des femmes
                     // doivent rester visibles (retour NBW 2026-09-16 : « on doit
                     // voir les visages des personnes avec leur chevelure »).
                     "center top",
-                  )}
+                  ) : { background: accent }}
                   aria-hidden="true"
                 />
                 <div className="flex flex-1 flex-col p-6">
