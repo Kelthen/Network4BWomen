@@ -5,6 +5,8 @@
 // 2026-10-17 (rhamon, notes NBW du 16/10, override zone serge) : dates 6–7 mars, thème
 //   « She Deserves Rest » retiré, tuiles speakers vides, une photo par emplacement sur
 //   tout le site (Who is this for, Takeaways et Event Location passent en texte seul).
+// 2026-10-18 (serge) : Event Location reçoit la vraie photo du lieu (Excite Lethbridge,
+//   fournie par Serge) → public/images/conference/venue-excite-lethbridge.jpg.
 // 2026-10-14 (serge) — bouton des passes : « Sold out — join the waitlist » → « Tickets
 //   coming soon » (la billetterie n'est pas ouverte ; « sold out » induisait en erreur).
 // ⚠️ 2026-09-17 — édité par rhamon sous override :
@@ -477,17 +479,24 @@ export default async function ConferencePage() {
         </div>
       </section>
 
-      {/* Event Location — texte seul : pas encore de vraie photo de la salle */}
+      {/* Event Location — photo du lieu (Excite Lethbridge) à gauche, adresse à droite */}
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-        <div className="grid gap-8 rounded-3xl border border-brand-beige bg-white p-8 md:grid-cols-2 md:items-center md:p-12">
-          <div>
+        <div className="grid gap-8 rounded-3xl border border-brand-beige bg-white p-4 sm:p-6 md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-12 md:p-8">
+          <Reveal from="left">
+            <ZoomablePhoto
+              src="/images/conference/venue-excite-lethbridge.jpg"
+              gradient="linear-gradient(160deg,#8aa9d4 0%,#c9a24b 55%,#573425 100%)"
+              alt="Excite Lethbridge, the venue for Our Essence Conference"
+              className="aspect-[5/4] rounded-2xl"
+              objectPosition="center 60%"
+            />
+          </Reveal>
+          <div className="px-2 pb-4 md:px-0 md:pb-0">
             <Reveal as="p" className={EYEBROW}>Event Location</Reveal>
             <Reveal as="h2" delay={1} className="mt-3 font-serif text-3xl md:text-4xl">
               Excite Lethbridge
             </Reveal>
-          </div>
-          <div>
-            <Reveal as="p" delay={2} className="text-brand-brown/85 md:text-lg">
+            <Reveal as="p" delay={2} className="mt-4 text-brand-brown/85 md:text-lg">
               101 Exhibition Way South<br />
               Lethbridge, AB
             </Reveal>
