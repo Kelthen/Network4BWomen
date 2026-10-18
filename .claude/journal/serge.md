@@ -1,10 +1,11 @@
 ---
 dev: serge
 github: sergesanou
-branch: feat/serge/nbw-detail-edits-oct
-current_task: "PR #64 mergée ; PR Board Governance mergée sur instruction de Serge. Scripts data Supabase (sync fiche + galerie 15 photos) prêts, en attente d'exécution (confirmation annulée côté app)."
-files_locked: []
-updated: 2026-10-14T22:45:00Z
+branch: feat/serge/conference-venue-photo
+current_task: "Photo du lieu (Excite Lethbridge, fournie par Serge 2026-10-18) dans la section Event Location de /conference. Branche basée sur feat/rhamon/notes-nbw-16-10 (PR #70, même section réécrite) → PR ciblant sa branche pour éviter le conflit."
+files_locked:
+  - app/(site)/conference/page.tsx
+updated: 2026-10-18T14:15:00Z
 ---
 
 # Journal — serge
