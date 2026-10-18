@@ -34,8 +34,8 @@ export default function DonatePage({
             role="status"
             className="mb-10 rounded-2xl border border-brand-sage bg-brand-sage/15 px-6 py-4 text-brand-brown"
           >
-            <b>Thank you for your generosity!</b> Your donation supports Black women across
-            Alberta. 💛
+            <b>Thank you for your generosity!</b> Your donation supports Black women in our
+            community. 💛
           </div>
         )}
         {status === "cancel" && (

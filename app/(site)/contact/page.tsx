@@ -40,12 +40,6 @@ export default function ContactPage() {
                 </a>
               </div>
               <div>
-                <p className={EYEBROW}>Where we are</p>
-                <p className="mt-2 text-brand-brown/80">
-                  Alberta — traditional territory of the Blackfoot Confederacy.
-                </p>
-              </div>
-              <div>
                 <p className={EYEBROW}>Follow us</p>
                 <div className="mt-2 flex flex-wrap gap-4 text-brand-brown/80">
                   <a href="https://instagram.com" className="hover:text-brand-pink">
