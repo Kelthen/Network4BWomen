@@ -37,7 +37,7 @@ export default function Footer() {
           />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-brand-cream/80">
             Empowering, connecting, and uplifting Black women and girls through community,
-            leadership, community, and opportunity.
+            leadership, and opportunity.
           </p>
           <Link
             href="/donate"

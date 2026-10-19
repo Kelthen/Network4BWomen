@@ -3,7 +3,7 @@ dev: serge
 github: sergesanou
 branch: fix/serge/footer-slogan
 current_task: "Footer (zone shared) : « community » en double dans le slogan. Changement d'une ligne, feu vert de Serge."
-files_locked: ["components/Footer.tsx"]
+files_locked: []
 updated: 2026-10-19T18:25:00Z
 ---
 
@@ -12,6 +12,11 @@ updated: 2026-10-19T18:25:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de rhamon, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-10-19 — Footer + URL du site (feu vert de Serge) — `fix/serge/footer-slogan`
+- **Footer (zone shared)** : « …through community, leadership, community, and opportunity. » → « …through community, leadership, and opportunity. » (doublon introduit le 14/10 en remplaçant « wellness », commit 6b9722f ; aligné sur `SITE_DESCRIPTION`). Une ligne, aucun autre fichier.
+- **Vercel** : `NEXT_PUBLIC_SITE_URL` (production) corrigée `https://wwww.…` → `https://www.networkofblackwomen.ca` (domaine principal ; l'apex redirige vers www en 308). Prise en compte au déploiement de production suivant (variable lue au build).
+- Mergé sans review croisée sur instruction explicite de Serge (« tu as le feu vert »). Rhamon : merci de relire après coup. Verrous libérés.
 
 ## 2026-10-19 — Merge sur instruction de Serge
 - PR #72 (Contact) et #73 (diaporama « Our community ») **mergées sans review croisée sur instruction explicite de Serge** (« vas règle et merge tout »). Rhamon : merci de relire après coup, ce sont deux overrides dans ta zone.
