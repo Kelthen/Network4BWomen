@@ -1,10 +1,10 @@
 ---
 dev: serge
 github: sergesanou
-branch: feat/serge/community-slideshow
-current_task: "Aucune tâche en cours — #72 (Contact) et #73 (diaporama Our community) mergées le 19/10 sur instruction de Serge."
-files_locked: []
-updated: 2026-10-19T18:20:00Z
+branch: fix/serge/footer-slogan
+current_task: "Footer (zone shared) : « community » en double dans le slogan. Changement d'une ligne, feu vert de Serge."
+files_locked: ["components/Footer.tsx"]
+updated: 2026-10-19T18:25:00Z
 ---
 
 # Journal — serge
