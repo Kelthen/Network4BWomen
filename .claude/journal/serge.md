@@ -1,10 +1,10 @@
 ---
 dev: serge
 github: sergesanou
-branch: fix/serge/contact-socials
-current_task: "Page Contact : vrais liens Instagram/LinkedIn (SOCIALS) et retrait de la note interne « Social links to be confirmed with NBW. ». Override zone rhamon, demande humaine (Serge)."
-files_locked: []
-updated: 2026-10-19T17:45:00Z
+branch: feat/serge/community-slideshow
+current_task: "Accueil, section « Our community » : diaporama de 6 photos (droite → gauche, 4 s), cadre et texte inchangés. Override zone rhamon, demande humaine (Serge, maquette validée le 19/10)."
+files_locked: ["components/home/SignatureMoment.tsx"]
+updated: 2026-10-19T18:10:00Z
 ---
 
 # Journal — serge
