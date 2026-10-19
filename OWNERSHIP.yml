@@ -74,7 +74,7 @@ note: "Dons sécurisés Stripe Checkout + webhook + option PayPal."
 - area: contact
 files: ["app/(site)/contact/**", "app/api/contact/**", "components/contact/**"]
 status: done
-note: "Rate limiting + honeypot anti-spam ajoutés."
+note: "Rate limiting + honeypot anti-spam ajoutés. ⚠️ OVERRIDE 2026-10-19 (serge, instruction humaine) : « Follow us » lit SOCIALS (lib/site.ts) comme le footer ; liens génériques instagram.com/facebook.com/linkedin.com et note interne « Social links to be confirmed with NBW. » retirés."
 - area: newsletter
 files: ["app/api/newsletter/**", "app/(site)/newsletter/**", "components/Newsletter.tsx", "components/FooterNewsletter.tsx", "components/home/NewsletterTeaser.tsx", "lib/newsletterEmails.ts"]
 status: done

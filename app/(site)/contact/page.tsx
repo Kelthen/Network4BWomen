@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/home/Reveal";
 import ContactForm from "@/components/contact/ContactForm";
+import { SOCIALS } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact — Network of Black Women (NBW)",
@@ -41,18 +42,17 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className={EYEBROW}>Follow us</p>
-                <div className="mt-2 flex flex-wrap gap-4 text-brand-brown/80">
-                  <a href="https://instagram.com" className="hover:text-brand-pink">
-                    Instagram
-                  </a>
-                  <a href="https://facebook.com" className="hover:text-brand-pink">
-                    Facebook
-                  </a>
-                  <a href="https://linkedin.com" className="hover:text-brand-pink">
-                    LinkedIn
-                  </a>
-                </div>
-                <p className="mt-2 text-xs text-brand-brown/75">Social links to be confirmed with NBW.</p>
+                {/* 2026-10-19 (serge, override zone rhamon, demande humaine) : vrais comptes NBW
+                    depuis lib/site.ts (comme le footer) ; liens génériques et note interne retirés. */}
+                <ul className="mt-2 flex flex-wrap gap-4 text-brand-brown/80">
+                  {SOCIALS.map((s) => (
+                    <li key={s.label}>
+                      <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-brand-pink">
+                        {s.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </Reveal>
