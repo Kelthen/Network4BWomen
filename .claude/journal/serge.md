@@ -3,7 +3,7 @@ dev: serge
 github: sergesanou
 branch: fix/serge/contact-socials
 current_task: "Page Contact : vrais liens Instagram/LinkedIn (SOCIALS) et retrait de la note interne « Social links to be confirmed with NBW. ». Override zone rhamon, demande humaine (Serge)."
-files_locked: ["app/(site)/contact/page.tsx"]
+files_locked: []
 updated: 2026-10-19T17:45:00Z
 ---
 
@@ -12,6 +12,15 @@ updated: 2026-10-19T17:45:00Z
 > Chronologique, plus récent en HAUT. Je n'écris que dans CE fichier.
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de rhamon, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
+
+## 2026-10-19 — Page Contact : vrais réseaux sociaux — `fix/serge/contact-socials`
+- **Override zone rhamon, demande humaine (Serge, 19/10)** : repéré par rhamon le 15/10 (« Social links to be confirmed with NBW. » visible sur /contact).
+- **Fait** : « Follow us » lit `SOCIALS` de `lib/site.ts` (Instagram + LinkedIn réels, comme le footer), `target="_blank" rel="noopener noreferrer"`, liste `<ul>`. Retirés : liens génériques `instagram.com` / `facebook.com` / `linkedin.com` (Facebook pas fourni par NBW → absent, cf. commentaire de `lib/site.ts`) et la note interne. Note d'override ajoutée dans `OWNERSHIP.yml` (zone contact).
+- Validé : `tsc` OK. Build local impossible ici (Google Fonts bloqué par le réseau du sandbox) → vérification sur le preview Vercel de la PR. `npm run lint` : pas de config ESLint dans le repo (préexistant).
+- **Droits photo Excite Lethbridge** (entrée du 18/10) : confirmés par Serge le 19/10 → OK pour l'utiliser.
+- **She Deserves Rest** : vérifié le 19/10, plus aucune trace en base (12 tables) ni sur le site en prod → le `2026-10-17_suppression-she-deserves-rest.sql` noté ⏳ dans le journal de rhamon n'est plus nécessaire.
+- ⚠️ Toujours ouvert : `NEXT_PUBLIC_SITE_URL` sur Vercel = `wwww.` (og:url faux en prod, vérifié le 19/10).
+- **Prochaine étape** : review croisée de rhamon (sa zone), puis squash-merge. Verrous libérés.
 
 ## 2026-10-18 — Photo du lieu dans Event Location (/conference) — `feat/serge/conference-venue-photo`
 - Serge a fourni une photo du bâtiment Excite Lethbridge pour remplacer la photo de groupe en double dans « Event Location ».
