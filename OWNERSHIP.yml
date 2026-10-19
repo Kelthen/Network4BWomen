@@ -59,7 +59,7 @@ rhamon:
 - area: homepage
 files: ["app/(site)/page.tsx", "components/home/**"]
 status: done
-note: "Hero, Our Impact, Upcoming Events, Testimonials, Sponsors — complété (PR home-nav-polish) ⚠️ OVERRIDE 2026-10-14 (serge, instruction humaine) : Girl Talk & Gratitude reporté à l'an prochain → lib/featuredEvent.ts FEATURED_EVENT = null (bandeau + flyer off), retiré de UpcomingEvents.tsx et lib/eventFallbacks.ts. + nouvelle section components/home/BoardGovernance.tsx (fiche NBW « Create Board Governance section », données lib/team.ts extraites de about/page.tsx), She Deserves Rest « Wellness » → « Retreat », donate : « Health & wellness » retiré."
+note: "Hero, Our Impact, Upcoming Events, Testimonials, Sponsors — complété (PR home-nav-polish) ⚠️ OVERRIDE 2026-10-14 (serge, instruction humaine) : Girl Talk & Gratitude reporté à l'an prochain → lib/featuredEvent.ts FEATURED_EVENT = null (bandeau + flyer off), retiré de UpcomingEvents.tsx et lib/eventFallbacks.ts. + nouvelle section components/home/BoardGovernance.tsx (fiche NBW « Create Board Governance section », données lib/team.ts extraites de about/page.tsx), She Deserves Rest « Wellness » → « Retreat », donate : « Health & wellness » retiré. ⚠️ OVERRIDE 2026-10-19 (serge, instruction humaine, maquette validée) : « Our community » (SignatureMoment.tsx) devient un diaporama de 6 photos (droite → gauche, 4 s, bouton pause) ; cadre, voile, texte et agrandissement au scroll inchangés."
 - area: about
 files: ["app/(site)/about/**", "components/about/**"]
 status: done

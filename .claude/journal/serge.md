@@ -1,10 +1,10 @@
 ---
 dev: serge
 github: sergesanou
-branch: fix/serge/contact-socials
-current_task: "Page Contact : vrais liens Instagram/LinkedIn (SOCIALS) et retrait de la note interne « Social links to be confirmed with NBW. ». Override zone rhamon, demande humaine (Serge)."
+branch: feat/serge/community-slideshow
+current_task: "Aucune tâche en cours — #72 (Contact) et #73 (diaporama Our community) mergées le 19/10 sur instruction de Serge."
 files_locked: []
-updated: 2026-10-19T17:45:00Z
+updated: 2026-10-19T18:20:00Z
 ---
 
 # Journal — serge
@@ -13,6 +13,19 @@ updated: 2026-10-19T17:45:00Z
 > Avant d'agir : `git fetch --all --prune`, lire TEAM-STATUS.md, lire le journal de rhamon, vérifier OWNERSHIP.yml.
 > Mettre à jour l'en-tête YAML (`current_task`, `files_locked`) AVANT de coder, puis commit+push pour publier mon intention.
 
+## 2026-10-19 — Merge sur instruction de Serge
+- PR #72 (Contact) et #73 (diaporama « Our community ») **mergées sans review croisée sur instruction explicite de Serge** (« vas règle et merge tout »). Rhamon : merci de relire après coup, ce sont deux overrides dans ta zone.
+- Reste ouvert : `NEXT_PUBLIC_SITE_URL` = `wwww.` sur Vercel ; « community » en double dans le slogan du footer (zone shared).
+
+## 2026-10-19 — Accueil : diaporama dans « Our community » — `feat/serge/community-slideshow`
+- **Override zone rhamon, demande humaine (Serge)** : maquette validée par Serge le 19/10 (« un peu plus vite » → 4 s au lieu de 4,5 s).
+- `components/home/SignatureMoment.tsx` : la photo unique (fondu d'un passage à l'autre) devient une rangée de 6 photos qui glisse de droite à gauche toutes les 4 s (glissement 1,1 s), en boucle sans saut (copie de la 1re photo en fin de rangée). Cadre, voile brun, texte et agrandissement au scroll **inchangés** (même code).
+- Gardé : chaque visite commence sur une photo différente (sessionStorage, même clé).
+- Pause automatique hors écran et onglet caché ; bouton pause/lecture discret en bas à droite (seul ajout visible, WCAG 2.2.2). `prefers-reduced-motion` : pas de défilement, pas de bouton.
+- Photos (aucune nouvelle image, aucune reprise hors galerie) : `gallery/2025-2`, `pickleball-highlights-02`, `gallery/2025-3`, `pickleball-highlights-04`, `-14`, `-08`. ⚠️ Pickleball sur l'accueil : validé par Serge pour cette section (rhamon l'avait écarté des cartes Networking/Leadership). Alternative : 9 photos de l'album conférence en base, inutilisées ailleurs.
+- Validé : `tsc` OK ; preview Vercel OK (6 photos + copie de bouclage, texte inchangé, bouton pause, images servies).
+- Rebasée sur main après #72 (conflit de journal résolu : les deux entrées gardées). Verrous libérés.
+
 ## 2026-10-19 — Page Contact : vrais réseaux sociaux — `fix/serge/contact-socials`
 - **Override zone rhamon, demande humaine (Serge, 19/10)** : repéré par rhamon le 15/10 (« Social links to be confirmed with NBW. » visible sur /contact).
 - **Fait** : « Follow us » lit `SOCIALS` de `lib/site.ts` (Instagram + LinkedIn réels, comme le footer), `target="_blank" rel="noopener noreferrer"`, liste `<ul>`. Retirés : liens génériques `instagram.com` / `facebook.com` / `linkedin.com` (Facebook pas fourni par NBW → absent, cf. commentaire de `lib/site.ts`) et la note interne. Note d'override ajoutée dans `OWNERSHIP.yml` (zone contact).
@@ -20,7 +33,7 @@ updated: 2026-10-19T17:45:00Z
 - **Droits photo Excite Lethbridge** (entrée du 18/10) : confirmés par Serge le 19/10 → OK pour l'utiliser.
 - **She Deserves Rest** : vérifié le 19/10, plus aucune trace en base (12 tables) ni sur le site en prod → le `2026-10-17_suppression-she-deserves-rest.sql` noté ⏳ dans le journal de rhamon n'est plus nécessaire.
 - ⚠️ Toujours ouvert : `NEXT_PUBLIC_SITE_URL` sur Vercel = `wwww.` (og:url faux en prod, vérifié le 19/10).
-- **Prochaine étape** : review croisée de rhamon (sa zone), puis squash-merge. Verrous libérés.
+- Preview Vercel OK. Verrous libérés.
 
 ## 2026-10-18 — Photo du lieu dans Event Location (/conference) — `feat/serge/conference-venue-photo`
 - Serge a fourni une photo du bâtiment Excite Lethbridge pour remplacer la photo de groupe en double dans « Event Location ».
