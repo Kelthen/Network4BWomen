@@ -1,10 +1,10 @@
 ---
 dev: serge
 github: sergesanou
-branch: feat/serge/conference-venue-photo
-current_task: "Photo du lieu Excite Lethbridge : PR ouverte vers feat/rhamon/notes-nbw-16-10 (à merger avant #70)."
-files_locked: []
-updated: 2026-10-18T14:15:00Z
+branch: fix/serge/contact-socials
+current_task: "Page Contact : vrais liens Instagram/LinkedIn (SOCIALS) et retrait de la note interne « Social links to be confirmed with NBW. ». Override zone rhamon, demande humaine (Serge)."
+files_locked: ["app/(site)/contact/page.tsx"]
+updated: 2026-10-19T17:45:00Z
 ---
 
 # Journal — serge
