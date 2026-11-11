@@ -12,6 +12,7 @@ updated: 2026-11-11T01:30:00Z
 ## 2026-11-11 — Site verrouillé : 404 pour tout le monde — `claudeb/friendly-hypatia-0q0wu8`
 - Décision rhamon (impayé) : tout le site renvoie une page 404 (vrai statut 404, noindex, no-store), y compris API, images, robots, sitemap.
 - `middleware.ts` (nouveau, shared) + `lib/lock/page.ts` : page autonome (pas de Nav/Footer/images du site). Bouton « Take me home » qui fuit 9 fois puis cède → chargement infini (99,9… %).
+- Ajout d'un petit chat (SVG, coin bas-droit) : ses yeux suivent la souris / le doigt, sinon le bouton ou la barre ; clignements, queue qui balance, oreille qui frétille, bulle « Mrrp. » au clic.
 - Accès privé : cliquer 5× sur « 404 » ou taper « open sesame », puis entrer le code = variable Vercel `SITE_UNLOCK_CODE` (cookie 30 j, `/__lock` pour sortir). Sans la variable, personne n'entre.
 - Lever le verrou : `SITE_LOCK=off` sur Vercel + redéploiement (ou supprimer `middleware.ts`).
 - Verrous libérés.

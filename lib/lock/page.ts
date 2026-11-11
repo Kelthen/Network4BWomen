@@ -76,7 +76,21 @@ export const LOCK_PAGE_HTML = /* html */ `<!doctype html>
   @keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
   footer{position:fixed; bottom:20px; left:0; right:0; text-align:center; font:500 10px Montserrat,sans-serif; letter-spacing:.24em; text-transform:uppercase; color:rgba(87,52,37,.4)}
   .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
+  /* le chat */
+  #cat{position:fixed; z-index:3; right:clamp(12px,6vw,96px); bottom:clamp(40px,6vh,64px); width:clamp(100px,13vw,170px); cursor:pointer; -webkit-tap-highlight-color:transparent}
+  #cat svg{display:block; width:100%; height:auto; overflow:visible; filter:drop-shadow(0 14px 18px rgba(87,52,37,.18))}
+  #cat .tail{transform-origin:148px 196px; animation:swish 3.2s ease-in-out infinite}
+  @keyframes swish{0%,100%{transform:rotate(0)}50%{transform:rotate(-14deg)}}
+  #cat .ear-r{transform-origin:128px 52px}
+  #cat.twitch .ear-r{animation:twitch .35s ease-in-out}
+  @keyframes twitch{50%{transform:rotate(12deg)}}
+  #cat .lid{transform-box:fill-box; transform-origin:center; transform:scaleY(1); transition:transform .09s ease-in}
+  #cat.blink .lid{transform:scaleY(.08)}
+  #cat.happy .lid{transform:scaleY(.35)}
+  .bubble{position:absolute; right:62%; bottom:96%; padding:9px 14px; border-radius:16px 16px 4px 16px; background:#fff; color:var(--brown); font:italic 500 15px "Playfair Display",Georgia,serif; white-space:nowrap; box-shadow:0 8px 24px -10px rgba(87,52,37,.35); opacity:0; transform:translateY(6px) scale(.96); transition:opacity .2s, transform .2s; pointer-events:none}
+  .bubble.on{opacity:1; transform:none}
   @media (prefers-reduced-motion:reduce){
+    #cat .tail{animation:none}
     .ring .orbit,.bar i::after{animation:none}
     #flee{transition:none}
   }
@@ -114,6 +128,52 @@ export const LOCK_PAGE_HTML = /* html */ `<!doctype html>
     <button type="submit">Enter</button>
   </form>
 </main>
+
+<div id="cat" role="img" aria-label="A small cat watching you">
+  <span class="bubble" id="bubble"></span>
+  <svg viewBox="0 0 200 224" aria-hidden="true">
+    <!-- queue -->
+    <path class="tail" d="M146 198 C 196 204, 206 150, 176 132 C 168 127, 160 134, 166 140 C 184 154, 176 186, 142 186" fill="#573425"/>
+    <!-- corps -->
+    <path d="M58 214 C 46 170, 60 130, 100 126 C 140 130, 154 170, 142 214 Z" fill="#573425"/>
+    <ellipse cx="100" cy="176" rx="22" ry="30" fill="#FBF7F0" opacity=".16"/>
+    <ellipse cx="82" cy="214" rx="15" ry="9" fill="#6b4130"/>
+    <ellipse cx="118" cy="214" rx="15" ry="9" fill="#6b4130"/>
+    <path d="M78 216 v-6 M84 217 v-6 M114 217 v-6 M120 216 v-6" stroke="#4a2a1d" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- oreilles -->
+    <path d="M48 76 L54 18 L94 48 Z" fill="#573425"/>
+    <path d="M58 64 L61 32 L84 50 Z" fill="#E9C8C9"/>
+    <g class="ear-r">
+      <path d="M152 76 L146 18 L106 48 Z" fill="#573425"/>
+      <path d="M142 64 L139 32 L116 50 Z" fill="#E9C8C9"/>
+    </g>
+    <!-- tête -->
+    <ellipse cx="100" cy="88" rx="60" ry="50" fill="#642F19"/>
+    <ellipse cx="100" cy="92" rx="57" ry="46" fill="#573425"/>
+    <path d="M100 42 v14 M90 44 v10 M110 44 v10" stroke="#4a2a1d" stroke-width="3" stroke-linecap="round"/>
+    <!-- collier + clochette -->
+    <path d="M62 128 Q100 144 138 128" fill="none" stroke="#B84C65" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="100" cy="142" r="7" fill="#C9962C"/>
+    <path d="M95 143 h10" stroke="#8a6d1f" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- joues -->
+    <ellipse cx="62" cy="108" rx="10" ry="6" fill="#F6828F" opacity=".35"/>
+    <ellipse cx="138" cy="108" rx="10" ry="6" fill="#F6828F" opacity=".35"/>
+    <!-- yeux -->
+    <g class="lid">
+      <ellipse cx="76" cy="88" rx="15" ry="16" fill="#FBF7F0"/>
+      <g class="pupil"><ellipse cx="76" cy="88" rx="8" ry="10" fill="#2a160e"/><circle cx="79" cy="84" r="3" fill="#fff"/><circle cx="73" cy="92" r="1.4" fill="#fff" opacity=".8"/></g>
+    </g>
+    <g class="lid">
+      <ellipse cx="124" cy="88" rx="15" ry="16" fill="#FBF7F0"/>
+      <g class="pupil"><ellipse cx="124" cy="88" rx="8" ry="10" fill="#2a160e"/><circle cx="127" cy="84" r="3" fill="#fff"/><circle cx="121" cy="92" r="1.4" fill="#fff" opacity=".8"/></g>
+    </g>
+    <!-- nez, bouche, moustaches -->
+    <path d="M94 106 h12 l-6 7 Z" fill="#F6828F" stroke="#F6828F" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M100 113 q-5 7 -11 3 M100 113 q5 7 11 3" fill="none" stroke="#2a160e" stroke-width="2" stroke-linecap="round"/>
+    <path d="M36 102 l26 4 M34 114 l28 -2 M164 102 l-26 4 M166 114 l-28 -2" stroke="#E8DCC8" stroke-width="1.6" stroke-linecap="round" opacity=".85"/>
+  </svg>
+</div>
+
 <footer>Error 404 · Not found</footer>
 
 <script>
@@ -186,6 +246,44 @@ export const LOCK_PAGE_HTML = /* html */ `<!doctype html>
   var buf='';
   document.addEventListener('keydown',function(e){ if(e.target.tagName==='INPUT'||e.key.length!==1) return; buf=(buf+e.key.toLowerCase()).slice(-11); if(buf==='open sesame') reveal() });
   if(location.search.indexOf('denied')>-1){ reveal(); key.classList.add('shake'); history.replaceState(null,'',location.pathname) }
+
+  // Le chat : ses yeux suivent la souris (ou le doigt). Sans mouvement, il surveille le bouton.
+  var cat=document.getElementById('cat'), bubble=document.getElementById('bubble');
+  var pupils=[].slice.call(cat.querySelectorAll('.pupil')), lids=[].slice.call(cat.querySelectorAll('.lid ellipse'));
+  var target=null, lastMove=0, cur=[{x:0,y:0},{x:0,y:0}];
+  document.addEventListener('pointermove',function(e){ target={x:e.clientX,y:e.clientY}; lastMove=Date.now() });
+  document.addEventListener('pointerdown',function(e){ target={x:e.clientX,y:e.clientY}; lastMove=Date.now() });
+  function center(el){ var r=el.getBoundingClientRect(); return {x:r.left+r.width/2, y:r.top+r.height/2} }
+  (function look(){
+    var t=target;
+    if(!t || Date.now()-lastMove>2500){
+      var watch=loader.classList.contains('on')?fill:(btn.style.display!=='none'?btn:null);
+      if(watch) t=center(watch);
+    }
+    pupils.forEach(function(p,i){
+      var dx=0, dy=0;
+      if(t){
+        var c=center(lids[i]), ax=t.x-c.x, ay=t.y-c.y, d=Math.hypot(ax,ay)||1, k=Math.min(1,d/160);
+        dx=ax/d*6*k; dy=ay/d*6*k;
+      }
+      cur[i].x+=(dx-cur[i].x)*.2; cur[i].y+=(dy-cur[i].y)*.2;
+      p.setAttribute('transform','translate('+cur[i].x.toFixed(2)+' '+cur[i].y.toFixed(2)+')');
+    });
+    requestAnimationFrame(look);
+  })();
+  (function blink(){
+    setTimeout(function(){ cat.classList.add('blink'); setTimeout(function(){cat.classList.remove('blink'); blink()},140) }, 2200+Math.random()*3800);
+  })();
+  setInterval(function(){ if(Math.random()<.5){ cat.classList.add('twitch'); setTimeout(function(){cat.classList.remove('twitch')},400) } },4000);
+
+  var meows=['Mrrp.','Meow.','I can\\'t find it either.','Don\\'t look at me.','Have you tried the button?','Purrr…','I was napping here.'], mi=0, bt;
+  cat.addEventListener('click',function(){
+    bubble.textContent=meows[mi++%meows.length]; bubble.classList.add('on');
+    cat.classList.add('happy'); clearTimeout(bt);
+    bt=setTimeout(function(){ bubble.classList.remove('on'); cat.classList.remove('happy') },1800);
+  });
+  // Quand le bouton fuit, le chat réagit.
+  btn.addEventListener('pointerdown',function(){ cat.classList.add('twitch'); setTimeout(function(){cat.classList.remove('twitch')},400) });
 })();
 </script>
 </body>
