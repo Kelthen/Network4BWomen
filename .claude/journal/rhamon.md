@@ -1,13 +1,21 @@
 ---
 dev: rhamon
 github: RhamonK
-branch: feat/rhamon/notes-nbw-16-10
-current_task: "Notes NBW du 16/10 : Our Essence le 6–7 mars, She Deserves Rest retiré (événement + thème), une photo par emplacement (planche validée), rotation de photos dans « Our community », tuiles speakers vides. Override zone serge (conference, events, programs, news) sur instruction de rhamon."
+branch: claudeb/friendly-hypatia-0q0wu8
+current_task: "Verrou global du site : page 404 pour tout le monde + accès privé par code (middleware.ts, lib/lock/page.ts)."
 files_locked: []
-updated: 2026-10-17T15:00:00Z
+updated: 2026-11-11T01:30:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-11-11 — Site verrouillé : 404 pour tout le monde — `claudeb/friendly-hypatia-0q0wu8`
+- Décision rhamon (impayé) : tout le site renvoie une page 404 (vrai statut 404, noindex, no-store), y compris API, images, robots, sitemap.
+- `middleware.ts` (nouveau, shared) + `lib/lock/page.ts` : page autonome (pas de Nav/Footer/images du site). Bouton « Take me home » qui fuit 9 fois puis cède → chargement infini (99,9… %).
+- Ajout d'un petit chat (SVG, coin bas-droit) : ses yeux suivent la souris / le doigt, sinon le bouton ou la barre ; clignements, queue qui balance, oreille qui frétille, bulle « Mrrp. » au clic.
+- Accès privé : cliquer 5× sur « 404 » ou taper « open sesame », puis entrer le code = variable Vercel `SITE_UNLOCK_CODE` (cookie 30 j, `/__lock` pour sortir). Sans la variable, personne n'entre.
+- Lever le verrou : `SITE_LOCK=off` sur Vercel + redéploiement (ou supprimer `middleware.ts`).
+- Verrous libérés.
 
 ## 2026-10-17 — Notes NBW du 16/10 — `feat/rhamon/notes-nbw-16-10`
 - **Dates** : Our Essence = 6–7 mars 2027 (accueil « MAR 06–07 », liste Events « MAR 6–7 », page détail, page Conférence + FAQ). Seule la conférence change (décision rhamon) ; Paint & Sip reste le 5. `listBadge` / `formatEventWhen` gèrent maintenant les plages de jours.
