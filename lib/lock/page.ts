@@ -33,6 +33,8 @@ export const LOCK_PAGE_HTML = /* html */ `<!doctype html>
   }
   main{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 16px 120px; text-align:center}
   .eyebrow{font-family:Montserrat,sans-serif; font-weight:600; font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold-text)}
+  .eyebrow a{color:inherit; text-decoration:none; cursor:text}
+  .eyebrow a:focus-visible{outline:2px solid var(--gold); outline-offset:4px; border-radius:2px}
   .eyebrow .rule{display:inline-block; width:28px; height:1px; background:var(--gold); vertical-align:middle; margin:0 12px}
   .code{font-family:"Playfair Display",Georgia,serif; font-weight:500; font-size:clamp(108px,24vw,240px); line-height:1; display:flex; align-items:center; gap:.04em; margin:12px 0 clamp(20px,4vw,40px); user-select:none; cursor:default; color:var(--brown-dark)}
   .ring{width:.7em; height:.86em; position:relative; display:inline-block}
@@ -67,8 +69,10 @@ export const LOCK_PAGE_HTML = /* html */ `<!doctype html>
   #cancel{margin-top:22px; background:none; border:0; font:600 11px Montserrat,sans-serif; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-text); text-decoration:underline; text-underline-offset:4px; cursor:pointer}
   #cancel:focus-visible{outline:2px solid var(--gold); outline-offset:4px}
   /* accès privé */
-  #key{display:none; margin-top:28px; gap:8px}
-  #key.on{display:flex}
+  #access{display:none; flex-direction:column; align-items:center; margin-top:28px}
+  #access.on{display:flex}
+  #key{display:flex; gap:8px}
+  #keymsg{margin-top:10px; min-height:18px; font:600 11px Montserrat,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--crimson)}
   #key input{width:180px; padding:12px 16px; border:1px solid var(--beige); border-radius:999px; background:#fff; font:15px Lato,sans-serif; color:var(--brown); text-align:center; letter-spacing:.2em}
   #key input:focus{outline:2px solid var(--gold); outline-offset:2px}
   #key button{padding:12px 18px; border:0; border-radius:999px; background:var(--brown); color:var(--cream); font:600 11px Montserrat,sans-serif; letter-spacing:.18em; text-transform:uppercase; cursor:pointer}
@@ -98,7 +102,7 @@ export const LOCK_PAGE_HTML = /* html */ `<!doctype html>
 </head>
 <body>
 <main>
-  <p class="eyebrow"><span class="rule"></span>Error<span class="rule"></span></p>
+  <p class="eyebrow"><span class="rule"></span><a href="#access" id="err">Error</a><span class="rule"></span></p>
   <div class="code" id="code" aria-label="404">
     <span aria-hidden="true">4</span>
     <span class="ring" aria-hidden="true">
@@ -122,11 +126,14 @@ export const LOCK_PAGE_HTML = /* html */ `<!doctype html>
     <button id="cancel" type="button">Cancel</button>
   </div>
 
+  <div id="access">
   <form id="key" method="post" action="/__unlock" autocomplete="off">
     <label class="sr" for="k">Access code</label>
     <input id="k" name="code" type="password" inputmode="text" autocomplete="off" spellcheck="false">
     <button type="submit">Enter</button>
   </form>
+  <p id="keymsg" role="alert"></p>
+  </div>
 </main>
 
 <div id="cat" role="img" aria-label="A small cat watching you">
@@ -239,13 +246,18 @@ export const LOCK_PAGE_HTML = /* html */ `<!doctype html>
   var cancels=['Can\\'t cancel. We\\'re so close.','Cancelling… (just kidding)','No.','Cancel is also loading.'], ci=0;
   document.getElementById('cancel').addEventListener('click',function(){ this.textContent=cancels[ci++%cancels.length] });
 
-  // Accès privé : touche le « 404 » cinq fois, ou tape « open sesame ».
-  var key=document.getElementById('key'), taps=0, tt;
-  function reveal(){ key.classList.add('on'); document.getElementById('k').focus() }
-  document.getElementById('code').addEventListener('click',function(){ clearTimeout(tt); if(++taps>=5){reveal(); taps=0} tt=setTimeout(function(){taps=0},1500) });
-  var buf='';
-  document.addEventListener('keydown',function(e){ if(e.target.tagName==='INPUT'||e.key.length!==1) return; buf=(buf+e.key.toLowerCase()).slice(-11); if(buf==='open sesame') reveal() });
-  if(location.search.indexOf('denied')>-1){ reveal(); key.classList.add('shake'); history.replaceState(null,'',location.pathname) }
+  // Accès privé : un clic sur « Error » ouvre le champ du code. 3 essais, puis blocage 24 h (côté serveur).
+  var access=document.getElementById('access'), key=document.getElementById('key'), keymsg=document.getElementById('keymsg');
+  var q=new URLSearchParams(location.search), isBlocked=document.cookie.indexOf('__site_blocked=1')>-1||q.has('blocked');
+  function reveal(){
+    access.classList.add('on');
+    if(isBlocked){ key.style.display='none'; keymsg.textContent='Too many attempts. Locked for 24 hours.'; return }
+    document.getElementById('k').focus();
+  }
+  document.getElementById('err').addEventListener('click',function(e){ e.preventDefault(); access.classList.contains('on')?access.classList.remove('on'):reveal() });
+  if(q.has('denied')){ var left=q.get('denied'); reveal(); key.classList.add('shake'); keymsg.textContent=left==='1'?'Wrong code. 1 attempt left.':'Wrong code. '+left+' attempts left.' }
+  if(q.has('blocked')) reveal();
+  if(q.has('denied')||q.has('blocked')) history.replaceState(null,'',location.pathname);
 
   // Le chat : ses yeux suivent la souris (ou le doigt). Sans mouvement, il surveille le bouton.
   var cat=document.getElementById('cat'), bubble=document.getElementById('bubble');

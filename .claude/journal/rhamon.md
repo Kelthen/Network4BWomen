@@ -2,12 +2,20 @@
 dev: rhamon
 github: RhamonK
 branch: claudeb/friendly-hypatia-0q0wu8
-current_task: "Verrou global du site : page 404 pour tout le monde + accès privé par code (middleware.ts, lib/lock/page.ts)."
+current_task: "Verrou 404 : accès au code via le lien « Error » + 3 essais max par IP (blocage 24 h)."
 files_locked: []
-updated: 2026-11-11T01:30:00Z
+updated: 2026-11-11T02:30:00Z
 ---
 
 # Journal — rhamon
+
+## 2026-11-11 — Verrou 404 : lien « Error » + 3 essais max — `claudeb/friendly-hypatia-0q0wu8`
+- Le mot « Error » en haut de la 404 est un lien : un clic ouvre le champ du code (les 5 clics sur « 404 » et « open sesame » sont supprimés).
+- 3 codes faux par IP → blocage 24 h, vérifié côté serveur (même le bon code est refusé pendant le blocage). Compteur partagé : table `site_unlock_attempts` + fonction `site_unlock_fail` (migration `0011`, **appliquée en prod via le connecteur**). IP stockée en empreinte SHA-256, jamais en clair ; table réservée à service_role.
+- Secours si la base ne répond pas : compteur en mémoire par instance.
+- Une ligne de test `__test__` (bloquée) est restée dans la table : sans effet, à supprimer quand on veut.
+- Débloquer une IP à la main : vider la table `site_unlock_attempts` dans Supabase.
+- Verrous libérés.
 
 ## 2026-11-11 — Site verrouillé : 404 pour tout le monde — `claudeb/friendly-hypatia-0q0wu8`
 - Décision rhamon (impayé) : tout le site renvoie une page 404 (vrai statut 404, noindex, no-store), y compris API, images, robots, sitemap.
